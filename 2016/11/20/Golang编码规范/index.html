@@ -100,29 +100,28 @@
 
 
   
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="golang," />
 
 
-<meta name="description" content="本文主要讲imageNamed与imageWithContentsOfFile的差异，需要注意的点，与实战中遇到的坑。  好久没写过博客了，什么工作太忙，加班太晚我就不说了，都怪自己太懒😂，时间都是挤出来的。看着各位大牛写的文章，简直过瘾，希望有一天自己也能写出这么高质量、干货密集的文章，先从简单的做起吧。 从差异说起从磁盘加载图片，UIImage主要提供了两种方式：  +(UIImage">
+<meta name="description" content="gofmt 大部分的格式问题可以通过gofmt解决，gofmt自动格式化代码，保证所有的go代码与官方推荐的格式保持一致，于是所有格式有关问题，都以gofmt的结果为准。  行长   一行最长不超过80个字符，超过的使用换行展示，尽量保持格式优雅。  注释 在编码阶段应该同步写好变量、函数、包的注释，最后可以利用godoc导出文档。注释必须是完整的句子，句子的结尾应该用句号作为结尾（英文句号）。">
+<meta name="keywords" content="golang">
 <meta property="og:type" content="article">
-<meta property="og:title" content="imageNamed与imageWithContentsOfFile小结">
-<meta property="og:url" content="http://crmo.github.io/2018/02/28/imageNamed与imageWithContentsOfFile小结/index.html">
+<meta property="og:title" content="Golang编码规范">
+<meta property="og:url" content="http://crmo.github.io/2016/11/20/Golang编码规范/index.html">
 <meta property="og:site_name" content="CR.MO`s Blog">
-<meta property="og:description" content="本文主要讲imageNamed与imageWithContentsOfFile的差异，需要注意的点，与实战中遇到的坑。  好久没写过博客了，什么工作太忙，加班太晚我就不说了，都怪自己太懒😂，时间都是挤出来的。看着各位大牛写的文章，简直过瘾，希望有一天自己也能写出这么高质量、干货密集的文章，先从简单的做起吧。 从差异说起从磁盘加载图片，UIImage主要提供了两种方式：  +(UIImage">
+<meta property="og:description" content="gofmt 大部分的格式问题可以通过gofmt解决，gofmt自动格式化代码，保证所有的go代码与官方推荐的格式保持一致，于是所有格式有关问题，都以gofmt的结果为准。  行长   一行最长不超过80个字符，超过的使用换行展示，尽量保持格式优雅。  注释 在编码阶段应该同步写好变量、函数、包的注释，最后可以利用godoc导出文档。注释必须是完整的句子，句子的结尾应该用句号作为结尾（英文句号）。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://crmo.github.io/images/3.jpg">
-<meta property="og:updated_time" content="2018-02-28T12:05:08.041Z">
+<meta property="og:updated_time" content="2016-11-20T15:46:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="imageNamed与imageWithContentsOfFile小结">
-<meta name="twitter:description" content="本文主要讲imageNamed与imageWithContentsOfFile的差异，需要注意的点，与实战中遇到的坑。  好久没写过博客了，什么工作太忙，加班太晚我就不说了，都怪自己太懒😂，时间都是挤出来的。看着各位大牛写的文章，简直过瘾，希望有一天自己也能写出这么高质量、干货密集的文章，先从简单的做起吧。 从差异说起从磁盘加载图片，UIImage主要提供了两种方式：  +(UIImage">
-<meta name="twitter:image" content="http://crmo.github.io/images/3.jpg">
+<meta name="twitter:title" content="Golang编码规范">
+<meta name="twitter:description" content="gofmt 大部分的格式问题可以通过gofmt解决，gofmt自动格式化代码，保证所有的go代码与官方推荐的格式保持一致，于是所有格式有关问题，都以gofmt的结果为准。  行长   一行最长不超过80个字符，超过的使用换行展示，尽量保持格式优雅。  注释 在编码阶段应该同步写好变量、函数、包的注释，最后可以利用godoc导出文档。注释必须是完整的句子，句子的结尾应该用句号作为结尾（英文句号）。">
 
 
 
 
 
 
-  <link rel="canonical" href="http://crmo.github.io/2018/02/28/imageNamed与imageWithContentsOfFile小结/"/>
+  <link rel="canonical" href="http://crmo.github.io/2016/11/20/Golang编码规范/"/>
 
 
 
@@ -131,7 +130,7 @@
     sidebar: "",
   };
 </script>
-  <title>imageNamed与imageWithContentsOfFile小结 | CR.MO`s Blog</title>
+  <title>Golang编码规范 | CR.MO`s Blog</title>
   
 
 
@@ -297,7 +296,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://crmo.github.io/2018/02/28/imageNamed与imageWithContentsOfFile小结/">
+    <link itemprop="mainEntityOfPage" href="http://crmo.github.io/2016/11/20/Golang编码规范/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CR.MO">
@@ -314,7 +313,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">imageNamed与imageWithContentsOfFile小结</h1>
+          <h1 class="post-title" itemprop="name headline">Golang编码规范</h1>
         
 
         <div class="post-meta">
@@ -326,7 +325,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-28T19:41:58+08:00">2018-02-28</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-20T22:33:54+08:00">2016-11-20</time>
             
 
             
@@ -336,6 +335,24 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/golang/" itemprop="url" rel="index"><span itemprop="name">golang</span></a></span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -344,9 +361,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/02/28/imageNamed与imageWithContentsOfFile小结/#comments" itemprop="discussionUrl">
+                <a href="/2016/11/20/Golang编码规范/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/28/imageNamed与imageWithContentsOfFile小结/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2016/11/20/Golang编码规范/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -382,36 +399,130 @@
       
 
       
-        <p><img src="/images/3.jpg" alt=""></p>
-<blockquote>
-<p>本文主要讲imageNamed与imageWithContentsOfFile的差异，需要注意的点，与实战中遇到的坑。</p>
-</blockquote>
-<p>好久没写过博客了，什么工作太忙，加班太晚我就不说了，都怪自己太懒😂，时间都是挤出来的。看着各位大牛写的文章，简直过瘾，希望有一天自己也能写出这么高质量、干货密集的文章，先从简单的做起吧。</p>
-<h2 id="从差异说起"><a href="#从差异说起" class="headerlink" title="从差异说起"></a>从差异说起</h2><p>从磁盘加载图片，UIImage主要提供了两种方式：</p>
-<blockquote>
-<p>+(UIImage <em>)imageNamed:(NSString </em>)name;<br>+(UIImage <em>)imageWithContentsOfFile:(NSString </em>)path;</p>
-</blockquote>
-<p>关于这两种方法的使用时机，苹果官方文档描述如下：</p>
-<blockquote>
-<p>Use the imageNamed:inBundle:compatibleWithTraitCollection: method (or the imageNamed: method) to create an image from an image asset or image file located in your app’s main bundle (or some other known bundle). Because these methods cache the image data automatically, they are especially recommended for images that you use frequently.<br>Use the imageWithContentsOfFile: or initWithContentsOfFile: method to create an image object where the initial data is not in a bundle. These methods load the image data from disk each time, so you should not use them to load the same image repeatedly.</p>
-</blockquote>
-<p>也就是说，<code>imageNamed:</code>第一次加载图片时会缓存图片到内存，适合使用频繁的图片，<code>imageWithContentsOfFile:</code>不会把图片缓存到内存，每次调用都要重新从磁盘加载一次。<br>在实际使用中我们要根据业务来判断调用具体的方法，来最优化内存与性能。举个例子：</p>
-<ol>
-<li>登陆背景图，只会在用户登陆的时候使用，而且图片较大，就建议用<code>imageWithContentsOfFile:</code>加载；</li>
-<li>底导航图标，图标较小，使用频繁，就建议使用<code>imageNamed:</code>加载；</li>
-</ol>
-<blockquote>
-<p><code>imageNamed:</code>方法还有个限制，它是在main bundle里找图片，如果图片放在<code>Images.xcassets</code>或者直接把图片方在工程里，参数直接传图片名可以找到。像我司的图片是放在单独建立的bundle里，如果要用<code>imageNamed:</code>加载的话文件名前面就要加上bundle名，像这样<code>a.bundle/b.png</code>。</p>
-</blockquote>
-<h2 id="屏幕适配问题"><a href="#屏幕适配问题" class="headerlink" title="屏幕适配问题"></a>屏幕适配问题</h2><p>iOS的图片文件需要提供3种尺寸的1x、2x、3x，根据不同的屏幕尺寸我们需要加载不同的图片，关于不同屏幕的图片加载，苹果已经帮我们封装好了，我们只需要将3中尺寸的图片放到工程中，然后调用<code>imageNamed:</code>或者<code>imageWithContentsOfFile:</code>，它会自动根据屏幕尺寸来加载不同的图片。<br>关于<code>imageNamed:</code>，官方文档中有这么一段讨论：</p>
-<blockquote>
-<p>This method looks in the system caches for an image object with the specified name and returns the variant of that image that is best suited for the main screen. </p>
-</blockquote>
-<p><code>imageWithContentsOfFile:</code>还没找到官方文档的说明（如果各位知道，欢迎各位大牛在评论中提出），不过我测试过是可以的。</p>
-<h2 id="使用imageWithContentsOfFile的一个坑"><a href="#使用imageWithContentsOfFile的一个坑" class="headerlink" title="使用imageWithContentsOfFile的一个坑"></a>使用imageWithContentsOfFile的一个坑</h2><p>在使用<code>imageWithContentsOfFile:</code>加载图片的时候遇到一个坑，先上代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+ (UIImage *)imageWithName:(NSString *)name type:(NSString *)type inBundle:(NSString *)bundle &#123;</span><br><span class="line">    NSString *imageBundlePath = [[NSBundle mainBundle] pathForResource:bundle ofType:@&quot;bundle&quot;];</span><br><span class="line">    NSBundle *imageBundle = [NSBundle bundleWithPath:imageBundlePath];</span><br><span class="line">    NSString *imagePath = [imageBundle pathForResource:name ofType:type];</span><br><span class="line">    UIImage *image = [UIImage imageWithContentsOfFile:imagePath];</span><br><span class="line">    return image;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>很简单的一个函数，就是获取bundle全路径，然后再获取到bundle里图片的全路径，然后调用<code>imageWithContentsOfFile:</code>加载图片。在使用的时候也很正常，但是有一天发现某张图加载不出来了。检查资源文件，只有2x的图（又是一个偷懒的程序员。。。很不建议这么玩，虽然只有2x的图，在所有屏幕都能显示，但是会造成图片的压缩与放大，每个细节都很重要！！！），如果加上1x的图就可以加载出来了。<br>经过调试发现问题就出在<code>pathForResource:ofType</code>上，这个函数是精确匹配调用者输入的文件名，不会自动识别文件名后面的<code>@2x</code>。修改后的代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+ (UIImage *)imageWithName:(NSString *)name type:(NSString *)type inBundle:(NSString *)bundle &#123;</span><br><span class="line">    NSString *imageBundlePath = [[NSBundle mainBundle] pathForResource:bundle ofType:@&quot;bundle&quot;];</span><br><span class="line">    NSBundle *imageBundle = [NSBundle bundleWithPath:imageBundlePath];</span><br><span class="line">    NSString *imageFullName = [name stringByAppendingPathExtension:type];</span><br><span class="line">    NSString *imagePath = [[imageBundle resourcePath] stringByAppendingPathComponent:imageFullName];</span><br><span class="line">    UIImage *image = [UIImage imageWithContentsOfFile:imagePath];</span><br><span class="line">    return image;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <ul>
+<li><p>gofmt</p>
+<p>大部分的格式问题可以通过gofmt解决，gofmt自动格式化代码，保证所有的go代码与官方推荐的格式保持一致，于是所有格式有关问题，都以gofmt的结果为准。</p>
+</li>
+<li><p>行长</p>
+</li>
+</ul>
+<p>一行最长不超过80个字符，超过的使用换行展示，尽量保持格式优雅。</p>
+<ul>
+<li><p>注释</p>
+<p>在编码阶段应该同步写好变量、函数、包的注释，最后可以利用godoc导出文档。注释必须是完整的句子，句子的结尾应该用句号作为结尾（英文句号）。注释推荐用英文，可以在写代码过程中锻炼英文的阅读和书写能力。而且用英文不会出现各种编码的问题。<br>每个包都应该有一个包注释，一个位于package子句之前的块注释或行注释。包如果有多个go文件，只需要出现在一个go文件中即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// ping包实现了常用的ping相关的函数</span><br><span class="line">package ping</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>导出函数注释，第一条语句应该为一条概括语句，并且使用被声明的名字作为开头。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 求a和b的和，返回sum。</span><br><span class="line">func Myfunction(sum int) (a, b int) &#123;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>命名</p>
+<ul>
+<li>需要注释来补充的命名就不算是好命名。<ul>
+<li>使用可搜索的名称：单字母名称和数字常量很难从一大堆文字中搜索出来。单字母名称仅适用于短方法中的本地变量，名称长短应与其作用域相对应。若变量或常量可能在代码中多处使用，则应赋其以便于搜索的名称。</li>
+<li>做有意义的区分：Product和ProductInfo和ProductData没有区别，NameString和Name没有区别，要区分名称，就要以读者能鉴别不同之处的方式来区分 。</li>
+</ul>
+</li>
+<li>函数命名规则：驼峰式命名，名字可以长但是得把功能，必要的参数描述清楚，函数名名应当是动词或动词短语，如postPayment、deletePage、save。并依Javabean标准加上get、set、is前缀。例如：xxx + With + 需要的参数名 + And + 需要的参数名 + …..</li>
+<li>结构体命名规则：结构体名应该是名词或名词短语，如Custome、WikiPage、Account、AddressParser，避免使用Manager、Processor、Data、Info、这样的类名，类名不应当是动词。<ul>
+<li>包名命名规则：包名应该为小写单词，不要使用下划线或者混合大小写。</li>
+<li>接口命名规则：单个函数的接口名以”er”作为后缀，如Reader,Writer。接口的实现则去掉“er”。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type Reader interface &#123;</span><br><span class="line">        Read(p []byte) (n int, err error)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>两个函数的接口名综合两个函数名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">type WriteFlusher interface &#123;</span><br><span class="line">    Write([]byte) (int, error)</span><br><span class="line">    Flush() error</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p> 三个以上函数的接口名，抽象这个接口的功能，类似于结构体名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">type Car interface &#123;</span><br><span class="line">    Start([]byte)</span><br><span class="line">    Stop() error</span><br><span class="line">    Recover()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>常量</li>
+</ul>
+<p>常量均需使用全部大写字母组成，并使用下划线分词：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const APP_VER = &quot;1.0&quot;</span><br></pre></td></tr></table></figure>
+<p>如果是枚举类型的常量，需要先创建相应类型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">type Scheme string</span><br><span class="line"></span><br><span class="line">const (</span><br><span class="line">    HTTP  Scheme = &quot;http&quot;</span><br><span class="line">    HTTPS Scheme = &quot;https&quot;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>如果模块的功能较为复杂、常量名称容易混淆的情况下，为了更好地区分枚举类型，可以使用完整的前缀：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">type PullRequestStatus int</span><br><span class="line"></span><br><span class="line">const (</span><br><span class="line">    PULL_REQUEST_STATUS_CONFLICT PullRequestStatus = iota</span><br><span class="line">    PULL_REQUEST_STATUS_CHECKING</span><br><span class="line">    PULL_REQUEST_STATUS_MERGEABLE</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>变量</p>
+<p>变量命名基本上遵循相应的英文表达或简写,在相对简单的环境（对象数量少、针对性强）中，可以将一些名称由完整单词简写为单个字母，例如：</p>
+<ul>
+<li>user 可以简写为 u</li>
+<li>userID 可以简写 uid<br>若变量类型为 bool 类型，则名称应以 Has, Is, Can 或 Allow 开头：</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var isExist bool</span><br><span class="line">var hasConflict bool</span><br><span class="line">var canManage bool</span><br><span class="line">var allowGitHook bool</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>变量命名惯例</p>
+<p>变量名称一般遵循驼峰法，但遇到特有名词时，需要遵循以下规则：</p>
+<ul>
+<li>如果变量为私有，且特有名词为首个单词，则使用小写，如 apiClient</li>
+<li>其它情况都应当使用该名词原有的写法，如 APIClient、repoID、UserID</li>
+<li>错误示例：UrlArray，应该写成urlArray或者URLArray</li>
+</ul>
+<p>下面列举了一些常见的特有名词：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">// A GonicMapper that contains a list of common initialisms taken from golang/lint</span><br><span class="line">var LintGonicMapper = GonicMapper&#123;</span><br><span class="line">    &quot;API&quot;:   true,</span><br><span class="line">    &quot;ASCII&quot;: true,</span><br><span class="line">    &quot;CPU&quot;:   true,</span><br><span class="line">    &quot;CSS&quot;:   true,</span><br><span class="line">    &quot;DNS&quot;:   true,</span><br><span class="line">    &quot;EOF&quot;:   true,</span><br><span class="line">    &quot;GUID&quot;:  true,</span><br><span class="line">    &quot;HTML&quot;:  true,</span><br><span class="line">    &quot;HTTP&quot;:  true,</span><br><span class="line">    &quot;HTTPS&quot;: true,</span><br><span class="line">    &quot;ID&quot;:    true,</span><br><span class="line">    &quot;IP&quot;:    true,</span><br><span class="line">    &quot;JSON&quot;:  true,</span><br><span class="line">    &quot;LHS&quot;:   true,</span><br><span class="line">    &quot;QPS&quot;:   true,</span><br><span class="line">    &quot;RAM&quot;:   true,</span><br><span class="line">    &quot;RHS&quot;:   true,</span><br><span class="line">    &quot;RPC&quot;:   true,</span><br><span class="line">    &quot;SLA&quot;:   true,</span><br><span class="line">    &quot;SMTP&quot;:  true,</span><br><span class="line">    &quot;SSH&quot;:   true,</span><br><span class="line">    &quot;TLS&quot;:   true,</span><br><span class="line">    &quot;TTL&quot;:   true,</span><br><span class="line">    &quot;UI&quot;:    true,</span><br><span class="line">    &quot;UID&quot;:   true,</span><br><span class="line">    &quot;UUID&quot;:  true,</span><br><span class="line">    &quot;URI&quot;:   true,</span><br><span class="line">    &quot;URL&quot;:   true,</span><br><span class="line">    &quot;UTF8&quot;:  true,</span><br><span class="line">    &quot;VM&quot;:    true,</span><br><span class="line">    &quot;XML&quot;:   true,</span><br><span class="line">    &quot;XSRF&quot;:  true,</span><br><span class="line">    &quot;XSS&quot;:   true,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>struct规范</li>
+</ul>
+<p>struct申明和初始化格式采用多行：</p>
+<p>定义如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">type User struct&#123;</span><br><span class="line">    Username  string</span><br><span class="line">    Email     string</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>初始化如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">u := User&#123;</span><br><span class="line">    Username: &quot;test&quot;,</span><br><span class="line">    Email:    &quot;test@gmail.com&quot;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>控制结构</p>
+<p>if<br>if接受初始化语句，约定如下方式建立局部变量</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if err := file.Chmod(0664); err != nil &#123;</span><br><span class="line">    return err</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> for<br>采用短声明建立局部变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sum := 0</span><br><span class="line">for i := 0; i &lt; 10; i++ &#123;</span><br><span class="line">    sum += i</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> return<br>尽早return：一旦有错误发生，马上返回</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">f, err := os.Open(name)</span><br><span class="line">if err != nil &#123;</span><br><span class="line">    return err</span><br><span class="line">&#125;</span><br><span class="line">d, err := f.Stat()</span><br><span class="line">if err != nil &#123;</span><br><span class="line">    f.Close()</span><br><span class="line">    return err</span><br><span class="line">&#125;</span><br><span class="line">codeUsing(f, d)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>错误处理</p>
+<ul>
+<li>error作为函数的值返回,必须对error进行处理</li>
+<li>错误描述如果是英文必须为小写，不需要标点结尾</li>
+<li>采用独立的错误流进行处理</li>
+</ul>
+<p>不要采用下面的处理错误写法</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if err != nil &#123;</span><br><span class="line">    // error handling</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    // normal code</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 采用下面的写法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if err != nil &#123;</span><br><span class="line">    // error handling</span><br><span class="line">    return // or continue, etc.</span><br><span class="line">&#125;</span><br><span class="line">// normal code</span><br></pre></td></tr></table></figure>
+<p> 使用函数的返回值时，则采用下面的方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x, err := f()</span><br><span class="line">if err != nil &#123;</span><br><span class="line">    // error handling</span><br><span class="line">    return</span><br><span class="line">&#125;</span><br><span class="line">// use x</span><br></pre></td></tr></table></figure>
+<ul>
+<li>panic</li>
+</ul>
+<p>尽量不要使用panic，除非你知道你在做什么</p>
+<ul>
+<li>import</li>
+</ul>
+<p>对import的包进行分组管理，用换行符分割，而且标准库作为分组的第一组。如果你的包引入了三种类型的包，标准库包，程序内部包，第三方包，建议采用如下方式进行组织你的包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">    &quot;fmt&quot;</span><br><span class="line">    &quot;os&quot;</span><br><span class="line"></span><br><span class="line">    &quot;kmg/a&quot;</span><br><span class="line">    &quot;kmg/b&quot;</span><br><span class="line"></span><br><span class="line">    &quot;code.google.com/a&quot;</span><br><span class="line">    &quot;github.com/b&quot;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p> 在项目中不要使用相对路径引入包：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 错误示例</span><br><span class="line">import “../net”</span><br><span class="line"></span><br><span class="line">// 正确的做法</span><br><span class="line">import “github.com/repo/proj/src/net”</span><br></pre></td></tr></table></figure>
+<p>goimports会自动帮你格式化</p>
+<ul>
+<li><p>参数传递</p>
+<ul>
+<li>对于少量数据，不要传递指针</li>
+<li>对于大量数据的struct可以考虑使用指针</li>
+<li>传入参数是map，slice，chan不要传递指针，因为map，slice，chan是引用类型，不需要传递指针的指针</li>
+</ul>
+</li>
+<li><p>单元测试</p>
+</li>
+</ul>
+<p>单元测试文件名命名规范为 example_test.go<br>测试用例的函数名称必须以 Test 开头，例如：TestExample</p>
 
       
     </div>
@@ -430,6 +541,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/golang/" rel="tag"># golang</a>
+          
+        </div>
+      
 
       
       
@@ -439,18 +556,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/20/正则表达式笔记/" rel="next" title="正则表达式笔记">
-                <i class="fa fa-chevron-left"></i> 正则表达式笔记
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/02/28/iOS的Cookie管理/" rel="prev" title="iOS的Cookie管理">
-                iOS的Cookie管理 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/11/20/正则表达式笔记/" rel="prev" title="正则表达式笔记">
+                正则表达式笔记 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -516,17 +629,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -603,22 +707,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#从差异说起"><span class="nav-number">1.</span> <span class="nav-text">从差异说起</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#屏幕适配问题"><span class="nav-number">2.</span> <span class="nav-text">屏幕适配问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用imageWithContentsOfFile的一个坑"><span class="nav-number">3.</span> <span class="nav-text">使用imageWithContentsOfFile的一个坑</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -798,9 +886,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'http://crmo.github.io/2018/02/28/imageNamed与imageWithContentsOfFile小结/';
-        this.page.identifier = '2018/02/28/imageNamed与imageWithContentsOfFile小结/';
-        this.page.title = 'imageNamed与imageWithContentsOfFile小结';
+        this.page.url = 'http://crmo.github.io/2016/11/20/Golang编码规范/';
+        this.page.identifier = '2016/11/20/Golang编码规范/';
+        this.page.title = 'Golang编码规范';
       };
       function loadComments () {
         var d = document, s = d.createElement('script');

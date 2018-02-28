@@ -225,9 +225,40 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -307,6 +338,17 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/28/iOS的Cookie管理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/02/28/iOS的Cookie管理/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -451,6 +493,17 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/28/imageNamed与imageWithContentsOfFile小结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/02/28/imageNamed与imageWithContentsOfFile小结/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -477,7 +530,7 @@
       
         
           
-            <h1 id="imageNamed与imageWithContentsOfFile小结"><a href="#imageNamed与imageWithContentsOfFile小结" class="headerlink" title="imageNamed与imageWithContentsOfFile小结"></a>imageNamed与imageWithContentsOfFile小结</h1><p><img src="/images/3.jpg" alt=""></p>
+            <p><img src="/images/3.jpg" alt=""></p>
 <blockquote>
 <p>本文主要讲imageNamed与imageWithContentsOfFile的差异，需要注意的点，与实战中遇到的坑。</p>
 </blockquote>
@@ -507,6 +560,572 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+ (UIImage *)imageWithName:(NSString *)name type:(NSString *)type inBundle:(NSString *)bundle &#123;</span><br><span class="line">    NSString *imageBundlePath = [[NSBundle mainBundle] pathForResource:bundle ofType:@&quot;bundle&quot;];</span><br><span class="line">    NSBundle *imageBundle = [NSBundle bundleWithPath:imageBundlePath];</span><br><span class="line">    NSString *imagePath = [imageBundle pathForResource:name ofType:type];</span><br><span class="line">    UIImage *image = [UIImage imageWithContentsOfFile:imagePath];</span><br><span class="line">    return image;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>很简单的一个函数，就是获取bundle全路径，然后再获取到bundle里图片的全路径，然后调用<code>imageWithContentsOfFile:</code>加载图片。在使用的时候也很正常，但是有一天发现某张图加载不出来了。检查资源文件，只有2x的图（又是一个偷懒的程序员。。。很不建议这么玩，虽然只有2x的图，在所有屏幕都能显示，但是会造成图片的压缩与放大，每个细节都很重要！！！），如果加上1x的图就可以加载出来了。<br>经过调试发现问题就出在<code>pathForResource:ofType</code>上，这个函数是精确匹配调用者输入的文件名，不会自动识别文件名后面的<code>@2x</code>。修改后的代码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+ (UIImage *)imageWithName:(NSString *)name type:(NSString *)type inBundle:(NSString *)bundle &#123;</span><br><span class="line">    NSString *imageBundlePath = [[NSBundle mainBundle] pathForResource:bundle ofType:@&quot;bundle&quot;];</span><br><span class="line">    NSBundle *imageBundle = [NSBundle bundleWithPath:imageBundlePath];</span><br><span class="line">    NSString *imageFullName = [name stringByAppendingPathExtension:type];</span><br><span class="line">    NSString *imagePath = [[imageBundle resourcePath] stringByAppendingPathComponent:imageFullName];</span><br><span class="line">    UIImage *image = [UIImage imageWithContentsOfFile:imagePath];</span><br><span class="line">    return image;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://crmo.github.io/2016/11/20/正则表达式笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CR.MO">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CR.MO`s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/11/20/正则表达式笔记/" itemprop="url">正则表达式笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-20T23:44:53+08:00">2016-11-20</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/11/20/正则表达式笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/11/20/正则表达式笔记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>正则表达式（regular expression）描述了一种字符串匹配的模式，可以用来检查一个串是否含有某种子串、将匹配的字串做替换或者从某个串中取出符合某个条件的字串等。</p>
+</blockquote>
+<p>正则表达式在线测试：<br><a href="http://www.regexpal.com/" target="_blank" rel="noopener">http://www.regexpal.com/</a></p>
+<h2 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h2><p>常用元字符：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">代码</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">.</td>
+<td style="text-align:center">匹配除换行符以外的任意字符</td>
+</tr>
+<tr>
+<td style="text-align:center">\w</td>
+<td style="text-align:center">匹配字母或数字或下划线或汉字</td>
+</tr>
+<tr>
+<td style="text-align:center">\d</td>
+<td style="text-align:center">匹配数字</td>
+</tr>
+<tr>
+<td style="text-align:center">\s</td>
+<td style="text-align:center">匹配空格</td>
+</tr>
+<tr>
+<td style="text-align:center">\b</td>
+<td style="text-align:center">匹配单词的开始或结束</td>
+</tr>
+<tr>
+<td style="text-align:center">^</td>
+<td style="text-align:center">匹配字符串的开始，如果是处理多行，意义变成行开始处</td>
+</tr>
+<tr>
+<td style="text-align:center">$</td>
+<td style="text-align:center">匹配字符串的结束，如果是处理多行，意义变成行结束处</td>
+</tr>
+</tbody>
+</table>
+<h2 id="限定符"><a href="#限定符" class="headerlink" title="限定符"></a>限定符</h2><p>常用限定符：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">代码</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">*</td>
+<td style="text-align:center">*前面的内容重复任意次</td>
+</tr>
+<tr>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+前面的内容重复一次或者多次</td>
+</tr>
+<tr>
+<td style="text-align:center">?</td>
+<td style="text-align:center">重复零次或一次</td>
+</tr>
+<tr>
+<td style="text-align:center">{n}</td>
+<td style="text-align:center">重复n次</td>
+</tr>
+<tr>
+<td style="text-align:center">{n, }</td>
+<td style="text-align:center">重复次数大于等于n</td>
+</tr>
+<tr>
+<td style="text-align:center">{n,m}</td>
+<td style="text-align:center">重复次数大于等于n小于等于m</td>
+</tr>
+</tbody>
+</table>
+<h2 id="字符类"><a href="#字符类" class="headerlink" title="字符类"></a>字符类</h2><p>[auiou] 匹配任何一个英文元音字母<br>[.?!] 匹配标点符号（.  ?   !）</p>
+<h2 id="反义"><a href="#反义" class="headerlink" title="反义"></a>反义</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">代码</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\W</td>
+<td style="text-align:center">匹配任意不是字母、数字、下划线、汉字的字符</td>
+</tr>
+<tr>
+<td style="text-align:center">\S</td>
+<td style="text-align:center">匹配任意不是空白符的字符</td>
+</tr>
+<tr>
+<td style="text-align:center">\D</td>
+<td style="text-align:center">匹配任意非数字的字符</td>
+</tr>
+<tr>
+<td style="text-align:center">\B</td>
+<td style="text-align:center">匹配不是单词开头或结束的位置</td>
+</tr>
+<tr>
+<td style="text-align:center">[^x]</td>
+<td style="text-align:center">匹配除了x以外的任意字符</td>
+</tr>
+<tr>
+<td style="text-align:center">[^abcd]</td>
+<td style="text-align:center">匹配除了abcd以外的任意字符</td>
+</tr>
+</tbody>
+</table>
+<h2 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">代码</th>
+<th style="text-align:center">说明　</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">(exp)</td>
+<td style="text-align:center">匹配exp，并捕获文本到自动命名组中</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>(?&lt;name&gt;exp)</code></td>
+<td style="text-align:center">匹配exp,并捕获文本到名称为name的组里，也可以写成(?`name`exp)</td>
+</tr>
+<tr>
+<td style="text-align:center">(?:exp)</td>
+<td style="text-align:center">匹配exp，不捕获匹配的文本，也不给次分组分配组号</td>
+</tr>
+<tr>
+<td style="text-align:center">(?=exp)</td>
+<td style="text-align:center">匹配exp前面的位置</td>
+</tr>
+<tr>
+<td style="text-align:center">(?&lt;=exp)</td>
+<td style="text-align:center">匹配exp后面的位置</td>
+</tr>
+<tr>
+<td style="text-align:center">(?!exp)</td>
+<td style="text-align:center">匹配后面跟的不是exp的位置</td>
+</tr>
+<tr>
+<td style="text-align:center">(?&lt;!exp)</td>
+<td style="text-align:center">匹配前面不是exp的位置</td>
+</tr>
+<tr>
+<td style="text-align:center">(?#comment)</td>
+<td style="text-align:center">注释</td>
+</tr>
+</tbody>
+</table>
+<h2 id="贪婪与懒惰"><a href="#贪婪与懒惰" class="headerlink" title="贪婪与懒惰"></a>贪婪与懒惰</h2><p>通常重复限定符的行为是<strong>匹配尽可能多</strong>的字符，在限定符后面加<code>?</code>使之成为惰性限定符，例如<code>*?</code>的含义为<strong>重复任意次数，但是尽可能少</strong></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://crmo.github.io/2016/11/20/Golang编码规范/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CR.MO">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CR.MO`s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/11/20/Golang编码规范/" itemprop="url">Golang编码规范</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-20T22:33:54+08:00">2016-11-20</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/golang/" itemprop="url" rel="index"><span itemprop="name">golang</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/11/20/Golang编码规范/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/11/20/Golang编码规范/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><p>gofmt</p>
+<p>大部分的格式问题可以通过gofmt解决，gofmt自动格式化代码，保证所有的go代码与官方推荐的格式保持一致，于是所有格式有关问题，都以gofmt的结果为准。</p>
+</li>
+<li><p>行长</p>
+</li>
+</ul>
+<p>一行最长不超过80个字符，超过的使用换行展示，尽量保持格式优雅。</p>
+<ul>
+<li><p>注释</p>
+<p>在编码阶段应该同步写好变量、函数、包的注释，最后可以利用godoc导出文档。注释必须是完整的句子，句子的结尾应该用句号作为结尾（英文句号）。注释推荐用英文，可以在写代码过程中锻炼英文的阅读和书写能力。而且用英文不会出现各种编码的问题。<br>每个包都应该有一个包注释，一个位于package子句之前的块注释或行注释。包如果有多个go文件，只需要出现在一个go文件中即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// ping包实现了常用的ping相关的函数</span><br><span class="line">package ping</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>导出函数注释，第一条语句应该为一条概括语句，并且使用被声明的名字作为开头。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 求a和b的和，返回sum。</span><br><span class="line">func Myfunction(sum int) (a, b int) &#123;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>命名</p>
+<ul>
+<li>需要注释来补充的命名就不算是好命名。<ul>
+<li>使用可搜索的名称：单字母名称和数字常量很难从一大堆文字中搜索出来。单字母名称仅适用于短方法中的本地变量，名称长短应与其作用域相对应。若变量或常量可能在代码中多处使用，则应赋其以便于搜索的名称。</li>
+<li>做有意义的区分：Product和ProductInfo和ProductData没有区别，NameString和Name没有区别，要区分名称，就要以读者能鉴别不同之处的方式来区分 。</li>
+</ul>
+</li>
+<li>函数命名规则：驼峰式命名，名字可以长但是得把功能，必要的参数描述清楚，函数名名应当是动词或动词短语，如postPayment、deletePage、save。并依Javabean标准加上get、set、is前缀。例如：xxx + With + 需要的参数名 + And + 需要的参数名 + …..</li>
+<li>结构体命名规则：结构体名应该是名词或名词短语，如Custome、WikiPage、Account、AddressParser，避免使用Manager、Processor、Data、Info、这样的类名，类名不应当是动词。<ul>
+<li>包名命名规则：包名应该为小写单词，不要使用下划线或者混合大小写。</li>
+<li>接口命名规则：单个函数的接口名以”er”作为后缀，如Reader,Writer。接口的实现则去掉“er”。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type Reader interface &#123;</span><br><span class="line">        Read(p []byte) (n int, err error)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>两个函数的接口名综合两个函数名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">type WriteFlusher interface &#123;</span><br><span class="line">    Write([]byte) (int, error)</span><br><span class="line">    Flush() error</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p> 三个以上函数的接口名，抽象这个接口的功能，类似于结构体名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">type Car interface &#123;</span><br><span class="line">    Start([]byte)</span><br><span class="line">    Stop() error</span><br><span class="line">    Recover()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>常量</li>
+</ul>
+<p>常量均需使用全部大写字母组成，并使用下划线分词：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const APP_VER = &quot;1.0&quot;</span><br></pre></td></tr></table></figure>
+<p>如果是枚举类型的常量，需要先创建相应类型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">type Scheme string</span><br><span class="line"></span><br><span class="line">const (</span><br><span class="line">    HTTP  Scheme = &quot;http&quot;</span><br><span class="line">    HTTPS Scheme = &quot;https&quot;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>如果模块的功能较为复杂、常量名称容易混淆的情况下，为了更好地区分枚举类型，可以使用完整的前缀：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">type PullRequestStatus int</span><br><span class="line"></span><br><span class="line">const (</span><br><span class="line">    PULL_REQUEST_STATUS_CONFLICT PullRequestStatus = iota</span><br><span class="line">    PULL_REQUEST_STATUS_CHECKING</span><br><span class="line">    PULL_REQUEST_STATUS_MERGEABLE</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>变量</p>
+<p>变量命名基本上遵循相应的英文表达或简写,在相对简单的环境（对象数量少、针对性强）中，可以将一些名称由完整单词简写为单个字母，例如：</p>
+<ul>
+<li>user 可以简写为 u</li>
+<li>userID 可以简写 uid<br>若变量类型为 bool 类型，则名称应以 Has, Is, Can 或 Allow 开头：</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var isExist bool</span><br><span class="line">var hasConflict bool</span><br><span class="line">var canManage bool</span><br><span class="line">var allowGitHook bool</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>变量命名惯例</p>
+<p>变量名称一般遵循驼峰法，但遇到特有名词时，需要遵循以下规则：</p>
+<ul>
+<li>如果变量为私有，且特有名词为首个单词，则使用小写，如 apiClient</li>
+<li>其它情况都应当使用该名词原有的写法，如 APIClient、repoID、UserID</li>
+<li>错误示例：UrlArray，应该写成urlArray或者URLArray</li>
+</ul>
+<p>下面列举了一些常见的特有名词：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">// A GonicMapper that contains a list of common initialisms taken from golang/lint</span><br><span class="line">var LintGonicMapper = GonicMapper&#123;</span><br><span class="line">    &quot;API&quot;:   true,</span><br><span class="line">    &quot;ASCII&quot;: true,</span><br><span class="line">    &quot;CPU&quot;:   true,</span><br><span class="line">    &quot;CSS&quot;:   true,</span><br><span class="line">    &quot;DNS&quot;:   true,</span><br><span class="line">    &quot;EOF&quot;:   true,</span><br><span class="line">    &quot;GUID&quot;:  true,</span><br><span class="line">    &quot;HTML&quot;:  true,</span><br><span class="line">    &quot;HTTP&quot;:  true,</span><br><span class="line">    &quot;HTTPS&quot;: true,</span><br><span class="line">    &quot;ID&quot;:    true,</span><br><span class="line">    &quot;IP&quot;:    true,</span><br><span class="line">    &quot;JSON&quot;:  true,</span><br><span class="line">    &quot;LHS&quot;:   true,</span><br><span class="line">    &quot;QPS&quot;:   true,</span><br><span class="line">    &quot;RAM&quot;:   true,</span><br><span class="line">    &quot;RHS&quot;:   true,</span><br><span class="line">    &quot;RPC&quot;:   true,</span><br><span class="line">    &quot;SLA&quot;:   true,</span><br><span class="line">    &quot;SMTP&quot;:  true,</span><br><span class="line">    &quot;SSH&quot;:   true,</span><br><span class="line">    &quot;TLS&quot;:   true,</span><br><span class="line">    &quot;TTL&quot;:   true,</span><br><span class="line">    &quot;UI&quot;:    true,</span><br><span class="line">    &quot;UID&quot;:   true,</span><br><span class="line">    &quot;UUID&quot;:  true,</span><br><span class="line">    &quot;URI&quot;:   true,</span><br><span class="line">    &quot;URL&quot;:   true,</span><br><span class="line">    &quot;UTF8&quot;:  true,</span><br><span class="line">    &quot;VM&quot;:    true,</span><br><span class="line">    &quot;XML&quot;:   true,</span><br><span class="line">    &quot;XSRF&quot;:  true,</span><br><span class="line">    &quot;XSS&quot;:   true,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>struct规范</li>
+</ul>
+<p>struct申明和初始化格式采用多行：</p>
+<p>定义如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">type User struct&#123;</span><br><span class="line">    Username  string</span><br><span class="line">    Email     string</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>初始化如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">u := User&#123;</span><br><span class="line">    Username: &quot;test&quot;,</span><br><span class="line">    Email:    &quot;test@gmail.com&quot;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>控制结构</p>
+<p>if<br>if接受初始化语句，约定如下方式建立局部变量</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if err := file.Chmod(0664); err != nil &#123;</span><br><span class="line">    return err</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> for<br>采用短声明建立局部变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sum := 0</span><br><span class="line">for i := 0; i &lt; 10; i++ &#123;</span><br><span class="line">    sum += i</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> return<br>尽早return：一旦有错误发生，马上返回</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">f, err := os.Open(name)</span><br><span class="line">if err != nil &#123;</span><br><span class="line">    return err</span><br><span class="line">&#125;</span><br><span class="line">d, err := f.Stat()</span><br><span class="line">if err != nil &#123;</span><br><span class="line">    f.Close()</span><br><span class="line">    return err</span><br><span class="line">&#125;</span><br><span class="line">codeUsing(f, d)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>错误处理</p>
+<ul>
+<li>error作为函数的值返回,必须对error进行处理</li>
+<li>错误描述如果是英文必须为小写，不需要标点结尾</li>
+<li>采用独立的错误流进行处理</li>
+</ul>
+<p>不要采用下面的处理错误写法</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if err != nil &#123;</span><br><span class="line">    // error handling</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    // normal code</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 采用下面的写法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if err != nil &#123;</span><br><span class="line">    // error handling</span><br><span class="line">    return // or continue, etc.</span><br><span class="line">&#125;</span><br><span class="line">// normal code</span><br></pre></td></tr></table></figure>
+<p> 使用函数的返回值时，则采用下面的方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x, err := f()</span><br><span class="line">if err != nil &#123;</span><br><span class="line">    // error handling</span><br><span class="line">    return</span><br><span class="line">&#125;</span><br><span class="line">// use x</span><br></pre></td></tr></table></figure>
+<ul>
+<li>panic</li>
+</ul>
+<p>尽量不要使用panic，除非你知道你在做什么</p>
+<ul>
+<li>import</li>
+</ul>
+<p>对import的包进行分组管理，用换行符分割，而且标准库作为分组的第一组。如果你的包引入了三种类型的包，标准库包，程序内部包，第三方包，建议采用如下方式进行组织你的包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">    &quot;fmt&quot;</span><br><span class="line">    &quot;os&quot;</span><br><span class="line"></span><br><span class="line">    &quot;kmg/a&quot;</span><br><span class="line">    &quot;kmg/b&quot;</span><br><span class="line"></span><br><span class="line">    &quot;code.google.com/a&quot;</span><br><span class="line">    &quot;github.com/b&quot;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p> 在项目中不要使用相对路径引入包：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 错误示例</span><br><span class="line">import “../net”</span><br><span class="line"></span><br><span class="line">// 正确的做法</span><br><span class="line">import “github.com/repo/proj/src/net”</span><br></pre></td></tr></table></figure>
+<p>goimports会自动帮你格式化</p>
+<ul>
+<li><p>参数传递</p>
+<ul>
+<li>对于少量数据，不要传递指针</li>
+<li>对于大量数据的struct可以考虑使用指针</li>
+<li>传入参数是map，slice，chan不要传递指针，因为map，slice，chan是引用类型，不需要传递指针的指针</li>
+</ul>
+</li>
+<li><p>单元测试</p>
+</li>
+</ul>
+<p>单元测试文件名命名规范为 example_test.go<br>测试用例的函数名称必须以 Test 开头，例如：TestExample</p>
 
           
         
@@ -592,14 +1211,42 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
               
 
               
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
 
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
               
             </nav>
           
@@ -664,8 +1311,39 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
 
 
+
+
+<script>
+  	var _mtac = {};
+  	(function() {
+  		var mta = document.createElement("script");
+  		mta.src = "https://pingjs.qq.com/h5/stats.js?v2.0.4";
+  		mta.setAttribute("name", "MTAH5");
+  		mta.setAttribute("sid", "65362192");
+
+  		var s = document.getElementsByTagName("script")[0];
+  		s.parentNode.insertBefore(mta, s);
+  	})();
+</script>
 
 
 
@@ -759,19 +1437,9 @@
 
   
 
-
-
-	
-
-
-
-
-
   
-
-
-
-
+    <script id="dsq-count-scr" src="https://CRMO.disqus.com/count.js" async></script>
+  
 
   
 
@@ -784,7 +1452,333 @@
 
 
 
+
+
+
+
+
+
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 
