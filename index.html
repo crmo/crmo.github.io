@@ -384,7 +384,7 @@
 <blockquote>
 <p>Afnetworking没有对Cookie做过处理</p>
 </blockquote>
-<p><img src="images/2.jpg" alt=""></p>
+<p><img src="/images/2.jpg" alt=""></p>
 <p>使用<code>NSHTTPCookieStorage</code>即可实现cookie的管理。上代码！</p>
 <p><strong>存cookie</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:url]];</span><br><span class="line">NSData *data = [NSKeyedArchiver archivedDataWithRootObject:cookies];</span><br><span class="line">NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];</span><br><span class="line">[userDefaults setObject:data forKey:@&quot;cookie&quot;];</span><br></pre></td></tr></table></figure>
