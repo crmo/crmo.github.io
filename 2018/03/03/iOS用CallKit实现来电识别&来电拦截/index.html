@@ -106,7 +106,7 @@
 <meta name="description" content="前言 最近需要实现一个新需求，用iOS 10出的CallKit实现将APP的通讯录的信息同步到系统中，可以不把人员信息加到通讯录中，实现来电号码识别。这个功能在xx安全卫士、xx管家中很早就实现了，但是网上相关的资料较少，而且官方的文档写的太简单了，很多坑还要自己去摸索。于是记录一下和各位分享，如有错误之处请各位指出！  PS: 先说个题外话吧，CallKit功能在iOS 10的时候还不太稳定，i">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS用CallKit实现来电识别、来电拦截">
-<meta property="og:url" content="http://crmo.github.io/2018/03/03/Golang编码规范/index.html">
+<meta property="og:url" content="http://crmo.github.io/2018/03/03/iOS用CallKit实现来电识别&来电拦截/index.html">
 <meta property="og:site_name" content="CR.MO`s Blog">
 <meta property="og:description" content="前言 最近需要实现一个新需求，用iOS 10出的CallKit实现将APP的通讯录的信息同步到系统中，可以不把人员信息加到通讯录中，实现来电号码识别。这个功能在xx安全卫士、xx管家中很早就实现了，但是网上相关的资料较少，而且官方的文档写的太简单了，很多坑还要自己去摸索。于是记录一下和各位分享，如有错误之处请各位指出！  PS: 先说个题外话吧，CallKit功能在iOS 10的时候还不太稳定，i">
 <meta property="og:locale" content="zh-Hans">
@@ -122,15 +122,13 @@
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2665383-e1a2d7ab18506810.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
-  
-
 
   <link rel="alternate" href="/atom.xml" title="CR.MO`s Blog" type="application/atom+xml" />
 
 
 
 
-  <link rel="canonical" href="http://crmo.github.io/2018/03/03/Golang编码规范/"/>
+  <link rel="canonical" href="http://crmo.github.io/2018/03/03/iOS用CallKit实现来电识别&来电拦截/"/>
 
 
 
@@ -305,7 +303,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://crmo.github.io/2018/03/03/Golang编码规范/">
+    <link itemprop="mainEntityOfPage" href="http://crmo.github.io/2018/03/03/iOS用CallKit实现来电识别&来电拦截/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CR.MO">
@@ -352,9 +350,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/03/Golang编码规范/#comments" itemprop="discussionUrl">
+                <a href="/2018/03/03/iOS用CallKit实现来电识别&来电拦截/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/03/Golang编码规范/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/03/03/iOS用CallKit实现来电识别&来电拦截/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -480,8 +478,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/03/iOS用CallKit实现来电识别&来电拦截/" rel="next" title="iOS用CallKit实现来电识别、来电拦截">
-                <i class="fa fa-chevron-left"></i> iOS用CallKit实现来电识别、来电拦截
+              <a href="/2018/03/01/iOS的Cookie管理/" rel="next" title="iOS的Cookie管理">
+                <i class="fa fa-chevron-left"></i> iOS的Cookie管理
               </a>
             
           </div>
@@ -489,6 +487,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/03/Golang编码规范/" rel="prev" title="iOS用CallKit实现来电识别、来电拦截">
+                iOS用CallKit实现来电识别、来电拦截 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -816,8 +818,8 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'http://crmo.github.io/2018/03/03/Golang编码规范/';
-        this.page.identifier = '2018/03/03/Golang编码规范/';
+        this.page.url = 'http://crmo.github.io/2018/03/03/iOS用CallKit实现来电识别&来电拦截/';
+        this.page.identifier = '2018/03/03/iOS用CallKit实现来电识别&来电拦截/';
         this.page.title = 'iOS用CallKit实现来电识别、来电拦截';
       };
       function loadComments () {

@@ -103,16 +103,19 @@
   <meta name="keywords" content="Hexo, iOS" />
 
 
-<meta name="description" content="分享iOS的学习点滴">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CR.MO`s Blog">
-<meta property="og:url" content="http://crmo.github.io/tags/正则表达式/index.html">
+<meta name="description" content="本文主要讲imageNamed与imageWithContentsOfFile的差异，需要注意的点，与实战中遇到的坑。  好久没写过博客了，什么工作太忙，加班太晚我就不说了，都怪自己太懒😂，时间都是挤出来的。看着各位大牛写的文章，简直过瘾，希望有一天自己也能写出这么高质量、干货密集的文章，先从简单的做起吧。 从差异说起从磁盘加载图片，UIImage主要提供了两种方式：  +(UIImage">
+<meta property="og:type" content="article">
+<meta property="og:title" content="imageNamed与imageWithContentsOfFile小结">
+<meta property="og:url" content="http://crmo.github.io/2018/03/01/imageNamed与imageWithContentsOfFile小结/index.html">
 <meta property="og:site_name" content="CR.MO`s Blog">
-<meta property="og:description" content="分享iOS的学习点滴">
+<meta property="og:description" content="本文主要讲imageNamed与imageWithContentsOfFile的差异，需要注意的点，与实战中遇到的坑。  好久没写过博客了，什么工作太忙，加班太晚我就不说了，都怪自己太懒😂，时间都是挤出来的。看着各位大牛写的文章，简直过瘾，希望有一天自己也能写出这么高质量、干货密集的文章，先从简单的做起吧。 从差异说起从磁盘加载图片，UIImage主要提供了两种方式：  +(UIImage">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://crmo.github.io/images/3.jpg">
+<meta property="og:updated_time" content="2018-03-03T10:13:41.036Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CR.MO`s Blog">
-<meta name="twitter:description" content="分享iOS的学习点滴">
+<meta name="twitter:title" content="imageNamed与imageWithContentsOfFile小结">
+<meta name="twitter:description" content="本文主要讲imageNamed与imageWithContentsOfFile的差异，需要注意的点，与实战中遇到的坑。  好久没写过博客了，什么工作太忙，加班太晚我就不说了，都怪自己太懒😂，时间都是挤出来的。看着各位大牛写的文章，简直过瘾，希望有一天自己也能写出这么高质量、干货密集的文章，先从简单的做起吧。 从差异说起从磁盘加载图片，UIImage主要提供了两种方式：  +(UIImage">
+<meta name="twitter:image" content="http://crmo.github.io/images/3.jpg">
 
 
 
@@ -121,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://crmo.github.io/tags/正则表达式/"/>
+  <link rel="canonical" href="http://crmo.github.io/2018/03/01/imageNamed与imageWithContentsOfFile小结/"/>
 
 
 
@@ -130,7 +133,7 @@
     sidebar: "",
   };
 </script>
-  <title>Tag: 正则表达式 | CR.MO`s Blog</title>
+  <title>imageNamed与imageWithContentsOfFile小结 | CR.MO`s Blog</title>
   
 
 
@@ -177,7 +180,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -280,58 +283,221 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>正则表达式<small>Tag</small>
-        </h2>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://crmo.github.io/2018/03/01/imageNamed与imageWithContentsOfFile小结/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CR.MO">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CR.MO`s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2016/11/20/正则表达式笔记/" itemprop="url">
-              
-                <span itemprop="name">正则表达式笔记</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">imageNamed与imageWithContentsOfFile小结</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-20T23:44:53+08:00"
-              content="2016-11-20" >
-          11-20
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-01T19:30:00+08:00">2018-03-01</time>
+            
 
-    </header>
-  </article>
+            
+            
 
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/01/imageNamed与imageWithContentsOfFile小结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/01/imageNamed与imageWithContentsOfFile小结/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views: 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/3.jpg" alt=""></p>
+<blockquote>
+<p>本文主要讲imageNamed与imageWithContentsOfFile的差异，需要注意的点，与实战中遇到的坑。</p>
+</blockquote>
+<p>好久没写过博客了，什么工作太忙，加班太晚我就不说了，都怪自己太懒😂，时间都是挤出来的。看着各位大牛写的文章，简直过瘾，希望有一天自己也能写出这么高质量、干货密集的文章，先从简单的做起吧。</p>
+<h2 id="从差异说起"><a href="#从差异说起" class="headerlink" title="从差异说起"></a>从差异说起</h2><p>从磁盘加载图片，UIImage主要提供了两种方式：</p>
+<blockquote>
+<p>+(UIImage <em>)imageNamed:(NSString </em>)name;<br>+(UIImage <em>)imageWithContentsOfFile:(NSString </em>)path;</p>
+</blockquote>
+<p>关于这两种方法的使用时机，苹果官方文档描述如下：</p>
+<blockquote>
+<p>Use the imageNamed:inBundle:compatibleWithTraitCollection: method (or the imageNamed: method) to create an image from an image asset or image file located in your app’s main bundle (or some other known bundle). Because these methods cache the image data automatically, they are especially recommended for images that you use frequently.<br>Use the imageWithContentsOfFile: or initWithContentsOfFile: method to create an image object where the initial data is not in a bundle. These methods load the image data from disk each time, so you should not use them to load the same image repeatedly.</p>
+</blockquote>
+<p>也就是说，<code>imageNamed:</code>第一次加载图片时会缓存图片到内存，适合使用频繁的图片，<code>imageWithContentsOfFile:</code>不会把图片缓存到内存，每次调用都要重新从磁盘加载一次。<br>在实际使用中我们要根据业务来判断调用具体的方法，来最优化内存与性能。举个例子：</p>
+<ol>
+<li>登陆背景图，只会在用户登陆的时候使用，而且图片较大，就建议用<code>imageWithContentsOfFile:</code>加载；</li>
+<li>底导航图标，图标较小，使用频繁，就建议使用<code>imageNamed:</code>加载；</li>
+</ol>
+<blockquote>
+<p><code>imageNamed:</code>方法还有个限制，它是在main bundle里找图片，如果图片放在<code>Images.xcassets</code>或者直接把图片方在工程里，参数直接传图片名可以找到。像我司的图片是放在单独建立的bundle里，如果要用<code>imageNamed:</code>加载的话文件名前面就要加上bundle名，像这样<code>a.bundle/b.png</code>。</p>
+</blockquote>
+<h2 id="屏幕适配问题"><a href="#屏幕适配问题" class="headerlink" title="屏幕适配问题"></a>屏幕适配问题</h2><p>iOS的图片文件需要提供3种尺寸的1x、2x、3x，根据不同的屏幕尺寸我们需要加载不同的图片，关于不同屏幕的图片加载，苹果已经帮我们封装好了，我们只需要将3中尺寸的图片放到工程中，然后调用<code>imageNamed:</code>或者<code>imageWithContentsOfFile:</code>，它会自动根据屏幕尺寸来加载不同的图片。<br>关于<code>imageNamed:</code>，官方文档中有这么一段讨论：</p>
+<blockquote>
+<p>This method looks in the system caches for an image object with the specified name and returns the variant of that image that is best suited for the main screen. </p>
+</blockquote>
+<p><code>imageWithContentsOfFile:</code>还没找到官方文档的说明（如果各位知道，欢迎各位大牛在评论中提出），不过我测试过是可以的。</p>
+<h2 id="使用imageWithContentsOfFile的一个坑"><a href="#使用imageWithContentsOfFile的一个坑" class="headerlink" title="使用imageWithContentsOfFile的一个坑"></a>使用imageWithContentsOfFile的一个坑</h2><p>在使用<code>imageWithContentsOfFile:</code>加载图片的时候遇到一个坑，先上代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+ (UIImage *)imageWithName:(NSString *)name type:(NSString *)type inBundle:(NSString *)bundle &#123;</span><br><span class="line">    NSString *imageBundlePath = [[NSBundle mainBundle] pathForResource:bundle ofType:@&quot;bundle&quot;];</span><br><span class="line">    NSBundle *imageBundle = [NSBundle bundleWithPath:imageBundlePath];</span><br><span class="line">    NSString *imagePath = [imageBundle pathForResource:name ofType:type];</span><br><span class="line">    UIImage *image = [UIImage imageWithContentsOfFile:imagePath];</span><br><span class="line">    return image;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>很简单的一个函数，就是获取bundle全路径，然后再获取到bundle里图片的全路径，然后调用<code>imageWithContentsOfFile:</code>加载图片。在使用的时候也很正常，但是有一天发现某张图加载不出来了。检查资源文件，只有2x的图（又是一个偷懒的程序员。。。很不建议这么玩，虽然只有2x的图，在所有屏幕都能显示，但是会造成图片的压缩与放大，每个细节都很重要！！！），如果加上1x的图就可以加载出来了。<br>经过调试发现问题就出在<code>pathForResource:ofType</code>上，这个函数是精确匹配调用者输入的文件名，不会自动识别文件名后面的<code>@2x</code>。修改后的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+ (UIImage *)imageWithName:(NSString *)name type:(NSString *)type inBundle:(NSString *)bundle &#123;</span><br><span class="line">    NSString *imageBundlePath = [[NSBundle mainBundle] pathForResource:bundle ofType:@&quot;bundle&quot;];</span><br><span class="line">    NSBundle *imageBundle = [NSBundle bundleWithPath:imageBundlePath];</span><br><span class="line">    NSString *imageFullName = [name stringByAppendingPathExtension:type];</span><br><span class="line">    NSString *imagePath = [[imageBundle resourcePath] stringByAppendingPathComponent:imageFullName];</span><br><span class="line">    UIImage *image = [UIImage imageWithContentsOfFile:imagePath];</span><br><span class="line">    return image;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/20/正则表达式笔记/" rel="next" title="正则表达式笔记">
+                <i class="fa fa-chevron-left"></i> 正则表达式笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/01/iOS的Cookie管理/" rel="prev" title="iOS的Cookie管理">
+                iOS的Cookie管理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -352,8 +518,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -379,35 +554,7 @@
               
 
               
-                
-                
-                <div class="site-state-item site-state-categories">
-                  
-                    
-                    
-                      
-                    
-                    <span class="site-state-item-count">0</span>
-                    <span class="site-state-item-name">categories</span>
-                  
-                </div>
-              
 
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">1</span>
-                    <span class="site-state-item-name">tags</span>
-                  
-                </div>
               
             </nav>
           
@@ -437,6 +584,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#从差异说起"><span class="nav-number">1.</span> <span class="nav-text">从差异说起</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#屏幕适配问题"><span class="nav-number">2.</span> <span class="nav-text">屏幕适配问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用imageWithContentsOfFile的一个坑"><span class="nav-number">3.</span> <span class="nav-text">使用imageWithContentsOfFile的一个坑</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -597,6 +760,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.4"></script>
+
+
 
   
 
@@ -611,6 +778,23 @@
     <script id="dsq-count-scr" src="https://CRMO.disqus.com/count.js" async></script>
   
 
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://crmo.github.io/2018/03/01/imageNamed与imageWithContentsOfFile小结/';
+        this.page.identifier = '2018/03/01/imageNamed与imageWithContentsOfFile小结/';
+        this.page.title = 'imageNamed与imageWithContentsOfFile小结';
+      };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://CRMO.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
   
 
 
