@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://crmo.github.io/2016/11/20/Golang%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/</loc>
+    
+    <lastmod>2018-03-04T07:54:21.742Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://crmo.github.io/2018/03/01/iOS%E7%9A%84Cookie%E7%AE%A1%E7%90%86/</loc>
     
     <lastmod>2018-03-03T10:14:03.915Z</lastmod>
@@ -19,13 +26,6 @@
     <loc>http://crmo.github.io/2016/11/20/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%AC%94%E8%AE%B0/</loc>
     
     <lastmod>2018-03-03T10:12:48.914Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://crmo.github.io/2018/03/03/Golang%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/</loc>
-    
-    <lastmod>2018-03-03T09:59:26.104Z</lastmod>
     
   </url>
   
