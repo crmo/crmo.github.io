@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://crmo.github.io/"/>
-  <updated>2018-03-03T09:59:26.104Z</updated>
+  <updated>2018-03-28T14:24:52.866Z</updated>
   <id>http://crmo.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>AFNetworking下载文件时文件名长度的坑</title>
+    <link href="http://crmo.github.io/2018/03/29/AFNetworking%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E6%97%B6%E6%96%87%E4%BB%B6%E5%90%8D%E9%95%BF%E5%BA%A6%E7%9A%84%E5%9D%91/"/>
+    <id>http://crmo.github.io/2018/03/29/AFNetworking下载文件时文件名长度的坑/</id>
+    <published>2018-03-29T14:23:00.000Z</published>
+    <updated>2018-03-28T14:24:52.866Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近遇到一个Bug，在用AFNetworking下载文件的时候莫名其妙的失败了，跟了一下发现一个小坑，记录一下防止以后再掉进去。</p><blockquote><p>iOS和Linux的文件名的长度限制相同都是255个字符！！！</p></blockquote><p>问题根源是文件名超度超过了255个字符，AFNetworking下载文件是成功了（框架会把文件下载到一个临时文件，例如：<code>CFNetworkDownload_xxx.tmp</code>，这个文件名不会出现过长的问题），下载成功之后会copy到调用者指定路径，在这里指定的文件名超过了255个字符，导致创建文件失败，于是回调是成功了，但是在设置的路径找不到这个文件。</p><p>上代码！</p><p>下载代码：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 注意对文件名长度进行处理！！！</span><br><span class="line">NSString *destination = @&quot;下载地址（长度大于255）&quot;;</span><br><span class="line">NSURLSessionDownloadTask *aTask = [self.updownloadSessionManager downloadTaskWithRequest:mutableRequest progress:^(NSProgress * _Nonnull downloadProgress) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125; destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) &#123;</span><br><span class="line">        return [NSURL fileURLWithPath:destination];</span><br><span class="line">    &#125; completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) &#123;</span><br><span class="line">        // 下载成功后会回调该block，但是路径`destination`找不到这个文件</span><br><span class="line">    &#125;];</span><br><span class="line">    [aTask resume];</span><br></pre></td></tr></table></figure><p>出错的地方<strong>AFURLSessionManager.m</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">- (void)URLSession:(NSURLSession *)session</span><br><span class="line">      downloadTask:(NSURLSessionDownloadTask *)downloadTask</span><br><span class="line">didFinishDownloadingToURL:(NSURL *)location</span><br><span class="line">&#123;</span><br><span class="line">    self.downloadFileURL = nil;</span><br><span class="line"></span><br><span class="line">    if (self.downloadTaskDidFinishDownloading) &#123;</span><br><span class="line">        self.downloadFileURL = self.downloadTaskDidFinishDownloading(session, downloadTask, location);</span><br><span class="line">        if (self.downloadFileURL) &#123;</span><br><span class="line">            NSError *fileManagerError = nil;</span><br><span class="line"></span><br><span class="line">            // location是临时文件，是下载成功了</span><br><span class="line">            // self.downloadFileURL 是目标路径，文件名超过255</span><br><span class="line">            // 移动文件会报错</span><br><span class="line">            if (![[NSFileManager defaultManager] moveItemAtURL:location toURL:self.downloadFileURL error:&amp;fileManagerError]) &#123;</span><br><span class="line">            // 出错会发通知，可以监听处理</span><br><span class="line">                [[NSNotificationCenter defaultCenter] postNotificationName:AFURLSessionDownloadTaskDidFailToMoveFileNotification object:downloadTask userInfo:fileManagerError.userInfo];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>我们来看看<code>AFURLSessionDownloadTaskDidFailToMoveFileNotification</code>的定义<br><strong>AFURLSessionManager.h</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> Posted when a session download task encountered an error when moving the temporary download file to a specified destination.</span><br><span class="line"> */</span><br><span class="line">FOUNDATION_EXPORT NSString * const AFURLSessionDownloadTaskDidFailToMoveFileNotification;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;最近遇到一个Bug，在用AFNetworking下载文件的时候莫名其妙的失败了，跟了一下发现一个小坑，记录一下防止以后再掉进去。&lt;/p&gt;
+&lt;
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>iOS用CallKit实现来电识别、来电拦截</title>
