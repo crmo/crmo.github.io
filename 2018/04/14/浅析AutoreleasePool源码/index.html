@@ -103,16 +103,17 @@
   <meta name="keywords" content="Hexo, iOS" />
 
 
-<meta name="description" content="分享iOS的学习点滴">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CR.MO`s Blog">
-<meta property="og:url" content="http://crmo.github.io/archives/2016/11/index.html">
+<meta name="description" content="最近在拜读Draveness大佬的一篇文章自动释放池的前世今生 —- 深入解析 autoreleasepool，看到文中给读者留了一个问题：  我到现在也不是很清楚为什么要根据当前页的不同状态 kill 掉不同 child 的页面。  关于AutoreleasePool是什么，强力推荐阅读原文，写的很好。这里就不说了，直接讨论问题。 首先是整个pop方法的实现： 12345678910111213">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅析AutoreleasePool源码">
+<meta property="og:url" content="http://crmo.github.io/2018/04/14/浅析AutoreleasePool源码/index.html">
 <meta property="og:site_name" content="CR.MO`s Blog">
-<meta property="og:description" content="分享iOS的学习点滴">
+<meta property="og:description" content="最近在拜读Draveness大佬的一篇文章自动释放池的前世今生 —- 深入解析 autoreleasepool，看到文中给读者留了一个问题：  我到现在也不是很清楚为什么要根据当前页的不同状态 kill 掉不同 child 的页面。  关于AutoreleasePool是什么，强力推荐阅读原文，写的很好。这里就不说了，直接讨论问题。 首先是整个pop方法的实现： 12345678910111213">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-14T07:31:28.990Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CR.MO`s Blog">
-<meta name="twitter:description" content="分享iOS的学习点滴">
+<meta name="twitter:title" content="浅析AutoreleasePool源码">
+<meta name="twitter:description" content="最近在拜读Draveness大佬的一篇文章自动释放池的前世今生 —- 深入解析 autoreleasepool，看到文中给读者留了一个问题：  我到现在也不是很清楚为什么要根据当前页的不同状态 kill 掉不同 child 的页面。  关于AutoreleasePool是什么，强力推荐阅读原文，写的很好。这里就不说了，直接讨论问题。 首先是整个pop方法的实现： 12345678910111213">
 
 
 
@@ -121,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="http://crmo.github.io/archives/2016/11/"/>
+  <link rel="canonical" href="http://crmo.github.io/2018/04/14/浅析AutoreleasePool源码/"/>
 
 
 
@@ -130,7 +131,7 @@
     sidebar: "",
   };
 </script>
-  <title>Archive | CR.MO`s Blog</title>
+  <title>浅析AutoreleasePool源码 | CR.MO`s Blog</title>
   
 
 
@@ -177,7 +178,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -280,117 +281,211 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        Um..! 8 posts in total. Keep on posting.
-      </span>
-      
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h2 class="archive-year" id="archive-year-2016">2016</h2>
-          </div>
-        
-        
-
-        
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://crmo.github.io/2018/04/14/浅析AutoreleasePool源码/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CR.MO">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CR.MO`s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2016/11/20/正则表达式笔记/" itemprop="url">
-              
-                <span itemprop="name">正则表达式笔记</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">浅析AutoreleasePool源码</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-20T23:44:53+08:00"
-              content="2016-11-20" >
-          11-20
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-14T15:31:00+08:00">2018-04-14</time>
+            
 
-    </header>
-  </article>
+            
+            
 
+            
+          </span>
 
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/14/浅析AutoreleasePool源码/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/14/浅析AutoreleasePool源码/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views: 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2016/11/20/Golang编码规范/" itemprop="url">
-              
-                <span itemprop="name">Golang编码规范</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-20T22:33:54+08:00"
-              content="2016-11-20" >
-          11-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <p>最近在拜读Draveness大佬的一篇文章<a href="https://draveness.me/autoreleasepool" target="_blank" rel="noopener">自动释放池的前世今生 —- 深入解析 autoreleasepool</a>，看到文中给读者留了一个问题：</p>
+<blockquote>
+<p>我到现在也不是很清楚为什么要根据当前页的不同状态 kill 掉不同 child 的页面。</p>
+</blockquote>
+<p>关于<code>AutoreleasePool</code>是什么，强力推荐阅读原文，写的很好。这里就不说了，直接讨论问题。</p>
+<p>首先是整个<code>pop</code>方法的实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">static inline void pop(void *token) </span><br><span class="line">&#123;</span><br><span class="line">    AutoreleasePoolPage *page;</span><br><span class="line">    id *stop;</span><br><span class="line"></span><br><span class="line">    if (token == (void*)EMPTY_POOL_PLACEHOLDER) &#123;</span><br><span class="line">        // Popping the top-level placeholder pool.</span><br><span class="line">        if (hotPage()) &#123;</span><br><span class="line">            // Pool was used. Pop its contents normally.</span><br><span class="line">            // Pool pages remain allocated for re-use as usual.</span><br><span class="line">            pop(coldPage()-&gt;begin());</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            // Pool was never used. Clear the placeholder.</span><br><span class="line">            setHotPage(nil);</span><br><span class="line">        &#125;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    page = pageForPointer(token);</span><br><span class="line">    stop = (id *)token;</span><br><span class="line">    if (*stop != POOL_BOUNDARY) &#123;</span><br><span class="line">        if (stop == page-&gt;begin()  &amp;&amp;  !page-&gt;parent) &#123;</span><br><span class="line">            // Start of coldest page may correctly not be POOL_BOUNDARY:</span><br><span class="line">            // 1. top-level pool is popped, leaving the cold page in place</span><br><span class="line">            // 2. an object is autoreleased with no pool</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            // Error. For bincompat purposes this is not </span><br><span class="line">            // fatal in executables built with old SDKs.</span><br><span class="line">            return badPop(token);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (PrintPoolHiwat) printHiwat();</span><br><span class="line"></span><br><span class="line">    page-&gt;releaseUntil(stop);</span><br><span class="line"></span><br><span class="line">    // memory: delete empty children</span><br><span class="line">    if (DebugPoolAllocation  &amp;&amp;  page-&gt;empty()) &#123;</span><br><span class="line">        // special case: delete everything during page-per-pool debugging</span><br><span class="line">        AutoreleasePoolPage *parent = page-&gt;parent;</span><br><span class="line">        page-&gt;kill();</span><br><span class="line">        setHotPage(parent);</span><br><span class="line">    &#125; else if (DebugMissingPools  &amp;&amp;  page-&gt;empty()  &amp;&amp;  !page-&gt;parent) &#123;</span><br><span class="line">        // special case: delete everything for pop(top) </span><br><span class="line">        // when debugging missing autorelease pools</span><br><span class="line">        page-&gt;kill();</span><br><span class="line">        setHotPage(nil);</span><br><span class="line">    &#125; </span><br><span class="line">    else if (page-&gt;child) &#123;</span><br><span class="line">        // hysteresis: keep one empty child if page is more than half fully</span><br><span class="line">        if (page-&gt;lessThanHalfFull()) &#123;</span><br><span class="line">            page-&gt;child-&gt;kill();</span><br><span class="line">        &#125;</span><br><span class="line">        else if (page-&gt;child-&gt;child) &#123;</span><br><span class="line">            page-&gt;child-&gt;child-&gt;kill();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们先看看释放的函数<code>releaseUntil</code>，它在释放的时候其实会一直顺着<code>parent</code>往前释放，直到参数<code>stop</code>，也就是说可能一次性释放好几个<code>page</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// 代码有所删减</span><br><span class="line">void releaseUntil(id *stop)</span><br><span class="line">&#123;</span><br><span class="line">    while (this-&gt;next != stop) &#123;</span><br><span class="line">        AutoreleasePoolPage *page = hotPage();</span><br><span class="line">        </span><br><span class="line">        while (page-&gt;empty()) &#123;</span><br><span class="line">            page = page-&gt;parent;</span><br><span class="line">            setHotPage(page);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        id obj = *--page-&gt;next;</span><br><span class="line">        memset((void*)page-&gt;next, SCRIBBLE, sizeof(*page-&gt;next));</span><br><span class="line">        </span><br><span class="line">        if (obj != POOL_BOUNDARY) &#123;</span><br><span class="line">            objc_release(obj);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    setHotPage(this);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后我们来看看这段有疑问的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// memory: delete empty children</span><br><span class="line">if (DebugPoolAllocation  &amp;&amp;  page-&gt;empty()) &#123;  // 分支1</span><br><span class="line">    // special case: delete everything during page-per-pool debugging</span><br><span class="line">    AutoreleasePoolPage *parent = page-&gt;parent;</span><br><span class="line">    page-&gt;kill();</span><br><span class="line">    setHotPage(parent);</span><br><span class="line">&#125; else if (DebugMissingPools  &amp;&amp;  page-&gt;empty()  &amp;&amp;  !page-&gt;parent) &#123; // 分支2</span><br><span class="line">    // special case: delete everything for pop(top) </span><br><span class="line">    // when debugging missing autorelease pools</span><br><span class="line">    page-&gt;kill();</span><br><span class="line">    setHotPage(nil);</span><br><span class="line">&#125; </span><br><span class="line">else if (page-&gt;child) &#123; // 分支3</span><br><span class="line">    // hysteresis: keep one empty child if page is more than half fully</span><br><span class="line">    if (page-&gt;lessThanHalfFull()) &#123;</span><br><span class="line">        page-&gt;child-&gt;kill();</span><br><span class="line">    &#125;</span><br><span class="line">    else if (page-&gt;child-&gt;child) &#123;</span><br><span class="line">        page-&gt;child-&gt;child-&gt;kill();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这块代码的作用是删除空的子节点，释放内存。pop之后三种情况：</p>
+<ol>
+<li>当前<code>page</code>为空，直接kill掉当前<code>page</code>，然后把<code>parent</code>设置为<code>hotpage</code>；</li>
+<li>当前<code>page</code>为空，而且没有<code>parent</code>，kill掉当前<code>page</code>，<code>hotpage</code>置为空；</li>
+<li>当前<code>page</code>不为空，但是有<code>child</code>，如果当前<code>page</code>的空间占用不到一半，释放<code>child</code>，如果当前<code>page</code>的空间占用超过一半，且<code>child</code>还有<code>child</code>，直接释放这个孙子辈的<code>page</code>。（对于第三步注释中的解释是：keep one empty child if page is more than half fully）</li>
+</ol>
+<p>我们再看看<code>kill</code>的实现，可以发现他是会顺着<code>child</code>一直往后释放，保证释放节点的<code>child page</code>都被释放了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">void kill()</span><br><span class="line">&#123;</span><br><span class="line">    AutoreleasePoolPage *page = this;</span><br><span class="line">    while (page-&gt;child) page = page-&gt;child;</span><br><span class="line">    </span><br><span class="line">    AutoreleasePoolPage *deathptr;</span><br><span class="line">    do &#123;</span><br><span class="line">        deathptr = page;</span><br><span class="line">        page = page-&gt;parent;</span><br><span class="line">        if (page) &#123;</span><br><span class="line">            page-&gt;unprotect();</span><br><span class="line">            page-&gt;child = nil;</span><br><span class="line">            page-&gt;protect();</span><br><span class="line">        &#125;</span><br><span class="line">        delete deathptr;</span><br><span class="line">    &#125; while (deathptr != this);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>到这里就可以得出结论了：</p>
+<ol>
+<li>pop之后，所有<code>child page</code>肯定都为空了，且当前<code>page</code>一定是<code>hotPage</code></li>
+<li>系统为了节约内存，判断，如果当前<code>page</code>空间使用少于一半，就释放掉所有的<code>child page</code>，如果当前<code>page</code>空间使用大于一半，就从孙子<code>page</code>开始释放，预留一个<code>child page</code>。</li>
+</ol>
+
+      
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/03/iOS用原生代码读写Webview的Local Storage/" rel="next" title="iOS用原生代码读写Webview的Local Storage">
+                <i class="fa fa-chevron-left"></i> iOS用原生代码读写Webview的Local Storage
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -628,6 +723,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.4"></script>
+
+
 
   
 
@@ -642,6 +741,23 @@
     <script id="dsq-count-scr" src="https://CRMO.disqus.com/count.js" async></script>
   
 
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://crmo.github.io/2018/04/14/浅析AutoreleasePool源码/';
+        this.page.identifier = '2018/04/14/浅析AutoreleasePool源码/';
+        this.page.title = '浅析AutoreleasePool源码';
+      };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://CRMO.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
   
 
 
