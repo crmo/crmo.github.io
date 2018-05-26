@@ -103,17 +103,17 @@
   <meta name="keywords" content="Hexo, iOS" />
 
 
-<meta name="description" content="正则表达式（regular expression）描述了一种字符串匹配的模式，可以用来检查一个串是否含有某种子串、将匹配的字串做替换或者从某个串中取出符合某个条件的字串等。  正则表达式在线测试：http://www.regexpal.com/ 元字符常用元字符：    代码 说明     . 匹配除换行符以外的任意字符   \w 匹配字母或数字或下划线或汉字   \d 匹配数字   \s 匹配">
+<meta name="description" content="本文涉及到的CPU架构为arm64，其它架构大同小异。源码来自苹果开源-runtime。  Objective-C中采用引用计数机制来管理内存，在MRC时代，需要我们手动retain和release，在苹果引入ARC后大部分时间我们不用再关心引用计数问题。但是为了深入Objective-C本质，引用计数究竟是怎么实现的还是值得我们去探寻的。 ISAOC中的对象的实质其实是结构体，其中大部分对象都">
 <meta property="og:type" content="article">
-<meta property="og:title" content="正则表达式笔记">
-<meta property="og:url" content="http://crmo.github.io/2016/11/20/正则表达式笔记/index.html">
+<meta property="og:title" content="探寻Objective-C引用计数本质">
+<meta property="og:url" content="http://crmo.github.io/2018/05/26/探寻Objective-C引用计数本质/index.html">
 <meta property="og:site_name" content="CR.MO`s Blog">
-<meta property="og:description" content="正则表达式（regular expression）描述了一种字符串匹配的模式，可以用来检查一个串是否含有某种子串、将匹配的字串做替换或者从某个串中取出符合某个条件的字串等。  正则表达式在线测试：http://www.regexpal.com/ 元字符常用元字符：    代码 说明     . 匹配除换行符以外的任意字符   \w 匹配字母或数字或下划线或汉字   \d 匹配数字   \s 匹配">
+<meta property="og:description" content="本文涉及到的CPU架构为arm64，其它架构大同小异。源码来自苹果开源-runtime。  Objective-C中采用引用计数机制来管理内存，在MRC时代，需要我们手动retain和release，在苹果引入ARC后大部分时间我们不用再关心引用计数问题。但是为了深入Objective-C本质，引用计数究竟是怎么实现的还是值得我们去探寻的。 ISAOC中的对象的实质其实是结构体，其中大部分对象都">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-03T10:12:48.914Z">
+<meta property="og:updated_time" content="2018-05-26T12:22:23.176Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="正则表达式笔记">
-<meta name="twitter:description" content="正则表达式（regular expression）描述了一种字符串匹配的模式，可以用来检查一个串是否含有某种子串、将匹配的字串做替换或者从某个串中取出符合某个条件的字串等。  正则表达式在线测试：http://www.regexpal.com/ 元字符常用元字符：    代码 说明     . 匹配除换行符以外的任意字符   \w 匹配字母或数字或下划线或汉字   \d 匹配数字   \s 匹配">
+<meta name="twitter:title" content="探寻Objective-C引用计数本质">
+<meta name="twitter:description" content="本文涉及到的CPU架构为arm64，其它架构大同小异。源码来自苹果开源-runtime。  Objective-C中采用引用计数机制来管理内存，在MRC时代，需要我们手动retain和release，在苹果引入ARC后大部分时间我们不用再关心引用计数问题。但是为了深入Objective-C本质，引用计数究竟是怎么实现的还是值得我们去探寻的。 ISAOC中的对象的实质其实是结构体，其中大部分对象都">
 
 
 
@@ -122,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="http://crmo.github.io/2016/11/20/正则表达式笔记/"/>
+  <link rel="canonical" href="http://crmo.github.io/2018/05/26/探寻Objective-C引用计数本质/"/>
 
 
 
@@ -131,7 +131,7 @@
     sidebar: "",
   };
 </script>
-  <title>正则表达式笔记 | CR.MO`s Blog</title>
+  <title>探寻Objective-C引用计数本质 | CR.MO`s Blog</title>
   
 
 
@@ -297,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://crmo.github.io/2016/11/20/正则表达式笔记/">
+    <link itemprop="mainEntityOfPage" href="http://crmo.github.io/2018/05/26/探寻Objective-C引用计数本质/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CR.MO">
@@ -314,7 +314,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">正则表达式笔记</h2>
+          <h2 class="post-title" itemprop="name headline">探寻Objective-C引用计数本质</h2>
         
 
         <div class="post-meta">
@@ -326,7 +326,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-20T23:44:53+08:00">2016-11-20</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-26T00:00:00+08:00">2018-05-26</time>
             
 
             
@@ -344,9 +344,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/11/20/正则表达式笔记/#comments" itemprop="discussionUrl">
+                <a href="/2018/05/26/探寻Objective-C引用计数本质/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/11/20/正则表达式笔记/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/05/26/探寻Objective-C引用计数本质/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -383,161 +383,60 @@
 
       
         <blockquote>
-<p>正则表达式（regular expression）描述了一种字符串匹配的模式，可以用来检查一个串是否含有某种子串、将匹配的字串做替换或者从某个串中取出符合某个条件的字串等。</p>
+<p>本文涉及到的CPU架构为arm64，其它架构大同小异。<br>源码来自<a href="https://opensource.apple.com/tarballs/objc4/" target="_blank" rel="noopener">苹果开源-runtime</a>。</p>
 </blockquote>
-<p>正则表达式在线测试：<br><a href="http://www.regexpal.com/" target="_blank" rel="noopener">http://www.regexpal.com/</a></p>
-<h2 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h2><p>常用元字符：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">代码</th>
-<th style="text-align:center">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">.</td>
-<td style="text-align:center">匹配除换行符以外的任意字符</td>
-</tr>
-<tr>
-<td style="text-align:center">\w</td>
-<td style="text-align:center">匹配字母或数字或下划线或汉字</td>
-</tr>
-<tr>
-<td style="text-align:center">\d</td>
-<td style="text-align:center">匹配数字</td>
-</tr>
-<tr>
-<td style="text-align:center">\s</td>
-<td style="text-align:center">匹配空格</td>
-</tr>
-<tr>
-<td style="text-align:center">\b</td>
-<td style="text-align:center">匹配单词的开始或结束</td>
-</tr>
-<tr>
-<td style="text-align:center">^</td>
-<td style="text-align:center">匹配字符串的开始，如果是处理多行，意义变成行开始处</td>
-</tr>
-<tr>
-<td style="text-align:center">$</td>
-<td style="text-align:center">匹配字符串的结束，如果是处理多行，意义变成行结束处</td>
-</tr>
-</tbody>
-</table>
-<h2 id="限定符"><a href="#限定符" class="headerlink" title="限定符"></a>限定符</h2><p>常用限定符：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">代码</th>
-<th style="text-align:center">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">*</td>
-<td style="text-align:center">*前面的内容重复任意次</td>
-</tr>
-<tr>
-<td style="text-align:center">+</td>
-<td style="text-align:center">+前面的内容重复一次或者多次</td>
-</tr>
-<tr>
-<td style="text-align:center">?</td>
-<td style="text-align:center">重复零次或一次</td>
-</tr>
-<tr>
-<td style="text-align:center">{n}</td>
-<td style="text-align:center">重复n次</td>
-</tr>
-<tr>
-<td style="text-align:center">{n, }</td>
-<td style="text-align:center">重复次数大于等于n</td>
-</tr>
-<tr>
-<td style="text-align:center">{n,m}</td>
-<td style="text-align:center">重复次数大于等于n小于等于m</td>
-</tr>
-</tbody>
-</table>
-<h2 id="字符类"><a href="#字符类" class="headerlink" title="字符类"></a>字符类</h2><p>[auiou] 匹配任何一个英文元音字母<br>[.?!] 匹配标点符号（.  ?   !）</p>
-<h2 id="反义"><a href="#反义" class="headerlink" title="反义"></a>反义</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">代码</th>
-<th style="text-align:center">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">\W</td>
-<td style="text-align:center">匹配任意不是字母、数字、下划线、汉字的字符</td>
-</tr>
-<tr>
-<td style="text-align:center">\S</td>
-<td style="text-align:center">匹配任意不是空白符的字符</td>
-</tr>
-<tr>
-<td style="text-align:center">\D</td>
-<td style="text-align:center">匹配任意非数字的字符</td>
-</tr>
-<tr>
-<td style="text-align:center">\B</td>
-<td style="text-align:center">匹配不是单词开头或结束的位置</td>
-</tr>
-<tr>
-<td style="text-align:center">[^x]</td>
-<td style="text-align:center">匹配除了x以外的任意字符</td>
-</tr>
-<tr>
-<td style="text-align:center">[^abcd]</td>
-<td style="text-align:center">匹配除了abcd以外的任意字符</td>
-</tr>
-</tbody>
-</table>
-<h2 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">代码</th>
-<th style="text-align:center">说明　</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">(exp)</td>
-<td style="text-align:center">匹配exp，并捕获文本到自动命名组中</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>(?&lt;name&gt;exp)</code></td>
-<td style="text-align:center">匹配exp,并捕获文本到名称为name的组里，也可以写成(?`name`exp)</td>
-</tr>
-<tr>
-<td style="text-align:center">(?:exp)</td>
-<td style="text-align:center">匹配exp，不捕获匹配的文本，也不给次分组分配组号</td>
-</tr>
-<tr>
-<td style="text-align:center">(?=exp)</td>
-<td style="text-align:center">匹配exp前面的位置</td>
-</tr>
-<tr>
-<td style="text-align:center">(?&lt;=exp)</td>
-<td style="text-align:center">匹配exp后面的位置</td>
-</tr>
-<tr>
-<td style="text-align:center">(?!exp)</td>
-<td style="text-align:center">匹配后面跟的不是exp的位置</td>
-</tr>
-<tr>
-<td style="text-align:center">(?&lt;!exp)</td>
-<td style="text-align:center">匹配前面不是exp的位置</td>
-</tr>
-<tr>
-<td style="text-align:center">(?#comment)</td>
-<td style="text-align:center">注释</td>
-</tr>
-</tbody>
-</table>
-<h2 id="贪婪与懒惰"><a href="#贪婪与懒惰" class="headerlink" title="贪婪与懒惰"></a>贪婪与懒惰</h2><p>通常重复限定符的行为是<strong>匹配尽可能多</strong>的字符，在限定符后面加<code>?</code>使之成为惰性限定符，例如<code>*?</code>的含义为<strong>重复任意次数，但是尽可能少</strong></p>
+<p>Objective-C中采用引用计数机制来管理内存，在MRC时代，需要我们手动<code>retain</code>和<code>release</code>，在苹果引入ARC后大部分时间我们不用再关心引用计数问题。但是为了深入Objective-C本质，引用计数究竟是怎么实现的还是值得我们去探寻的。</p>
+<h2 id="ISA"><a href="#ISA" class="headerlink" title="ISA"></a>ISA</h2><p>OC中的对象的实质其实是结构体，其中大部分对象都有isa，指向类对象（有一种神奇的存在叫做<code>Tagged Pointer</code>），源码中关于对象结构体<code>objc_object</code>定义如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// objc-private.h</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">objc_object</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">isa_t</span> isa;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">id <span class="title">retain</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">release</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">id <span class="title">autorelease</span><span class="params">()</span></span>;</span><br><span class="line">    ... <span class="comment">//省略了其它方法，感兴趣可以直接看源码</span></span><br></pre></td></tr></table></figure>
+<h3 id="Tagged-Pointer"><a href="#Tagged-Pointer" class="headerlink" title="Tagged Pointer"></a>Tagged Pointer</h3><p>除了有一种特殊的对象<code>Tagged Pointer</code>，这种类型的对象值就存在指针当中，存取性能高。可以用来存储少量数据的对象，例如NSNumber、NSDate、NSString。(更多Tagged Pointer知识，推荐这篇<a href="http://www.infoq.com/cn/articles/deep-understanding-of-tagged-pointer" target="_blank" rel="noopener">文章</a>)。也就没有引用计数、内存释放的问题。</p>
+<h3 id="NONPOINTER-ISA"><a href="#NONPOINTER-ISA" class="headerlink" title="NONPOINTER ISA"></a>NONPOINTER ISA</h3><p>arm64架构isa占64位，苹果为了优化性能，存储类对象地址只用了33位，剩下的位用来存储一些其它信息，比如本文讨论的引用计数。</p>
+<p>NONPOINTER ISA存储的字段定义如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># if __arm64__</span><br><span class="line">#   define ISA_MASK        0x0000000ffffffff8ULL</span><br><span class="line">#   define ISA_MAGIC_MASK  0x000003f000000001ULL</span><br><span class="line">#   define ISA_MAGIC_VALUE 0x000001a000000001ULL</span><br><span class="line">    struct &#123;</span><br><span class="line">        uintptr_t nonpointer        : 1;</span><br><span class="line">        uintptr_t has_assoc         : 1;</span><br><span class="line">        uintptr_t has_cxx_dtor      : 1;</span><br><span class="line">        uintptr_t shiftcls          : 33; // MACH_VM_MAX_ADDRESS 0x1000000000</span><br><span class="line">        uintptr_t magic             : 6;</span><br><span class="line">        uintptr_t weakly_referenced : 1;</span><br><span class="line">        uintptr_t deallocating      : 1;</span><br><span class="line">        uintptr_t has_sidetable_rc  : 1;</span><br><span class="line">        uintptr_t extra_rc          : 19;</span><br><span class="line">#       define RC_ONE   (1ULL&lt;&lt;45)</span><br><span class="line">#       define RC_HALF  (1ULL&lt;&lt;18)</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="extra-rc"><a href="#extra-rc" class="headerlink" title="extra_rc"></a>extra_rc</h2><p>那引用计数存在哪里呢？秘密就在<code>extra_rc</code>中。</p>
+<blockquote>
+<p>extra_rc只是存储了额外的引用计数，实际的引用计数计算公式：<code>引用计数=extra_rc+1</code>。</p>
+</blockquote>
+<p><code>extra_rc</code>占了19位，可以存储的最大引用计数：$2^{19}-1+1=524288$，超过它就需要进位到<code>SideTables</code>。SideTables是一个Hash表，根据对象地址可以找到对应的<code>SideTable</code>，<code>SideTable</code>内包含一个<code>RefcountMap</code>，根据对象地址取出其引用计数，类型是<code>size_t</code>。<br>它是一个<code>unsigned long</code>，最低两位是标志位，剩下的62位用来存储引用计数。我们可以计算出引用计数的理论最大值：$2^{62+19}=2.417851639229258e24$。</p>
+<blockquote>
+<p>其实isa能存储的524288在日常开发已经完全够用了，为什么还要搞个Side Table？我猜测是因为历史问题，以前cpu是32位的，isa中能存储的引用计数就只有$2^{7}=128$。因此在arm64下，引用计数通常是存储在isa中的。</p>
+</blockquote>
+<h2 id="retain"><a href="#retain" class="headerlink" title="retain"></a>retain</h2><p>有了前面的铺垫，我们知道引用计数怎么存储的了，那引用计数又是怎么改变的呢？通过剖析<code>retain</code>源码我们就可以得出结论了。<br>objc_object的方法全部定义在objc-object.h文件中，全是内联函数，应该是为了性能的考虑。</p>
+<p>我们来看看<code>retain</code>的函数定义</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> id </span><br><span class="line">objc_object::retain()</span><br><span class="line">&#123;</span><br><span class="line">    assert(!isTaggedPointer());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (fastpath(!ISA()-&gt;hasCustomRR())) &#123;</span><br><span class="line">        <span class="keyword">return</span> rootRetain();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ((id(*)(objc_object *, SEL))objc_msgSend)(<span class="keyword">this</span>, SEL_retain);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这层比较简单，做了三件事情：</p>
+<ol>
+<li>判断指针是不是<code>Tagged Pointer</code></li>
+<li>判断是否有自定义<code>retain</code>，如果有调用自定义的。</li>
+<li>最后调用<code>rootRetain</code></li>
+</ol>
+<p>我们来看看关键函数<code>rootRetain</code>的实现（为了便于阅读，代码有所删减）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">ALWAYS_INLINE id </span><br><span class="line">objc_object::rootRetain(<span class="keyword">bool</span> tryRetain, <span class="keyword">bool</span> handleOverflow)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">isa_t</span> oldisa;</span><br><span class="line">    <span class="keyword">isa_t</span> newisa;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 加锁，用汇编指令ldxr来保证原子性</span></span><br><span class="line">    oldisa = LoadExclusive(&amp;isa.bits);</span><br><span class="line">    newisa = oldisa;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (newisa.nonpointer = <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// newisa.nonpointer = 0说明所有位数都是地址值</span></span><br><span class="line">        <span class="comment">// 释放锁，使用汇编指令clrex</span></span><br><span class="line">        ClearExclusive(&amp;isa.bits);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 由于所有位数都是地址值，直接使用sidetable来存储引用计数</span></span><br><span class="line">        <span class="keyword">return</span> sidetable_retain();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 存储extra_rc++后的结果</span></span><br><span class="line">    <span class="keyword">uintptr_t</span> carry;</span><br><span class="line">    <span class="comment">// extra_rc++</span></span><br><span class="line">    newisa.bits = addc(newisa.bits, RC_ONE, <span class="number">0</span>, &amp;carry);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (carry == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// extra_rc++后溢出，进位到side table</span></span><br><span class="line">        newisa.extra_rc = RC_HALF;</span><br><span class="line">        newisa.has_sidetable_rc = <span class="literal">true</span>;</span><br><span class="line">        sidetable_addExtraRC_nolock(RC_HALF);</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">    <span class="comment">// 将newisa写入isa</span></span><br><span class="line">    StoreExclusive(&amp;isa.bits, oldisa.bits, newisa.bits)</span><br><span class="line">    <span class="keyword">return</span> (id)<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>有一个细节可以了解下，如何用汇编来实现原子性操作。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> ALWAYS_INLINE</span><br><span class="line"><span class="keyword">uintptr_t</span> </span><br><span class="line">LoadExclusive(<span class="keyword">uintptr_t</span> *src)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">uintptr_t</span> result;</span><br><span class="line">    <span class="comment">// 在多核CPU下，对一个地址的访问可能引起冲突，ldxr解决了冲突，保证原子性。</span></span><br><span class="line">    <span class="keyword">asm</span>(<span class="string">"ldxr %x0, [%x1]"</span> </span><br><span class="line">        : <span class="string">"=r"</span> (result) </span><br><span class="line">        : <span class="string">"r"</span> (src), <span class="string">"m"</span> (*src));</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="release"><a href="#release" class="headerlink" title="release"></a>release</h2><p><code>release</code>代码逻辑基本上就是<code>retain</code>反过来走一遍，有点不同的是在引用计数减到0时，会调用对象的dealloc方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">ALWAYS_INLINE bool</span><br><span class="line">objc_object::rootRelease(bool performDealloc, bool handleUnderflow)</span><br><span class="line">&#123;</span><br><span class="line">    isa_t oldisa;</span><br><span class="line">    isa_t newisa;</span><br><span class="line">    </span><br><span class="line">retry:</span><br><span class="line">    oldisa = LoadExclusive(&amp;isa.bits);</span><br><span class="line">    newisa = oldisa;</span><br><span class="line">    if (newisa.nonpointer == 0) &#123;</span><br><span class="line">        ClearExclusive(&amp;isa.bits);</span><br><span class="line">        if (sideTableLocked) sidetable_unlock();</span><br><span class="line">        return sidetable_release(performDealloc);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    uintptr_t carry;</span><br><span class="line">    // extra_rc--</span><br><span class="line">    newisa.bits = subc(newisa.bits, RC_ONE, 0, &amp;carry);</span><br><span class="line">    if (carry == 0) &#123;</span><br><span class="line">        // 需要从SideTable借位，或者引用计数为0</span><br><span class="line">        goto underflow;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // 存储引用计数到isa</span><br><span class="line">    StoreReleaseExclusive(&amp;isa.bits,</span><br><span class="line">                          oldisa.bits, newisa.bits)</span><br><span class="line">    return false;</span><br><span class="line">    </span><br><span class="line">underflow:</span><br><span class="line">    // 从SideTable借位</span><br><span class="line">    // 或引用计数为0，调用delloc</span><br><span class="line">    </span><br><span class="line">    // 此处省略N多代码</span><br><span class="line">    // 总结一下:修改Side Table与extra_rc，</span><br><span class="line">    </span><br><span class="line">    // 引用计数减为0时，调用dealloc</span><br><span class="line">    if (performDealloc) &#123;</span><br><span class="line">        ((void(*)(objc_object *, SEL))objc_msgSend)(this, SEL_dealloc);</span><br><span class="line">    &#125;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><blockquote>
+<p>引用计数存在哪？</p>
+</blockquote>
+<ol>
+<li><code>Tagged Pointer</code>不需要引用计数</li>
+<li><code>NONPOINTER ISA</code>(isa的第一位为1)的引用计数优先存在isa中，大于524288了进位到<code>Side Tables</code></li>
+<li>非<code>NONPOINTER ISA</code>引用计数存在<code>Side Tables</code></li>
+</ol>
+<blockquote>
+<p>retain/release的实质</p>
+</blockquote>
+<ul>
+<li>找到引用计数存储区域，然后+1/-1</li>
+<li>如果是<code>NONPOINTER ISA</code>，还要处理进位/借位的情况</li>
+<li>release在引用计数减为0时，调用<code>dealloc</code></li>
+</ul>
+<hr>
+<p>参考</p>
+<ul>
+<li><a href="https://github.com/Draveness/analyze/blob/master/contents/objc/黑箱中的%20retain%20和%20release.md" target="_blank" rel="noopener">黑箱中的 retain 和 release</a></li>
+<li><a href="http://www.infoq.com/cn/articles/deep-understanding-of-tagged-pointer" target="_blank" rel="noopener">深入理解Tagged Pointer</a></li>
+</ul>
 
       
     </div>
@@ -565,8 +464,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/20/Golang编码规范/" rel="next" title="Golang编码规范">
-                <i class="fa fa-chevron-left"></i> Golang编码规范
+              <a href="/2018/05/15/Cordova源码解析（二）- 自定义UserAgent/" rel="next" title="Cordova源码解析（二）- 自定义UserAgent">
+                <i class="fa fa-chevron-left"></i> Cordova源码解析（二）- 自定义UserAgent
               </a>
             
           </div>
@@ -574,10 +473,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/01/imageNamed与imageWithContentsOfFile小结/" rel="prev" title="imageNamed与imageWithContentsOfFile小结">
-                imageNamed与imageWithContentsOfFile小结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -718,7 +613,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#元字符"><span class="nav-number">1.</span> <span class="nav-text">元字符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#限定符"><span class="nav-number">2.</span> <span class="nav-text">限定符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符类"><span class="nav-number">3.</span> <span class="nav-text">字符类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反义"><span class="nav-number">4.</span> <span class="nav-text">反义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分组"><span class="nav-number">5.</span> <span class="nav-text">分组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贪婪与懒惰"><span class="nav-number">6.</span> <span class="nav-text">贪婪与懒惰</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ISA"><span class="nav-number">1.</span> <span class="nav-text">ISA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tagged-Pointer"><span class="nav-number">1.1.</span> <span class="nav-text">Tagged Pointer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NONPOINTER-ISA"><span class="nav-number">1.2.</span> <span class="nav-text">NONPOINTER ISA</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#extra-rc"><span class="nav-number">2.</span> <span class="nav-text">extra_rc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#retain"><span class="nav-number">3.</span> <span class="nav-text">retain</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#release"><span class="nav-number">4.</span> <span class="nav-text">release</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">5.</span> <span class="nav-text">小结</span></a></li></ol></div>
             
 
           </div>
@@ -905,9 +800,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'http://crmo.github.io/2016/11/20/正则表达式笔记/';
-        this.page.identifier = '2016/11/20/正则表达式笔记/';
-        this.page.title = '正则表达式笔记';
+        this.page.url = 'http://crmo.github.io/2018/05/26/探寻Objective-C引用计数本质/';
+        this.page.identifier = '2018/05/26/探寻Objective-C引用计数本质/';
+        this.page.title = '探寻Objective-C引用计数本质';
       };
       function loadComments () {
         var d = document, s = d.createElement('script');
