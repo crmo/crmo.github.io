@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://crmo.github.io/2018/03/03/iOS%E7%94%A8CallKit%E5%AE%9E%E7%8E%B0%E6%9D%A5%E7%94%B5%E8%AF%86%E5%88%AB&%E6%9D%A5%E7%94%B5%E6%8B%A6%E6%88%AA/</loc>
+    
+    <lastmod>2018-05-29T12:21:06.586Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://crmo.github.io/2018/05/26/%E6%8E%A2%E5%AF%BBObjective-C%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E6%9C%AC%E8%B4%A8/</loc>
     
     <lastmod>2018-05-26T12:22:23.176Z</lastmod>
@@ -68,13 +75,6 @@
     <loc>http://crmo.github.io/2016/11/20/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%AC%94%E8%AE%B0/</loc>
     
     <lastmod>2018-03-03T10:12:48.914Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://crmo.github.io/2018/03/03/iOS%E7%94%A8CallKit%E5%AE%9E%E7%8E%B0%E6%9D%A5%E7%94%B5%E8%AF%86%E5%88%AB&%E6%9D%A5%E7%94%B5%E6%8B%A6%E6%88%AA/</loc>
-    
-    <lastmod>2018-03-03T09:59:26.104Z</lastmod>
     
   </url>
   
