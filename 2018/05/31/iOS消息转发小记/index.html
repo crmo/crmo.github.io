@@ -103,16 +103,19 @@
   <meta name="keywords" content="Hexo, iOS" />
 
 
-<meta name="description" content="分享iOS的学习点滴">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CR.MO`s Blog">
-<meta property="og:url" content="http://crmo.github.io/archives/2018/04/index.html">
+<meta name="description" content="消息转发流程图  如果类接收到无法处理的消息，会触发消息转发机制，一共有三个步骤，接受者在每一步中均有机会处理消息。步骤越往后，处理消息的代价就越大，所以最好再第一步就处理完。 第一道防线在类里面实现两个方法来处理未知消息。  resolveInstanceMethod：处理实例方法 resolveClassMethod：处理类方法  我们来看个Demo，先看调用方代码 123TestA *tes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS消息转发小记">
+<meta property="og:url" content="http://crmo.github.io/2018/05/31/iOS消息转发小记/index.html">
 <meta property="og:site_name" content="CR.MO`s Blog">
-<meta property="og:description" content="分享iOS的学习点滴">
+<meta property="og:description" content="消息转发流程图  如果类接收到无法处理的消息，会触发消息转发机制，一共有三个步骤，接受者在每一步中均有机会处理消息。步骤越往后，处理消息的代价就越大，所以最好再第一步就处理完。 第一道防线在类里面实现两个方法来处理未知消息。  resolveInstanceMethod：处理实例方法 resolveClassMethod：处理类方法  我们来看个Demo，先看调用方代码 123TestA *tes">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://crmo.github.io/images/15277558865032.jpg">
+<meta property="og:updated_time" content="2018-05-31T11:59:41.824Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CR.MO`s Blog">
-<meta name="twitter:description" content="分享iOS的学习点滴">
+<meta name="twitter:title" content="iOS消息转发小记">
+<meta name="twitter:description" content="消息转发流程图  如果类接收到无法处理的消息，会触发消息转发机制，一共有三个步骤，接受者在每一步中均有机会处理消息。步骤越往后，处理消息的代价就越大，所以最好再第一步就处理完。 第一道防线在类里面实现两个方法来处理未知消息。  resolveInstanceMethod：处理实例方法 resolveClassMethod：处理类方法  我们来看个Demo，先看调用方代码 123TestA *tes">
+<meta name="twitter:image" content="http://crmo.github.io/images/15277558865032.jpg">
 
 
 
@@ -121,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://crmo.github.io/archives/2018/04/"/>
+  <link rel="canonical" href="http://crmo.github.io/2018/05/31/iOS消息转发小记/"/>
 
 
 
@@ -130,7 +133,7 @@
     sidebar: "",
   };
 </script>
-  <title>Archive | CR.MO`s Blog</title>
+  <title>iOS消息转发小记 | CR.MO`s Blog</title>
   
 
 
@@ -177,7 +180,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -280,117 +283,212 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        Um..! 12 posts in total. Keep on posting.
-      </span>
-      
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h2 class="archive-year" id="archive-year-2018">2018</h2>
-          </div>
-        
-        
-
-        
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://crmo.github.io/2018/05/31/iOS消息转发小记/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CR.MO">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CR.MO`s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/04/14/浅析AutoreleasePool源码/" itemprop="url">
-              
-                <span itemprop="name">浅析AutoreleasePool源码</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">iOS消息转发小记</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-14T15:31:00+08:00"
-              content="2018-04-14" >
-          04-14
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-31T00:00:00+08:00">2018-05-31</time>
+            
 
-    </header>
-  </article>
+            
+            
 
+            
+          </span>
 
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/31/iOS消息转发小记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/05/31/iOS消息转发小记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views: 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/03/iOS用原生代码读写Webview的Local Storage/" itemprop="url">
-              
-                <span itemprop="name">iOS用原生代码读写Webview的Local Storage</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-03T00:00:00+08:00"
-              content="2018-04-03" >
-          04-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <p>消息转发流程图</p>
+<p><img src="/images/15277558865032.jpg" alt=""></p>
+<p>如果类接收到无法处理的消息，会触发消息转发机制，一共有三个步骤，接受者在每一步中均有机会处理消息。步骤越往后，处理消息的代价就越大，所以最好再第一步就处理完。</p>
+<h2 id="第一道防线"><a href="#第一道防线" class="headerlink" title="第一道防线"></a>第一道防线</h2><p>在类里面实现两个方法来处理未知消息。</p>
+<ul>
+<li><code>resolveInstanceMethod</code>：处理实例方法</li>
+<li><code>resolveClassMethod</code>：处理类方法</li>
+</ul>
+<p>我们来看个Demo，先看调用方代码</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TestA *testA = [[TestA alloc] init];</span><br><span class="line">[testA instanceMethod];</span><br><span class="line">[TestA classMethod];</span><br></pre></td></tr></table></figure>
+<p>再来看看TestA的定义。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TestA.h</span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">TestA</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)instanceMethod;</span><br><span class="line">+ (<span class="keyword">void</span>)classMethod;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// TestA.m</span></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">TestA</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)newInstanceMethod &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"newInstanceMethod"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">+ (<span class="keyword">void</span>)newClassMethod &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"newClassMethod"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">+ (<span class="built_in">BOOL</span>)resolveInstanceMethod:(SEL)sel &#123;</span><br><span class="line">    <span class="keyword">if</span> (sel == <span class="keyword">@selector</span>(instanceMethod)) &#123;</span><br><span class="line">        <span class="comment">// 动态添加方法newInstanceMethod</span></span><br><span class="line">        Method method = class_getInstanceMethod([<span class="keyword">self</span> <span class="keyword">class</span>], <span class="keyword">@selector</span>(newInstanceMethod));</span><br><span class="line">        IMP imp = method_getImplementation(method);</span><br><span class="line">        class_addMethod([<span class="keyword">self</span> <span class="keyword">class</span>], sel, imp, <span class="string">"v@:"</span>);</span><br><span class="line">        <span class="comment">// 成功处理，消息转发机制结束，调用newInstanceMethod</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 不能处理，进入第二步</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NO</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">+ (<span class="built_in">BOOL</span>)resolveClassMethod:(SEL)sel &#123;</span><br><span class="line">    <span class="keyword">if</span> (sel == <span class="keyword">@selector</span>(classMethod)) &#123;</span><br><span class="line">        <span class="comment">// 动态添加方法newClassMethod</span></span><br><span class="line">        Method method = class_getInstanceMethod(object_getClass(<span class="keyword">self</span>), <span class="keyword">@selector</span>(newClassMethod));</span><br><span class="line">        IMP imp = method_getImplementation(method);</span><br><span class="line">        class_addMethod(object_getClass(<span class="keyword">self</span>), sel, imp, <span class="string">"v@:"</span>);</span><br><span class="line">        <span class="comment">// 成功处理，消息转发机制结束，调用newClassMethod</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 不能处理，进入第二步</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NO</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>TestA中头文件定义了两个方法，但是没有实现，如果不用消息转发机制处理异常，会导致crash，log想必大家应该很熟悉</p>
+<blockquote>
+<p>*** Terminating app due to uncaught exception ‘NSInvalidArgumentException’, reason: ‘-[TestA funcA]: unrecognized selector sent to instance 0x6040000125c0’</p>
+</blockquote>
+<p>实例方法存储在类对象，类方法存储在元类对象，在调用<code>class_addMethod</code>时，第一个参数需要注意。</p>
+<h2 id="第二道防线"><a href="#第二道防线" class="headerlink" title="第二道防线"></a>第二道防线</h2><p>第二道防线依赖一个函数<code>forwardingTargetForSelector</code>。只能处理实例方法，不能处理类方法。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">id</span>)forwardingTargetForSelector:(SEL)aSelector &#123;</span><br><span class="line">    <span class="keyword">if</span> (aSelector == <span class="keyword">@selector</span>(instanceMethod)) &#123;</span><br><span class="line">        <span class="comment">// 消息转发给TestB实例</span></span><br><span class="line">        <span class="keyword">return</span> [TestB new];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 消息转发失败，进入下一步</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// TestB.m</span></span><br><span class="line">- (<span class="keyword">void</span>)instanceMethod &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"instanceMethod"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="第三道防线"><a href="#第三道防线" class="headerlink" title="第三道防线"></a>第三道防线</h2><p>第三道防线有两步</p>
+<ol>
+<li>调用<code>methodSignatureForSelector</code>，获取新的方法签名</li>
+<li>调用<code>forwardInvocation</code>，转发消息</li>
+</ol>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">NSMethodSignature</span> *)methodSignatureForSelector:(SEL)aSelector &#123;</span><br><span class="line">    <span class="built_in">NSMethodSignature</span> *signature = [TestB instanceMethodSignatureForSelector:aSelector];</span><br><span class="line">    <span class="keyword">return</span> signature;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)forwardInvocation:(<span class="built_in">NSInvocation</span> *)anInvocation &#123;</span><br><span class="line">    [anInvocation invokeWithTarget:[TestB new]];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/26/探寻Objective-C引用计数本质/" rel="next" title="探寻Objective-C引用计数本质">
+                <i class="fa fa-chevron-left"></i> 探寻Objective-C引用计数本质
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -411,8 +509,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -468,6 +575,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一道防线"><span class="nav-number">1.</span> <span class="nav-text">第一道防线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二道防线"><span class="nav-number">2.</span> <span class="nav-text">第二道防线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三道防线"><span class="nav-number">3.</span> <span class="nav-text">第三道防线</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -628,6 +751,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.4"></script>
+
+
 
   
 
@@ -642,6 +769,23 @@
     <script id="dsq-count-scr" src="https://CRMO.disqus.com/count.js" async></script>
   
 
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://crmo.github.io/2018/05/31/iOS消息转发小记/';
+        this.page.identifier = '2018/05/31/iOS消息转发小记/';
+        this.page.title = 'iOS消息转发小记';
+      };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://CRMO.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
   
 
 

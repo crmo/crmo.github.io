@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://crmo.github.io/2018/03/01/imageNamed%E4%B8%8EimageWithContentsOfFile%E5%B0%8F%E7%BB%93/</loc>
+    
+    <lastmod>2018-05-31T11:59:44.224Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://crmo.github.io/2018/05/31/iOS%E6%B6%88%E6%81%AF%E8%BD%AC%E5%8F%91%E5%B0%8F%E8%AE%B0/</loc>
+    
+    <lastmod>2018-05-31T11:59:41.824Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://crmo.github.io/2018/03/03/iOS%E7%94%A8CallKit%E5%AE%9E%E7%8E%B0%E6%9D%A5%E7%94%B5%E8%AF%86%E5%88%AB&%E6%9D%A5%E7%94%B5%E6%8B%A6%E6%88%AA/</loc>
     
     <lastmod>2018-05-29T12:21:06.586Z</lastmod>
@@ -61,13 +75,6 @@
     <loc>http://crmo.github.io/2018/03/01/iOS%E7%9A%84Cookie%E7%AE%A1%E7%90%86/</loc>
     
     <lastmod>2018-03-03T10:14:03.915Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://crmo.github.io/2018/03/01/imageNamed%E4%B8%8EimageWithContentsOfFile%E5%B0%8F%E7%BB%93/</loc>
-    
-    <lastmod>2018-03-03T10:13:41.036Z</lastmod>
     
   </url>
   
