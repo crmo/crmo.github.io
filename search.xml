@@ -4,6 +4,9 @@
     <title><![CDATA[URLWithString return nil]]></title>
     <url>%2F2018%2F07%2F03%2FURLWithString%20return%20nil%2F</url>
     <content type="text"><![CDATA[问题描述在使用URLWithString生成NSURL时，如果出现中文，会导致返回的NSURL为nil。代码如下： 1NSURL *aUrl = [NSURL URLWithString:@&quot;http://中文域名&quot;]; stackoverflow相关讨论 查询了URLWithString的官方文档，其中有一段话解决了我的疑惑。 This method expects URLString to contain only characters that are allowed in a properly formed URL. All other characters must be properly percent escaped. Any percent-escaped characters are interpreted using UTF-8 encoding. 意思就是该方法的输入参数URLString只能包含URL的合法字符，包含非法字符的URL需要进行百分号编码(percent escaped) 百分号编码（percent escaped）wiki相关词条 有两种情况必须使用百分号编码 参数中出现保留字符 URL所允许的字符分作保留与未保留，保留字符是那些具有特殊含义的字符 URL中出现非ASCII字符 对于非ASCII字符, 需要转换为UTF-8字节序，再进行百分号编码 解决方案使用方法stringByAddingPercentEscapesUsingEncoding对URL字符串百分号编码。 12NSString *encodeUrl = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]; NSURL *aUrl = [NSURL URLWithString:encodeUrl];]]></content>
+      <tags>
+        <tag>每日小结</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[iOS消息转发小记]]></title>

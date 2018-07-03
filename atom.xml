@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://crmo.github.io/"/>
-  <updated>2018-07-03T12:26:08.729Z</updated>
+  <updated>2018-07-03T12:43:58.604Z</updated>
   <id>http://crmo.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://crmo.github.io/2018/07/03/URLWithString%20return%20nil/"/>
     <id>http://crmo.github.io/2018/07/03/URLWithString return nil/</id>
     <published>2018-07-02T16:00:00.000Z</published>
-    <updated>2018-07-03T12:26:08.729Z</updated>
+    <updated>2018-07-03T12:43:58.604Z</updated>
     
     <content type="html"><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在使用<code>URLWithString</code>生成NSURL时，如果出现中文，会导致返回的NSURL为nil。代码如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSURL *aUrl = [NSURL URLWithString:@&quot;http://中文域名&quot;];</span><br></pre></td></tr></table></figure><p><a href="https://stackoverflow.com/questions/1981390/urlwithstring-returns-nil" target="_blank" rel="noopener">stackoverflow相关讨论</a></p><p>查询了<a href="https://developer.apple.com/documentation/foundation/nsurl/1572047-urlwithstring?changes=_1&amp;language=objc" target="_blank" rel="noopener">URLWithString的官方文档</a>，其中有一段话解决了我的疑惑。</p><blockquote><p>This method expects URLString to contain only characters that are allowed in a properly formed URL. All other characters must be properly percent escaped. Any percent-escaped characters are interpreted using UTF-8 encoding.</p></blockquote><p>意思就是该方法的输入参数<code>URLString</code>只能包含URL的合法字符，包含非法字符的URL需要进行百分号编码(percent escaped)</p><h2 id="百分号编码（percent-escaped）"><a href="#百分号编码（percent-escaped）" class="headerlink" title="百分号编码（percent escaped）"></a>百分号编码（percent escaped）</h2><p><a href="https://zh.wikipedia.org/wiki/百分号编码" target="_blank" rel="noopener">wiki相关词条</a></p><p>有两种情况必须使用百分号编码</p><ol><li>参数中出现保留字符</li></ol><p>URL所允许的字符分作保留与未保留，保留字符是那些具有特殊含义的字符</p><p><img src="/images/15305867541997.jpg" alt=""></p><ol><li>URL中出现非ASCII字符</li></ol><p>对于非ASCII字符, 需要转换为UTF-8字节序，再进行百分号编码</p><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>使用方法<code>stringByAddingPercentEscapesUsingEncoding</code>对URL字符串百分号编码。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSString *encodeUrl = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];</span><br><span class="line">    NSURL *aUrl = [NSURL URLWithString:encodeUrl];</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -34,6 +34,8 @@
     
     </summary>
     
+    
+      <category term="每日小结" scheme="http://crmo.github.io/tags/%E6%AF%8F%E6%97%A5%E5%B0%8F%E7%BB%93/"/>
     
   </entry>
   
