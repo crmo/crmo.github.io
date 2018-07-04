@@ -100,20 +100,21 @@
 
 
   
-  <meta name="keywords" content="Hexo, iOS" />
+  <meta name="keywords" content="每日小结," />
 
 
-<meta name="description" content="gofmt 大部分的格式问题可以通过gofmt解决，gofmt自动格式化代码，保证所有的go代码与官方推荐的格式保持一致，于是所有格式有关问题，都以gofmt的结果为准。  行长   一行最长不超过80个字符，超过的使用换行展示，尽量保持格式优雅。  注释 在编码阶段应该同步写好变量、函数、包的注释，最后可以利用godoc导出文档。注释必须是完整的句子，句子的结尾应该用句号作为结尾（英文句号）。">
+<meta name="description" content="本文使用的测试环境是arm64架构真机  为了探究Tagged Pointer本质，可以查看runtime源码，主要看文件objc-internal.h。 宏定义可以看到以下宏定义，只有在64位系统才支持Tagged Pointer。 123#if __LP64__#define OBJC_HAVE_TAGGED_POINTERS 1#endif 64-bit的mac，tag存储在LSB（Lea">
+<meta name="keywords" content="每日小结">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Golang编码规范">
-<meta property="og:url" content="http://crmo.github.io/2016/11/20/Golang编码规范/index.html">
+<meta property="og:title" content="Tagged Pointer小记">
+<meta property="og:url" content="http://crmo.github.io/2018/07/04/Tagged Pointer小记/index.html">
 <meta property="og:site_name" content="CR.MO`s Blog">
-<meta property="og:description" content="gofmt 大部分的格式问题可以通过gofmt解决，gofmt自动格式化代码，保证所有的go代码与官方推荐的格式保持一致，于是所有格式有关问题，都以gofmt的结果为准。  行长   一行最长不超过80个字符，超过的使用换行展示，尽量保持格式优雅。  注释 在编码阶段应该同步写好变量、函数、包的注释，最后可以利用godoc导出文档。注释必须是完整的句子，句子的结尾应该用句号作为结尾（英文句号）。">
+<meta property="og:description" content="本文使用的测试环境是arm64架构真机  为了探究Tagged Pointer本质，可以查看runtime源码，主要看文件objc-internal.h。 宏定义可以看到以下宏定义，只有在64位系统才支持Tagged Pointer。 123#if __LP64__#define OBJC_HAVE_TAGGED_POINTERS 1#endif 64-bit的mac，tag存储在LSB（Lea">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-04T07:54:21.743Z">
+<meta property="og:updated_time" content="2018-07-04T12:40:48.157Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Golang编码规范">
-<meta name="twitter:description" content="gofmt 大部分的格式问题可以通过gofmt解决，gofmt自动格式化代码，保证所有的go代码与官方推荐的格式保持一致，于是所有格式有关问题，都以gofmt的结果为准。  行长   一行最长不超过80个字符，超过的使用换行展示，尽量保持格式优雅。  注释 在编码阶段应该同步写好变量、函数、包的注释，最后可以利用godoc导出文档。注释必须是完整的句子，句子的结尾应该用句号作为结尾（英文句号）。">
+<meta name="twitter:title" content="Tagged Pointer小记">
+<meta name="twitter:description" content="本文使用的测试环境是arm64架构真机  为了探究Tagged Pointer本质，可以查看runtime源码，主要看文件objc-internal.h。 宏定义可以看到以下宏定义，只有在64位系统才支持Tagged Pointer。 123#if __LP64__#define OBJC_HAVE_TAGGED_POINTERS 1#endif 64-bit的mac，tag存储在LSB（Lea">
 
 
 
@@ -122,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="http://crmo.github.io/2016/11/20/Golang编码规范/"/>
+  <link rel="canonical" href="http://crmo.github.io/2018/07/04/Tagged Pointer小记/"/>
 
 
 
@@ -131,7 +132,7 @@
     sidebar: "",
   };
 </script>
-  <title>Golang编码规范 | CR.MO`s Blog</title>
+  <title>Tagged Pointer小记 | CR.MO`s Blog</title>
   
 
 
@@ -303,7 +304,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://crmo.github.io/2016/11/20/Golang编码规范/">
+    <link itemprop="mainEntityOfPage" href="http://crmo.github.io/2018/07/04/Tagged Pointer小记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CR.MO">
@@ -320,7 +321,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Golang编码规范</h2>
+          <h2 class="post-title" itemprop="name headline">Tagged Pointer小记</h2>
         
 
         <div class="post-meta">
@@ -332,7 +333,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-20T22:33:54+08:00">2016-11-20</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-04T00:00:00+08:00">2018-07-04</time>
             
 
             
@@ -350,9 +351,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/11/20/Golang编码规范/#comments" itemprop="discussionUrl">
+                <a href="/2018/07/04/Tagged Pointer小记/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/11/20/Golang编码规范/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/07/04/Tagged Pointer小记/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -388,130 +389,49 @@
       
 
       
-        <ul>
-<li><p>gofmt</p>
-<p>大部分的格式问题可以通过gofmt解决，gofmt自动格式化代码，保证所有的go代码与官方推荐的格式保持一致，于是所有格式有关问题，都以gofmt的结果为准。</p>
-</li>
-<li><p>行长</p>
-</li>
-</ul>
-<p>一行最长不超过80个字符，超过的使用换行展示，尽量保持格式优雅。</p>
+        <blockquote>
+<p>本文使用的测试环境是arm64架构真机</p>
+</blockquote>
+<p>为了探究Tagged Pointer本质，可以查看runtime源码，主要看文件<code>objc-internal.h</code>。</p>
+<h2 id="宏定义"><a href="#宏定义" class="headerlink" title="宏定义"></a>宏定义</h2><p>可以看到以下宏定义，只有在64位系统才支持<code>Tagged Pointer</code>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> __LP64__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> OBJC_HAVE_TAGGED_POINTERS 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>64-bit的mac，tag存储在LSB（Least Significant Bit 最低位）。其它情况比如64位的真机和模拟器，tag存储在MSB（Most Significant Bit 最高位）。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#if TARGET_OS_OSX &amp;&amp; __x86_64__</span></span><br><span class="line">    <span class="comment">// 64-bit Mac - tag bit is LSB</span></span><br><span class="line"><span class="meta">#   define OBJC_MSB_TAGGED_POINTERS 0</span></span><br><span class="line"><span class="meta">#else</span></span><br><span class="line">    <span class="comment">// Everything else - tag bit is MSB</span></span><br><span class="line"><span class="meta">#   define OBJC_MSB_TAGGED_POINTERS 1</span></span><br><span class="line"><span class="meta">#endif</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#if OBJC_MSB_TAGGED_POINTERS</span></span><br><span class="line"><span class="meta">#   define _OBJC_TAG_MASK (1UL<span class="meta-string">&lt;&lt;63)</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">#   define _OBJC_TAG_INDEX_SHIFT 60</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">#   define _OBJC_TAG_SLOT_SHIFT 60</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">#   define _OBJC_TAG_PAYLOAD_LSHIFT 4</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">#   define _OBJC_TAG_PAYLOAD_RSHIFT 4</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">#   define _OBJC_TAG_EXT_MASK (0xfUL&lt;&lt;60)</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">#   define _OBJC_TAG_EXT_INDEX_SHIFT 52</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">#   define _OBJC_TAG_EXT_SLOT_SHIFT 52</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">#   define _OBJC_TAG_EXT_PAYLOAD_LSHIFT 12</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">#   define _OBJC_TAG_EXT_PAYLOAD_RSHIFT 12</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">#else</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">#   define _OBJC_TAG_MASK 1UL</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">#   define _OBJC_TAG_INDEX_SHIFT 1</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">#   define _OBJC_TAG_SLOT_SHIFT 0</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">#   define _OBJC_TAG_PAYLOAD_LSHIFT 0</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">#   define _OBJC_TAG_PAYLOAD_RSHIFT 4</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">#   define _OBJC_TAG_EXT_MASK 0xfUL</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">#   define _OBJC_TAG_EXT_INDEX_SHIFT 4</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">#   define _OBJC_TAG_EXT_SLOT_SHIFT 4</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">#   define _OBJC_TAG_EXT_PAYLOAD_LSHIFT 0</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">#   define _OBJC_TAG_EXT_PAYLOAD_RSHIFT 12</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">#endif</span></span></span><br></pre></td></tr></table></figure>
+<p>接下来是一个枚举定义，定义了默认的使用<code>Tagged Pointer</code>的类。例如NSString、NSNumber、NSIndexPath、NSDate（OBJC_TAG_NSAtom、OBJC_TAG_1、OBJC_TAG_NSManagedObjectID不知道是啥意思，还请知道的同学告诉我）。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="keyword">objc_tag_index_t</span> : <span class="keyword">uint16_t</span></span><br><span class="line"><span class="keyword">enum</span></span><br><span class="line">&#123;</span><br><span class="line">    OBJC_TAG_NSAtom            = <span class="number">0</span>, </span><br><span class="line">    OBJC_TAG_1                 = <span class="number">1</span>, </span><br><span class="line">    OBJC_TAG_NSString          = <span class="number">2</span>, </span><br><span class="line">    OBJC_TAG_NSNumber          = <span class="number">3</span>, </span><br><span class="line">    OBJC_TAG_NSIndexPath       = <span class="number">4</span>, </span><br><span class="line">    OBJC_TAG_NSManagedObjectID = <span class="number">5</span>, </span><br><span class="line">    OBJC_TAG_NSDate            = <span class="number">6</span>, </span><br><span class="line">    OBJC_TAG_RESERVED_7        = <span class="number">7</span>, </span><br><span class="line"></span><br><span class="line">    OBJC_TAG_First60BitPayload = <span class="number">0</span>, </span><br><span class="line">    OBJC_TAG_Last60BitPayload  = <span class="number">6</span>, </span><br><span class="line">    OBJC_TAG_First52BitPayload = <span class="number">8</span>, </span><br><span class="line">    OBJC_TAG_Last52BitPayload  = <span class="number">263</span>, </span><br><span class="line"></span><br><span class="line">    OBJC_TAG_RESERVED_264      = <span class="number">264</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="方法定义"><a href="#方法定义" class="headerlink" title="方法定义"></a>方法定义</h2><p>判断是不是<code>Tagged Pointer</code></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">bool</span></span><br><span class="line">_objc_isTaggedPointer(<span class="keyword">const</span> <span class="keyword">void</span> * _Nullable ptr) </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> ((uintptr_t)ptr &amp; _OBJC_TAG_MASK) == _OBJC_TAG_MASK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>生成一个<code>Tagged Pointer</code>，最高的4位是tagged，剩下的是数据</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">void</span> * _Nonnull</span><br><span class="line">_objc_makeTaggedPointer(objc_tag_index_t tag, uintptr_t value)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (tag &lt;= OBJC_TAG_Last60BitPayload) &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">void</span> *)</span><br><span class="line">            (_OBJC_TAG_MASK | </span><br><span class="line">             ((uintptr_t)tag &lt;&lt; _OBJC_TAG_INDEX_SHIFT) | </span><br><span class="line">             ((value &lt;&lt; _OBJC_TAG_PAYLOAD_RSHIFT) &gt;&gt; _OBJC_TAG_PAYLOAD_LSHIFT));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">void</span> *)</span><br><span class="line">            (_OBJC_TAG_EXT_MASK |</span><br><span class="line">             ((uintptr_t)(tag - OBJC_TAG_First52BitPayload) &lt;&lt; _OBJC_TAG_EXT_INDEX_SHIFT) |</span><br><span class="line">             ((value &lt;&lt; _OBJC_TAG_EXT_PAYLOAD_RSHIFT) &gt;&gt; _OBJC_TAG_EXT_PAYLOAD_LSHIFT));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从<code>Tagged Pointer</code>中取出值</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">inline</span> uintptr_t</span><br><span class="line">_objc_getTaggedPointerValue(<span class="keyword">const</span> <span class="keyword">void</span> * _Nullable ptr) </span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// assert(_objc_isTaggedPointer(ptr));</span></span><br><span class="line">    uintptr_t basicTag = ((uintptr_t)ptr &gt;&gt; _OBJC_TAG_INDEX_SHIFT) &amp; _OBJC_TAG_INDEX_MASK;</span><br><span class="line">    <span class="keyword">if</span> (basicTag == _OBJC_TAG_INDEX_MASK) &#123;</span><br><span class="line">        <span class="keyword">return</span> ((uintptr_t)ptr &lt;&lt; _OBJC_TAG_EXT_PAYLOAD_LSHIFT) &gt;&gt; _OBJC_TAG_EXT_PAYLOAD_RSHIFT;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> ((uintptr_t)ptr &lt;&lt; _OBJC_TAG_PAYLOAD_LSHIFT) &gt;&gt; _OBJC_TAG_PAYLOAD_RSHIFT;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="NSNumber应用举例"><a href="#NSNumber应用举例" class="headerlink" title="NSNumber应用举例"></a>NSNumber应用举例</h2><p>可以使用下面代码来验证NSNumber如何使用<code>Tagged Pointer</code></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSNumber</span> *charNumber = [<span class="built_in">NSNumber</span> numberWithChar:<span class="string">'1'</span>];</span><br><span class="line"><span class="built_in">NSNumber</span> *shortNumber = [<span class="built_in">NSNumber</span> numberWithShort:<span class="number">1</span>];</span><br><span class="line"><span class="built_in">NSNumber</span> *intNumber = [<span class="built_in">NSNumber</span> numberWithInt:<span class="number">1</span>];</span><br><span class="line"><span class="built_in">NSNumber</span> *floatNumber = [<span class="built_in">NSNumber</span> numberWithFloat:<span class="number">1.0</span>];</span><br><span class="line"><span class="built_in">NSNumber</span> *longNumber = [<span class="built_in">NSNumber</span> numberWithLong:<span class="number">1</span>];</span><br><span class="line"><span class="built_in">NSNumber</span> *doubleNumber = [<span class="built_in">NSNumber</span> numberWithDouble:<span class="number">1.0</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出变量的指针地址：</span></span><br><span class="line"><span class="comment">// charNumber 0xb000000000000310</span></span><br><span class="line"><span class="comment">// shortNumber 0xb000000000000011</span></span><br><span class="line"><span class="comment">// intNumber 0xb000000000000012</span></span><br><span class="line"><span class="comment">// floatNumber 0xb000000000000014</span></span><br><span class="line"><span class="comment">// longNumber 0xb000000000000013</span></span><br><span class="line"><span class="comment">// doubleNumber 0xb000000000000015</span></span><br></pre></td></tr></table></figure>
+<p>不难发现规律，都是以b(1011)开头</p>
 <ul>
-<li><p>注释</p>
-<p>在编码阶段应该同步写好变量、函数、包的注释，最后可以利用godoc导出文档。注释必须是完整的句子，句子的结尾应该用句号作为结尾（英文句号）。注释推荐用英文，可以在写代码过程中锻炼英文的阅读和书写能力。而且用英文不会出现各种编码的问题。<br>每个包都应该有一个包注释，一个位于package子句之前的块注释或行注释。包如果有多个go文件，只需要出现在一个go文件中即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// ping包实现了常用的ping相关的函数</span><br><span class="line">package ping</span><br></pre></td></tr></table></figure>
-</li>
+<li>最高位是1，说明这个指针是一个<code>Tagged Pointer</code></li>
+<li>第61-63位是11（十进制是3），也就是<code>OBJC_TAG_NSNumber</code>（查上面的枚举）</li>
+<li>第1-4位是NSNumber的类型：比如，char是0、short是1、int是2、float是4</li>
+<li>剩下的56位就是真正的值了</li>
 </ul>
-<p>导出函数注释，第一条语句应该为一条概括语句，并且使用被声明的名字作为开头。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 求a和b的和，返回sum。</span><br><span class="line">func Myfunction(sum int) (a, b int) &#123;</span><br></pre></td></tr></table></figure>
+<h2 id="NSString应用举例"><a href="#NSString应用举例" class="headerlink" title="NSString应用举例"></a>NSString应用举例</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *str1 = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"a"</span>];</span><br><span class="line"><span class="built_in">NSString</span> *str2 = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"ab"</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出变量的指针地址：</span></span><br><span class="line"><span class="comment">// str1: 0xa000000000000611</span></span><br><span class="line"><span class="comment">// str2: 0xa000000000062612</span></span><br></pre></td></tr></table></figure>
+<p>与NSNumber类似</p>
 <ul>
-<li><p>命名</p>
+<li>最高位是1，说明这个指针是一个<code>Tagged Pointer</code></li>
+<li>第61-63位是11（十进制是2），也就是<code>OBJC_TAG_NSString</code></li>
+<li>第1-4位是字符串长度</li>
+<li>剩下的56位就是真正的值了</li>
+</ul>
+<blockquote>
+<p>更多细节推荐这篇文章<a href="http://www.cocoachina.com/ios/20150918/13449.html" target="_blank" rel="noopener">采用Tagged Pointer的字符串</a></p>
+</blockquote>
+<hr>
+<p>参考文章</p>
 <ul>
-<li>需要注释来补充的命名就不算是好命名。<ul>
-<li>使用可搜索的名称：单字母名称和数字常量很难从一大堆文字中搜索出来。单字母名称仅适用于短方法中的本地变量，名称长短应与其作用域相对应。若变量或常量可能在代码中多处使用，则应赋其以便于搜索的名称。</li>
-<li>做有意义的区分：Product和ProductInfo和ProductData没有区别，NameString和Name没有区别，要区分名称，就要以读者能鉴别不同之处的方式来区分 。</li>
+<li><a href="https://www.jianshu.com/p/e354f9137ba8" target="_blank" rel="noopener">iOS Tagged Pointer</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Tagged_pointer" target="_blank" rel="noopener">wiki</a></li>
+<li><a href="http://www.infoq.com/cn/articles/deep-understanding-of-tagged-pointer" target="_blank" rel="noopener">深入理解Tagged Pointer</a></li>
 </ul>
-</li>
-<li>函数命名规则：驼峰式命名，名字可以长但是得把功能，必要的参数描述清楚，函数名名应当是动词或动词短语，如postPayment、deletePage、save。并依Javabean标准加上get、set、is前缀。例如：xxx + With + 需要的参数名 + And + 需要的参数名 + …..</li>
-<li>结构体命名规则：结构体名应该是名词或名词短语，如Custome、WikiPage、Account、AddressParser，避免使用Manager、Processor、Data、Info、这样的类名，类名不应当是动词。<ul>
-<li>包名命名规则：包名应该为小写单词，不要使用下划线或者混合大小写。</li>
-<li>接口命名规则：单个函数的接口名以”er”作为后缀，如Reader,Writer。接口的实现则去掉“er”。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type Reader interface &#123;</span><br><span class="line">        Read(p []byte) (n int, err error)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>两个函数的接口名综合两个函数名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">type WriteFlusher interface &#123;</span><br><span class="line">    Write([]byte) (int, error)</span><br><span class="line">    Flush() error</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p> 三个以上函数的接口名，抽象这个接口的功能，类似于结构体名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">type Car interface &#123;</span><br><span class="line">    Start([]byte)</span><br><span class="line">    Stop() error</span><br><span class="line">    Recover()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>常量</li>
-</ul>
-<p>常量均需使用全部大写字母组成，并使用下划线分词：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const APP_VER = &quot;1.0&quot;</span><br></pre></td></tr></table></figure>
-<p>如果是枚举类型的常量，需要先创建相应类型：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">type Scheme string</span><br><span class="line"></span><br><span class="line">const (</span><br><span class="line">    HTTP  Scheme = &quot;http&quot;</span><br><span class="line">    HTTPS Scheme = &quot;https&quot;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>如果模块的功能较为复杂、常量名称容易混淆的情况下，为了更好地区分枚举类型，可以使用完整的前缀：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">type PullRequestStatus int</span><br><span class="line"></span><br><span class="line">const (</span><br><span class="line">    PULL_REQUEST_STATUS_CONFLICT PullRequestStatus = iota</span><br><span class="line">    PULL_REQUEST_STATUS_CHECKING</span><br><span class="line">    PULL_REQUEST_STATUS_MERGEABLE</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>变量</p>
-<p>变量命名基本上遵循相应的英文表达或简写,在相对简单的环境（对象数量少、针对性强）中，可以将一些名称由完整单词简写为单个字母，例如：</p>
-<ul>
-<li>user 可以简写为 u</li>
-<li>userID 可以简写 uid<br>若变量类型为 bool 类型，则名称应以 Has, Is, Can 或 Allow 开头：</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var isExist bool</span><br><span class="line">var hasConflict bool</span><br><span class="line">var canManage bool</span><br><span class="line">var allowGitHook bool</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>变量命名惯例</p>
-<p>变量名称一般遵循驼峰法，但遇到特有名词时，需要遵循以下规则：</p>
-<ul>
-<li>如果变量为私有，且特有名词为首个单词，则使用小写，如 apiClient</li>
-<li>其它情况都应当使用该名词原有的写法，如 APIClient、repoID、UserID</li>
-<li>错误示例：UrlArray，应该写成urlArray或者URLArray</li>
-</ul>
-<p>下面列举了一些常见的特有名词：</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">// A GonicMapper that contains a list of common initialisms taken from golang/lint</span><br><span class="line">var LintGonicMapper = GonicMapper&#123;</span><br><span class="line">    &quot;API&quot;:   true,</span><br><span class="line">    &quot;ASCII&quot;: true,</span><br><span class="line">    &quot;CPU&quot;:   true,</span><br><span class="line">    &quot;CSS&quot;:   true,</span><br><span class="line">    &quot;DNS&quot;:   true,</span><br><span class="line">    &quot;EOF&quot;:   true,</span><br><span class="line">    &quot;GUID&quot;:  true,</span><br><span class="line">    &quot;HTML&quot;:  true,</span><br><span class="line">    &quot;HTTP&quot;:  true,</span><br><span class="line">    &quot;HTTPS&quot;: true,</span><br><span class="line">    &quot;ID&quot;:    true,</span><br><span class="line">    &quot;IP&quot;:    true,</span><br><span class="line">    &quot;JSON&quot;:  true,</span><br><span class="line">    &quot;LHS&quot;:   true,</span><br><span class="line">    &quot;QPS&quot;:   true,</span><br><span class="line">    &quot;RAM&quot;:   true,</span><br><span class="line">    &quot;RHS&quot;:   true,</span><br><span class="line">    &quot;RPC&quot;:   true,</span><br><span class="line">    &quot;SLA&quot;:   true,</span><br><span class="line">    &quot;SMTP&quot;:  true,</span><br><span class="line">    &quot;SSH&quot;:   true,</span><br><span class="line">    &quot;TLS&quot;:   true,</span><br><span class="line">    &quot;TTL&quot;:   true,</span><br><span class="line">    &quot;UI&quot;:    true,</span><br><span class="line">    &quot;UID&quot;:   true,</span><br><span class="line">    &quot;UUID&quot;:  true,</span><br><span class="line">    &quot;URI&quot;:   true,</span><br><span class="line">    &quot;URL&quot;:   true,</span><br><span class="line">    &quot;UTF8&quot;:  true,</span><br><span class="line">    &quot;VM&quot;:    true,</span><br><span class="line">    &quot;XML&quot;:   true,</span><br><span class="line">    &quot;XSRF&quot;:  true,</span><br><span class="line">    &quot;XSS&quot;:   true,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>struct规范</li>
-</ul>
-<p>struct申明和初始化格式采用多行：</p>
-<p>定义如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">type User struct&#123;</span><br><span class="line">    Username  string</span><br><span class="line">    Email     string</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>初始化如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">u := User&#123;</span><br><span class="line">    Username: &quot;test&quot;,</span><br><span class="line">    Email:    &quot;test@gmail.com&quot;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>控制结构</p>
-<p>if<br>if接受初始化语句，约定如下方式建立局部变量</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if err := file.Chmod(0664); err != nil &#123;</span><br><span class="line">    return err</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> for<br>采用短声明建立局部变量</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sum := 0</span><br><span class="line">for i := 0; i &lt; 10; i++ &#123;</span><br><span class="line">    sum += i</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> return<br>尽早return：一旦有错误发生，马上返回</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">f, err := os.Open(name)</span><br><span class="line">if err != nil &#123;</span><br><span class="line">    return err</span><br><span class="line">&#125;</span><br><span class="line">d, err := f.Stat()</span><br><span class="line">if err != nil &#123;</span><br><span class="line">    f.Close()</span><br><span class="line">    return err</span><br><span class="line">&#125;</span><br><span class="line">codeUsing(f, d)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>错误处理</p>
-<ul>
-<li>error作为函数的值返回,必须对error进行处理</li>
-<li>错误描述如果是英文必须为小写，不需要标点结尾</li>
-<li>采用独立的错误流进行处理</li>
-</ul>
-<p>不要采用下面的处理错误写法</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if err != nil &#123;</span><br><span class="line">    // error handling</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    // normal code</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> 采用下面的写法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if err != nil &#123;</span><br><span class="line">    // error handling</span><br><span class="line">    return // or continue, etc.</span><br><span class="line">&#125;</span><br><span class="line">// normal code</span><br></pre></td></tr></table></figure>
-<p> 使用函数的返回值时，则采用下面的方式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x, err := f()</span><br><span class="line">if err != nil &#123;</span><br><span class="line">    // error handling</span><br><span class="line">    return</span><br><span class="line">&#125;</span><br><span class="line">// use x</span><br></pre></td></tr></table></figure>
-<ul>
-<li>panic</li>
-</ul>
-<p>尽量不要使用panic，除非你知道你在做什么</p>
-<ul>
-<li>import</li>
-</ul>
-<p>对import的包进行分组管理，用换行符分割，而且标准库作为分组的第一组。如果你的包引入了三种类型的包，标准库包，程序内部包，第三方包，建议采用如下方式进行组织你的包</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">    &quot;fmt&quot;</span><br><span class="line">    &quot;os&quot;</span><br><span class="line"></span><br><span class="line">    &quot;kmg/a&quot;</span><br><span class="line">    &quot;kmg/b&quot;</span><br><span class="line"></span><br><span class="line">    &quot;code.google.com/a&quot;</span><br><span class="line">    &quot;github.com/b&quot;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p> 在项目中不要使用相对路径引入包：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 错误示例</span><br><span class="line">import “../net”</span><br><span class="line"></span><br><span class="line">// 正确的做法</span><br><span class="line">import “github.com/repo/proj/src/net”</span><br></pre></td></tr></table></figure>
-<p>goimports会自动帮你格式化</p>
-<ul>
-<li><p>参数传递</p>
-<ul>
-<li>对于少量数据，不要传递指针</li>
-<li>对于大量数据的struct可以考虑使用指针</li>
-<li>传入参数是map，slice，chan不要传递指针，因为map，slice，chan是引用类型，不需要传递指针的指针</li>
-</ul>
-</li>
-<li><p>单元测试</p>
-</li>
-</ul>
-<p>单元测试文件名命名规范为 example_test.go<br>测试用例的函数名称必须以 Test 开头，例如：TestExample</p>
 
       
     </div>
@@ -530,6 +450,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/每日小结/" rel="tag"># 每日小结</a>
+          
+        </div>
+      
 
       
       
@@ -539,15 +465,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/07/03/URLWithString return nil/" rel="next" title="URLWithString return nil">
+                <i class="fa fa-chevron-left"></i> URLWithString return nil
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/20/正则表达式笔记/" rel="prev" title="正则表达式笔记">
-                正则表达式笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -612,8 +538,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -682,6 +617,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#宏定义"><span class="nav-number">1.</span> <span class="nav-text">宏定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法定义"><span class="nav-number">2.</span> <span class="nav-text">方法定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSNumber应用举例"><span class="nav-number">3.</span> <span class="nav-text">NSNumber应用举例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSString应用举例"><span class="nav-number">4.</span> <span class="nav-text">NSString应用举例</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -863,9 +814,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'http://crmo.github.io/2016/11/20/Golang编码规范/';
-        this.page.identifier = '2016/11/20/Golang编码规范/';
-        this.page.title = 'Golang编码规范';
+        this.page.url = 'http://crmo.github.io/2018/07/04/Tagged Pointer小记/';
+        this.page.identifier = '2018/07/04/Tagged Pointer小记/';
+        this.page.title = 'Tagged Pointer小记';
       };
       function loadComments () {
         var d = document, s = d.createElement('script');
