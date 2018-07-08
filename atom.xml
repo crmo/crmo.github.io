@@ -42,10 +42,10 @@
   
   <entry>
     <title>property or synthsize</title>
-    <link href="http://crmo.github.io/2018/07/04/property%20or%20synthsize/"/>
-    <id>http://crmo.github.io/2018/07/04/property or synthsize/</id>
-    <published>2018-07-03T16:00:00.000Z</published>
-    <updated>2018-07-05T05:27:55.385Z</updated>
+    <link href="http://crmo.github.io/2018/07/05/property%20or%20synthsize/"/>
+    <id>http://crmo.github.io/2018/07/05/property or synthsize/</id>
+    <published>2018-07-04T16:00:00.000Z</published>
+    <updated>2018-07-08T07:52:09.467Z</updated>
     
     <content type="html"><![CDATA[<p>@property (nonatomic, retain) NSObject *var;</p><ul><li>生成var的set、get方法的方法声明</li><li>生成var的set、get方法的实现（<strong>早期版本编译器不生成</strong>）</li><li>生成成员变量_var（<strong>早期版本编译器不生成</strong>）</li></ul><p>@synthsize var = _var</p><ul><li>生成var的set、get方法的实现</li><li>生成var对应的成员变量_var</li></ul><blockquote><p>mrc年代的get、set方法的写法</p></blockquote><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)setVar:(<span class="built_in">NSObject</span> *)var &#123;</span><br><span class="line">    <span class="keyword">if</span> (_var != var) &#123; <span class="comment">// 如果多次set同一个对象，如果不判断会导致对象被释放</span></span><br><span class="line">        <span class="comment">// 释放之前的var</span></span><br><span class="line">        [_var release];</span><br><span class="line">        _var = [var <span class="keyword">retain</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="built_in">NSObject</span> *)var &#123;</span><br><span class="line">    <span class="keyword">return</span> _var;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     

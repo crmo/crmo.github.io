@@ -10,7 +10,7 @@
   </entry>
   <entry>
     <title><![CDATA[property or synthsize]]></title>
-    <url>%2F2018%2F07%2F04%2Fproperty%20or%20synthsize%2F</url>
+    <url>%2F2018%2F07%2F05%2Fproperty%20or%20synthsize%2F</url>
     <content type="text"><![CDATA[@property (nonatomic, retain) NSObject *var; 生成var的set、get方法的方法声明 生成var的set、get方法的实现（早期版本编译器不生成） 生成成员变量_var（早期版本编译器不生成） @synthsize var = _var 生成var的set、get方法的实现 生成var对应的成员变量_var mrc年代的get、set方法的写法 1234567891011- (void)setVar:(NSObject *)var &#123; if (_var != var) &#123; // 如果多次set同一个对象，如果不判断会导致对象被释放 // 释放之前的var [_var release]; _var = [var retain]; &#125;&#125;- (NSObject *)var &#123; return _var;&#125;]]></content>
       <tags>
         <tag>每日小结</tag>
