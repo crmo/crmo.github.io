@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[UITabbar自定义Badge]]></title>
+    <url>%2F2018%2F07%2F10%2FUITabbar%E8%87%AA%E5%AE%9A%E4%B9%89Badge%2F</url>
+    <content type="text"><![CDATA[tabBarItem的Badge默认样式是带数字的，但是产品要求只要一个小红点，不需要数字，这就需要我们自定义Badge了。 用Reveal分析UITabBar，发现每个按钮是一个UITabBarButton，层级如下： -UITabBarButton–UITabBarSwappableImageView // 图标–UITabBarButtonLabel // 文字 实现方案如下： 通过遍历UITabBar的subview，找到图标view 根据图标view来计算Badge的坐标 新建Badge，加到UITabBar上 新建的时候设置Tag，通过Tag来移除Badge 上代码 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849static NSInteger const kBadgeViewTagBase = 10000;@implementation UITabBar (badge)// 展示Badge- (void)showBadgeOnItemIndex:(int)index &#123; [self removeBadgeOnItemIndex:index]; UIView *badgeView = [[UIView alloc] init]; badgeView.tag = kBadgeViewTagBase + index; badgeView.layer.cornerRadius = 5; badgeView.backgroundColor = [UIColor redColor]; NSArray *array = [self subviews]; CGFloat x = 0; CGFloat y = 0; CGFloat width = 0; for (UIView *button in array) &#123; if ([button isKindOfClass:NSClassFromString(@&quot;UITabBarButton&quot;)]) &#123; UIView *icon = [button valueForKey:@&quot;_info&quot;]; if (index == 0) &#123; x = icon.frame.origin.x + button.frame.origin.x; y = icon.frame.origin.y; width = icon.frame.size.width; &#125; index--; &#125; &#125; badgeView.frame = CGRectMake(x + width - 5, y, 9, 9); [self addSubview:badgeView];&#125;// 隐藏Badge- (void)hideBadgeOnItemIndex:(int)index &#123; [self removeBadgeOnItemIndex:index];&#125;// 移除Badge- (void)removeBadgeOnItemIndex:(int)index &#123; for (UIView *subView in self.subviews) &#123; if (subView.tag == kBadgeViewTagBase + index) &#123; [subView removeFromSuperview]; &#125; &#125;&#125;@end]]></content>
+      <tags>
+        <tag>每日小结</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[UITextField控制输入长度]]></title>
     <url>%2F2018%2F07%2F06%2FUITextField%E6%8E%A7%E5%88%B6%E8%BE%93%E5%85%A5%E9%95%BF%E5%BA%A6%2F</url>
     <content type="text"><![CDATA[有些时候会有控制输入框文字长度的需求，记录一个简单的思路。 12345678910111213141516171819- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string &#123; if (string.length == 0) &#123; return YES; &#125; NSInteger limit = 15; // 文本的最大长度 NSString *newStr = [textField.text stringByAppendingString:string]; // 修改之后的新字符串 NSInteger newStrLength = newStr.length; newStrLength -= [textField textInRange:[textField markedTextRange]].length; // 去掉高亮内容，输入中文拼音的情况 if (newStrLength &gt; limit) &#123; // 处理composed character, 比如emoji NSString *tempStr = [newStr substringWithRange:[newStr rangeOfComposedCharacterSequencesForRange:NSMakeRange(0, limit)]]; textField.text = tempStr; return NO; &#125; return YES;&#125; 有两个坑注意下： emoji是composed character，它是由多个字符组合，长度不是1。最开始用的substringToIndex会导致最后一个emoji乱码。 计算长度的时候要去掉中文输入的时候高亮部分]]></content>
