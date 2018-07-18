@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://crmo.github.io/"/>
-  <updated>2018-07-11T10:22:48.072Z</updated>
+  <updated>2018-07-18T05:17:00.910Z</updated>
   <id>http://crmo.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一个autoreleasepool的使用场景</title>
+    <link href="http://crmo.github.io/2018/07/18/%E4%B8%80%E4%B8%AAautoreleasepool%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/"/>
+    <id>http://crmo.github.io/2018/07/18/一个autoreleasepool的使用场景/</id>
+    <published>2018-07-17T16:00:00.000Z</published>
+    <updated>2018-07-18T05:17:00.910Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天在学习大佬博客的时候看到一个问题，下面代码会有什么问题？</p><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// largeNumber是一个很大的数</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; largeNumber; i++) &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *str = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"hello -%04d"</span>, i];</span><br><span class="line">    str = [str stringByAppendingString:<span class="string">@" - world"</span>];</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>刚开始没看出什么问题，就是普通的循环，每次循环创建一个局部变量<code>NSString</code>。于是写了个Demo验证了下，在观察内存的时候发现了端倪，在循环过程中，内存不断飙升。</p><p><img src="/images/15318782609811.jpg" alt="15318782609811"></p><p>顿时明白了，原来问题的关键就是这个<code>largeNumber</code>，当循环此时很大时，就会创建大量的局部变量，而且得不到释放，于是内存就爆了。这时候就该<code>@autoreleasepool</code>上场了，优化后代码：</p><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; largeNumber; i++) &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="built_in">NSString</span> *str = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"hello -%04d"</span>, i];</span><br><span class="line">        str = [str stringByAppendingString:<span class="string">@" - world"</span>];</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, str);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>查看运行内存，可以看到非常平稳。</p><p><img src="/images/15318784002251.jpg" alt="15318784002251"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;今天在学习大佬博客的时候看到一个问题，下面代码会有什么问题？&lt;/p&gt;
+&lt;figure class=&quot;highlight objectivec&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br
+      
+    
+    </summary>
+    
+    
+      <category term="每日小结" scheme="http://crmo.github.io/tags/%E6%AF%8F%E6%97%A5%E5%B0%8F%E7%BB%93/"/>
+    
+  </entry>
   
   <entry>
     <title>UITabbar自定义Badge</title>
