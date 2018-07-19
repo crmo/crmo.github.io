@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title></title>
+    <url>%2F2018%2F07%2F19%2F%E8%AE%B0%E4%B8%80%E4%B8%AA%E5%AE%9E%E7%8E%B0UIWindow%E5%AD%90%E7%B1%BB%E7%9A%84%E5%B0%8F%E5%9D%91%2F</url>
+    <content type="text"><![CDATA[记一个实现UIWindow子类的小坑 2018.7.19 问题描述项目中为了实现一个全局遮罩界面，使用了一个UIWindow的子类MyWindow，MyWindow为了实现回调定义了代理MyWindowDelegate。代码大致如下： 123456789101112131415161718192021@protocol MyWindowDelegate &lt;NSObject&gt;@end@interface MyWindow : UIWindow@property (nonatomic, assign)id&lt;MyWindowDelegate&gt; delegate;@end@implementation MyWindow- (instancetype)init&#123; self = [super init]; if (self) &#123; self.windowLevel = UIWindowLevelNormal; self.backgroundColor = [UIColor whiteColor]; UIViewController *vc = [[ViewController2 alloc] init]; self.rootViewController = vc; self.hidden = NO; &#125; return self;&#125;@end 然后在实现界面横屏时，发现整个UIWindow不响应横竖屏事件。刚开始以为横竖屏设置被关闭了，查了各种资料，发现这种写法是没有问题的。设置UIWindow的rootViewController，然后把所有子view都加到rootViewController，系统会处理横竖屏问题。 问题分析用Runtime把UIWindow的私有变量打出来，就发现问题了。 123456789#import &lt;objc/runtime.h&gt;- (void)printUIWindowIvars &#123; Ivar *ivars = class_copyIvarList([UIWindow class], &amp;count); for (int i = 0; i &lt; count; i++) &#123; Ivar ivar = ivars[i]; NSLog(@"%s", ivar_getName(ivar)); &#125;&#125; 我们看看输出，发现有个私有变量_delegate。 MyWindow的属性delegate覆盖了父类UIWindow的变量，导致横竖屏切换事件失效。在代理命名的时候一定要注意啊，delegate看来不是一个好的实践，应该加前缀区分避免覆盖父类的实现，特别是这种私有的变量。]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[一个autoreleasepool的使用场景]]></title>
     <url>%2F2018%2F07%2F18%2F%E4%B8%80%E4%B8%AAautoreleasepool%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%2F</url>
     <content type="text"><![CDATA[今天在学习大佬博客的时候看到一个问题，下面代码会有什么问题？ 123456// largeNumber是一个很大的数for (int i = 0; i &lt; largeNumber; i++) &#123; NSString *str = [NSString stringWithFormat:@"hello -%04d", i]; str = [str stringByAppendingString:@" - world"]; NSLog(@"%@", str);&#125; 刚开始没看出什么问题，就是普通的循环，每次循环创建一个局部变量NSString。于是写了个Demo验证了下，在观察内存的时候发现了端倪，在循环过程中，内存不断飙升。 顿时明白了，原来问题的关键就是这个largeNumber，当循环此时很大时，就会创建大量的局部变量，而且得不到释放，于是内存就爆了。这时候就该@autoreleasepool上场了，优化后代码： 1234567for (int i = 0; i &lt; largeNumber; i++) &#123; @autoreleasepool &#123; NSString *str = [NSString stringWithFormat:@"hello -%04d", i]; str = [str stringByAppendingString:@" - world"]; NSLog(@"%@", str); &#125;&#125; 查看运行内存，可以看到非常平稳。]]></content>

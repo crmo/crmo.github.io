@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://crmo.github.io/"/>
-  <updated>2018-07-18T05:17:00.910Z</updated>
+  <updated>2018-07-19T11:46:42.041Z</updated>
   <id>http://crmo.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://crmo.github.io/2018/07/19/%E8%AE%B0%E4%B8%80%E4%B8%AA%E5%AE%9E%E7%8E%B0UIWindow%E5%AD%90%E7%B1%BB%E7%9A%84%E5%B0%8F%E5%9D%91/"/>
+    <id>http://crmo.github.io/2018/07/19/记一个实现UIWindow子类的小坑/</id>
+    <published>2018-07-19T11:46:30.963Z</published>
+    <updated>2018-07-19T11:46:42.041Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="记一个实现UIWindow子类的小坑"><a href="#记一个实现UIWindow子类的小坑" class="headerlink" title="记一个实现UIWindow子类的小坑"></a>记一个实现UIWindow子类的小坑</h1><blockquote><p>2018.7.19</p></blockquote><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>项目中为了实现一个全局遮罩界面，使用了一个UIWindow的子类<code>MyWindow</code>，<code>MyWindow</code>为了实现回调定义了代理<code>MyWindowDelegate</code>。代码大致如下：</p><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">MyWindowDelegate</span> &lt;<span class="title">NSObject</span>&gt;</span></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MyWindow</span> : <span class="title">UIWindow</span></span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>)<span class="keyword">id</span>&lt;MyWindowDelegate&gt; delegate;</span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">MyWindow</span></span></span><br><span class="line">- (<span class="keyword">instancetype</span>)init</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> init];</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.windowLevel = <span class="built_in">UIWindowLevelNormal</span>;</span><br><span class="line">        <span class="keyword">self</span>.backgroundColor = [<span class="built_in">UIColor</span> whiteColor];</span><br><span class="line">        <span class="built_in">UIViewController</span> *vc = [[ViewController2 alloc] init];</span><br><span class="line">        <span class="keyword">self</span>.rootViewController = vc;</span><br><span class="line">        <span class="keyword">self</span>.hidden = <span class="literal">NO</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure><p>然后在实现界面横屏时，发现整个UIWindow不响应横竖屏事件。刚开始以为横竖屏设置被关闭了，查了各种资料，发现这种写法是没有问题的。设置UIWindow的rootViewController，然后把所有子view都加到rootViewController，系统会处理横竖屏问题。</p><h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><p>用Runtime把UIWindow的私有变量打出来，就发现问题了。</p><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;objc/runtime.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)printUIWindowIvars &#123;</span><br><span class="line">    Ivar *ivars = class_copyIvarList([<span class="built_in">UIWindow</span> <span class="keyword">class</span>], &amp;count);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">        Ivar ivar = ivars[i];</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%s"</span>, ivar_getName(ivar));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>我们看看输出，发现有个私有变量<code>_delegate</code>。</p><p><img src="media/15319829755131/15319834677166.jpg" alt=""></p><p><code>MyWindow</code>的属性<code>delegate</code>覆盖了父类<code>UIWindow</code>的变量，导致横竖屏切换事件失效。在代理命名的时候一定要注意啊，<code>delegate</code>看来不是一个好的实践，应该加前缀区分避免覆盖父类的实现，特别是这种私有的变量。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;记一个实现UIWindow子类的小坑&quot;&gt;&lt;a href=&quot;#记一个实现UIWindow子类的小坑&quot; class=&quot;headerlink&quot; title=&quot;记一个实现UIWindow子类的小坑&quot;&gt;&lt;/a&gt;记一个实现UIWindow子类的小坑&lt;/h1&gt;&lt;blockquo
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>一个autoreleasepool的使用场景</title>
