@@ -103,18 +103,22 @@
   <meta name="keywords" content="每日小结," />
 
 
-<meta name="description" content="官方文档  方法定义1234- (NSRect)boundingRectWithSize:(NSSize)size                        options:(NSStringDrawingOptions)options                     attributes:(NSDictionary&amp;lt;NSAttributedStringKey, id&amp;gt;">
+<meta name="description" content="使用Auto Layout来进行布局就不用自己去监听横竖屏事件了，只需要绘制多套布局即可。但是项目有很多页面是自己手动计算的，于是只有想办法再旋转屏幕时重新布局。 相关枚举屏幕方向有3个相关枚举，界面方向UIInterfaceOrientation，设备方向UIDeviceOrientation，支持旋转方向UIInterfaceOrientationMask。  注意UIInterfaceOri">
 <meta name="keywords" content="每日小结">
 <meta property="og:type" content="article">
-<meta property="og:title" content="计算文字长度">
-<meta property="og:url" content="http://crmo.github.io/2018/07/09/计算文字长度/index.html">
+<meta property="og:title" content="iOS横竖屏总结">
+<meta property="og:url" content="http://crmo.github.io/2018/07/23/iOS横竖屏总结/index.html">
 <meta property="og:site_name" content="CR.MO`s Blog">
-<meta property="og:description" content="官方文档  方法定义1234- (NSRect)boundingRectWithSize:(NSSize)size                        options:(NSStringDrawingOptions)options                     attributes:(NSDictionary&amp;lt;NSAttributedStringKey, id&amp;gt;">
+<meta property="og:description" content="使用Auto Layout来进行布局就不用自己去监听横竖屏事件了，只需要绘制多套布局即可。但是项目有很多页面是自己手动计算的，于是只有想办法再旋转屏幕时重新布局。 相关枚举屏幕方向有3个相关枚举，界面方向UIInterfaceOrientation，设备方向UIDeviceOrientation，支持旋转方向UIInterfaceOrientationMask。  注意UIInterfaceOri">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-10T13:05:27.504Z">
+<meta property="og:image" content="http://crmo.github.io/images/15320065885480.jpg">
+<meta property="og:image" content="http://crmo.github.io/images/15320512384395.jpg">
+<meta property="og:image" content="http://crmo.github.io/images/15320548897266-1.jpg">
+<meta property="og:updated_time" content="2018-07-23T03:40:36.986Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="计算文字长度">
-<meta name="twitter:description" content="官方文档  方法定义1234- (NSRect)boundingRectWithSize:(NSSize)size                        options:(NSStringDrawingOptions)options                     attributes:(NSDictionary&amp;lt;NSAttributedStringKey, id&amp;gt;">
+<meta name="twitter:title" content="iOS横竖屏总结">
+<meta name="twitter:description" content="使用Auto Layout来进行布局就不用自己去监听横竖屏事件了，只需要绘制多套布局即可。但是项目有很多页面是自己手动计算的，于是只有想办法再旋转屏幕时重新布局。 相关枚举屏幕方向有3个相关枚举，界面方向UIInterfaceOrientation，设备方向UIDeviceOrientation，支持旋转方向UIInterfaceOrientationMask。  注意UIInterfaceOri">
+<meta name="twitter:image" content="http://crmo.github.io/images/15320065885480.jpg">
 
 
 
@@ -123,7 +127,7 @@
 
 
 
-  <link rel="canonical" href="http://crmo.github.io/2018/07/09/计算文字长度/"/>
+  <link rel="canonical" href="http://crmo.github.io/2018/07/23/iOS横竖屏总结/"/>
 
 
 
@@ -132,7 +136,7 @@
     sidebar: "",
   };
 </script>
-  <title>计算文字长度 | CR.MO`s Blog</title>
+  <title>iOS横竖屏总结 | CR.MO`s Blog</title>
   
 
 
@@ -304,7 +308,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://crmo.github.io/2018/07/09/计算文字长度/">
+    <link itemprop="mainEntityOfPage" href="http://crmo.github.io/2018/07/23/iOS横竖屏总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CR.MO">
@@ -321,7 +325,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">计算文字长度</h2>
+          <h2 class="post-title" itemprop="name headline">iOS横竖屏总结</h2>
         
 
         <div class="post-meta">
@@ -333,7 +337,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-09T00:00:00+08:00">2018-07-09</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-23T00:00:00+08:00">2018-07-23</time>
             
 
             
@@ -351,9 +355,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/07/09/计算文字长度/#comments" itemprop="discussionUrl">
+                <a href="/2018/07/23/iOS横竖屏总结/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/07/09/计算文字长度/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/07/23/iOS横竖屏总结/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -389,22 +393,57 @@
       
 
       
-        <blockquote>
-<p><a href="https://developer.apple.com/documentation/foundation/nsstring/1524729-boundingrectwithsize?language=occ" target="_blank" rel="noopener">官方文档</a></p>
+        <p>使用<code>Auto Layout</code>来进行布局就不用自己去监听横竖屏事件了，只需要绘制多套布局即可。但是项目有很多页面是自己手动计算的，于是只有想办法再旋转屏幕时重新布局。</p>
+<h2 id="相关枚举"><a href="#相关枚举" class="headerlink" title="相关枚举"></a>相关枚举</h2><p>屏幕方向有3个相关枚举，界面方向<code>UIInterfaceOrientation</code>，设备方向<code>UIDeviceOrientation</code>，支持旋转方向<code>UIInterfaceOrientationMask</code>。</p>
+<blockquote>
+<p>注意UIInterfaceOrientation与UIDeviceOrientation左右方向是相反的</p>
 </blockquote>
-<h2 id="方法定义"><a href="#方法定义" class="headerlink" title="方法定义"></a>方法定义</h2><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">NSRect</span>)boundingRectWithSize:(<span class="built_in">NSSize</span>)size </span><br><span class="line">                       options:(<span class="built_in">NSStringDrawingOptions</span>)options </span><br><span class="line">                    attributes:(<span class="built_in">NSDictionary</span>&lt;<span class="built_in">NSAttributedStringKey</span>, <span class="keyword">id</span>&gt; *)attributes </span><br><span class="line">                       context:(<span class="built_in">NSStringDrawingContext</span> *)context;</span><br></pre></td></tr></table></figure>
-<h2 id="参数定义"><a href="#参数定义" class="headerlink" title="参数定义"></a>参数定义</h2><h3 id="size"><a href="#size" class="headerlink" title="size"></a>size</h3><p>绘制的限制size，计算出来的值不会超过这个大小。</p>
-<h3 id="options"><a href="#options" class="headerlink" title="options"></a>options</h3><p>一些配置项。定义如下：</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="built_in">NS_OPTIONS</span>(<span class="built_in">NSInteger</span>, <span class="built_in">NSStringDrawingOptions</span>) &#123;</span><br><span class="line">    <span class="built_in">NSStringDrawingUsesLineFragmentOrigin</span> = <span class="number">1</span> &lt;&lt; <span class="number">0</span>, <span class="comment">// The specified origin is the line fragment origin, not the base line origin</span></span><br><span class="line">    <span class="built_in">NSStringDrawingUsesFontLeading</span> = <span class="number">1</span> &lt;&lt; <span class="number">1</span>, <span class="comment">// Uses the font leading for calculating line heights</span></span><br><span class="line">    <span class="built_in">NSStringDrawingUsesDeviceMetrics</span> = <span class="number">1</span> &lt;&lt; <span class="number">3</span>, <span class="comment">// Uses image glyph bounds instead of typographic bounds</span></span><br><span class="line">    <span class="built_in">NSStringDrawingTruncatesLastVisibleLine</span> <span class="built_in">NS_ENUM_AVAILABLE</span>(<span class="number">10</span>_5, <span class="number">6</span>_0) = <span class="number">1</span> &lt;&lt; <span class="number">5</span>, <span class="comment">// Truncates and adds the ellipsis character to the last visible line if the text doesn't fit into the bounds specified. Ignored if NSStringDrawingUsesLineFragmentOrigin is not also set.</span></span><br><span class="line"></span><br><span class="line">&#125; <span class="built_in">NS_ENUM_AVAILABLE</span>(<span class="number">10</span>_0, <span class="number">6</span>_0);</span><br></pre></td></tr></table></figure>
-<p>实际测试使用<code>NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading</code>可以满足需求，<code>NSStringDrawingUsesLineFragmentOrigin</code>是必须的，<code>NSStringDrawingUsesFontLeading</code>加不加在测试的时候没发现区别，但是在<a href="https://stackoverflow.com/questions/13621084/boundingrectwithsize-for-nsattributedstring-returning-wrong-size/15399767#15399767" target="_blank" rel="noopener">stackoverflow相关讨论</a>里加上了，留个坑，后面知道为什么了来补充吧。</p>
-<h3 id="attributes"><a href="#attributes" class="headerlink" title="attributes"></a>attributes</h3><p>字体</p>
-<h3 id="context"><a href="#context" class="headerlink" title="context"></a>context</h3><p>上下文</p>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
-<li>如果是多行文字，options要加上<code>NSStringDrawingUsesLineFragmentOrigin</code></li>
-<li>返回的值是小数，需要调用<code>ceil</code>向上取整</li>
-<li>得到的宽度可能比实际宽</li>
-</ol>
-<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="built_in">CGSize</span>)getTextLabelSize:(<span class="built_in">NSString</span> *)message &#123;</span><br><span class="line">    <span class="keyword">if</span> ([message length] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// 文本框的最大宽度</span></span><br><span class="line">        <span class="keyword">float</span> maxWidth = <span class="number">200</span>;</span><br><span class="line">        <span class="built_in">CGRect</span> textRect = [message</span><br><span class="line">                           boundingRectWithSize:<span class="built_in">CGSizeMake</span>(maxWidth, <span class="built_in">CGFLOAT_MAX</span>)</span><br><span class="line">                           options:(<span class="built_in">NSStringDrawingUsesLineFragmentOrigin</span> |</span><br><span class="line">                                    <span class="built_in">NSStringDrawingUsesFontLeading</span>)</span><br><span class="line">                           attributes:@&#123;</span><br><span class="line">                                        <span class="built_in">NSFontAttributeName</span> :</span><br><span class="line">                                            [<span class="built_in">UIFont</span> systemFontOfSize:<span class="number">16</span>]</span><br><span class="line">                                        &#125;</span><br><span class="line">                           context:<span class="literal">nil</span>];</span><br><span class="line">        textRect.size.height = ceilf(textRect.size.height);</span><br><span class="line">        textRect.size.width = ceilf(textRect.size.width);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">CGSizeMake</span>(textRect.size.width, textRect.size.height);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">CGSizeZero</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSInteger</span>, <span class="built_in">UIInterfaceOrientation</span>) &#123;</span><br><span class="line">    <span class="built_in">UIInterfaceOrientationUnknown</span>            = <span class="built_in">UIDeviceOrientationUnknown</span>,</span><br><span class="line">    <span class="built_in">UIInterfaceOrientationPortrait</span>           = <span class="built_in">UIDeviceOrientationPortrait</span>,</span><br><span class="line">    <span class="built_in">UIInterfaceOrientationPortraitUpsideDown</span> = <span class="built_in">UIDeviceOrientationPortraitUpsideDown</span>,</span><br><span class="line">    <span class="built_in">UIInterfaceOrientationLandscapeLeft</span>      = <span class="built_in">UIDeviceOrientationLandscapeRight</span>,</span><br><span class="line">    <span class="built_in">UIInterfaceOrientationLandscapeRight</span>     = <span class="built_in">UIDeviceOrientationLandscapeLeft</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">NS_OPTIONS</span>(<span class="built_in">NSUInteger</span>, <span class="built_in">UIInterfaceOrientationMask</span>) &#123;</span><br><span class="line">    <span class="built_in">UIInterfaceOrientationMaskPortrait</span> = (<span class="number">1</span> &lt;&lt; <span class="built_in">UIInterfaceOrientationPortrait</span>),</span><br><span class="line">    <span class="built_in">UIInterfaceOrientationMaskLandscapeLeft</span> = (<span class="number">1</span> &lt;&lt; <span class="built_in">UIInterfaceOrientationLandscapeLeft</span>),</span><br><span class="line">    <span class="built_in">UIInterfaceOrientationMaskLandscapeRight</span> = (<span class="number">1</span> &lt;&lt; <span class="built_in">UIInterfaceOrientationLandscapeRight</span>),</span><br><span class="line">    <span class="built_in">UIInterfaceOrientationMaskPortraitUpsideDown</span> = (<span class="number">1</span> &lt;&lt; <span class="built_in">UIInterfaceOrientationPortraitUpsideDown</span>),</span><br><span class="line">    <span class="built_in">UIInterfaceOrientationMaskLandscape</span> = (<span class="built_in">UIInterfaceOrientationMaskLandscapeLeft</span> | <span class="built_in">UIInterfaceOrientationMaskLandscapeRight</span>),</span><br><span class="line">    <span class="built_in">UIInterfaceOrientationMaskAll</span> = (<span class="built_in">UIInterfaceOrientationMaskPortrait</span> | <span class="built_in">UIInterfaceOrientationMaskLandscapeLeft</span> | <span class="built_in">UIInterfaceOrientationMaskLandscapeRight</span> | <span class="built_in">UIInterfaceOrientationMaskPortraitUpsideDown</span>),</span><br><span class="line">    <span class="built_in">UIInterfaceOrientationMaskAllButUpsideDown</span> = (<span class="built_in">UIInterfaceOrientationMaskPortrait</span> | <span class="built_in">UIInterfaceOrientationMaskLandscapeLeft</span> | <span class="built_in">UIInterfaceOrientationMaskLandscapeRight</span>),</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="横竖屏控制"><a href="#横竖屏控制" class="headerlink" title="横竖屏控制"></a>横竖屏控制</h2><p>控制界面横竖屏切换有3个重要的点，最终结果以这三个地方的值取交集。</p>
+<p><strong>1.info.plist全局控制</strong></p>
+<p>可以在<code>General-&gt;Deplyment Info</code>界面上勾选</p>
+<p><img src="/images/15320065885480.jpg" alt="15320065885480"></p>
+<p> info.plist文件中配置也是一样的，两边会同步变更</p>
+<p><img src="/images/15320512384395.jpg" alt="15320512384395"></p>
+<p><strong>2.AppDelegate中根据不同Window控制</strong></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// AppDelegate</span></span><br><span class="line">- (<span class="built_in">UIInterfaceOrientationMask</span>)application:(<span class="built_in">UIApplication</span> *)application supportedInterfaceOrientationsForWindow:(<span class="built_in">UIWindow</span> *)window &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">UIInterfaceOrientationMaskLandscapeLeft</span> | <span class="built_in">UIInterfaceOrientationMaskPortrait</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>3.在ViewController中控制当前页面</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// UIViewController</span><br><span class="line">- (BOOL)shouldAutorotate &#123;</span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (UIInterfaceOrientationMask)supportedInterfaceOrientations &#123;</span><br><span class="line">    return UIInterfaceOrientationMaskLandscapeLeft;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>需要注意的是，交集不能为空，否则会导致crash</p>
+</blockquote>
+<p>*** Terminating app due to uncaught exception ‘UIApplicationInvalidInterfaceOrientation’, reason: ‘Supported orientations has no common orientation with the application, and [ViewController<br>shouldAutorotate] is returning YES’</p>
+<p><img src="/images/15320548897266-1.jpg" alt="15320548897266"></p>
+<h2 id="旋转事件监听"><a href="#旋转事件监听" class="headerlink" title="旋转事件监听"></a>旋转事件监听</h2><h3 id="旋转事件传递过程"><a href="#旋转事件传递过程" class="headerlink" title="旋转事件传递过程"></a>旋转事件传递过程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">op0=&gt;operation: __CFRunLoopDoSources0</span><br><span class="line">op1=&gt;operation: UIDevice</span><br><span class="line">op2=&gt;operation: UIWindow</span><br><span class="line">op3=&gt;operation: UIViewController</span><br><span class="line">op4=&gt;operation: UIView</span><br><span class="line"></span><br><span class="line">op1-&gt;op2-&gt;op3-&gt;op4</span><br></pre></td></tr></table></figure>
+<h3 id="屏幕旋转相关事件"><a href="#屏幕旋转相关事件" class="headerlink" title="屏幕旋转相关事件"></a>屏幕旋转相关事件</h3><p>viewWillTransitionToSize:withTransitionCoordinator:</p>
+<ul>
+<li>ViewController被父容器变更size时调用（例如window旋转时调用root view controller的该方法）</li>
+<li>如果重载该方法，需要调用super传递事件给子ViewController</li>
+<li>这个方法是最关键的，可以在该方法中对界面进行重新布局</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id &lt;UIViewControllerTransitionCoordinator&gt;)coordinator</span><br><span class="line">&#123;</span><br><span class="line">    // coordinator用来处理转换动画</span><br><span class="line">    [coordinator animateAlongsideTransition:^(id&lt;UIViewControllerTransitionCoordinatorContext&gt; context)</span><br><span class="line">     &#123;</span><br><span class="line">         // 开始旋转</span><br><span class="line">     &#125; completion:^(id&lt;UIViewControllerTransitionCoordinatorContext&gt; context)</span><br><span class="line">     &#123;</span><br><span class="line">         // 旋转结束</span><br><span class="line">     &#125;];</span><br><span class="line">     // 记得调用super</span><br><span class="line">    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>UIApplicationWillChangeStatusBarOrientationNotification </p>
+<ul>
+<li>状态栏将要旋转，这个时候取view的frame还是旋转之前的</li>
+<li>NSNotification中用key <code>UIApplicationStatusBarOrientationUserInfoKey</code>可以取到将要旋转到的方向。</li>
+</ul>
+<p>UIApplicationDidChangeStatusBarOrientationNotification </p>
+<ul>
+<li>状态栏已经旋转，这个时候取view的frame是旋转之后的</li>
+<li>NSNotification中用key <code>UIApplicationStatusBarOrientationUserInfoKey</code>可以取到旋转之前的方向。</li>
+</ul>
+<p>UIDeviceOrientationDidChangeNotification </p>
+<ul>
+<li>设备方向变更，在收到通知时取view的frame是旋转之后的。</li>
+<li>在手机上将旋转屏幕锁定之后，设备方向变更之后收不到该通知</li>
+<li>在代码里面限制设备旋转方向，设备方向变更后依然能收到该通知</li>
+</ul>
+<p>调用顺序如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">st=&gt;start: 旋转屏幕</span><br><span class="line">e=&gt;end: 结束</span><br><span class="line">op1=&gt;operation: viewWillTransitionToSize:withTransitionCoordinator:</span><br><span class="line">op2=&gt;operation: UIApplicationWillChangeStatusBarOrientationNotification</span><br><span class="line">op3=&gt;operation: UIApplicationDidChangeStatusBarOrientationNotification</span><br><span class="line">op4=&gt;operation: viewWillLayoutSubviews</span><br><span class="line">op5=&gt;operation: viewDidLayoutSubviews</span><br><span class="line">op6=&gt;operation: UIDeviceOrientationDidChangeNotification</span><br><span class="line"></span><br><span class="line">st-&gt;op1-&gt;op2-&gt;op3-&gt;op4-&gt;op5-&gt;op6-&gt;e</span><br></pre></td></tr></table></figure>
+<h2 id="自定义Window的旋转事件"><a href="#自定义Window的旋转事件" class="headerlink" title="自定义Window的旋转事件"></a>自定义Window的旋转事件</h2><p>如果想要在自定义Window的子View收到屏幕旋转通知，要设置UIWindow的rootViewController，然后把所有子view都加到rootViewController，系统会处理横竖屏事件。这里我还遇到一个坑<a href="https://crmo.github.io/2018/07/19/记一个实现UIWindow子类的小坑/">记一个实现UIWindow子类的小坑</a>。</p>
+<hr>
+<h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p><a href="https://satanwoo.github.io/2016/09/17/uiwindow-iOS/" target="_blank" rel="noopener">https://satanwoo.github.io/2016/09/17/uiwindow-iOS/</a><br><a href="https://tbd.ink/2017/07/05/iOS/17070501.iOS屏幕旋转知识点以及实现/index/" target="_blank" rel="noopener">iOS屏幕旋转知识点以及实现</a><br><a href="https://imtangqi.com/2017/03/08/handle-orientation-changes-one/" target="_blank" rel="noopener">iOS 屏幕旋转的那些事（一）</a><br><a href="https://satanwoo.github.io/2016/09/17/uiwindow-iOS/" target="_blank" rel="noopener">浅谈iOS的多Window处理</a></p>
+
       
     </div>
 
@@ -437,8 +476,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/06/UITextField控制输入长度/" rel="next" title="UITextField控制输入长度">
-                <i class="fa fa-chevron-left"></i> UITextField控制输入长度
+              <a href="/2018/07/19/记一个实现UIWindow子类的小坑/" rel="next" title="记一个实现UIWindow子类的小坑">
+                <i class="fa fa-chevron-left"></i> 记一个实现UIWindow子类的小坑
               </a>
             
           </div>
@@ -446,10 +485,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/10/UITabbar自定义Badge/" rel="prev" title="UITabbar自定义Badge">
-                UITabbar自定义Badge <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -603,7 +638,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#方法定义"><span class="nav-number">1.</span> <span class="nav-text">方法定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数定义"><span class="nav-number">2.</span> <span class="nav-text">参数定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#size"><span class="nav-number">2.1.</span> <span class="nav-text">size</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#options"><span class="nav-number">2.2.</span> <span class="nav-text">options</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#attributes"><span class="nav-number">2.3.</span> <span class="nav-text">attributes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#context"><span class="nav-number">2.4.</span> <span class="nav-text">context</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">2.5.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码示例"><span class="nav-number">3.</span> <span class="nav-text">代码示例</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#相关枚举"><span class="nav-number">1.</span> <span class="nav-text">相关枚举</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#横竖屏控制"><span class="nav-number">2.</span> <span class="nav-text">横竖屏控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#旋转事件监听"><span class="nav-number">3.</span> <span class="nav-text">旋转事件监听</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#旋转事件传递过程"><span class="nav-number">3.1.</span> <span class="nav-text">旋转事件传递过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#屏幕旋转相关事件"><span class="nav-number">3.2.</span> <span class="nav-text">屏幕旋转相关事件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义Window的旋转事件"><span class="nav-number">4.</span> <span class="nav-text">自定义Window的旋转事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐阅读"><span class="nav-number">5.</span> <span class="nav-text">推荐阅读</span></a></li></ol></div>
             
 
           </div>
@@ -790,9 +825,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'http://crmo.github.io/2018/07/09/计算文字长度/';
-        this.page.identifier = '2018/07/09/计算文字长度/';
-        this.page.title = '计算文字长度';
+        this.page.url = 'http://crmo.github.io/2018/07/23/iOS横竖屏总结/';
+        this.page.identifier = '2018/07/23/iOS横竖屏总结/';
+        this.page.title = 'iOS横竖屏总结';
       };
       function loadComments () {
         var d = document, s = d.createElement('script');
