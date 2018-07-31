@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://crmo.github.io/"/>
-  <updated>2018-07-23T13:01:35.190Z</updated>
+  <updated>2018-07-31T13:29:48.504Z</updated>
   <id>http://crmo.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>runtime实现私有变量搜索</title>
+    <link href="http://crmo.github.io/2018/07/31/runtime%E5%AE%9E%E7%8E%B0%E7%A7%81%E6%9C%89%E5%8F%98%E9%87%8F%E6%90%9C%E7%B4%A2/"/>
+    <id>http://crmo.github.io/2018/07/31/runtime实现私有变量搜索/</id>
+    <published>2018-07-30T16:00:00.000Z</published>
+    <updated>2018-07-31T13:29:48.504Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>本文Demo(<a href="https://github.com/crmo/BFSSearchClass)地址" target="_blank" rel="noopener">https://github.com/crmo/BFSSearchClass)地址</a></p></blockquote><h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>在开发功能时，为了满足产品变态的需求，难免有系统类提供的API不够用的时候，这时候私有变量就可以发挥它光和热了。怎么通过一个类，一层一层的找到特定类型的私有成员变量？<br>受益于Objective-C的动态语言特性，就算苹果<code>UIKit</code>不开源，但是在runtime面前，类的结构还是暴露无遗。我的思路是逐层手动打印成员变量信息，如果是UI控件可以用Reveal来加快进度，配合KVC机制，获取私有变量就如同探囊取物一般。<br>在多次遇到这个问题后，我决定实现一个工具类来简化这个过程，毕竟能自动化的就尽量不要手动。</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><blockquote><p>搜索范围：成员变量、属性</p></blockquote><p>关键步骤如下：</p><ol><li>runtime中的方法<code>class_copyIvarList()</code>，可以取出类的所有成员变量结构体<code>Ivar</code>。</li><li>从Ivar中可以取出成员变量类型<code>Type Encodings</code></li><li>用<code>Type Encodings</code>获取到类名</li><li>遍历类的所有<code>Ivar</code>，获取到类的所有成员变量的类信息</li></ol><p>但是问题没这么简单，比如ClassA是ClassB的成员变量，ClassB是ClassC的成员变量，想通过ClassC找到ClassA，需要向下找两层才能找到，还要考虑父类的情况。<br>整个搜索过程就是一颗以待搜索类为根的树，可以用BFS来搜索，步骤如下（如图，数字是搜索顺序）：</p><ol><li>从根节点开始搜索</li><li>首先遍历当前节点的父类，加入搜索队列</li><li>再取出当前节点的所有成员变量，加入搜索队列</li></ol><p><img src="/images/QQ20180731-202956@2x.png" alt="QQ20180731-202956@2x"></p><h2 id="如何从Ivar中获取Class"><a href="#如何从Ivar中获取Class" class="headerlink" title="如何从Ivar中获取Class"></a>如何从Ivar中获取Class</h2><p>Ivar中不能直接取出对应类名，只能取出<code>Type Encodings</code>，间接可以得到类名。从<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html" target="_blank" rel="noopener">官方文档</a>截了张图，可以清晰的看到Code的定义。</p><p><img src="/images/15329163411347.jpg" alt="15329163411347"></p><p>基本数据类型、id类型、集合类型、结构体等类型就不需要搜索了，可以过滤掉。我们只搜索两种类型</p><ol><li>类，例如<code>@&quot;UIWebViewInternal&quot;</code></li><li>代理，例如<code>@&quot;&lt;UIViewControllerTransitioningDelegate&gt;&quot;</code></li></ol><h2 id="优化及存在问题"><a href="#优化及存在问题" class="headerlink" title="优化及存在问题"></a>优化及存在问题</h2><ol><li>可以用一个<code>NSMutableSet</code>存储已经搜索过的类，每次搜索前判断一下是否已经搜索过</li><li>记录搜索次数，可以限制搜索次数。</li><li>对于定义为id类型、集合类的成员变量没有做处理，可以继续深入遍历</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;本文Demo(&lt;a href=&quot;https://github.com/crmo/BFSSearchClass)地址&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/crmo/BFSSearchC
+      
+    
+    </summary>
+    
+    
+      <category term="每日小结" scheme="http://crmo.github.io/tags/%E6%AF%8F%E6%97%A5%E5%B0%8F%E7%BB%93/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS横竖屏总结</title>
@@ -454,30 +478,6 @@
 &lt;p&gt;本文主要讲imageNamed与imageWithContentsOfFile的差异，需要注意的点，与实战中遇到的坑。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;好久没
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>正则表达式笔记</title>
-    <link href="http://crmo.github.io/2016/11/20/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%AC%94%E8%AE%B0/"/>
-    <id>http://crmo.github.io/2016/11/20/正则表达式笔记/</id>
-    <published>2016-11-20T15:44:53.000Z</published>
-    <updated>2018-03-03T10:12:48.914Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>正则表达式（regular expression）描述了一种字符串匹配的模式，可以用来检查一个串是否含有某种子串、将匹配的字串做替换或者从某个串中取出符合某个条件的字串等。</p></blockquote><p>正则表达式在线测试：<br><a href="http://www.regexpal.com/" target="_blank" rel="noopener">http://www.regexpal.com/</a></p><h2 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h2><p>常用元字符：</p><table><thead><tr><th style="text-align:center">代码</th><th style="text-align:center">说明</th></tr></thead><tbody><tr><td style="text-align:center">.</td><td style="text-align:center">匹配除换行符以外的任意字符</td></tr><tr><td style="text-align:center">\w</td><td style="text-align:center">匹配字母或数字或下划线或汉字</td></tr><tr><td style="text-align:center">\d</td><td style="text-align:center">匹配数字</td></tr><tr><td style="text-align:center">\s</td><td style="text-align:center">匹配空格</td></tr><tr><td style="text-align:center">\b</td><td style="text-align:center">匹配单词的开始或结束</td></tr><tr><td style="text-align:center">^</td><td style="text-align:center">匹配字符串的开始，如果是处理多行，意义变成行开始处</td></tr><tr><td style="text-align:center">$</td><td style="text-align:center">匹配字符串的结束，如果是处理多行，意义变成行结束处</td></tr></tbody></table><h2 id="限定符"><a href="#限定符" class="headerlink" title="限定符"></a>限定符</h2><p>常用限定符：</p><table><thead><tr><th style="text-align:center">代码</th><th style="text-align:center">说明</th></tr></thead><tbody><tr><td style="text-align:center">*</td><td style="text-align:center">*前面的内容重复任意次</td></tr><tr><td style="text-align:center">+</td><td style="text-align:center">+前面的内容重复一次或者多次</td></tr><tr><td style="text-align:center">?</td><td style="text-align:center">重复零次或一次</td></tr><tr><td style="text-align:center">{n}</td><td style="text-align:center">重复n次</td></tr><tr><td style="text-align:center">{n, }</td><td style="text-align:center">重复次数大于等于n</td></tr><tr><td style="text-align:center">{n,m}</td><td style="text-align:center">重复次数大于等于n小于等于m</td></tr></tbody></table><h2 id="字符类"><a href="#字符类" class="headerlink" title="字符类"></a>字符类</h2><p>[auiou] 匹配任何一个英文元音字母<br>[.?!] 匹配标点符号（.  ?   !）</p><h2 id="反义"><a href="#反义" class="headerlink" title="反义"></a>反义</h2><table><thead><tr><th style="text-align:center">代码</th><th style="text-align:center">说明</th></tr></thead><tbody><tr><td style="text-align:center">\W</td><td style="text-align:center">匹配任意不是字母、数字、下划线、汉字的字符</td></tr><tr><td style="text-align:center">\S</td><td style="text-align:center">匹配任意不是空白符的字符</td></tr><tr><td style="text-align:center">\D</td><td style="text-align:center">匹配任意非数字的字符</td></tr><tr><td style="text-align:center">\B</td><td style="text-align:center">匹配不是单词开头或结束的位置</td></tr><tr><td style="text-align:center">[^x]</td><td style="text-align:center">匹配除了x以外的任意字符</td></tr><tr><td style="text-align:center">[^abcd]</td><td style="text-align:center">匹配除了abcd以外的任意字符</td></tr></tbody></table><h2 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h2><table><thead><tr><th style="text-align:center">代码</th><th style="text-align:center">说明　</th></tr></thead><tbody><tr><td style="text-align:center">(exp)</td><td style="text-align:center">匹配exp，并捕获文本到自动命名组中</td></tr><tr><td style="text-align:center"><code>(?&lt;name&gt;exp)</code></td><td style="text-align:center">匹配exp,并捕获文本到名称为name的组里，也可以写成(?`name`exp)</td></tr><tr><td style="text-align:center">(?:exp)</td><td style="text-align:center">匹配exp，不捕获匹配的文本，也不给次分组分配组号</td></tr><tr><td style="text-align:center">(?=exp)</td><td style="text-align:center">匹配exp前面的位置</td></tr><tr><td style="text-align:center">(?&lt;=exp)</td><td style="text-align:center">匹配exp后面的位置</td></tr><tr><td style="text-align:center">(?!exp)</td><td style="text-align:center">匹配后面跟的不是exp的位置</td></tr><tr><td style="text-align:center">(?&lt;!exp)</td><td style="text-align:center">匹配前面不是exp的位置</td></tr><tr><td style="text-align:center">(?#comment)</td><td style="text-align:center">注释</td></tr></tbody></table><h2 id="贪婪与懒惰"><a href="#贪婪与懒惰" class="headerlink" title="贪婪与懒惰"></a>贪婪与懒惰</h2><p>通常重复限定符的行为是<strong>匹配尽可能多</strong>的字符，在限定符后面加<code>?</code>使之成为惰性限定符，例如<code>*?</code>的含义为<strong>重复任意次数，但是尽可能少</strong></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;正则表达式（regular expression）描述了一种字符串匹配的模式，可以用来检查一个串是否含有某种子串、将匹配的字串做替换或者从某个串中取出符合某个条件的字串等。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;正则表达式在线测试：&lt;br&gt;&lt;a
       
     
     </summary>
