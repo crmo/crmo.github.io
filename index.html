@@ -384,12 +384,9 @@
       
         
           
-          UIWebView获取history
-2018.8.1
+          需求获取UIWebView的历史页面信息，举个例子，比如从A-&gt;B-&gt;C-&gt;B，此时B上一页是A，下一页是C，需要获取A、C的URL信息。
 
-需求获取UIWebView的历史页面信息，举个例子，比如从A-&gt;B-&gt;C-&gt;B，此时B上一页是A，下一页是C，需要获取A、C的URL信息。
-
-WKWebView暴露了这个属性，WKBackForwardList *backF
+WKWebView暴露了这个属性，WKBackForwardList *backForwardList。可以很容易的取到，无奈项目还是使用的
           ...
           <!--noindex-->
           <div class="post-button text-center">
