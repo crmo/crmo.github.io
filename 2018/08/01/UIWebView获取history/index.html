@@ -100,20 +100,23 @@
 
 
   
-  <meta name="keywords" content="Hexo, iOS" />
+  <meta name="keywords" content="每日小结," />
 
 
-<meta name="description" content="背景最近遇到一个Bug，在用AFNetworking下载文件的时候莫名其妙的失败了，跟了一下发现一个小坑，记录一下防止以后再掉进去。  iOS和Linux的文件名的长度限制相同都是255个字符！！！  问题根源是文件名超度超过了255个字符，AFNetworking下载文件是成功了（框架会把文件下载到一个临时文件，例如：CFNetworkDownload_xxx.tmp，这个文件名不会出现过长的问">
+<meta name="description" content="UIWebView获取history 2018.8.1  需求获取UIWebView的历史页面信息，举个例子，比如从A-&amp;gt;B-&amp;gt;C-&amp;gt;B，此时B上一页是A，下一页是C，需要获取A、C的URL信息。  WKWebView暴露了这个属性，WKBackForwardList *backForwardList。可以很容易的取到，无奈项目还是使用的UIWebView，于是有了后面的探索。">
+<meta name="keywords" content="每日小结">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AFNetworking下载文件时文件名长度的坑">
-<meta property="og:url" content="http://crmo.github.io/2018/03/29/AFNetworking下载文件时文件名长度的坑/index.html">
+<meta property="og:title" content="UIWebView获取history">
+<meta property="og:url" content="http://crmo.github.io/2018/08/01/UIWebView获取history/index.html">
 <meta property="og:site_name" content="CR.MO`s Blog">
-<meta property="og:description" content="背景最近遇到一个Bug，在用AFNetworking下载文件的时候莫名其妙的失败了，跟了一下发现一个小坑，记录一下防止以后再掉进去。  iOS和Linux的文件名的长度限制相同都是255个字符！！！  问题根源是文件名超度超过了255个字符，AFNetworking下载文件是成功了（框架会把文件下载到一个临时文件，例如：CFNetworkDownload_xxx.tmp，这个文件名不会出现过长的问">
+<meta property="og:description" content="UIWebView获取history 2018.8.1  需求获取UIWebView的历史页面信息，举个例子，比如从A-&amp;gt;B-&amp;gt;C-&amp;gt;B，此时B上一页是A，下一页是C，需要获取A、C的URL信息。  WKWebView暴露了这个属性，WKBackForwardList *backForwardList。可以很容易的取到，无奈项目还是使用的UIWebView，于是有了后面的探索。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-28T14:24:52.866Z">
+<meta property="og:image" content="http://crmo.github.io/images/15325235986699.jpg">
+<meta property="og:updated_time" content="2018-08-01T02:25:04.311Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AFNetworking下载文件时文件名长度的坑">
-<meta name="twitter:description" content="背景最近遇到一个Bug，在用AFNetworking下载文件的时候莫名其妙的失败了，跟了一下发现一个小坑，记录一下防止以后再掉进去。  iOS和Linux的文件名的长度限制相同都是255个字符！！！  问题根源是文件名超度超过了255个字符，AFNetworking下载文件是成功了（框架会把文件下载到一个临时文件，例如：CFNetworkDownload_xxx.tmp，这个文件名不会出现过长的问">
+<meta name="twitter:title" content="UIWebView获取history">
+<meta name="twitter:description" content="UIWebView获取history 2018.8.1  需求获取UIWebView的历史页面信息，举个例子，比如从A-&amp;gt;B-&amp;gt;C-&amp;gt;B，此时B上一页是A，下一页是C，需要获取A、C的URL信息。  WKWebView暴露了这个属性，WKBackForwardList *backForwardList。可以很容易的取到，无奈项目还是使用的UIWebView，于是有了后面的探索。">
+<meta name="twitter:image" content="http://crmo.github.io/images/15325235986699.jpg">
 
 
 
@@ -122,7 +125,7 @@
 
 
 
-  <link rel="canonical" href="http://crmo.github.io/2018/03/29/AFNetworking下载文件时文件名长度的坑/"/>
+  <link rel="canonical" href="http://crmo.github.io/2018/08/01/UIWebView获取history/"/>
 
 
 
@@ -131,7 +134,7 @@
     sidebar: "",
   };
 </script>
-  <title>AFNetworking下载文件时文件名长度的坑 | CR.MO`s Blog</title>
+  <title>UIWebView获取history | CR.MO`s Blog</title>
   
 
 
@@ -303,7 +306,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://crmo.github.io/2018/03/29/AFNetworking下载文件时文件名长度的坑/">
+    <link itemprop="mainEntityOfPage" href="http://crmo.github.io/2018/08/01/UIWebView获取history/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CR.MO">
@@ -320,7 +323,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">AFNetworking下载文件时文件名长度的坑</h2>
+          <h2 class="post-title" itemprop="name headline">UIWebView获取history</h2>
         
 
         <div class="post-meta">
@@ -332,7 +335,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-29T22:23:00+08:00">2018-03-29</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-01T00:00:00+08:00">2018-08-01</time>
             
 
             
@@ -350,9 +353,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/29/AFNetworking下载文件时文件名长度的坑/#comments" itemprop="discussionUrl">
+                <a href="/2018/08/01/UIWebView获取history/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/29/AFNetworking下载文件时文件名长度的坑/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/08/01/UIWebView获取history/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -388,19 +391,32 @@
       
 
       
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近遇到一个Bug，在用AFNetworking下载文件的时候莫名其妙的失败了，跟了一下发现一个小坑，记录一下防止以后再掉进去。</p>
-<blockquote>
-<p>iOS和Linux的文件名的长度限制相同都是255个字符！！！</p>
+        <h1 id="UIWebView获取history"><a href="#UIWebView获取history" class="headerlink" title="UIWebView获取history"></a>UIWebView获取history</h1><blockquote>
+<p>2018.8.1</p>
 </blockquote>
-<p>问题根源是文件名超度超过了255个字符，AFNetworking下载文件是成功了（框架会把文件下载到一个临时文件，例如：<code>CFNetworkDownload_xxx.tmp</code>，这个文件名不会出现过长的问题），下载成功之后会copy到调用者指定路径，在这里指定的文件名超过了255个字符，导致创建文件失败，于是回调是成功了，但是在设置的路径找不到这个文件。</p>
-<p>上代码！</p>
-<p>下载代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 注意对文件名长度进行处理！！！</span><br><span class="line">NSString *destination = @&quot;下载地址（长度大于255）&quot;;</span><br><span class="line">NSURLSessionDownloadTask *aTask = [self.updownloadSessionManager downloadTaskWithRequest:mutableRequest progress:^(NSProgress * _Nonnull downloadProgress) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125; destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) &#123;</span><br><span class="line">        return [NSURL fileURLWithPath:destination];</span><br><span class="line">    &#125; completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) &#123;</span><br><span class="line">        // 下载成功后会回调该block，但是路径`destination`找不到这个文件</span><br><span class="line">    &#125;];</span><br><span class="line">    [aTask resume];</span><br></pre></td></tr></table></figure>
-<p>出错的地方<strong>AFURLSessionManager.m</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">- (void)URLSession:(NSURLSession *)session</span><br><span class="line">      downloadTask:(NSURLSessionDownloadTask *)downloadTask</span><br><span class="line">didFinishDownloadingToURL:(NSURL *)location</span><br><span class="line">&#123;</span><br><span class="line">    self.downloadFileURL = nil;</span><br><span class="line"></span><br><span class="line">    if (self.downloadTaskDidFinishDownloading) &#123;</span><br><span class="line">        self.downloadFileURL = self.downloadTaskDidFinishDownloading(session, downloadTask, location);</span><br><span class="line">        if (self.downloadFileURL) &#123;</span><br><span class="line">            NSError *fileManagerError = nil;</span><br><span class="line"></span><br><span class="line">            // location是临时文件，是下载成功了</span><br><span class="line">            // self.downloadFileURL 是目标路径，文件名超过255</span><br><span class="line">            // 移动文件会报错</span><br><span class="line">            if (![[NSFileManager defaultManager] moveItemAtURL:location toURL:self.downloadFileURL error:&amp;fileManagerError]) &#123;</span><br><span class="line">            // 出错会发通知，可以监听处理</span><br><span class="line">                [[NSNotificationCenter defaultCenter] postNotificationName:AFURLSessionDownloadTaskDidFailToMoveFileNotification object:downloadTask userInfo:fileManagerError.userInfo];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们来看看<code>AFURLSessionDownloadTaskDidFailToMoveFileNotification</code>的定义<br><strong>AFURLSessionManager.h</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> Posted when a session download task encountered an error when moving the temporary download file to a specified destination.</span><br><span class="line"> */</span><br><span class="line">FOUNDATION_EXPORT NSString * const AFURLSessionDownloadTaskDidFailToMoveFileNotification;</span><br></pre></td></tr></table></figure>
-
+<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>获取<code>UIWebView</code>的历史页面信息，举个例子，比如从A-&gt;B-&gt;C-&gt;B，此时B上一页是A，下一页是C，需要获取A、C的URL信息。</p>
+<blockquote>
+<p>WKWebView暴露了这个属性，<code>WKBackForwardList *backForwardList</code>。可以很容易的取到，无奈项目还是使用的<code>UIWebView</code>，于是有了后面的探索。</p>
+</blockquote>
+<p>首先在<code>UIWebView</code>提供的API里找，相关的API只有<code>canGoBack</code>和<code>canGoForward</code>，命名很直观，是否可以后退和前进，这条路走不通。<br>想到是否可以通过JS的Window.history获取到，查了下API，唯一一个有点像的<code>length</code>属性，智能取到历史列表中的所有URL的数量，不区分前后，比如在上面提到的例子中，在B页面取到的<code>length</code>是3，而且不能取出具体的URL。</p>
+<p><img src="/images/15325235986699.jpg" alt="15325235986699"></p>
+<p>无奈只有上源码了，我下载的是<a href="https://opensource.apple.com/release/ios-110.html" target="_blank" rel="noopener">“WebKit-7604.1.38.0.7”和“WebCore-7604.1.38.0.7”</a>。</p>
+<h2 id="Window-History-length实现本质"><a href="#Window-History-length实现本质" class="headerlink" title="Window.History.length实现本质"></a>Window.History.length实现本质</h2><p>在WebCore里面找到了JS方法<code>Window.History.length</code>实现的本质，上代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// WebCore History.cpp</span></span><br><span class="line"><span class="keyword">unsigned</span> History::length() <span class="keyword">const</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!m_frame)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">auto</span>* page = m_frame-&gt;page();</span><br><span class="line">    <span class="keyword">if</span> (!page)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> page-&gt;backForward().count();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// WebCore BackForwardController.cpp</span></span><br><span class="line"><span class="keyword">int</span> BackForwardController::count() <span class="keyword">const</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// count = 当前页之前的页面总数 + 当前页之后的页面总数 + 1</span></span><br><span class="line">    <span class="keyword">return</span> m_client-&gt;backListCount() + <span class="number">1</span> + m_client-&gt;forwardListCount();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>WebCore</code>里面<code>backListCount()</code>、<code>forwardListCount()</code>定义是虚函数，具体实现在<code>WebKit</code>可以找到。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// WebKit BackForwardList.mm</span></span><br><span class="line"><span class="keyword">int</span> BackForwardList::backListCount()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> m_current == NoCurrentItemIndex ? <span class="number">0</span> : m_current;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> BackForwardList::forwardListCount()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> m_current == NoCurrentItemIndex ? <span class="number">0</span> : (<span class="keyword">int</span>)m_entries.size() - (m_current + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还有一个方法我们需要关注一下，后面会用到。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// WebKit BackForwardList.mm</span></span><br><span class="line"><span class="comment">// 获取之前最多几条历史记录</span></span><br><span class="line"><span class="keyword">void</span> BackForwardList::backListWithLimit(<span class="keyword">int</span> limit, Vector&lt;Ref&lt;HistoryItem&gt;&gt;&amp; <span class="built_in">list</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">list</span>.clear();</span><br><span class="line">    <span class="keyword">if</span> (m_current != NoCurrentItemIndex) &#123;</span><br><span class="line">        <span class="keyword">unsigned</span> first = <span class="built_in">std</span>::max(<span class="keyword">static_cast</span>&lt;<span class="keyword">int</span>&gt;(m_current) - limit, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span> (; first &lt; m_current; ++first)</span><br><span class="line">            <span class="built_in">list</span>.append(m_entries[first].get());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="获取History"><a href="#获取History" class="headerlink" title="获取History"></a>获取History</h2><p>在<code>WebView</code>的中，我们可以找到<code>WebBackForwardList</code>的定义。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*!</span></span><br><span class="line"><span class="comment">    @property backForwardList</span></span><br><span class="line"><span class="comment">    @abstract The backforward list for this WebView.</span></span><br><span class="line"><span class="comment">*/</span>    </span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>, <span class="keyword">strong</span>) WebBackForwardList *backForwardList;</span><br></pre></td></tr></table></figure>
+<p><code>WebBackForwardList</code>是对<code>BackForwardList</code>的一层封装，阅读一下它的.h文件，不难找到获取历史记录的方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/*!</span><br><span class="line">    @method backListWithLimit:</span><br><span class="line">    @abstract Returns a portion of the list before the current entry.</span><br><span class="line">    @param limit A cap on the size of the array returned.</span><br><span class="line">    @result An array of items before the current entry, or nil if there are none.  The entries are in the order that they were originally visited.</span><br><span class="line">*/</span><br><span class="line">- (NSArray *)backListWithLimit:(int)limit;</span><br></pre></td></tr></table></figure>
+<p>上面的方法可以获取到一个<code>WebHistoryItem</code>数组，<code>WebHistoryItem</code>保存了历史记录的详细信息。</p>
+<h2 id="获取WebBackForwardList"><a href="#获取WebBackForwardList" class="headerlink" title="获取WebBackForwardList"></a>获取WebBackForwardList</h2><p><code>UIWebView</code>没有暴露获取<code>WebView</code>或者<code>WebBackForwardList</code>的方法，但是我们可以用KVO曲线救国，于是我们需要找到<code>WebView</code>的私有变量名。用runtime可以做到，为了简化这个过程，我写了一个工具类来辅助搜索，具体可以看<a href="https://crmo.github.io/2018/07/31/runtime实现私有变量搜索/">这篇文章-runtime实现私有变量搜索</a>。简单来说就是用runtime获取类成员变量列表，然后用BFS来搜索我们要找的类。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以UIWebView为根节点，BFS搜索WebView</span></span><br><span class="line">[BFSSearchClass searchClass:<span class="string">@"WebView"</span> inClass:<span class="string">@"UIWebView"</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 搜索结果如下</span></span><br><span class="line"><span class="comment">// Class Name：类名，Ivar Name：变量名，Super Class：父类</span></span><br><span class="line">Class Name:【WebView】,Ivar Name:【_webView】</span><br><span class="line">Class Name:【<span class="built_in">UIWebDocumentView</span>】,Ivar Name:【Super Class】</span><br><span class="line">Class Name:【<span class="built_in">UIWebBrowserView</span>】,Ivar Name:【browserView】</span><br><span class="line">Class Name:【<span class="built_in">UIWebViewInternal</span>】,Ivar Name:【_internal】</span><br><span class="line">Root Class:<span class="built_in">UIWebView</span></span><br></pre></td></tr></table></figure>
+<p>有了上面的结论，我们就可以用KVC来获取到历史记录了。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)printWebViewHistory:(<span class="built_in">UIWebView</span> *)aWebView &#123;</span><br><span class="line">    <span class="keyword">id</span> webviewInternal = [aWebView valueForKey:<span class="string">@"_internal"</span>];</span><br><span class="line">    <span class="keyword">id</span> browserView = [webviewInternal valueForKey:<span class="string">@"browserView"</span>];</span><br><span class="line">    <span class="keyword">id</span> webView = [browserView valueForKey:<span class="string">@"_webView"</span>];</span><br><span class="line">    <span class="keyword">id</span> backForwardList = [webView performSelector:<span class="keyword">@selector</span>(backForwardList)];</span><br><span class="line">    <span class="comment">// WebHistoryItem存储的具体某条历史记录信息</span></span><br><span class="line">    <span class="built_in">NSArray</span> *historyItems = [backForwardList performSelector:<span class="keyword">@selector</span>(backListWithLimit:) withObject:@<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">id</span> item <span class="keyword">in</span> historyItems) &#123;</span><br><span class="line">        <span class="comment">// 获取历史记录的url </span></span><br><span class="line">        <span class="built_in">NSString</span> *url = [item performSelector:<span class="keyword">@selector</span>(URLString)];</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, url);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -418,6 +434,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/每日小结/" rel="tag"># 每日小结</a>
+          
+        </div>
+      
 
       
       
@@ -427,8 +449,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/03/iOS用CallKit实现来电识别&来电拦截/" rel="next" title="iOS用CallKit实现来电识别、来电拦截">
-                <i class="fa fa-chevron-left"></i> iOS用CallKit实现来电识别、来电拦截
+              <a href="/2018/07/31/runtime实现私有变量搜索/" rel="next" title="runtime实现私有变量搜索">
+                <i class="fa fa-chevron-left"></i> runtime实现私有变量搜索
               </a>
             
           </div>
@@ -436,10 +458,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/03/iOS用原生代码读写Webview的Local Storage/" rel="prev" title="iOS用原生代码读写Webview的Local Storage">
-                iOS用原生代码读写Webview的Local Storage <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -593,7 +611,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UIWebView获取history"><span class="nav-number">1.</span> <span class="nav-text">UIWebView获取history</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#需求"><span class="nav-number">1.1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Window-History-length实现本质"><span class="nav-number">1.2.</span> <span class="nav-text">Window.History.length实现本质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取History"><span class="nav-number">1.3.</span> <span class="nav-text">获取History</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取WebBackForwardList"><span class="nav-number">1.4.</span> <span class="nav-text">获取WebBackForwardList</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -780,9 +798,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'http://crmo.github.io/2018/03/29/AFNetworking下载文件时文件名长度的坑/';
-        this.page.identifier = '2018/03/29/AFNetworking下载文件时文件名长度的坑/';
-        this.page.title = 'AFNetworking下载文件时文件名长度的坑';
+        this.page.url = 'http://crmo.github.io/2018/08/01/UIWebView获取history/';
+        this.page.identifier = '2018/08/01/UIWebView获取history/';
+        this.page.title = 'UIWebView获取history';
       };
       function loadComments () {
         var d = document, s = d.createElement('script');
