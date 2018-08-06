@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://crmo.github.io/2018/08/01/UIWebView%E8%8E%B7%E5%8F%96history/</loc>
+    
+    <lastmod>2018-08-06T08:49:24.187Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://crmo.github.io/2018/07/05/property%20or%20synthsize/</loc>
     
     <lastmod>2018-08-03T07:29:54.048Z</lastmod>
@@ -47,13 +54,6 @@
     <loc>http://crmo.github.io/2018/08/03/dispatch_sync%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98/</loc>
     
     <lastmod>2018-08-03T07:28:47.235Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://crmo.github.io/2018/08/01/UIWebView%E8%8E%B7%E5%8F%96history/</loc>
-    
-    <lastmod>2018-08-03T07:28:46.386Z</lastmod>
     
   </url>
   
