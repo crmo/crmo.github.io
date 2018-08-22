@@ -100,19 +100,23 @@
 
 
   
-  <meta name="keywords" content="Hexo, iOS" />
+  <meta name="keywords" content="知识小结," />
 
 
-<meta name="description" content="分享iOS的学习点滴">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CR.MO`s Blog">
-<meta property="og:url" content="http://crmo.github.io/archives/2016/11/index.html">
+<meta name="description" content="由于项目是Hybrid的平台，有第三方人员需要在上面开发H5应用，但是release包不能调试H5，只有debug报可以调试，但是项目源码不能交给第三方，在google搜索了下，发现一篇霜神的文章，讲的是debug包可以拷贝到其它机器运行，于是实践了一波。 环境准备 Xcode Command Line Tools ios-sim   ios-sim安装命令：npm install ios-sim">
+<meta name="keywords" content="知识小结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS模拟器安装debug包">
+<meta property="og:url" content="http://crmo.github.io/2018/08/21/iOS模拟器安装debug包/index.html">
 <meta property="og:site_name" content="CR.MO`s Blog">
-<meta property="og:description" content="分享iOS的学习点滴">
+<meta property="og:description" content="由于项目是Hybrid的平台，有第三方人员需要在上面开发H5应用，但是release包不能调试H5，只有debug报可以调试，但是项目源码不能交给第三方，在google搜索了下，发现一篇霜神的文章，讲的是debug包可以拷贝到其它机器运行，于是实践了一波。 环境准备 Xcode Command Line Tools ios-sim   ios-sim安装命令：npm install ios-sim">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://crmo.github.io/images/15348328228775.jpg">
+<meta property="og:updated_time" content="2018-08-21T09:39:17.974Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CR.MO`s Blog">
-<meta name="twitter:description" content="分享iOS的学习点滴">
+<meta name="twitter:title" content="iOS模拟器安装debug包">
+<meta name="twitter:description" content="由于项目是Hybrid的平台，有第三方人员需要在上面开发H5应用，但是release包不能调试H5，只有debug报可以调试，但是项目源码不能交给第三方，在google搜索了下，发现一篇霜神的文章，讲的是debug包可以拷贝到其它机器运行，于是实践了一波。 环境准备 Xcode Command Line Tools ios-sim   ios-sim安装命令：npm install ios-sim">
+<meta name="twitter:image" content="http://crmo.github.io/images/15348328228775.jpg">
 
 
 
@@ -121,7 +125,7 @@
 
 
 
-  <link rel="canonical" href="http://crmo.github.io/archives/2016/11/"/>
+  <link rel="canonical" href="http://crmo.github.io/2018/08/21/iOS模拟器安装debug包/"/>
 
 
 
@@ -130,7 +134,7 @@
     sidebar: "",
   };
 </script>
-  <title>Archive | CR.MO`s Blog</title>
+  <title>iOS模拟器安装debug包 | CR.MO`s Blog</title>
   
 
 
@@ -177,7 +181,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -286,117 +290,236 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        Um..! 25 posts in total. Keep on posting.
-      </span>
-      
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h2 class="archive-year" id="archive-year-2016">2016</h2>
-          </div>
-        
-        
-
-        
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://crmo.github.io/2018/08/21/iOS模拟器安装debug包/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CR.MO">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CR.MO`s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2016/11/20/正则表达式笔记/" itemprop="url">
-              
-                <span itemprop="name">正则表达式笔记</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">iOS模拟器安装debug包</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-20T23:44:53+08:00"
-              content="2016-11-20" >
-          11-20
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-21T00:00:00+08:00">2018-08-21</time>
+            
 
-    </header>
-  </article>
+            
+            
 
+            
+          </span>
 
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/21/iOS模拟器安装debug包/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/08/21/iOS模拟器安装debug包/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views: 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2016/11/20/Golang编码规范/" itemprop="url">
-              
-                <span itemprop="name">Golang编码规范</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-20T22:33:54+08:00"
-              content="2016-11-20" >
-          11-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <p>由于项目是Hybrid的平台，有第三方人员需要在上面开发H5应用，但是release包不能调试H5，只有debug报可以调试，但是项目源码不能交给第三方，在google搜索了下，发现一篇霜神的<a href="https://juejin.im/post/57b01f298ac247005f0acb0a" target="_blank" rel="noopener">文章</a>，讲的是debug包可以拷贝到其它机器运行，于是实践了一波。</p>
+<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><ul>
+<li>Xcode</li>
+<li>Command Line Tools</li>
+<li>ios-sim</li>
+</ul>
+<blockquote>
+<p>ios-sim安装命令：npm install ios-sim -g</p>
+</blockquote>
+<h2 id="拷贝本地的debug包"><a href="#拷贝本地的debug包" class="headerlink" title="拷贝本地的debug包"></a>拷贝本地的debug包</h2><ol>
+<li>run一次需要拷贝的项目，安装到模拟器上</li>
+</ol>
+<ol>
+<li>执行下面命令行，需要注意的是<code>目标路径/xxx.zip</code>就是拷贝出来的debug应用包，需要替换为自己的路径，例如<code>/Users/crmo/Desktop/debug/debug.zip</code></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ditto -ck --sequesterRsrc --keepParent `ls -1 -d -t ~/Library/Developer/Xcode/DerivedData/*/Build/Products/*-iphonesimulator/*.app | head -n 1` 目标路径/xxx.zip</span><br></pre></td></tr></table></figure>
+<h2 id="拷贝debug包到其它模拟器"><a href="#拷贝debug包到其它模拟器" class="headerlink" title="拷贝debug包到其它模拟器"></a>拷贝debug包到其它模拟器</h2><h3 id="1-获取模拟器列表"><a href="#1-获取模拟器列表" class="headerlink" title="1. 获取模拟器列表"></a>1. 获取模拟器列表</h3><blockquote>
+<p>ios-sim showdevicetypes</p>
+</blockquote>
+<p>可以看到类似于下面的输出，就是本机可用的模拟器，选择一个需要运行的模拟器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">~ ios-sim showdevicetypes</span><br><span class="line">Apple-Watch-38mm, watchOS 4.3</span><br><span class="line">Apple-Watch-42mm, watchOS 4.3</span><br><span class="line">Apple-Watch-Series-2-38mm, watchOS 4.3</span><br><span class="line">Apple-Watch-Series-2-42mm, watchOS 4.3</span><br><span class="line">iPhone-7-Plus, 10.3</span><br><span class="line">iPhone-7-Plus, 11.4</span><br><span class="line">Apple-Watch-Series-3-38mm, watchOS 4.3</span><br><span class="line">Apple-Watch-Series-3-42mm, watchOS 4.3</span><br><span class="line">iPhone-5s, 11.4</span><br><span class="line">iPhone-6, 11.4</span><br><span class="line">iPhone-6-Plus, 11.4</span><br><span class="line">iPhone-6s, 11.4</span><br><span class="line">iPhone-6s-Plus, 11.4</span><br><span class="line">iPhone-7, 11.4</span><br><span class="line">iPhone-SE, 11.4</span><br><span class="line">iPad-Air, 11.4</span><br><span class="line">iPad-Air-2, 11.4</span><br><span class="line">iPhone-8, 11.4</span><br><span class="line">iPhone-8-Plus, 11.4</span><br><span class="line">iPhone-X, 11.4</span><br></pre></td></tr></table></figure>
+<h3 id="2-在模拟器上启动debug包"><a href="#2-在模拟器上启动debug包" class="headerlink" title="2. 在模拟器上启动debug包"></a>2. 在模拟器上启动debug包</h3><blockquote>
+<p>ios-sim launch 应用包路径/xxx.app –devicetypeid 模拟器</p>
+</blockquote>
+<p>需要说明的是，debug.zip解压后就可以得到对应应用的.app文件，例如我的debug包放在<code>/Users/crmo/Desktop/debug/debug.app</code>，模拟器选择iPhone-8，最终的命令是</p>
+<blockquote>
+<p>ios-sim launch /Users/crmo/Desktop/debug/debug.app –devicetypeid iPhone-8</p>
+</blockquote>
+<h2 id="simctl-was-not-found错误解决"><a href="#simctl-was-not-found错误解决" class="headerlink" title="simctl was not found错误解决"></a>simctl was not found错误解决</h2><p>在实践时测试机的<code>Command Line Tools</code>没有配置好，出现报错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">simctl was not found.</span><br><span class="line">Check that you have Xcode 8.x installed:</span><br><span class="line">	xcodebuild --versionCheck that you have Xcode 8.x selected:</span><br><span class="line">	xcode-select --print-path</span><br></pre></td></tr></table></figure>
+<p><strong>解决办法：</strong></p>
+<p>1.首先确保正确安装了Command Line Tools，</p>
+<blockquote>
+<p>卸载Command Line Tools:rm -rf /Library/Developer/CommandLineTools<br>安装Command Line Tools:xcode-select –install</p>
+</blockquote>
+<p>2.在xcode配置一下Command Line Tools，如下图所示</p>
+<p><img src="/images/15348328228775.jpg" alt="15348328228775"></p>
+<hr>
+<p>参考博客：</p>
+<ul>
+<li><a href="http://www.hudongdong.com/bug/772.html" target="_blank" rel="noopener">unable to find utility “simctl”的解决方案</a></li>
+<li><a href="https://juejin.im/post/57b01f298ac247005f0acb0a" target="_blank" rel="noopener">给 iOS 模拟器 “安装”app 文件</a></li>
+</ul>
+
+      
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/知识小结/" rel="tag"># 知识小结</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/03/dispatch_sync死锁问题/" rel="next" title="dispatch_sync死锁问题">
+                <i class="fa fa-chevron-left"></i> dispatch_sync死锁问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -417,8 +540,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -489,6 +621,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境准备"><span class="nav-number">1.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拷贝本地的debug包"><span class="nav-number">2.</span> <span class="nav-text">拷贝本地的debug包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拷贝debug包到其它模拟器"><span class="nav-number">3.</span> <span class="nav-text">拷贝debug包到其它模拟器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-获取模拟器列表"><span class="nav-number">3.1.</span> <span class="nav-text">1. 获取模拟器列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-在模拟器上启动debug包"><span class="nav-number">3.2.</span> <span class="nav-text">2. 在模拟器上启动debug包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#simctl-was-not-found错误解决"><span class="nav-number">4.</span> <span class="nav-text">simctl was not found错误解决</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -649,6 +797,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.4"></script>
+
+
 
   
 
@@ -663,6 +815,23 @@
     <script id="dsq-count-scr" src="https://CRMO.disqus.com/count.js" async></script>
   
 
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://crmo.github.io/2018/08/21/iOS模拟器安装debug包/';
+        this.page.identifier = '2018/08/21/iOS模拟器安装debug包/';
+        this.page.title = 'iOS模拟器安装debug包';
+      };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://CRMO.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
   
 
 
