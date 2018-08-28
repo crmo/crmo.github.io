@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://crmo.github.io/"/>
-  <updated>2018-08-21T09:39:17.974Z</updated>
+  <updated>2018-08-28T13:47:34.462Z</updated>
   <id>http://crmo.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>从一个AFNetworking循环引用说起</title>
+    <link href="http://crmo.github.io/2018/08/28/%E4%BB%8E%E4%B8%80%E4%B8%AAAFNetworking%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8%E8%AF%B4%E8%B5%B7/"/>
+    <id>http://crmo.github.io/2018/08/28/从一个AFNetworking循环引用说起/</id>
+    <published>2018-08-27T16:00:00.000Z</published>
+    <updated>2018-08-28T13:47:34.462Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>本文分析使用代码是<a href="https://github.com/AFNetworking/AFNetworking/releases" target="_blank" rel="noopener">AFNetworking 3.2.1</a></p></blockquote><p>最近使用<code>Instruments</code>中的<code>Leaks</code>分析项目内存泄露，发现了一个AFNetworking的循环引用。如下图所示：</p><p><img src="/images/15354171666142.jpg" alt="15354171666142"></p><p>通过调用栈发现产生泄露的代码在这里：</p><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// AFURLSessionManager.m</span></span><br><span class="line">- (<span class="keyword">instancetype</span>)initWithSessionConfiguration:(<span class="built_in">NSURLSessionConfiguration</span> *)configuration &#123;</span><br><span class="line">    <span class="comment">// ... 初始化代码，省略</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 导致循环引用的方法</span></span><br><span class="line">    <span class="keyword">self</span>.session = [<span class="built_in">NSURLSession</span> sessionWithConfiguration:<span class="keyword">self</span>.sessionConfiguration delegate:<span class="keyword">self</span> delegateQueue:<span class="keyword">self</span>.operationQueue];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ... 其它初始化代码，省略</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>大致原因就是AFURLSessionManager引用NSURLSession，同时设置NSURLSession的delegate为自己，NSURLSession会强引用delegate，于是产生了循环引用。</p><blockquote><p>关于NSURLSession的delegate官方说明：<br>This delegate object is responsible for handling authentication challenges, for making caching decisions, and for handling other session-related events. The session object keeps a strong reference to this delegate until your app exits or explicitly invalidates the session. If you do not invalidate the session, your app leaks memory until it exits.</p></blockquote><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>在AFNetworking官方issues找到了相关的问题<a href="https://github.com/AFNetworking/AFNetworking/issues/1528" target="_blank" rel="noopener">Possible memory leak in AFURLSessionManager</a>。作者的回答如下：</p><p><img src="/images/15353328585634.jpg" alt="15353328585634"></p><p>解决方案有两种：</p><ol><li>这是最常见也是作者推荐的方法，只创建一个AFURLSessionManager，整个APP共享，虽然还是有循环引用，但是就没有内存泄露的问题了。</li><li>如果要使用多个AFURLSessionManager，在使用完成后手动调用<code>invalidateSessionCancelingTasks:</code>来断开循环引用。（这种方案不推荐，具体原因看下一小节）</li></ol><h2 id="AFURLSessionManager复用"><a href="#AFURLSessionManager复用" class="headerlink" title="AFURLSessionManager复用"></a>AFURLSessionManager复用</h2><p>关于AFURLSessionManager是否使用单例这个问题，官方demo使用的是单例，在苹果官方文档找到这么一段话</p><blockquote><p>With the NSURLSession API, your app creates one or more sessions, each of which coordinates a group of related data transfer tasks. For example, if you’re creating a web browser, your app might create one session per tab or window, or one session for interactive use and another for background downloads. Within each session, your app adds a series of tasks, each of which represents a request for a specific URL (following HTTP redirects, if necessary).</p></blockquote><p>我的理解是这样的，根据使用场景的不同，这个问题有不同的答案，在大多数场景下APP都是在和同一服务器打交道，一个<code>session</code>就够了，如果有连接多个服务器、或者后台下载等功能需求，可以给每个服务器、后台下载任务创建单独的<code>session</code>（但是也不能每个请求都单独创建session）。</p><p>在查找资料的时候，我发现有博客提到单例seesion可以减少TCP三次握手，动手验证下：</p><p>多个网络请求复用一个<code>AFURLSessionManager</code>，连续发两个网络请求，用<code>Wireshark</code>抓包可以看到，第二次网络请求复用了第一次的TCP连接，没有做三次握手。</p><p><img src="/images/15354191775340.jpg" alt="15354191775340"></p><p>下图是每次网络请求都新建一个<code>AFURLSessionManager</code>的抓包，可以看到每个网络请求都进行了TCP三次握手。</p><p><img src="/images/15354193039698.jpg" alt="15354193039698"></p><p>实验结果的确如网上所说，复用<code>AFURLSessionManager</code>可以减少三次握手，提升效率。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;本文分析使用代码是&lt;a href=&quot;https://github.com/AFNetworking/AFNetworking/releases&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;AFNetworking 3.2.1&lt;/
+      
+    
+    </summary>
+    
+    
+      <category term="知识小结" scheme="http://crmo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS模拟器安装debug包</title>
@@ -457,28 +481,6 @@
       
         &lt;p&gt;&lt;img src=&quot;/images/15226724314775.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;公司项目使用的&lt;code&gt;Cord
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>AFNetworking下载文件时文件名长度的坑</title>
-    <link href="http://crmo.github.io/2018/03/29/AFNetworking%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E6%97%B6%E6%96%87%E4%BB%B6%E5%90%8D%E9%95%BF%E5%BA%A6%E7%9A%84%E5%9D%91/"/>
-    <id>http://crmo.github.io/2018/03/29/AFNetworking下载文件时文件名长度的坑/</id>
-    <published>2018-03-29T14:23:00.000Z</published>
-    <updated>2018-03-28T14:24:52.866Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近遇到一个Bug，在用AFNetworking下载文件的时候莫名其妙的失败了，跟了一下发现一个小坑，记录一下防止以后再掉进去。</p><blockquote><p>iOS和Linux的文件名的长度限制相同都是255个字符！！！</p></blockquote><p>问题根源是文件名超度超过了255个字符，AFNetworking下载文件是成功了（框架会把文件下载到一个临时文件，例如：<code>CFNetworkDownload_xxx.tmp</code>，这个文件名不会出现过长的问题），下载成功之后会copy到调用者指定路径，在这里指定的文件名超过了255个字符，导致创建文件失败，于是回调是成功了，但是在设置的路径找不到这个文件。</p><p>上代码！</p><p>下载代码：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 注意对文件名长度进行处理！！！</span><br><span class="line">NSString *destination = @&quot;下载地址（长度大于255）&quot;;</span><br><span class="line">NSURLSessionDownloadTask *aTask = [self.updownloadSessionManager downloadTaskWithRequest:mutableRequest progress:^(NSProgress * _Nonnull downloadProgress) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125; destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) &#123;</span><br><span class="line">        return [NSURL fileURLWithPath:destination];</span><br><span class="line">    &#125; completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) &#123;</span><br><span class="line">        // 下载成功后会回调该block，但是路径`destination`找不到这个文件</span><br><span class="line">    &#125;];</span><br><span class="line">    [aTask resume];</span><br></pre></td></tr></table></figure><p>出错的地方<strong>AFURLSessionManager.m</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">- (void)URLSession:(NSURLSession *)session</span><br><span class="line">      downloadTask:(NSURLSessionDownloadTask *)downloadTask</span><br><span class="line">didFinishDownloadingToURL:(NSURL *)location</span><br><span class="line">&#123;</span><br><span class="line">    self.downloadFileURL = nil;</span><br><span class="line"></span><br><span class="line">    if (self.downloadTaskDidFinishDownloading) &#123;</span><br><span class="line">        self.downloadFileURL = self.downloadTaskDidFinishDownloading(session, downloadTask, location);</span><br><span class="line">        if (self.downloadFileURL) &#123;</span><br><span class="line">            NSError *fileManagerError = nil;</span><br><span class="line"></span><br><span class="line">            // location是临时文件，是下载成功了</span><br><span class="line">            // self.downloadFileURL 是目标路径，文件名超过255</span><br><span class="line">            // 移动文件会报错</span><br><span class="line">            if (![[NSFileManager defaultManager] moveItemAtURL:location toURL:self.downloadFileURL error:&amp;fileManagerError]) &#123;</span><br><span class="line">            // 出错会发通知，可以监听处理</span><br><span class="line">                [[NSNotificationCenter defaultCenter] postNotificationName:AFURLSessionDownloadTaskDidFailToMoveFileNotification object:downloadTask userInfo:fileManagerError.userInfo];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>我们来看看<code>AFURLSessionDownloadTaskDidFailToMoveFileNotification</code>的定义<br><strong>AFURLSessionManager.h</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> Posted when a session download task encountered an error when moving the temporary download file to a specified destination.</span><br><span class="line"> */</span><br><span class="line">FOUNDATION_EXPORT NSString * const AFURLSessionDownloadTaskDidFailToMoveFileNotification;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;最近遇到一个Bug，在用AFNetworking下载文件的时候莫名其妙的失败了，跟了一下发现一个小坑，记录一下防止以后再掉进去。&lt;/p&gt;
-&lt;
       
     
     </summary>
