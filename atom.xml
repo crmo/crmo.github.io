@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://crmo.github.io/"/>
+  <link href="https://crmo.github.io/"/>
   <updated>2018-08-28T13:47:34.462Z</updated>
-  <id>http://crmo.github.io/</id>
+  <id>https://crmo.github.io/</id>
   
   <author>
     <name>CR.MO</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>从一个AFNetworking循环引用说起</title>
-    <link href="http://crmo.github.io/2018/08/28/%E4%BB%8E%E4%B8%80%E4%B8%AAAFNetworking%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8%E8%AF%B4%E8%B5%B7/"/>
-    <id>http://crmo.github.io/2018/08/28/从一个AFNetworking循环引用说起/</id>
+    <link href="https://crmo.github.io/2018/08/28/%E4%BB%8E%E4%B8%80%E4%B8%AAAFNetworking%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8%E8%AF%B4%E8%B5%B7/"/>
+    <id>https://crmo.github.io/2018/08/28/从一个AFNetworking循环引用说起/</id>
     <published>2018-08-27T16:00:00.000Z</published>
     <updated>2018-08-28T13:47:34.462Z</updated>
     
@@ -36,14 +36,14 @@
     </summary>
     
     
-      <category term="知识小结" scheme="http://crmo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
+      <category term="知识小结" scheme="https://crmo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
     
   </entry>
   
   <entry>
     <title>iOS模拟器安装debug包</title>
-    <link href="http://crmo.github.io/2018/08/21/iOS%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%89%E8%A3%85debug%E5%8C%85/"/>
-    <id>http://crmo.github.io/2018/08/21/iOS模拟器安装debug包/</id>
+    <link href="https://crmo.github.io/2018/08/21/iOS%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%89%E8%A3%85debug%E5%8C%85/"/>
+    <id>https://crmo.github.io/2018/08/21/iOS模拟器安装debug包/</id>
     <published>2018-08-20T16:00:00.000Z</published>
     <updated>2018-08-21T09:39:17.974Z</updated>
     
@@ -59,14 +59,14 @@
     </summary>
     
     
-      <category term="知识小结" scheme="http://crmo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
+      <category term="知识小结" scheme="https://crmo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
     
   </entry>
   
   <entry>
     <title>dispatch_sync死锁问题</title>
-    <link href="http://crmo.github.io/2018/08/03/dispatch_sync%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98/"/>
-    <id>http://crmo.github.io/2018/08/03/dispatch_sync死锁问题/</id>
+    <link href="https://crmo.github.io/2018/08/03/dispatch_sync%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98/"/>
+    <id>https://crmo.github.io/2018/08/03/dispatch_sync死锁问题/</id>
     <published>2018-08-02T16:00:00.000Z</published>
     <updated>2018-08-03T07:28:47.235Z</updated>
     
@@ -82,14 +82,14 @@
     </summary>
     
     
-      <category term="知识小结" scheme="http://crmo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
+      <category term="知识小结" scheme="https://crmo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
     
   </entry>
   
   <entry>
     <title>UIWebView获取详细浏览记录</title>
-    <link href="http://crmo.github.io/2018/08/01/UIWebView%E8%8E%B7%E5%8F%96history/"/>
-    <id>http://crmo.github.io/2018/08/01/UIWebView获取history/</id>
+    <link href="https://crmo.github.io/2018/08/01/UIWebView%E8%8E%B7%E5%8F%96history/"/>
+    <id>https://crmo.github.io/2018/08/01/UIWebView获取history/</id>
     <published>2018-07-31T16:00:00.000Z</published>
     <updated>2018-08-06T08:49:24.187Z</updated>
     
@@ -108,14 +108,14 @@
     </summary>
     
     
-      <category term="知识小结" scheme="http://crmo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
+      <category term="知识小结" scheme="https://crmo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
     
   </entry>
   
   <entry>
     <title>runtime实现私有变量搜索</title>
-    <link href="http://crmo.github.io/2018/07/31/runtime%E5%AE%9E%E7%8E%B0%E7%A7%81%E6%9C%89%E5%8F%98%E9%87%8F%E6%90%9C%E7%B4%A2/"/>
-    <id>http://crmo.github.io/2018/07/31/runtime实现私有变量搜索/</id>
+    <link href="https://crmo.github.io/2018/07/31/runtime%E5%AE%9E%E7%8E%B0%E7%A7%81%E6%9C%89%E5%8F%98%E9%87%8F%E6%90%9C%E7%B4%A2/"/>
+    <id>https://crmo.github.io/2018/07/31/runtime实现私有变量搜索/</id>
     <published>2018-07-30T16:00:00.000Z</published>
     <updated>2018-08-03T07:28:45.847Z</updated>
     
@@ -132,14 +132,14 @@
     </summary>
     
     
-      <category term="知识小结" scheme="http://crmo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
+      <category term="知识小结" scheme="https://crmo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
     
   </entry>
   
   <entry>
     <title>iOS横竖屏总结</title>
-    <link href="http://crmo.github.io/2018/07/23/iOS%E6%A8%AA%E7%AB%96%E5%B1%8F%E6%80%BB%E7%BB%93/"/>
-    <id>http://crmo.github.io/2018/07/23/iOS横竖屏总结/</id>
+    <link href="https://crmo.github.io/2018/07/23/iOS%E6%A8%AA%E7%AB%96%E5%B1%8F%E6%80%BB%E7%BB%93/"/>
+    <id>https://crmo.github.io/2018/07/23/iOS横竖屏总结/</id>
     <published>2018-07-22T16:00:00.000Z</published>
     <updated>2018-08-03T07:28:45.361Z</updated>
     
@@ -156,14 +156,14 @@
     </summary>
     
     
-      <category term="知识小结" scheme="http://crmo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
+      <category term="知识小结" scheme="https://crmo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
     
   </entry>
   
   <entry>
     <title>记一个实现UIWindow子类的小坑</title>
-    <link href="http://crmo.github.io/2018/07/19/%E8%AE%B0%E4%B8%80%E4%B8%AA%E5%AE%9E%E7%8E%B0UIWindow%E5%AD%90%E7%B1%BB%E7%9A%84%E5%B0%8F%E5%9D%91/"/>
-    <id>http://crmo.github.io/2018/07/19/记一个实现UIWindow子类的小坑/</id>
+    <link href="https://crmo.github.io/2018/07/19/%E8%AE%B0%E4%B8%80%E4%B8%AA%E5%AE%9E%E7%8E%B0UIWindow%E5%AD%90%E7%B1%BB%E7%9A%84%E5%B0%8F%E5%9D%91/"/>
+    <id>https://crmo.github.io/2018/07/19/记一个实现UIWindow子类的小坑/</id>
     <published>2018-07-18T16:00:00.000Z</published>
     <updated>2018-08-03T07:29:54.039Z</updated>
     
@@ -179,14 +179,14 @@
     </summary>
     
     
-      <category term="知识小结" scheme="http://crmo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
+      <category term="知识小结" scheme="https://crmo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
     
   </entry>
   
   <entry>
     <title>一个autoreleasepool的使用场景</title>
-    <link href="http://crmo.github.io/2018/07/18/%E4%B8%80%E4%B8%AAautoreleasepool%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/"/>
-    <id>http://crmo.github.io/2018/07/18/一个autoreleasepool的使用场景/</id>
+    <link href="https://crmo.github.io/2018/07/18/%E4%B8%80%E4%B8%AAautoreleasepool%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/"/>
+    <id>https://crmo.github.io/2018/07/18/一个autoreleasepool的使用场景/</id>
     <published>2018-07-17T16:00:00.000Z</published>
     <updated>2018-08-03T07:29:13.417Z</updated>
     
@@ -203,14 +203,14 @@
     </summary>
     
     
-      <category term="知识小结" scheme="http://crmo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
+      <category term="知识小结" scheme="https://crmo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
     
   </entry>
   
   <entry>
     <title>UITabbar自定义Badge</title>
-    <link href="http://crmo.github.io/2018/07/10/UITabbar%E8%87%AA%E5%AE%9A%E4%B9%89Badge/"/>
-    <id>http://crmo.github.io/2018/07/10/UITabbar自定义Badge/</id>
+    <link href="https://crmo.github.io/2018/07/10/UITabbar%E8%87%AA%E5%AE%9A%E4%B9%89Badge/"/>
+    <id>https://crmo.github.io/2018/07/10/UITabbar自定义Badge/</id>
     <published>2018-07-09T16:00:00.000Z</published>
     <updated>2018-08-03T07:29:12.314Z</updated>
     
@@ -228,14 +228,14 @@
     </summary>
     
     
-      <category term="知识小结" scheme="http://crmo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
+      <category term="知识小结" scheme="https://crmo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
     
   </entry>
   
   <entry>
     <title>计算文字长度</title>
-    <link href="http://crmo.github.io/2018/07/09/%E8%AE%A1%E7%AE%97%E6%96%87%E5%AD%97%E9%95%BF%E5%BA%A6/"/>
-    <id>http://crmo.github.io/2018/07/09/计算文字长度/</id>
+    <link href="https://crmo.github.io/2018/07/09/%E8%AE%A1%E7%AE%97%E6%96%87%E5%AD%97%E9%95%BF%E5%BA%A6/"/>
+    <id>https://crmo.github.io/2018/07/09/计算文字长度/</id>
     <published>2018-07-08T16:00:00.000Z</published>
     <updated>2018-08-03T07:29:12.707Z</updated>
     
@@ -252,14 +252,14 @@
     </summary>
     
     
-      <category term="知识小结" scheme="http://crmo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
+      <category term="知识小结" scheme="https://crmo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
     
   </entry>
   
   <entry>
     <title>UITextField控制输入长度</title>
-    <link href="http://crmo.github.io/2018/07/06/UITextField%E6%8E%A7%E5%88%B6%E8%BE%93%E5%85%A5%E9%95%BF%E5%BA%A6/"/>
-    <id>http://crmo.github.io/2018/07/06/UITextField控制输入长度/</id>
+    <link href="https://crmo.github.io/2018/07/06/UITextField%E6%8E%A7%E5%88%B6%E8%BE%93%E5%85%A5%E9%95%BF%E5%BA%A6/"/>
+    <id>https://crmo.github.io/2018/07/06/UITextField控制输入长度/</id>
     <published>2018-07-05T16:00:00.000Z</published>
     <updated>2018-08-03T07:29:11.873Z</updated>
     
@@ -276,14 +276,14 @@
     </summary>
     
     
-      <category term="知识小结" scheme="http://crmo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
+      <category term="知识小结" scheme="https://crmo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
     
   </entry>
   
   <entry>
     <title>property or synthsize</title>
-    <link href="http://crmo.github.io/2018/07/05/property%20or%20synthsize/"/>
-    <id>http://crmo.github.io/2018/07/05/property or synthsize/</id>
+    <link href="https://crmo.github.io/2018/07/05/property%20or%20synthsize/"/>
+    <id>https://crmo.github.io/2018/07/05/property or synthsize/</id>
     <published>2018-07-04T16:00:00.000Z</published>
     <updated>2018-08-03T07:29:54.048Z</updated>
     
@@ -302,14 +302,14 @@
     </summary>
     
     
-      <category term="知识小结" scheme="http://crmo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
+      <category term="知识小结" scheme="https://crmo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
     
   </entry>
   
   <entry>
     <title>Tagged Pointer小记</title>
-    <link href="http://crmo.github.io/2018/07/04/Tagged%20Pointer%E5%B0%8F%E8%AE%B0/"/>
-    <id>http://crmo.github.io/2018/07/04/Tagged Pointer小记/</id>
+    <link href="https://crmo.github.io/2018/07/04/Tagged%20Pointer%E5%B0%8F%E8%AE%B0/"/>
+    <id>https://crmo.github.io/2018/07/04/Tagged Pointer小记/</id>
     <published>2018-07-03T16:00:00.000Z</published>
     <updated>2018-07-04T12:40:48.157Z</updated>
     
@@ -329,14 +329,14 @@
     </summary>
     
     
-      <category term="每日小结" scheme="http://crmo.github.io/tags/%E6%AF%8F%E6%97%A5%E5%B0%8F%E7%BB%93/"/>
+      <category term="每日小结" scheme="https://crmo.github.io/tags/%E6%AF%8F%E6%97%A5%E5%B0%8F%E7%BB%93/"/>
     
   </entry>
   
   <entry>
     <title>URLWithString return nil</title>
-    <link href="http://crmo.github.io/2018/07/03/URLWithString%20return%20nil/"/>
-    <id>http://crmo.github.io/2018/07/03/URLWithString return nil/</id>
+    <link href="https://crmo.github.io/2018/07/03/URLWithString%20return%20nil/"/>
+    <id>https://crmo.github.io/2018/07/03/URLWithString return nil/</id>
     <published>2018-07-02T16:00:00.000Z</published>
     <updated>2018-07-03T12:43:58.604Z</updated>
     
@@ -352,14 +352,14 @@
     </summary>
     
     
-      <category term="每日小结" scheme="http://crmo.github.io/tags/%E6%AF%8F%E6%97%A5%E5%B0%8F%E7%BB%93/"/>
+      <category term="每日小结" scheme="https://crmo.github.io/tags/%E6%AF%8F%E6%97%A5%E5%B0%8F%E7%BB%93/"/>
     
   </entry>
   
   <entry>
     <title>iOS消息转发小记</title>
-    <link href="http://crmo.github.io/2018/05/31/iOS%E6%B6%88%E6%81%AF%E8%BD%AC%E5%8F%91%E5%B0%8F%E8%AE%B0/"/>
-    <id>http://crmo.github.io/2018/05/31/iOS消息转发小记/</id>
+    <link href="https://crmo.github.io/2018/05/31/iOS%E6%B6%88%E6%81%AF%E8%BD%AC%E5%8F%91%E5%B0%8F%E8%AE%B0/"/>
+    <id>https://crmo.github.io/2018/05/31/iOS消息转发小记/</id>
     <published>2018-05-30T16:00:00.000Z</published>
     <updated>2018-06-05T01:23:31.777Z</updated>
     
@@ -381,8 +381,8 @@
   
   <entry>
     <title>探寻Objective-C引用计数本质</title>
-    <link href="http://crmo.github.io/2018/05/26/%E6%8E%A2%E5%AF%BBObjective-C%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E6%9C%AC%E8%B4%A8/"/>
-    <id>http://crmo.github.io/2018/05/26/探寻Objective-C引用计数本质/</id>
+    <link href="https://crmo.github.io/2018/05/26/%E6%8E%A2%E5%AF%BBObjective-C%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E6%9C%AC%E8%B4%A8/"/>
+    <id>https://crmo.github.io/2018/05/26/探寻Objective-C引用计数本质/</id>
     <published>2018-05-25T16:00:00.000Z</published>
     <updated>2018-07-04T12:49:11.824Z</updated>
     
@@ -403,8 +403,8 @@
   
   <entry>
     <title>Cordova源码解析（二）- 自定义UserAgent</title>
-    <link href="http://crmo.github.io/2018/05/15/Cordova%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89-%20%E8%87%AA%E5%AE%9A%E4%B9%89UserAgent/"/>
-    <id>http://crmo.github.io/2018/05/15/Cordova源码解析（二）- 自定义UserAgent/</id>
+    <link href="https://crmo.github.io/2018/05/15/Cordova%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89-%20%E8%87%AA%E5%AE%9A%E4%B9%89UserAgent/"/>
+    <id>https://crmo.github.io/2018/05/15/Cordova源码解析（二）- 自定义UserAgent/</id>
     <published>2018-05-14T16:00:00.000Z</published>
     <updated>2018-05-15T11:25:56.421Z</updated>
     
@@ -425,8 +425,8 @@
   
   <entry>
     <title>Cordova源码解析</title>
-    <link href="http://crmo.github.io/2018/05/09/Cordova%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"/>
-    <id>http://crmo.github.io/2018/05/09/Cordova源码解析/</id>
+    <link href="https://crmo.github.io/2018/05/09/Cordova%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"/>
+    <id>https://crmo.github.io/2018/05/09/Cordova源码解析/</id>
     <published>2018-05-08T16:00:00.000Z</published>
     <updated>2018-07-10T11:50:53.078Z</updated>
     
@@ -447,8 +447,8 @@
   
   <entry>
     <title>浅析AutoreleasePool源码</title>
-    <link href="http://crmo.github.io/2018/04/14/%E6%B5%85%E6%9E%90AutoreleasePool%E6%BA%90%E7%A0%81/"/>
-    <id>http://crmo.github.io/2018/04/14/浅析AutoreleasePool源码/</id>
+    <link href="https://crmo.github.io/2018/04/14/%E6%B5%85%E6%9E%90AutoreleasePool%E6%BA%90%E7%A0%81/"/>
+    <id>https://crmo.github.io/2018/04/14/浅析AutoreleasePool源码/</id>
     <published>2018-04-14T07:31:00.000Z</published>
     <updated>2018-04-14T07:31:28.990Z</updated>
     
@@ -468,8 +468,8 @@
   
   <entry>
     <title>iOS用原生代码读写Webview的Local Storage</title>
-    <link href="http://crmo.github.io/2018/04/03/iOS%E7%94%A8%E5%8E%9F%E7%94%9F%E4%BB%A3%E7%A0%81%E8%AF%BB%E5%86%99Webview%E7%9A%84Local%20Storage/"/>
-    <id>http://crmo.github.io/2018/04/03/iOS用原生代码读写Webview的Local Storage/</id>
+    <link href="https://crmo.github.io/2018/04/03/iOS%E7%94%A8%E5%8E%9F%E7%94%9F%E4%BB%A3%E7%A0%81%E8%AF%BB%E5%86%99Webview%E7%9A%84Local%20Storage/"/>
+    <id>https://crmo.github.io/2018/04/03/iOS用原生代码读写Webview的Local Storage/</id>
     <published>2018-04-02T16:00:00.000Z</published>
     <updated>2018-04-03T12:41:51.225Z</updated>
     

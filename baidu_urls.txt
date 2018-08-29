@@ -1,3 +1,3 @@
-http://crmo.github.io/2018/08/28/从一个AFNetworking循环引用说起/
-http://crmo.github.io/2018/08/21/iOS模拟器安装debug包/
-http://crmo.github.io/2018/08/03/dispatch_sync死锁问题/
+https://crmo.github.io/2018/08/28/从一个AFNetworking循环引用说起/
+https://crmo.github.io/2018/08/21/iOS模拟器安装debug包/
+https://crmo.github.io/2018/08/03/dispatch_sync死锁问题/
