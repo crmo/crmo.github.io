@@ -1,3 +1,4 @@
+https://crmo.github.io/2018/09/05/记一个行结束符引发的JS报错/
 https://crmo.github.io/2018/08/28/从一个AFNetworking循环引用说起/
 https://crmo.github.io/2018/08/21/iOS模拟器安装debug包/
 https://crmo.github.io/2018/08/03/dispatch_sync死锁问题/
@@ -7,4 +8,3 @@ https://crmo.github.io/2018/07/23/iOS横竖屏总结/
 https://crmo.github.io/2018/07/19/记一个实现UIWindow子类的小坑/
 https://crmo.github.io/2018/07/18/一个autoreleasepool的使用场景/
 https://crmo.github.io/2018/07/10/UITabbar自定义Badge/
-https://crmo.github.io/2018/07/09/计算文字长度/

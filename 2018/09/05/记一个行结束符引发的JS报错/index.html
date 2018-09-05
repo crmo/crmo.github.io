@@ -100,19 +100,21 @@
 
 
   
-  <meta name="keywords" content="Hexo, iOS" />
+  <meta name="keywords" content="知识小结," />
 
 
-<meta name="description" content="分享iOS的学习点滴">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CR.MO`s Blog">
-<meta property="og:url" content="https://crmo.github.io/archives/page/2/index.html">
+<meta name="description" content="问题描述最近遇到一个神奇的Bug，通过UIWebView的stringByEvaluatingJavaScriptFromString:方法执行一段JavaScript代码时，JavaScript报错:  SyntaxError: Unexpected EOF  经过仔细的排查，发现待执行的JavaScript代码里面包含U+2028字符。还找到了Stack Overflow相关讨论。JavaSc">
+<meta name="keywords" content="知识小结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一个行结束符引发的JS报错">
+<meta property="og:url" content="https://crmo.github.io/2018/09/05/记一个行结束符引发的JS报错/index.html">
 <meta property="og:site_name" content="CR.MO`s Blog">
-<meta property="og:description" content="分享iOS的学习点滴">
+<meta property="og:description" content="问题描述最近遇到一个神奇的Bug，通过UIWebView的stringByEvaluatingJavaScriptFromString:方法执行一段JavaScript代码时，JavaScript报错:  SyntaxError: Unexpected EOF  经过仔细的排查，发现待执行的JavaScript代码里面包含U+2028字符。还找到了Stack Overflow相关讨论。JavaSc">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-05T14:14:26.120Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CR.MO`s Blog">
-<meta name="twitter:description" content="分享iOS的学习点滴">
+<meta name="twitter:title" content="记一个行结束符引发的JS报错">
+<meta name="twitter:description" content="问题描述最近遇到一个神奇的Bug，通过UIWebView的stringByEvaluatingJavaScriptFromString:方法执行一段JavaScript代码时，JavaScript报错:  SyntaxError: Unexpected EOF  经过仔细的排查，发现待执行的JavaScript代码里面包含U+2028字符。还找到了Stack Overflow相关讨论。JavaSc">
 
 
 
@@ -121,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="https://crmo.github.io/archives/page/2/"/>
+  <link rel="canonical" href="https://crmo.github.io/2018/09/05/记一个行结束符引发的JS报错/"/>
 
 
 
@@ -130,7 +132,7 @@
     sidebar: "",
   };
 </script>
-  <title>Archive | CR.MO`s Blog</title>
+  <title>记一个行结束符引发的JS报错 | CR.MO`s Blog</title>
   
 
 
@@ -177,7 +179,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -286,417 +288,207 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://crmo.github.io/2018/09/05/记一个行结束符引发的JS报错/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CR.MO">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CR.MO`s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h2 class="post-title" itemprop="name headline">记一个行结束符引发的JS报错</h2>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-05T00:00:00+08:00">2018-09-05</time>
+            
+
+            
+            
+
+            
+          </span>
+
           
-        
-        Um..! 27 posts in total. Keep on posting.
-      </span>
-      
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h2 class="archive-year" id="archive-year-2018">2018</h2>
-          </div>
-        
-        
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/05/记一个行结束符引发的JS报错/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/09/05/记一个行结束符引发的JS报错/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views: 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
 
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/09/计算文字长度/" itemprop="url">
-              
-                <span itemprop="name">计算文字长度</span>
-              
-            </a>
-        
-      </h3>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-09T00:00:00+08:00"
-              content="2018-07-09" >
-          07-09
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/06/UITextField控制输入长度/" itemprop="url">
-              
-                <span itemprop="name">UITextField控制输入长度</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-06T00:00:00+08:00"
-              content="2018-07-06" >
-          07-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/05/property or synthsize/" itemprop="url">
-              
-                <span itemprop="name">property or synthsize</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-05T00:00:00+08:00"
-              content="2018-07-05" >
-          07-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/04/Tagged Pointer小记/" itemprop="url">
-              
-                <span itemprop="name">Tagged Pointer小记</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-04T00:00:00+08:00"
-              content="2018-07-04" >
-          07-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/03/URLWithString return nil/" itemprop="url">
-              
-                <span itemprop="name">URLWithString return nil</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-03T00:00:00+08:00"
-              content="2018-07-03" >
-          07-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+        <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>最近遇到一个神奇的Bug，通过<code>UIWebView</code>的<code>stringByEvaluatingJavaScriptFromString:</code>方法执行一段<code>JavaScript</code>代码时，<code>JavaScript</code>报错:</p>
+<blockquote>
+<p>SyntaxError: Unexpected EOF</p>
+</blockquote>
+<p>经过仔细的排查，发现待执行的<code>JavaScript</code>代码里面包含<code>U+2028</code>字符。还找到了<a href="https://stackoverflow.com/questions/2965293/javascript-parse-error-on-u2028-unicode-character" target="_blank" rel="noopener">Stack Overflow相关讨论</a>。<br><code>JavaScript</code>解析器会把行分隔符<code>U+2028</code>和段落分隔符<code>U+2029</code>解析成一行的结束，代码里要是包含这两个字符相当于换行，例如：</p>
+<blockquote>
+<p>alert(“\u2028”)</p>
+</blockquote>
+<p>就会被解析为</p>
+<blockquote>
+<p>alert(“<br>“)</p>
+</blockquote>
+<p>于是就产生了语法错误。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>我用的方法比较简单、粗暴，在执行<code>JavaScript</code>代码前，直接过滤掉这两个字符。代码如下：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// </span></span><br><span class="line">    javaScriptString = [javaScriptString stringByReplacingOccurrencesOfString:<span class="string">@"\u2028"</span> withString:<span class="string">@""</span>];</span><br><span class="line">    javaScriptString = [javaScriptString stringByReplacingOccurrencesOfString:<span class="string">@"\u2029"</span> withString:<span class="string">@""</span>];</span><br><span class="line">    <span class="built_in">NSString</span>* ret = [(<span class="built_in">UIWebView</span>*)_engineWebView stringByEvaluatingJavaScriptFromString:javaScriptString];</span><br></pre></td></tr></table></figure>
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/31/iOS消息转发小记/" itemprop="url">
-              
-                <span itemprop="name">iOS消息转发小记</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-31T00:00:00+08:00"
-              content="2018-05-31" >
-          05-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/26/探寻Objective-C引用计数本质/" itemprop="url">
-              
-                <span itemprop="name">探寻Objective-C引用计数本质</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-26T00:00:00+08:00"
-              content="2018-05-26" >
-          05-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/15/Cordova源码解析（二）- 自定义UserAgent/" itemprop="url">
-              
-                <span itemprop="name">Cordova源码解析（二）- 自定义UserAgent</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-15T00:00:00+08:00"
-              content="2018-05-15" >
-          05-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/09/Cordova源码解析/" itemprop="url">
-              
-                <span itemprop="name">Cordova源码解析</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-09T00:00:00+08:00"
-              content="2018-05-09" >
-          05-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/14/浅析AutoreleasePool源码/" itemprop="url">
-              
-                <span itemprop="name">浅析AutoreleasePool源码</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-14T15:31:00+08:00"
-              content="2018-04-14" >
-          04-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/知识小结/" rel="tag"># 知识小结</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/28/从一个AFNetworking循环引用说起/" rel="next" title="从一个AFNetworking循环引用说起">
+                <i class="fa fa-chevron-left"></i> 从一个AFNetworking循环引用说起
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/3/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -717,8 +509,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -789,6 +590,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案"><span class="nav-number">2.</span> <span class="nav-text">解决方案</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -949,6 +766,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.4"></script>
+
+
 
   
 
@@ -963,6 +784,23 @@
     <script id="dsq-count-scr" src="https://CRMO.disqus.com/count.js" async></script>
   
 
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://crmo.github.io/2018/09/05/记一个行结束符引发的JS报错/';
+        this.page.identifier = '2018/09/05/记一个行结束符引发的JS报错/';
+        this.page.title = '记一个行结束符引发的JS报错';
+      };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://CRMO.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
   
 
 
