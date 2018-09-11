@@ -4,6 +4,21 @@
 
     
   <url>
+    <loc>https://crmo.github.io/2018/03/03/iOS%E7%94%A8CallKit%E5%AE%9E%E7%8E%B0%E6%9D%A5%E7%94%B5%E8%AF%86%E5%88%AB/</loc>
+    <lastmod>2018-09-11T14:31:44.153Z</lastmod>
+    <data>
+        <display>
+        <title>iOS用CallKit实现来电识别</title>
+        <pubTime>2018-03-03T09:33:54.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://crmo.github.io/2018/09/05/%E8%AE%B0%E4%B8%80%E4%B8%AA%E8%A1%8C%E7%BB%93%E6%9D%9F%E7%AC%A6%E5%BC%95%E5%8F%91%E7%9A%84JS%E6%8A%A5%E9%94%99/</loc>
     <lastmod>2018-09-05T14:14:26.120Z</lastmod>
     <data>
@@ -311,21 +326,6 @@
         <display>
         <title>imageNamed与imageWithContentsOfFile小结</title>
         <pubTime>2018-03-01T11:30:00.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://crmo.github.io/2018/03/03/iOS%E7%94%A8CallKit%E5%AE%9E%E7%8E%B0%E6%9D%A5%E7%94%B5%E8%AF%86%E5%88%AB&%E6%9D%A5%E7%94%B5%E6%8B%A6%E6%88%AA/</loc>
-    <lastmod>2018-05-29T12:21:06.586Z</lastmod>
-    <data>
-        <display>
-        <title>iOS用CallKit实现来电识别、来电拦截</title>
-        <pubTime>2018-03-03T09:33:54.000Z</pubTime>
         
          
            
