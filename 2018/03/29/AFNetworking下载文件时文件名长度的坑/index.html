@@ -100,17 +100,18 @@
 
 
   
-  <meta name="keywords" content="Hexo, iOS" />
+  <meta name="keywords" content="iOS知识小结," />
 
 
 <meta name="description" content="背景最近遇到一个Bug，在用AFNetworking下载文件的时候莫名其妙的失败了，跟了一下发现一个小坑，记录一下防止以后再掉进去。  iOS和Linux的文件名的长度限制相同都是255个字符！！！  问题根源是文件名超度超过了255个字符，AFNetworking下载文件是成功了（框架会把文件下载到一个临时文件，例如：CFNetworkDownload_xxx.tmp，这个文件名不会出现过长的问">
+<meta name="keywords" content="iOS知识小结">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AFNetworking下载文件时文件名长度的坑">
 <meta property="og:url" content="https://crmo.github.io/2018/03/29/AFNetworking下载文件时文件名长度的坑/index.html">
 <meta property="og:site_name" content="CR.MO`s Blog">
 <meta property="og:description" content="背景最近遇到一个Bug，在用AFNetworking下载文件的时候莫名其妙的失败了，跟了一下发现一个小坑，记录一下防止以后再掉进去。  iOS和Linux的文件名的长度限制相同都是255个字符！！！  问题根源是文件名超度超过了255个字符，AFNetworking下载文件是成功了（框架会把文件下载到一个临时文件，例如：CFNetworkDownload_xxx.tmp，这个文件名不会出现过长的问">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-28T14:24:52.866Z">
+<meta property="og:updated_time" content="2018-10-07T08:13:37.981Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AFNetworking下载文件时文件名长度的坑">
 <meta name="twitter:description" content="背景最近遇到一个Bug，在用AFNetworking下载文件的时候莫名其妙的失败了，跟了一下发现一个小坑，记录一下防止以后再掉进去。  iOS和Linux的文件名的长度限制相同都是255个字符！！！  问题根源是文件名超度超过了255个字符，AFNetworking下载文件是成功了（框架会把文件下载到一个临时文件，例如：CFNetworkDownload_xxx.tmp，这个文件名不会出现过长的问">
@@ -418,6 +419,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/iOS知识小结/" rel="tag"># iOS知识小结</a>
+          
+        </div>
+      
 
       
       
@@ -533,7 +540,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -552,7 +559,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
