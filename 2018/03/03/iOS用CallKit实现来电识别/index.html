@@ -103,23 +103,24 @@
   <meta name="keywords" content="iOS知识小结," />
 
 
-<meta name="description" content="2018.5.28日更新CallKit在国内已经被禁止上架了，亲测被拒。企业版还能继续使用，想上架就乖乖屏蔽吧（要是哪位同学成功上架了一定私信我怎么做到的。）  前言 最近需要实现一个新需求，用iOS 10出的CallKit实现将APP的通讯录的信息同步到系统中，可以不把人员信息加到通讯录中，实现来电号码识别。这个功能在xx安全卫士、xx管家中很早就实现了，但是网上相关的资料较少，而且官方的文档">
+<meta name="description" content="前言 最近需要实现一个新需求，用iOS 10出的CallKit实现将APP的通讯录的信息同步到系统中，可以不把人员信息加到通讯录中，实现来电号码识别。这个功能在xx安全卫士、xx管家中很早就实现了，但是网上相关的资料较少，而且官方的文档写的太简单了，很多坑还要自己去摸索。于是记录一下和各位分享，如有错误之处请各位指出！  PS: 先说个题外话吧，CallKit功能在iOS 10的时候还不太稳定，i">
 <meta name="keywords" content="iOS知识小结">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS用CallKit实现来电识别">
 <meta property="og:url" content="https://crmo.github.io/2018/03/03/iOS用CallKit实现来电识别/index.html">
 <meta property="og:site_name" content="CR.MO`s Blog">
-<meta property="og:description" content="2018.5.28日更新CallKit在国内已经被禁止上架了，亲测被拒。企业版还能继续使用，想上架就乖乖屏蔽吧（要是哪位同学成功上架了一定私信我怎么做到的。）  前言 最近需要实现一个新需求，用iOS 10出的CallKit实现将APP的通讯录的信息同步到系统中，可以不把人员信息加到通讯录中，实现来电号码识别。这个功能在xx安全卫士、xx管家中很早就实现了，但是网上相关的资料较少，而且官方的文档">
+<meta property="og:description" content="前言 最近需要实现一个新需求，用iOS 10出的CallKit实现将APP的通讯录的信息同步到系统中，可以不把人员信息加到通讯录中，实现来电号码识别。这个功能在xx安全卫士、xx管家中很早就实现了，但是网上相关的资料较少，而且官方的文档写的太简单了，很多坑还要自己去摸索。于是记录一下和各位分享，如有错误之处请各位指出！  PS: 先说个题外话吧，CallKit功能在iOS 10的时候还不太稳定，i">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2665383-e1a2d7ab18506810.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2665383-c7c5d8e8809480bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2665383-bb94a974d77e4e75.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2665383-6a832bc0e0f65e67.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2665383-2261a7358b0a6964.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-10-07T08:13:37.781Z">
+<meta property="og:image" content="https://crmo.github.io/images/fileUpload.jpeg">
+<meta property="og:updated_time" content="2018-10-12T00:52:31.434Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS用CallKit实现来电识别">
-<meta name="twitter:description" content="2018.5.28日更新CallKit在国内已经被禁止上架了，亲测被拒。企业版还能继续使用，想上架就乖乖屏蔽吧（要是哪位同学成功上架了一定私信我怎么做到的。）  前言 最近需要实现一个新需求，用iOS 10出的CallKit实现将APP的通讯录的信息同步到系统中，可以不把人员信息加到通讯录中，实现来电号码识别。这个功能在xx安全卫士、xx管家中很早就实现了，但是网上相关的资料较少，而且官方的文档">
+<meta name="twitter:description" content="前言 最近需要实现一个新需求，用iOS 10出的CallKit实现将APP的通讯录的信息同步到系统中，可以不把人员信息加到通讯录中，实现来电号码识别。这个功能在xx安全卫士、xx管家中很早就实现了，但是网上相关的资料较少，而且官方的文档写的太简单了，很多坑还要自己去摸索。于是记录一下和各位分享，如有错误之处请各位指出！  PS: 先说个题外话吧，CallKit功能在iOS 10的时候还不太稳定，i">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2665383-e1a2d7ab18506810.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -395,10 +396,7 @@
       
 
       
-        <blockquote>
-<p>2018.5.28日更新<br>CallKit在国内已经被禁止上架了，亲测被拒。企业版还能继续使用，想上架就乖乖屏蔽吧（要是哪位同学成功上架了一定私信我怎么做到的。）</p>
-</blockquote>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
 <p>最近需要实现一个新需求，用iOS 10出的CallKit实现将APP的通讯录的信息同步到系统中，可以不把人员信息加到通讯录中，实现来电号码识别。这个功能在xx安全卫士、xx管家中很早就实现了，但是网上相关的资料较少，而且官方的文档写的太简单了，很多坑还要自己去摸索。于是记录一下和各位分享，如有错误之处请各位指出！</p>
 </blockquote>
 <p>PS: 先说个题外话吧，CallKit功能在iOS 10的时候还不太稳定，iOS 10刚出来的时候为了体验骚扰拦截功能，手贱装了两个不同的拦截APP，然后就悲剧了。盗一张网上的图：</p>
@@ -457,6 +455,13 @@
 </ol>
 <h3 id="获取APP-Groups文件路径"><a href="#获取APP-Groups文件路径" class="headerlink" title="获取APP Groups文件路径"></a>获取APP Groups文件路径</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSFileManager</span> *fileManager = [<span class="built_in">NSFileManager</span> defaultManager];</span><br><span class="line">    <span class="built_in">NSURL</span> *containerURL = [[<span class="built_in">NSFileManager</span> defaultManager] containerURLForSecurityApplicationGroupIdentifier:<span class="keyword">self</span>.groupIdentifier];</span><br><span class="line">    containerURL = [containerURL URLByAppendingPathComponent:<span class="string">@"CallDirectoryData"</span>];</span><br><span class="line">    <span class="built_in">NSString</span>* filePath = containerURL.path;</span><br></pre></td></tr></table></figure>
 <h3 id="进度监控"><a href="#进度监控" class="headerlink" title="进度监控"></a>进度监控</h3><p>在xx安全卫士中，开启骚扰电话拦截功能有一个进度条，非常的直观。但是在extension中是没法更新UI的，有一种实现方式，可以用开源框架<a href="https://github.com/mutualmobile/MMWormhole" target="_blank" rel="noopener">MMWormhole</a>来实现APP与extension通信，然后把进度从extension传到APP中，在APP中更新进度条。理论上该方案是可行的，感兴趣的同学可以尝试下。</p>
+<h2 id="关于上架"><a href="#关于上架" class="headerlink" title="关于上架"></a>关于上架</h2><p>在加上CallKit第一次上架时，收到了苹果的拒信，说CallKit在中国区被禁止了。</p>
+<p><img src="/images/fileUpload.jpeg" alt="fileUpload"></p>
+<p>后来观察了下xx安全卫士一直在正常更新，猜想苹果只是禁止了CallKit关于VOIP这部分功能。<br>遇到苹果的拒信不要慌，录制一个来电识别的功能演示视频，放到Youtube，然后在备注里面解释一下，就可以通过审核了。</p>
+<p>给一个审核备注模板：</p>
+<blockquote>
+<p>关于CallKit，我们遵守中国的法律，没有使用VOIP，我们仅使用了Call Directory。我们应用内有一个公司内部通讯录，为了增加用户员工沟通效率，我们在电话页面自动识别内部通讯录的人员 ，并展示姓名与岗位。我们录制了一个演示视频：视频地址</p>
+</blockquote>
 <hr>
 <ul>
 <li>参考链接<br><a href="https://developer.apple.com/documentation/callkit" target="_blank" rel="noopener">https://developer.apple.com/documentation/callkit</a><br><a href="https://developer.apple.com/videos/play/wwdc2016/230/" target="_blank" rel="noopener">https://developer.apple.com/videos/play/wwdc2016/230/</a><br><a href="https://colin1994.github.io/2016/06/17/Call-Directory-Extension-Study/" target="_blank" rel="noopener">https://colin1994.github.io/2016/06/17/Call-Directory-Extension-Study/</a><br><a href="https://yunissong.github.io/2017/03/29/CallKit/" target="_blank" rel="noopener">https://yunissong.github.io/2017/03/29/CallKit/</a><br><a href="http://www.jianshu.com/p/7f88cbe7948c" target="_blank" rel="noopener">http://www.jianshu.com/p/7f88cbe7948c</a><br><a href="https://www.raywenderlich.com/150015/callkit-tutorial-ios" target="_blank" rel="noopener">https://www.raywenderlich.com/150015/callkit-tutorial-ios</a></li>
@@ -664,7 +669,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Call-Directory-app-extension"><span class="nav-number">2.</span> <span class="nav-text">一、Call Directory app extension</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CXCallDirectoryProvider"><span class="nav-number">2.1.</span> <span class="nav-text">CXCallDirectoryProvider</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CXCallDirectoryExtensionContext"><span class="nav-number">2.2.</span> <span class="nav-text">CXCallDirectoryExtensionContext</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CXCallDirectoryManager"><span class="nav-number">2.3.</span> <span class="nav-text">CXCallDirectoryManager</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、实战"><span class="nav-number">3.</span> <span class="nav-text">二、实战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建extension"><span class="nav-number">3.1.</span> <span class="nav-text">创建extension</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CallDirectoryHandler"><span class="nav-number">3.2.</span> <span class="nav-text">CallDirectoryHandler</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查授权"><span class="nav-number">3.3.</span> <span class="nav-text">检查授权</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写入数据"><span class="nav-number">3.4.</span> <span class="nav-text">写入数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证"><span class="nav-number">3.5.</span> <span class="nav-text">验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、extension和containing-app数据共享"><span class="nav-number">4.</span> <span class="nav-text">三、extension和containing app数据共享</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取APP-Groups文件路径"><span class="nav-number">4.1.</span> <span class="nav-text">获取APP Groups文件路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进度监控"><span class="nav-number">4.2.</span> <span class="nav-text">进度监控</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Call-Directory-app-extension"><span class="nav-number">2.</span> <span class="nav-text">一、Call Directory app extension</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CXCallDirectoryProvider"><span class="nav-number">2.1.</span> <span class="nav-text">CXCallDirectoryProvider</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CXCallDirectoryExtensionContext"><span class="nav-number">2.2.</span> <span class="nav-text">CXCallDirectoryExtensionContext</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CXCallDirectoryManager"><span class="nav-number">2.3.</span> <span class="nav-text">CXCallDirectoryManager</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、实战"><span class="nav-number">3.</span> <span class="nav-text">二、实战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建extension"><span class="nav-number">3.1.</span> <span class="nav-text">创建extension</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CallDirectoryHandler"><span class="nav-number">3.2.</span> <span class="nav-text">CallDirectoryHandler</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查授权"><span class="nav-number">3.3.</span> <span class="nav-text">检查授权</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写入数据"><span class="nav-number">3.4.</span> <span class="nav-text">写入数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证"><span class="nav-number">3.5.</span> <span class="nav-text">验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、extension和containing-app数据共享"><span class="nav-number">4.</span> <span class="nav-text">三、extension和containing app数据共享</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取APP-Groups文件路径"><span class="nav-number">4.1.</span> <span class="nav-text">获取APP Groups文件路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进度监控"><span class="nav-number">4.2.</span> <span class="nav-text">进度监控</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于上架"><span class="nav-number">5.</span> <span class="nav-text">关于上架</span></a></li></ol></div>
             
 
           </div>

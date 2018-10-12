@@ -4,6 +4,23 @@
 
     
   <url>
+    <loc>https://crmo.github.io/2018/03/03/iOS%E7%94%A8CallKit%E5%AE%9E%E7%8E%B0%E6%9D%A5%E7%94%B5%E8%AF%86%E5%88%AB/</loc>
+    <lastmod>2018-10-12T00:52:31.434Z</lastmod>
+    <data>
+        <display>
+        <title>iOS用CallKit实现来电识别</title>
+        <pubTime>2018-03-03T09:33:54.000Z</pubTime>
+        
+        <tag>iOS知识小结</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://crmo.github.io/2018/10/07/%E8%AE%B0%E2%80%9C%E9%A6%99%E8%95%89%E6%92%AD%E6%94%BE%E5%99%A8%E2%80%9D%E4%B8%8A%E6%9E%B6%E7%9A%84%E8%BE%9B%E9%85%B8%E5%8E%86%E7%A8%8B/</loc>
     <lastmod>2018-10-07T08:50:30.398Z</lastmod>
     <data>
@@ -435,23 +452,6 @@
         <display>
         <title>从一个AFNetworking循环引用说起</title>
         <pubTime>2018-08-27T16:00:00.000Z</pubTime>
-        
-        <tag>iOS知识小结</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://crmo.github.io/2018/03/03/iOS%E7%94%A8CallKit%E5%AE%9E%E7%8E%B0%E6%9D%A5%E7%94%B5%E8%AF%86%E5%88%AB/</loc>
-    <lastmod>2018-10-07T08:13:37.781Z</lastmod>
-    <data>
-        <display>
-        <title>iOS用CallKit实现来电识别</title>
-        <pubTime>2018-03-03T09:33:54.000Z</pubTime>
         
         <tag>iOS知识小结</tag>
          
