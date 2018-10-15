@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://crmo.github.io/"/>
-  <updated>2018-10-13T01:59:53.731Z</updated>
+  <updated>2018-10-15T00:58:35.183Z</updated>
   <id>https://crmo.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>iOS用CallKit实现来电识别</title>
+    <title>应对苹果隐私政策看我就够了</title>
     <link href="https://crmo.github.io/2018/10/13/%E5%BA%94%E5%AF%B9%E8%8B%B9%E6%9E%9C%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96%E7%9C%8B%E6%88%91%E5%B0%B1%E5%A4%9F%E4%BA%86/"/>
     <id>https://crmo.github.io/2018/10/13/应对苹果隐私政策看我就够了/</id>
     <published>2018-10-12T16:00:00.000Z</published>
-    <updated>2018-10-13T01:59:53.731Z</updated>
+    <updated>2018-10-15T00:58:35.183Z</updated>
     
     <content type="html"><![CDATA[<p>国庆假期回来准备提交新版本到App Store，遇到苹果新政策，实测下来影响不大，应对还算比较简单，总结一下分享给大家。</p><h2 id="政策说明"><a href="#政策说明" class="headerlink" title="政策说明"></a>政策说明</h2><p><img src="/images/QQ20181012-090233.png" alt="QQ20181012-090233"></p><p>从2018年10月3号起，所有新提交的App都必须提供隐私条例，<a href="https://developer.apple.com/news/?id=08312018a" target="_blank" rel="noopener">官方连接</a>。</p><p>对于隐私条例，苹果审核条例是这么说明的。</p><p><img src="/images/QQ20181012-085839.png" alt="QQ20181012-085839"></p><p>需要在两个地方提供隐私条例：</p><ol><li>元数据</li><li>应用内有明显的入口</li></ol><h2 id="生成隐私条例"><a href="#生成隐私条例" class="headerlink" title="生成隐私条例"></a>生成隐私条例</h2><p>关于隐私条例，网上有各种模板，弄一个改改就行了，这里推荐一个<a href="https://www.freeprivacypolicy.com" target="_blank" rel="noopener">自动生成的网站</a>。<br>免费生成，还提供一个链接，挂在它们网站，就不用自己搞服务器了。例如<a href="https://www.freeprivacypolicy.com/privacy/view/cb2289ee81ec0d2f61ec1790bccf861d" target="_blank" rel="noopener">我给App生成的隐私条例</a></p><p><img src="/images/QQ20181012-090746.png" alt="QQ20181012-090746"></p><h2 id="集成隐私条例"><a href="#集成隐私条例" class="headerlink" title="集成隐私条例"></a>集成隐私条例</h2><p>第一步：把刚刚生成的URL填在元数据里</p><p><img src="/images/QQ20181012-091050.png" alt="QQ20181012-091050"></p><p>第二步：在应用内加一个页面，开一个WebView加载刚刚生成的URL，例如我就放在了“关于-隐私条例”</p><p>第三步：提交审核时，在备注里面说明，隐私条例的入口在哪里。（这一步可能不要也行，不过为了稳妥我加上了，给苹果审核团队讲清楚总是好的）</p><p>第二天就上架成功了。</p>]]></content>
     
