@@ -103,20 +103,20 @@
   <meta name="keywords" content="iOS知识小结," />
 
 
-<meta name="description" content="问题描述项目中为了实现一个全局遮罩界面，使用了一个UIWindow的子类MyWindow，MyWindow为了实现回调定义了代理MyWindowDelegate。代码大致如下： 123456789101112131415161718192021@protocol MyWindowDelegate &amp;lt;NSObject&amp;gt;@end@interface MyWindow : UIWindow@">
+<meta name="description" content="今天在看WebViewJavascriptBridge源码的时候发现一个神奇的宏，在定义较长字符串时很实用。举个例子，将一段js代码存到一个变量，为了便于阅读需要加入换行，需要在每行结束加上\。 123456NSString *str = @&quot;function() &amp;#123; \	if (window.WebViewJavascriptBridge) &amp;#123; \		return; \	&amp;#">
 <meta name="keywords" content="iOS知识小结">
 <meta property="og:type" content="article">
-<meta property="og:title" content="记一个实现UIWindow子类的小坑">
-<meta property="og:url" content="https://crmo.github.io/2018/07/19/记一个实现UIWindow子类的小坑/index.html">
+<meta property="og:title" content="一个定义长字符串的实用宏">
+<meta property="og:url" content="https://crmo.github.io/2018/10/16/一个定义长字符串的实用宏/index.html">
 <meta property="og:site_name" content="CR.MO`s Blog">
-<meta property="og:description" content="问题描述项目中为了实现一个全局遮罩界面，使用了一个UIWindow的子类MyWindow，MyWindow为了实现回调定义了代理MyWindowDelegate。代码大致如下： 123456789101112131415161718192021@protocol MyWindowDelegate &amp;lt;NSObject&amp;gt;@end@interface MyWindow : UIWindow@">
+<meta property="og:description" content="今天在看WebViewJavascriptBridge源码的时候发现一个神奇的宏，在定义较长字符串时很实用。举个例子，将一段js代码存到一个变量，为了便于阅读需要加入换行，需要在每行结束加上\。 123456NSString *str = @&quot;function() &amp;#123; \	if (window.WebViewJavascriptBridge) &amp;#123; \		return; \	&amp;#">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://crmo.github.io/images/15319834677166.jpg">
-<meta property="og:updated_time" content="2018-10-07T08:13:37.852Z">
+<meta property="og:image" content="https://crmo.github.io/images/15396963641371.jpg">
+<meta property="og:updated_time" content="2018-10-17T00:53:35.361Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="记一个实现UIWindow子类的小坑">
-<meta name="twitter:description" content="问题描述项目中为了实现一个全局遮罩界面，使用了一个UIWindow的子类MyWindow，MyWindow为了实现回调定义了代理MyWindowDelegate。代码大致如下： 123456789101112131415161718192021@protocol MyWindowDelegate &amp;lt;NSObject&amp;gt;@end@interface MyWindow : UIWindow@">
-<meta name="twitter:image" content="https://crmo.github.io/images/15319834677166.jpg">
+<meta name="twitter:title" content="一个定义长字符串的实用宏">
+<meta name="twitter:description" content="今天在看WebViewJavascriptBridge源码的时候发现一个神奇的宏，在定义较长字符串时很实用。举个例子，将一段js代码存到一个变量，为了便于阅读需要加入换行，需要在每行结束加上\。 123456NSString *str = @&quot;function() &amp;#123; \	if (window.WebViewJavascriptBridge) &amp;#123; \		return; \	&amp;#">
+<meta name="twitter:image" content="https://crmo.github.io/images/15396963641371.jpg">
 
 
 
@@ -125,7 +125,7 @@
 
 
 
-  <link rel="canonical" href="https://crmo.github.io/2018/07/19/记一个实现UIWindow子类的小坑/"/>
+  <link rel="canonical" href="https://crmo.github.io/2018/10/16/一个定义长字符串的实用宏/"/>
 
 
 
@@ -134,7 +134,7 @@
     sidebar: "",
   };
 </script>
-  <title>记一个实现UIWindow子类的小坑 | CR.MO`s Blog</title>
+  <title>一个定义长字符串的实用宏 | CR.MO`s Blog</title>
   
 
 
@@ -306,7 +306,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://crmo.github.io/2018/07/19/记一个实现UIWindow子类的小坑/">
+    <link itemprop="mainEntityOfPage" href="https://crmo.github.io/2018/10/16/一个定义长字符串的实用宏/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CR.MO">
@@ -323,7 +323,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">记一个实现UIWindow子类的小坑</h2>
+          <h2 class="post-title" itemprop="name headline">一个定义长字符串的实用宏</h2>
         
 
         <div class="post-meta">
@@ -335,7 +335,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-19T00:00:00+08:00">2018-07-19</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-16T00:00:00+08:00">2018-10-16</time>
             
 
             
@@ -353,9 +353,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/07/19/记一个实现UIWindow子类的小坑/#comments" itemprop="discussionUrl">
+                <a href="/2018/10/16/一个定义长字符串的实用宏/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/07/19/记一个实现UIWindow子类的小坑/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/10/16/一个定义长字符串的实用宏/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -391,14 +391,14 @@
       
 
       
-        <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>项目中为了实现一个全局遮罩界面，使用了一个UIWindow的子类<code>MyWindow</code>，<code>MyWindow</code>为了实现回调定义了代理<code>MyWindowDelegate</code>。代码大致如下：</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">MyWindowDelegate</span> &lt;<span class="title">NSObject</span>&gt;</span></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MyWindow</span> : <span class="title">UIWindow</span></span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>)<span class="keyword">id</span>&lt;MyWindowDelegate&gt; delegate;</span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">MyWindow</span></span></span><br><span class="line">- (<span class="keyword">instancetype</span>)init</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> init];</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.windowLevel = <span class="built_in">UIWindowLevelNormal</span>;</span><br><span class="line">        <span class="keyword">self</span>.backgroundColor = [<span class="built_in">UIColor</span> whiteColor];</span><br><span class="line">        <span class="built_in">UIViewController</span> *vc = [[ViewController2 alloc] init];</span><br><span class="line">        <span class="keyword">self</span>.rootViewController = vc;</span><br><span class="line">        <span class="keyword">self</span>.hidden = <span class="literal">NO</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-<p>然后在实现界面横屏时，发现整个UIWindow不响应横竖屏事件。刚开始以为横竖屏设置被关闭了，查了各种资料，发现这种写法是没有问题的。设置UIWindow的rootViewController，然后把所有子view都加到rootViewController，系统会处理横竖屏问题。</p>
-<h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><p>用Runtime把UIWindow的私有变量打出来，就发现问题了。</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;objc/runtime.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)printUIWindowIvars &#123;</span><br><span class="line">    Ivar *ivars = class_copyIvarList([<span class="built_in">UIWindow</span> <span class="keyword">class</span>], &amp;count);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">        Ivar ivar = ivars[i];</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%s"</span>, ivar_getName(ivar));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们看看输出，发现有个私有变量<code>_delegate</code>。</p>
-<p><img src="/images/15319834677166.jpg" alt="15319834677166"></p>
-<p><code>MyWindow</code>的属性<code>delegate</code>覆盖了父类<code>UIWindow</code>的变量，导致横竖屏切换事件失效。在代理命名的时候一定要注意啊，<code>delegate</code>看来不是一个好的实践，应该加前缀区分避免覆盖父类的实现，特别是这种私有的变量。</p>
+        <p>今天在看<code>WebViewJavascriptBridge</code>源码的时候发现一个神奇的宏，在定义较长字符串时很实用。<br>举个例子，将一段js代码存到一个变量，为了便于阅读需要加入换行，需要在每行结束加上<code>\</code>。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *str = <span class="string">@"function() &#123; \</span></span><br><span class="line"><span class="string">	if (window.WebViewJavascriptBridge) &#123; \</span></span><br><span class="line"><span class="string">		return; \</span></span><br><span class="line"><span class="string">	&#125; \</span></span><br><span class="line"><span class="string">&#125;)(); \</span></span><br><span class="line"><span class="string">	"</span>;</span><br></pre></td></tr></table></figure>
+<p>这时，可以用宏来优化。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#define LONG_STRING_DEFINE(x) #x</span></span><br><span class="line"><span class="built_in">NSString</span> *str = @LONG_STRING_DEFINE(function() &#123;</span><br><span class="line">	<span class="keyword">if</span> (window.WebViewJavascriptBridge) &#123;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)();</span><br><span class="line">	);</span><br></pre></td></tr></table></figure>
+<p>宏展开后代码如下</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *str = <span class="string">@";(function() &#123; if (window.WebViewJavascriptBridge) &#123; return; &#125;)();"</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="用Xcode看宏展开"><a href="#用Xcode看宏展开" class="headerlink" title="用Xcode看宏展开"></a>用Xcode看宏展开</h2><p>打开<code>Assistant Editor</code>，选择<code>Preproces</code>，就可以看到展开的宏。</p>
+<p><img src="/images/15396963641371.jpg" alt="15396963641371"></p>
 
       
     </div>
@@ -432,8 +432,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/18/一个autoreleasepool的使用场景/" rel="next" title="一个autoreleasepool的使用场景">
-                <i class="fa fa-chevron-left"></i> 一个autoreleasepool的使用场景
+              <a href="/2018/10/13/应对苹果隐私政策看我就够了/" rel="next" title="应对苹果隐私政策看我就够了">
+                <i class="fa fa-chevron-left"></i> 应对苹果隐私政策看我就够了
               </a>
             
           </div>
@@ -441,10 +441,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/23/iOS横竖屏总结/" rel="prev" title="iOS横竖屏总结">
-                iOS横竖屏总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -602,7 +598,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题分析"><span class="nav-number">2.</span> <span class="nav-text">问题分析</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#用Xcode看宏展开"><span class="nav-number">1.</span> <span class="nav-text">用Xcode看宏展开</span></a></li></ol></div>
             
 
           </div>
@@ -789,9 +785,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'https://crmo.github.io/2018/07/19/记一个实现UIWindow子类的小坑/';
-        this.page.identifier = '2018/07/19/记一个实现UIWindow子类的小坑/';
-        this.page.title = '记一个实现UIWindow子类的小坑';
+        this.page.url = 'https://crmo.github.io/2018/10/16/一个定义长字符串的实用宏/';
+        this.page.identifier = '2018/10/16/一个定义长字符串的实用宏/';
+        this.page.title = '一个定义长字符串的实用宏';
       };
       function loadComments () {
         var d = document, s = d.createElement('script');
