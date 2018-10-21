@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[一个定义长字符串的实用宏]]></title>
-    <url>%2F2018%2F10%2F16%2F%E4%B8%80%E4%B8%AA%E5%AE%9A%E4%B9%89%E9%95%BF%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%AE%9E%E7%94%A8%E5%AE%8F%2F</url>
+    <title><![CDATA[iOS定义长字符串的实用宏]]></title>
+    <url>%2F2018%2F10%2F16%2FiOS%E5%AE%9A%E4%B9%89%E9%95%BF%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%AE%9E%E7%94%A8%E5%AE%8F%2F</url>
     <content type="text"><![CDATA[今天在看WebViewJavascriptBridge源码的时候发现一个神奇的宏，在定义较长字符串时很实用。举个例子，将一段js代码存到一个变量，为了便于阅读需要加入换行，需要在每行结束加上\。 123456NSString *str = @"function() &#123; \ if (window.WebViewJavascriptBridge) &#123; \ return; \ &#125; \&#125;)(); \ "; 这时，可以用宏来优化。 1234567#define LONG_STRING_DEFINE(x) #xNSString *str = @LONG_STRING_DEFINE(function() &#123; if (window.WebViewJavascriptBridge) &#123; return; &#125;&#125;)(); ); 宏展开后代码如下 1NSString *str = @";(function() &#123; if (window.WebViewJavascriptBridge) &#123; return; &#125;)();"; 用Xcode看宏展开打开Assistant Editor，选择Preproces，就可以看到展开的宏。]]></content>
       <tags>
         <tag>iOS知识小结</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[应对苹果隐私政策看我就够了]]></title>
+    <title><![CDATA[应对iOS隐私政策三步曲]]></title>
     <url>%2F2018%2F10%2F13%2F%E5%BA%94%E5%AF%B9%E8%8B%B9%E6%9E%9C%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96%E7%9C%8B%E6%88%91%E5%B0%B1%E5%A4%9F%E4%BA%86%2F</url>
     <content type="text"><![CDATA[国庆假期回来准备提交新版本到App Store，遇到苹果新政策，实测下来影响不大，应对还算比较简单，总结一下分享给大家。 政策说明 从2018年10月3号起，所有新提交的App都必须提供隐私条例，官方连接。 对于隐私条例，苹果审核条例是这么说明的。 需要在两个地方提供隐私条例： 元数据 应用内有明显的入口 生成隐私条例关于隐私条例，网上有各种模板，弄一个改改就行了，这里推荐一个自动生成的网站。免费生成，还提供一个链接，挂在它们网站，就不用自己搞服务器了。例如我给App生成的隐私条例 集成隐私条例第一步：把刚刚生成的URL填在元数据里 第二步：在应用内加一个页面，开一个WebView加载刚刚生成的URL，例如我就放在了“关于-隐私条例” 第三步：提交审核时，在备注里面说明，隐私条例的入口在哪里。（这一步可能不要也行，不过为了稳妥我加上了，给苹果审核团队讲清楚总是好的） 第二天就上架成功了。]]></content>
       <tags>
