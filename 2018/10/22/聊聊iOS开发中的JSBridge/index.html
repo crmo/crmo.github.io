@@ -113,8 +113,8 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://crmo.github.io/images/tower-bridge-2324875_1280.jpg">
 <meta property="og:image" content="https://crmo.github.io/images/JSBridge.png">
-<meta property="og:image" content="https://crmo.github.io/2018/10/22/聊聊iOS开发中的JSBridge/media/15394117431189/15401284999756.jpg">
-<meta property="og:updated_time" content="2018-10-22T13:36:56.389Z">
+<meta property="og:image" content="https://crmo.github.io/images/15401284999756.jpg">
+<meta property="og:updated_time" content="2018-10-22T13:40:18.102Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="聊聊iOS开发中的JSBridge">
 <meta name="twitter:description" content="前言Hybrid App（混合模式移动应用）是指介于web-app、native-app这两者之间的app，兼具“Native App良好用户交互体验的优势”和“Web App跨平台开发的优势”。谈到Hybrid App，JS与Native code的交互就是一个绕不开的话题，这时就需要“一座桥”来连接两端。JSBridge架起了一座连接JavaScript与Native Code的桥梁，让两端">
@@ -422,7 +422,7 @@
 <p>JS调用非常简单，一句话搞定。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">callNative(<span class="string">"alertMessage"</span>, <span class="string">"Hello world!"</span>)</span><br></pre></td></tr></table></figure>
 <h2 id="性能对比"><a href="#性能对比" class="headerlink" title="性能对比"></a>性能对比</h2><p>为了验证三种方案的性能，设计了个简单的实验，分别执行了100、1000、10000次调用，测试手机iPhone X，系统iOS 12，时间对比如下图所示。<br>先说结论，JSCore的性能是最优的，<code>JSCore&gt;Ajax&gt;Iframe</code>。在低并发的时候三种方案差距不大，执行次数10000次时Iframe效率就很低了，Ajax次之，JSCore性能很稳定。当然实际使用的时候不会出现调用10000次这种极限情况。<br><code>Cordova</code>对于并发有个优化策略，很值得参考，将并发的多次调用打包合并为一次处理。</p>
-<p><img src="media/15394117431189/15401284999756.jpg" alt=""></p>
+<p><img src="/images/15401284999756.jpg" alt="15401284999756"></p>
 
       
     </div>
