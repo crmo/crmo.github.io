@@ -100,21 +100,19 @@
 
 
   
-  <meta name="keywords" content="iOS知识小结," />
+  <meta name="keywords" content="Hexo, iOS" />
 
 
-<meta name="description" content="问题描述最近遇到一个神奇的Bug，通过UIWebView的stringByEvaluatingJavaScriptFromString:方法执行一段JavaScript代码时，JavaScript报错:  SyntaxError: Unexpected EOF  经过仔细的排查，发现待执行的JavaScript代码里面包含U+2028字符。还找到了Stack Overflow相关讨论。JavaSc">
-<meta name="keywords" content="iOS知识小结">
-<meta property="og:type" content="article">
-<meta property="og:title" content="记一个行结束符引发的JS报错">
-<meta property="og:url" content="https://crmo.github.io/2018/09/05/记一个行结束符引发的JS报错/index.html">
+<meta name="description" content="分享iOS的学习点滴">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CR.MO`s Blog">
+<meta property="og:url" content="https://crmo.github.io/page/4/index.html">
 <meta property="og:site_name" content="CR.MO`s Blog">
-<meta property="og:description" content="问题描述最近遇到一个神奇的Bug，通过UIWebView的stringByEvaluatingJavaScriptFromString:方法执行一段JavaScript代码时，JavaScript报错:  SyntaxError: Unexpected EOF  经过仔细的排查，发现待执行的JavaScript代码里面包含U+2028字符。还找到了Stack Overflow相关讨论。JavaSc">
+<meta property="og:description" content="分享iOS的学习点滴">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-07T08:13:37.773Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="记一个行结束符引发的JS报错">
-<meta name="twitter:description" content="问题描述最近遇到一个神奇的Bug，通过UIWebView的stringByEvaluatingJavaScriptFromString:方法执行一段JavaScript代码时，JavaScript报错:  SyntaxError: Unexpected EOF  经过仔细的排查，发现待执行的JavaScript代码里面包含U+2028字符。还找到了Stack Overflow相关讨论。JavaSc">
+<meta name="twitter:title" content="CR.MO`s Blog">
+<meta name="twitter:description" content="分享iOS的学习点滴">
 
 
 
@@ -123,7 +121,7 @@
 
 
 
-  <link rel="canonical" href="https://crmo.github.io/2018/09/05/记一个行结束符引发的JS报错/"/>
+  <link rel="canonical" href="https://crmo.github.io/page/4/"/>
 
 
 
@@ -132,7 +130,7 @@
     sidebar: "",
   };
 </script>
-  <title>记一个行结束符引发的JS报错 | CR.MO`s Blog</title>
+  <title>CR.MO`s Blog</title>
   
 
 
@@ -179,7 +177,8 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -287,9 +286,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -304,7 +303,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://crmo.github.io/2018/09/05/记一个行结束符引发的JS报错/">
+    <link itemprop="mainEntityOfPage" href="https://crmo.github.io/2016/11/20/Golang编码规范/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CR.MO">
@@ -321,7 +320,9 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">记一个行结束符引发的JS报错</h2>
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/11/20/Golang编码规范/" itemprop="url">Golang编码规范</a></h2>
         
 
         <div class="post-meta">
@@ -333,7 +334,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-05T00:00:00+08:00">2018-09-05</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-20T22:33:54+08:00">2016-11-20</time>
             
 
             
@@ -351,9 +352,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/09/05/记一个行结束符引发的JS报错/#comments" itemprop="discussionUrl">
+                <a href="/2016/11/20/Golang编码规范/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/09/05/记一个行结束符引发的JS报错/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2016/11/20/Golang编码规范/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -362,14 +363,6 @@
           
           
 
-          
-            <span class="post-meta-divider">|</span>
-            <span class="post-meta-item-icon"
-            >
-            <i class="fa fa-eye"></i>
-             Views: 
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
-            </span>
           
 
           
@@ -389,21 +382,28 @@
       
 
       
-        <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>最近遇到一个神奇的Bug，通过<code>UIWebView</code>的<code>stringByEvaluatingJavaScriptFromString:</code>方法执行一段<code>JavaScript</code>代码时，<code>JavaScript</code>报错:</p>
-<blockquote>
-<p>SyntaxError: Unexpected EOF</p>
-</blockquote>
-<p>经过仔细的排查，发现待执行的<code>JavaScript</code>代码里面包含<code>U+2028</code>字符。还找到了<a href="https://stackoverflow.com/questions/2965293/javascript-parse-error-on-u2028-unicode-character" target="_blank" rel="noopener">Stack Overflow相关讨论</a>。<br><code>JavaScript</code>解析器会把行分隔符<code>U+2028</code>和段落分隔符<code>U+2029</code>解析成一行的结束，代码里要是包含这两个字符相当于换行，例如：</p>
-<blockquote>
-<p>alert(“\u2028”)</p>
-</blockquote>
-<p>就会被解析为</p>
-<blockquote>
-<p>alert(“<br>“)</p>
-</blockquote>
-<p>于是就产生了语法错误。</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>我用的方法比较简单、粗暴，在执行<code>JavaScript</code>代码前，直接过滤掉这两个字符。代码如下：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// </span></span><br><span class="line">    javaScriptString = [javaScriptString stringByReplacingOccurrencesOfString:<span class="string">@"\u2028"</span> withString:<span class="string">@""</span>];</span><br><span class="line">    javaScriptString = [javaScriptString stringByReplacingOccurrencesOfString:<span class="string">@"\u2029"</span> withString:<span class="string">@""</span>];</span><br><span class="line">    <span class="built_in">NSString</span>* ret = [(<span class="built_in">UIWebView</span>*)_engineWebView stringByEvaluatingJavaScriptFromString:javaScriptString];</span><br></pre></td></tr></table></figure>
+        
+          
+          
+gofmt
+大部分的格式问题可以通过gofmt解决，gofmt自动格式化代码，保证所有的go代码与官方推荐的格式保持一致，于是所有格式有关问题，都以gofmt的结果为准。
+
+行长
+
+
+一行最长不超过80个字符，超过的使用换行展示，尽量保持格式优雅。
+
+注释
+在编码阶段应该同步写好变量、函数、包的注
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/11/20/Golang编码规范/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -421,40 +421,14 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/iOS知识小结/" rel="tag"># iOS知识小结</a>
-          
-        </div>
+
+      
+
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/08/28/从一个AFNetworking循环引用说起/" rel="next" title="从一个AFNetworking循环引用说起">
-                <i class="fa fa-chevron-left"></i> 从一个AFNetworking循环引用说起
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/07/记“香蕉播放器”上架的辛酸历程/" rel="prev" title="记“香蕉播放器”上架的辛酸历程">
-                记“香蕉播放器”上架的辛酸历程 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -464,35 +438,18 @@
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-        
-<script>
-  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
-</script>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+  </nav>
 
-      
-    </div>
-  </div>
 
 
           </div>
           
-
-  
-    <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    </div>
-
-  
-
-
 
         </div>
         
@@ -513,17 +470,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -596,22 +544,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案"><span class="nav-number">2.</span> <span class="nav-text">解决方案</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -772,10 +704,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.0.4"></script>
-
-
 
   
 
@@ -790,23 +718,6 @@
     <script id="dsq-count-scr" src="https://CRMO.disqus.com/count.js" async></script>
   
 
-  
-    <script type="text/javascript">
-      var disqus_config = function () {
-        this.page.url = 'https://crmo.github.io/2018/09/05/记一个行结束符引发的JS报错/';
-        this.page.identifier = '2018/09/05/记一个行结束符引发的JS报错/';
-        this.page.title = '记一个行结束符引发的JS报错';
-      };
-      function loadComments () {
-        var d = document, s = d.createElement('script');
-        s.src = 'https://CRMO.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      }
-      
-        loadComments();
-      
-    </script>
   
 
 
