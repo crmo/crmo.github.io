@@ -103,18 +103,21 @@
   <meta name="keywords" content="iOS知识小结," />
 
 
-<meta name="description" content="问题描述最近遇到一个神奇的Bug，通过UIWebView的stringByEvaluatingJavaScriptFromString:方法执行一段JavaScript代码时，JavaScript报错:  SyntaxError: Unexpected EOF  经过仔细的排查，发现待执行的JavaScript代码里面包含U+2028字符。还找到了Stack Overflow相关讨论。JavaSc">
+<meta name="description" content="本文是我阅读书籍《iOS CORE ANIMATION ADVANCED TECHNIQUES》的读书笔记，感谢原书作者及译者的分享！推荐大家有时间可以读读原书，写的很精彩。中文版  什么是Core Animation，相信很多同学对于它既熟悉又陌生，从名字上来看它应该是一个做动画的框架，其实动画只是它的一部分，它曾经叫做Layer Kit。 引用书中的定义：  Core Animation是一">
 <meta name="keywords" content="iOS知识小结">
 <meta property="og:type" content="article">
-<meta property="og:title" content="记一个行结束符引发的JS报错">
-<meta property="og:url" content="https://crmo.github.io/2018/09/05/记一个行结束符引发的JS报错/index.html">
+<meta property="og:title" content="Core Animation学习笔记（一）">
+<meta property="og:url" content="https://crmo.github.io/2018/12/02/Core Animation学习笔记（一）/index.html">
 <meta property="og:site_name" content="CR.MO`s Blog">
-<meta property="og:description" content="问题描述最近遇到一个神奇的Bug，通过UIWebView的stringByEvaluatingJavaScriptFromString:方法执行一段JavaScript代码时，JavaScript报错:  SyntaxError: Unexpected EOF  经过仔细的排查，发现待执行的JavaScript代码里面包含U+2028字符。还找到了Stack Overflow相关讨论。JavaSc">
+<meta property="og:description" content="本文是我阅读书籍《iOS CORE ANIMATION ADVANCED TECHNIQUES》的读书笔记，感谢原书作者及译者的分享！推荐大家有时间可以读读原书，写的很精彩。中文版  什么是Core Animation，相信很多同学对于它既熟悉又陌生，从名字上来看它应该是一个做动画的框架，其实动画只是它的一部分，它曾经叫做Layer Kit。 引用书中的定义：  Core Animation是一">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-07T08:13:37.773Z">
+<meta property="og:image" content="https://crmo.github.io/images/15436482245238.jpg">
+<meta property="og:image" content="https://crmo.github.io/images/15436511549803.jpg">
+<meta property="og:updated_time" content="2018-12-02T07:48:09.948Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="记一个行结束符引发的JS报错">
-<meta name="twitter:description" content="问题描述最近遇到一个神奇的Bug，通过UIWebView的stringByEvaluatingJavaScriptFromString:方法执行一段JavaScript代码时，JavaScript报错:  SyntaxError: Unexpected EOF  经过仔细的排查，发现待执行的JavaScript代码里面包含U+2028字符。还找到了Stack Overflow相关讨论。JavaSc">
+<meta name="twitter:title" content="Core Animation学习笔记（一）">
+<meta name="twitter:description" content="本文是我阅读书籍《iOS CORE ANIMATION ADVANCED TECHNIQUES》的读书笔记，感谢原书作者及译者的分享！推荐大家有时间可以读读原书，写的很精彩。中文版  什么是Core Animation，相信很多同学对于它既熟悉又陌生，从名字上来看它应该是一个做动画的框架，其实动画只是它的一部分，它曾经叫做Layer Kit。 引用书中的定义：  Core Animation是一">
+<meta name="twitter:image" content="https://crmo.github.io/images/15436482245238.jpg">
 
 
 
@@ -123,7 +126,7 @@
 
 
 
-  <link rel="canonical" href="https://crmo.github.io/2018/09/05/记一个行结束符引发的JS报错/"/>
+  <link rel="canonical" href="https://crmo.github.io/2018/12/02/Core Animation学习笔记（一）/"/>
 
 
 
@@ -132,7 +135,7 @@
     sidebar: "",
   };
 </script>
-  <title>记一个行结束符引发的JS报错 | CR.MO`s Blog</title>
+  <title>Core Animation学习笔记（一） | CR.MO`s Blog</title>
   
 
 
@@ -304,7 +307,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://crmo.github.io/2018/09/05/记一个行结束符引发的JS报错/">
+    <link itemprop="mainEntityOfPage" href="https://crmo.github.io/2018/12/02/Core Animation学习笔记（一）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CR.MO">
@@ -321,7 +324,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">记一个行结束符引发的JS报错</h2>
+          <h2 class="post-title" itemprop="name headline">Core Animation学习笔记（一）</h2>
         
 
         <div class="post-meta">
@@ -333,7 +336,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-05T00:00:00+08:00">2018-09-05</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-02T00:00:00+08:00">2018-12-02</time>
             
 
             
@@ -351,9 +354,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/09/05/记一个行结束符引发的JS报错/#comments" itemprop="discussionUrl">
+                <a href="/2018/12/02/Core Animation学习笔记（一）/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/09/05/记一个行结束符引发的JS报错/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/12/02/Core Animation学习笔记（一）/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -389,21 +392,74 @@
       
 
       
-        <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>最近遇到一个神奇的Bug，通过<code>UIWebView</code>的<code>stringByEvaluatingJavaScriptFromString:</code>方法执行一段<code>JavaScript</code>代码时，<code>JavaScript</code>报错:</p>
-<blockquote>
-<p>SyntaxError: Unexpected EOF</p>
+        <blockquote>
+<p>本文是我阅读书籍《iOS CORE ANIMATION ADVANCED TECHNIQUES》的读书笔记，感谢原书作者及译者的分享！<br>推荐大家有时间可以读读原书，写的很精彩。<a href="https://zsisme.gitbooks.io/ios-/content/index.html" target="_blank" rel="noopener">中文版</a></p>
 </blockquote>
-<p>经过仔细的排查，发现待执行的<code>JavaScript</code>代码里面包含<code>U+2028</code>字符。还找到了<a href="https://stackoverflow.com/questions/2965293/javascript-parse-error-on-u2028-unicode-character" target="_blank" rel="noopener">Stack Overflow相关讨论</a>。<br><code>JavaScript</code>解析器会把行分隔符<code>U+2028</code>和段落分隔符<code>U+2029</code>解析成一行的结束，代码里要是包含这两个字符相当于换行，例如：</p>
+<p>什么是<code>Core Animation</code>，相信很多同学对于它既熟悉又陌生，从名字上来看它应该是一个做动画的框架，其实动画只是它的一部分，它曾经叫做<code>Layer Kit</code>。</p>
+<p>引用书中的定义：</p>
 <blockquote>
-<p>alert(“\u2028”)</p>
+<p>Core Animation是一个复合引擎，它的职责就是尽可能快地组合屏幕上不同的可视内容，这个内容是被分解成独立的<code>Layer</code>，并存储在<code>Layer Tree</code>中。于是这个树形成了UIKit以及在iOS应用程序当中你所能在屏幕上看见的一切的基础。</p>
 </blockquote>
-<p>就会被解析为</p>
+<p>看完还是一脸懵逼？没关系，在这一系列文章中，我将抽丝剥茧，带领大家揭开<code>Core Animation</code>的神秘面纱。</p>
+<h2 id="UIView与CALayer关系"><a href="#UIView与CALayer关系" class="headerlink" title="UIView与CALayer关系"></a>UIView与CALayer关系</h2><p>在iOS当中，所有的视图都从一个叫做UIVIew的基类派生而来，UIView可以处理触摸事件，可以支持基于Core Graphics绘图，可以做仿射变换（例如旋转或者缩放），或者简单的类似于滑动或者渐变的动画。</p>
+<p>UIView仅仅是对它的一个封装，提供了一些iOS类似于处理触摸的具体功能，以及Core Animation底层方法的高级接口。</p>
+<p>我们已经证实了图层不能像视图那样处理触摸事件，那么他能做哪些视图不能做的呢？这里有一些UIView没有暴露出来的CALayer的功能：</p>
+<ul>
+<li>阴影，圆角，带颜色的边框</li>
+<li>3D变换</li>
+<li>非矩形范围</li>
+<li>透明遮罩</li>
+<li>多级非线性动画</li>
+</ul>
+<h2 id="backing-image"><a href="#backing-image" class="headerlink" title="backing image"></a>backing image</h2><p>CALayer中可以包含一张图，这就是<code>backing image</code>。有两种设置<code>backing image</code>的方法:</p>
+<ol>
+<li>设置CALayer的<code>contents</code>属性</li>
+<li>直接用<code>Core Graphics</code>绘制</li>
+</ol>
+<h3 id="contents"><a href="#contents" class="headerlink" title="contents"></a>contents</h3><p>CALayer有一个属性叫做<code>contents</code>，这个属性的类型被定义为id，但是，如果你给<code>contents</code>赋的不是CGImage，那么你得到的图层将是空白的。</p>
 <blockquote>
-<p>alert(“<br>“)</p>
+<p><code>contents</code>这个奇怪的表现是由Mac OS的历史原因造成的。它之所以被定义为id类型，是因为在Mac OS系统上，这个属性对CGImage和NSImage类型的值都起作用。如果你试图在iOS平台上将UIImage的值赋给它，只能得到一个空白的图层。一些初识Core Animation的iOS开发者可能会对这个感到困惑。</p>
 </blockquote>
-<p>于是就产生了语法错误。</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>我用的方法比较简单、粗暴，在执行<code>JavaScript</code>代码前，直接过滤掉这两个字符。代码如下：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// </span></span><br><span class="line">    javaScriptString = [javaScriptString stringByReplacingOccurrencesOfString:<span class="string">@"\u2028"</span> withString:<span class="string">@""</span>];</span><br><span class="line">    javaScriptString = [javaScriptString stringByReplacingOccurrencesOfString:<span class="string">@"\u2029"</span> withString:<span class="string">@""</span>];</span><br><span class="line">    <span class="built_in">NSString</span>* ret = [(<span class="built_in">UIWebView</span>*)_engineWebView stringByEvaluatingJavaScriptFromString:javaScriptString];</span><br></pre></td></tr></table></figure>
+<p>我们先来看一个Demo，在<code>CALayer</code>中加载了一张图片：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">    <span class="keyword">self</span>.view.backgroundColor = [<span class="built_in">UIColor</span> lightGrayColor];</span><br><span class="line">    <span class="built_in">UIView</span> *view = [[<span class="built_in">UIView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">100</span>)];</span><br><span class="line">    view.backgroundColor = [<span class="built_in">UIColor</span> whiteColor];</span><br><span class="line">    view.center = <span class="keyword">self</span>.view.center;</span><br><span class="line">    [<span class="keyword">self</span>.view addSubview:view];</span><br><span class="line">    <span class="built_in">CALayer</span> *layer = [<span class="built_in">CALayer</span> layer];</span><br><span class="line">    [view.layer addSublayer:layer];</span><br><span class="line">    layer.frame = <span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// [UIImage imageNamed:@"test"]会根据不同机型取不同倍图</span></span><br><span class="line">    <span class="built_in">UIImage</span> *image = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"test"</span>];</span><br><span class="line">    <span class="comment">// UIImage转CGImageRef时scale属性丢失</span></span><br><span class="line">    <span class="built_in">CGImageRef</span> imageRef = image.CGImage;</span><br><span class="line">    layer.contents = (__bridge <span class="keyword">id</span>)imageRef;</span><br><span class="line">    <span class="comment">// 设置图片缩放</span></span><br><span class="line">    <span class="comment">// 如果contentsGravity设置为自动缩放，可以不用设置这个属性</span></span><br><span class="line">    layer.contentsScale = image.scale;</span><br><span class="line">    <span class="comment">// 设置图片居中不缩放</span></span><br><span class="line">    layer.contentsGravity = kCAGravityCenter;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="contentsGravity"><a href="#contentsGravity" class="headerlink" title="contentsGravity"></a>contentsGravity</h4><p><code>UIImageView</code>中通过设置<code>contentMode</code>来设置图片拉伸方式，在<code>CALayer</code>中有一个对应属性<code>contentsGravity</code>，它是一个NSString类型，默认值是<code>kCAGravityResize</code>。<br>它的可选的值有：</p>
+<ul>
+<li>kCAGravityCenter</li>
+<li>kCAGravityTop</li>
+<li>kCAGravityBottom</li>
+<li>kCAGravityLeft</li>
+<li>kCAGravityRight</li>
+<li>kCAGravityTopLeft</li>
+<li>kCAGravityTopRight</li>
+<li>kCAGravityBottomLeft</li>
+<li>kCAGravityBottomRight</li>
+<li>kCAGravityResize</li>
+<li>kCAGravityResizeAspect</li>
+<li>kCAGravityResizeAspectFill</li>
+</ul>
+<h4 id="UIImage转CGImage拉伸丢失问题"><a href="#UIImage转CGImage拉伸丢失问题" class="headerlink" title="UIImage转CGImage拉伸丢失问题"></a>UIImage转CGImage拉伸丢失问题</h4><p>和UIImage不同，CGImage没有拉伸的概念。使用UIImage类去读取图片的时候，它会读取了屏幕（1x、2x、3x）对应尺寸的图片。但是用CGImage来设置<code>layer.contents</code>时，拉伸这个因素在转换的时候就丢失了，不过我们可以通过手动设置<code>contentsScale</code>来修复这个问题。</p>
+<h4 id="contentsScale"><a href="#contentsScale" class="headerlink" title="contentsScale"></a>contentsScale</h4><p>如果<code>contentsScale</code>设置为1.0，将会以每个点1个像素绘制图片，如果设置为2.0，则会以每个点2个像素绘制图片。<code>UIView</code>中对应<code>contentScaleFactor</code>属性。</p>
+<h4 id="contentsCenter"><a href="#contentsCenter" class="headerlink" title="contentsCenter"></a>contentsCenter</h4><p>contentsCenter是一个CGRect，它定义了一个固定的边框和一个在图层上可拉伸的区域。类似于<code>UIImage</code>里的<code>resizableImageWithCapInsets</code> 方法，只是它可以运用到任何<code>backing image</code>，甚至包括<code>Core Graphics</code>绘制的图形。</p>
+<p><img src="/images/15436482245238.jpg" alt="15436482245238"></p>
+<h3 id="Custom-Drawing"><a href="#Custom-Drawing" class="headerlink" title="Custom Drawing"></a>Custom Drawing</h3><p>第二种方案是直接用<code>Core Graphics</code>绘制<code>backing image</code>，具体实现方式是通过继承<code>UIView</code>并实现<code>drawRect</code>来自定义绘制。</p>
+<h4 id="CALayerDelegate"><a href="#CALayerDelegate" class="headerlink" title="CALayerDelegate"></a>CALayerDelegate</h4><p>要理解<code>drawRect</code>的工作原理，首先我们来看看<code>CALayerDelegate</code>。<br><code>CALayer</code>有一个可选的delegate，通过实现<code>CALayerDelegate</code>，就可以自定义<code>CALayer</code>的<code>backing image</code>。<br><code>CALayerDelegate</code>中有两个值得关注的方法：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 由-display方法的默认实现调用，你应该实现整个显示过程（通常通过设置'contents'属性）</span></span><br><span class="line"><span class="comment">// 如果实现了该方法，就不会调用drawLayer:inContext:了</span></span><br><span class="line">- (<span class="keyword">void</span>)displayLayer:(<span class="built_in">CALayer</span> *)layer;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 由-drawInContext方法的默认实现调用</span></span><br><span class="line"><span class="comment">// 如果没有实现displayLayer:，就会调用该方法</span></span><br><span class="line">- (<span class="keyword">void</span>)drawLayer:(<span class="built_in">CALayer</span> *)layer inContext:(<span class="built_in">CGContextRef</span>)ctx;</span><br></pre></td></tr></table></figure>
+<p>给个简单的Demo：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">    <span class="keyword">self</span>.view.backgroundColor = [<span class="built_in">UIColor</span> lightGrayColor];</span><br><span class="line">    <span class="built_in">UIView</span> *view = [[<span class="built_in">UIView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">100</span>)];</span><br><span class="line">    view.backgroundColor = [<span class="built_in">UIColor</span> whiteColor];</span><br><span class="line">    view.center = <span class="keyword">self</span>.view.center;</span><br><span class="line">    [<span class="keyword">self</span>.view addSubview:view];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CALayer</span> *layer = [<span class="built_in">CALayer</span> layer];</span><br><span class="line">    [view.layer addSublayer:layer];</span><br><span class="line">    layer.frame = <span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line">    <span class="comment">// 设置代理</span></span><br><span class="line">    layer.delegate = <span class="keyword">self</span>;</span><br><span class="line">    <span class="comment">// display方法必须手动调用，不然不会执行绘制</span></span><br><span class="line">    [layer display]; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)drawLayer:(<span class="built_in">CALayer</span> *)layer inContext:(<span class="built_in">CGContextRef</span>)ctx &#123;</span><br><span class="line">    <span class="comment">// 画一个圆环</span></span><br><span class="line">    <span class="built_in">CGContextSetLineWidth</span>(ctx, <span class="number">10</span>);</span><br><span class="line">    <span class="built_in">CGContextSetStrokeColorWithColor</span>(ctx, [<span class="built_in">UIColor</span> redColor].CGColor);</span><br><span class="line">    <span class="built_in">CGContextStrokeEllipseInRect</span>(ctx, layer.bounds);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>需要注意的是，<code>[layer display]</code>需要手动调用，<code>CALayer</code>不会自动重绘它的内容，而是把重绘决定权交给了开发者。</p>
+</blockquote>
+<h4 id="drawRect"><a href="#drawRect" class="headerlink" title="drawRect"></a>drawRect</h4><p>理解了<code>CALayerDelegate</code>再来看<code>drawRect</code>就简单很多了，<code>UIView</code>把<code>CALayerDelegate</code>设置为自己，并实现了<code>displayLayer:</code>，我们不再需要关心这些细节，只需要重写<code>drawRect</code>，在方法内绘制<code>backing image</code>即可。</p>
+<p><strong>drawRect调用时机</strong></p>
+<p>当<code>UIView</code>在屏幕上出现的时候，<code>drawRect</code>方法就会被自动调用。然后内容就会被缓存起来直到它需要被更新，通常是因为手动调用了<code>setNeedsDisplay</code>，或影响到表现效果的属性值被更改时，如bounds属性。</p>
+<p>需要注意的是，调用<code>setNeedsDisplay</code>后，不会马上触发<code>drawRect</code>，而是要等到接收到RunLoop的<code>kCFRunLoopBeforeWaiting</code>通知后触发<code>drawRect</code>，如下图所示。</p>
+<p><img src="/images/15436511549803.jpg" alt="15436511549803"></p>
+<p><strong>如非必须，勿重写drawRect</strong></p>
+<p><code>drawRect</code>方法没有默认的实现，因为对UIView来说，<code>backing image</code>并不是必须的。如果<code>UIView</code>检测到<code>drawRect</code>方法被调用了，它就会为视图分配一个<code>backing image</code>，这个<code>backing image</code>的像素尺寸等于<code>视图大小 * contentsScale</code>；反之则不会创建<code>backing image</code>，因此如果没有自定义绘制的任务就不要在重写一个空的<code>drawRect</code>。</p>
+<blockquote>
+<p>在做实验的时候发现了一个有趣现象，在同一个RunLoop循环里，先调用<code>setNeedsDisplay</code>，再设置<code>view.layer</code>的<code>contents</code>，系统就不会调用<code>drawRect</code>方法了(难道是因为设置<code>contents</code>会把<code>needsDisplay</code>设置为NO？？)。</p>
+</blockquote>
+
       
     </div>
 
@@ -436,8 +492,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/28/从一个AFNetworking循环引用说起/" rel="next" title="从一个AFNetworking循环引用说起">
-                <i class="fa fa-chevron-left"></i> 从一个AFNetworking循环引用说起
+              <a href="/2018/11/15/App Store上架漫谈/" rel="next" title="App Store上架漫谈">
+                <i class="fa fa-chevron-left"></i> App Store上架漫谈
               </a>
             
           </div>
@@ -445,10 +501,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/07/记“香蕉播放器”上架的辛酸历程/" rel="prev" title="记“香蕉播放器”上架的辛酸历程">
-                记“香蕉播放器”上架的辛酸历程 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -606,7 +658,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案"><span class="nav-number">2.</span> <span class="nav-text">解决方案</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#UIView与CALayer关系"><span class="nav-number">1.</span> <span class="nav-text">UIView与CALayer关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#backing-image"><span class="nav-number">2.</span> <span class="nav-text">backing image</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#contents"><span class="nav-number">2.1.</span> <span class="nav-text">contents</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#contentsGravity"><span class="nav-number">2.1.1.</span> <span class="nav-text">contentsGravity</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UIImage转CGImage拉伸丢失问题"><span class="nav-number">2.1.2.</span> <span class="nav-text">UIImage转CGImage拉伸丢失问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#contentsScale"><span class="nav-number">2.1.3.</span> <span class="nav-text">contentsScale</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#contentsCenter"><span class="nav-number">2.1.4.</span> <span class="nav-text">contentsCenter</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Custom-Drawing"><span class="nav-number">2.2.</span> <span class="nav-text">Custom Drawing</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CALayerDelegate"><span class="nav-number">2.2.1.</span> <span class="nav-text">CALayerDelegate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#drawRect"><span class="nav-number">2.2.2.</span> <span class="nav-text">drawRect</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -793,9 +845,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'https://crmo.github.io/2018/09/05/记一个行结束符引发的JS报错/';
-        this.page.identifier = '2018/09/05/记一个行结束符引发的JS报错/';
-        this.page.title = '记一个行结束符引发的JS报错';
+        this.page.url = 'https://crmo.github.io/2018/12/02/Core Animation学习笔记（一）/';
+        this.page.identifier = '2018/12/02/Core Animation学习笔记（一）/';
+        this.page.title = 'Core Animation学习笔记（一）';
       };
       function loadComments () {
         var d = document, s = d.createElement('script');
