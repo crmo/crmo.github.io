@@ -103,20 +103,23 @@
   <meta name="keywords" content="iOS知识小结," />
 
 
-<meta name="description" content="本文所用方法会使用到苹果私有API，上架APP Store请谨慎使用。  需求获取UIWebView的前进后退的浏览记录，举个例子，比如从A-&amp;gt;B-&amp;gt;C-&amp;gt;B，此时B上一页是A，下一页是C，需要获取A、C的URL信息。  WKWebView暴露了这个属性，WKBackForwardList *backForwardList。可以很容易的取到，无奈项目还是使用的UIWebView">
+<meta name="description" content="一、LayoutUIView有三个比较重要的布局属性：frame，bounds和center，CALayer对应地叫做frame，bounds和position。frame是图层在父图层上的坐标，bounds是内部坐标（{0, 0}通常是左上角）。center和position要难理解一些，简单来说他们定义了anchorPoint在父图层中的位置（后面会详细说明）。  frame其实是一个虚拟属性">
 <meta name="keywords" content="iOS知识小结">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UIWebView获取详细浏览记录">
-<meta property="og:url" content="https://crmo.github.io/2018/08/01/UIWebView获取history/index.html">
+<meta property="og:title" content="CR.MO`s Blog">
+<meta property="og:url" content="https://crmo.github.io/2018/12/02/Core Animation学习笔记（二）/index.html">
 <meta property="og:site_name" content="CR.MO`s Blog">
-<meta property="og:description" content="本文所用方法会使用到苹果私有API，上架APP Store请谨慎使用。  需求获取UIWebView的前进后退的浏览记录，举个例子，比如从A-&amp;gt;B-&amp;gt;C-&amp;gt;B，此时B上一页是A，下一页是C，需要获取A、C的URL信息。  WKWebView暴露了这个属性，WKBackForwardList *backForwardList。可以很容易的取到，无奈项目还是使用的UIWebView">
+<meta property="og:description" content="一、LayoutUIView有三个比较重要的布局属性：frame，bounds和center，CALayer对应地叫做frame，bounds和position。frame是图层在父图层上的坐标，bounds是内部坐标（{0, 0}通常是左上角）。center和position要难理解一些，简单来说他们定义了anchorPoint在父图层中的位置（后面会详细说明）。  frame其实是一个虚拟属性">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://crmo.github.io/images/15325235986699.jpg">
-<meta property="og:updated_time" content="2018-10-07T08:13:37.824Z">
+<meta property="og:image" content="https://crmo.github.io/images/15437391858284.jpg">
+<meta property="og:image" content="https://crmo.github.io/images/15437396721415.jpg">
+<meta property="og:image" content="https://crmo.github.io/images/15437419896060.jpg">
+<meta property="og:image" content="https://crmo.github.io/images/15437425063586.jpg">
+<meta property="og:updated_time" content="2018-12-02T11:21:03.339Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UIWebView获取详细浏览记录">
-<meta name="twitter:description" content="本文所用方法会使用到苹果私有API，上架APP Store请谨慎使用。  需求获取UIWebView的前进后退的浏览记录，举个例子，比如从A-&amp;gt;B-&amp;gt;C-&amp;gt;B，此时B上一页是A，下一页是C，需要获取A、C的URL信息。  WKWebView暴露了这个属性，WKBackForwardList *backForwardList。可以很容易的取到，无奈项目还是使用的UIWebView">
-<meta name="twitter:image" content="https://crmo.github.io/images/15325235986699.jpg">
+<meta name="twitter:title" content="CR.MO`s Blog">
+<meta name="twitter:description" content="一、LayoutUIView有三个比较重要的布局属性：frame，bounds和center，CALayer对应地叫做frame，bounds和position。frame是图层在父图层上的坐标，bounds是内部坐标（{0, 0}通常是左上角）。center和position要难理解一些，简单来说他们定义了anchorPoint在父图层中的位置（后面会详细说明）。  frame其实是一个虚拟属性">
+<meta name="twitter:image" content="https://crmo.github.io/images/15437391858284.jpg">
 
 
 
@@ -125,7 +128,7 @@
 
 
 
-  <link rel="canonical" href="https://crmo.github.io/2018/08/01/UIWebView获取history/"/>
+  <link rel="canonical" href="https://crmo.github.io/2018/12/02/Core Animation学习笔记（二）/"/>
 
 
 
@@ -134,7 +137,7 @@
     sidebar: "",
   };
 </script>
-  <title>UIWebView获取详细浏览记录 | CR.MO`s Blog</title>
+  <title> | CR.MO`s Blog</title>
   
 
 
@@ -306,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://crmo.github.io/2018/08/01/UIWebView获取history/">
+    <link itemprop="mainEntityOfPage" href="https://crmo.github.io/2018/12/02/Core Animation学习笔记（二）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CR.MO">
@@ -323,7 +326,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">UIWebView获取详细浏览记录</h2>
+          <h2 class="post-title" itemprop="name headline"></h2>
         
 
         <div class="post-meta">
@@ -335,7 +338,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-01T00:00:00+08:00">2018-08-01</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-02T00:00:00+08:00">2018-12-02</time>
             
 
             
@@ -353,9 +356,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/08/01/UIWebView获取history/#comments" itemprop="discussionUrl">
+                <a href="/2018/12/02/Core Animation学习笔记（二）/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/01/UIWebView获取history/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/12/02/Core Animation学习笔记（二）/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -391,32 +394,37 @@
       
 
       
-        <blockquote>
-<p>本文所用方法会使用到苹果私有API，上架APP Store请谨慎使用。</p>
-</blockquote>
-<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>获取<code>UIWebView</code>的前进后退的浏览记录，举个例子，比如从A-&gt;B-&gt;C-&gt;B，此时B上一页是A，下一页是C，需要获取A、C的URL信息。</p>
-<blockquote>
-<p>WKWebView暴露了这个属性，<code>WKBackForwardList *backForwardList</code>。可以很容易的取到，无奈项目还是使用的<code>UIWebView</code>，于是有了后面的探索。</p>
-</blockquote>
-<p>首先在<code>UIWebView</code>提供的API里找，相关的API只有<code>canGoBack</code>和<code>canGoForward</code>，命名很直观，是否可以后退和前进，这条路走不通。<br>想到是否可以通过JS的Window.history获取到，查了下API，唯一一个有点像的<code>length</code>属性，智能取到浏览记录中的所有URL的数量，不区分前后，比如在上面提到的例子中，在B页面取到的<code>length</code>是3，而且不能取出具体的URL。</p>
-<p><img src="/images/15325235986699.jpg" alt="15325235986699"></p>
-<p>无奈只有上源码了，我下载的是<a href="https://opensource.apple.com/release/ios-110.html" target="_blank" rel="noopener">“WebKit-7604.1.38.0.7”和“WebCore-7604.1.38.0.7”</a>。</p>
-<h2 id="Window-History-length实现本质"><a href="#Window-History-length实现本质" class="headerlink" title="Window.History.length实现本质"></a>Window.History.length实现本质</h2><p>在WebCore里面找到了JS方法<code>Window.History.length</code>实现的本质，上代码：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// WebCore History.cpp</span></span><br><span class="line"><span class="keyword">unsigned</span> History::length() <span class="keyword">const</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!m_frame)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">auto</span>* page = m_frame-&gt;page();</span><br><span class="line">    <span class="keyword">if</span> (!page)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> page-&gt;backForward().count();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// WebCore BackForwardController.cpp</span></span><br><span class="line"><span class="keyword">int</span> BackForwardController::count() <span class="keyword">const</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// count = 当前页之前的页面总数 + 当前页之后的页面总数 + 1</span></span><br><span class="line">    <span class="keyword">return</span> m_client-&gt;backListCount() + <span class="number">1</span> + m_client-&gt;forwardListCount();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在<code>WebCore</code>里面<code>backListCount()</code>、<code>forwardListCount()</code>定义是虚函数，具体实现在<code>WebKit</code>可以找到。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// WebKit BackForwardList.mm</span></span><br><span class="line"><span class="keyword">int</span> BackForwardList::backListCount()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> m_current == NoCurrentItemIndex ? <span class="number">0</span> : m_current;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> BackForwardList::forwardListCount()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> m_current == NoCurrentItemIndex ? <span class="number">0</span> : (<span class="keyword">int</span>)m_entries.size() - (m_current + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>还有一个方法我们需要关注一下，后面会用到。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// WebKit BackForwardList.mm</span></span><br><span class="line"><span class="comment">// 获取之前最多几条历史记录</span></span><br><span class="line"><span class="keyword">void</span> BackForwardList::backListWithLimit(<span class="keyword">int</span> limit, Vector&lt;Ref&lt;HistoryItem&gt;&gt;&amp; <span class="built_in">list</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">list</span>.clear();</span><br><span class="line">    <span class="keyword">if</span> (m_current != NoCurrentItemIndex) &#123;</span><br><span class="line">        <span class="keyword">unsigned</span> first = <span class="built_in">std</span>::max(<span class="keyword">static_cast</span>&lt;<span class="keyword">int</span>&gt;(m_current) - limit, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span> (; first &lt; m_current; ++first)</span><br><span class="line">            <span class="built_in">list</span>.append(m_entries[first].get());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="获取History"><a href="#获取History" class="headerlink" title="获取History"></a>获取History</h2><p>在<code>WebView</code>的中，我们可以找到<code>WebBackForwardList</code>的定义。</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*!</span></span><br><span class="line"><span class="comment">    @property backForwardList</span></span><br><span class="line"><span class="comment">    @abstract The backforward list for this WebView.</span></span><br><span class="line"><span class="comment">*/</span>    </span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>, <span class="keyword">strong</span>) WebBackForwardList *backForwardList;</span><br></pre></td></tr></table></figure>
-<p><code>WebBackForwardList</code>是对<code>BackForwardList</code>的一层封装，阅读一下它的.h文件，不难找到获取浏览记录的方法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/*!</span><br><span class="line">    @method backListWithLimit:</span><br><span class="line">    @abstract Returns a portion of the list before the current entry.</span><br><span class="line">    @param limit A cap on the size of the array returned.</span><br><span class="line">    @result An array of items before the current entry, or nil if there are none.  The entries are in the order that they were originally visited.</span><br><span class="line">*/</span><br><span class="line">- (NSArray *)backListWithLimit:(int)limit;</span><br></pre></td></tr></table></figure>
-<p>上面的方法可以获取到一个<code>WebHistoryItem</code>数组，<code>WebHistoryItem</code>保存了浏览记录的详细信息。</p>
-<h2 id="获取WebBackForwardList"><a href="#获取WebBackForwardList" class="headerlink" title="获取WebBackForwardList"></a>获取WebBackForwardList</h2><p><code>UIWebView</code>没有暴露获取<code>WebView</code>或者<code>WebBackForwardList</code>的方法，但是我们可以用KVO曲线救国，于是我们需要找到<code>WebView</code>的私有变量名。用runtime可以做到，为了简化这个过程，我写了一个工具类来辅助搜索，具体可以看<a href="https://crmo.github.io/2018/07/31/runtime实现私有变量搜索/">这篇文章-runtime实现私有变量搜索</a>。简单来说就是用runtime获取类成员变量列表，然后用BFS来搜索我们要找的类。</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以UIWebView为根节点，BFS搜索WebView</span></span><br><span class="line">[BFSSearchClass searchClass:<span class="string">@"WebView"</span> inClass:<span class="string">@"UIWebView"</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 搜索结果如下</span></span><br><span class="line"><span class="comment">// Class Name：类名，Ivar Name：变量名，Super Class：父类</span></span><br><span class="line">Class Name:【WebView】,Ivar Name:【_webView】</span><br><span class="line">Class Name:【<span class="built_in">UIWebDocumentView</span>】,Ivar Name:【Super Class】</span><br><span class="line">Class Name:【<span class="built_in">UIWebBrowserView</span>】,Ivar Name:【browserView】</span><br><span class="line">Class Name:【<span class="built_in">UIWebViewInternal</span>】,Ivar Name:【_internal】</span><br><span class="line">Root Class:<span class="built_in">UIWebView</span></span><br></pre></td></tr></table></figure>
-<p>有了上面的结论，我们就可以用KVC来获取到浏览记录了。</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)printWebViewHistory:(<span class="built_in">UIWebView</span> *)aWebView &#123;</span><br><span class="line">    <span class="keyword">id</span> webviewInternal = [aWebView valueForKey:<span class="string">@"_internal"</span>];</span><br><span class="line">    <span class="keyword">id</span> browserView = [webviewInternal valueForKey:<span class="string">@"browserView"</span>];</span><br><span class="line">    <span class="keyword">id</span> webView = [browserView valueForKey:<span class="string">@"_webView"</span>];</span><br><span class="line">    <span class="keyword">id</span> backForwardList = [webView performSelector:<span class="keyword">@selector</span>(backForwardList)];</span><br><span class="line">    <span class="comment">// WebHistoryItem存储的具体某条浏览记录信息</span></span><br><span class="line">    <span class="built_in">NSArray</span> *historyItems = [backForwardList performSelector:<span class="keyword">@selector</span>(backListWithLimit:) withObject:@<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">id</span> item <span class="keyword">in</span> historyItems) &#123;</span><br><span class="line">        <span class="comment">// 获取浏览记录的url </span></span><br><span class="line">        <span class="built_in">NSString</span> *url = [item performSelector:<span class="keyword">@selector</span>(URLString)];</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, url);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="一、Layout"><a href="#一、Layout" class="headerlink" title="一、Layout"></a>一、Layout</h2><p>UIView有三个比较重要的布局属性：<code>frame</code>，<code>bounds</code>和<code>center</code>，<code>CALayer</code>对应地叫做<code>frame</code>，<code>bounds</code>和<code>position</code>。<br><code>frame</code>是图层在父图层上的坐标，<code>bounds</code>是内部坐标（{0, 0}通常是左上角）。<br><code>center</code>和<code>position</code>要难理解一些，简单来说他们定义了<code>anchorPoint</code>在父图层中的位置（后面会详细说明）。</p>
+<p><img src="/images/15437391858284.jpg" alt="15437391858284"></p>
+<p><code>frame</code>其实是一个虚拟属性，是根据<code>bounds</code>，<code>position</code>和<code>transform</code>计算而来，所以当其中任何一个值发生改变，<code>frame</code>都会变化。相反，改变<code>frame</code>的值同样会影响到他们当中的值。</p>
+<p>这里有一个容易忽视的细节，我们通常开发的时候<code>frame</code>与<code>bounds</code>的宽高都相等。但是当对图层做变换的时候（旋转或者缩放）frame实际上代表了覆盖在图层旋转之后的整个轴对齐的矩形区域，这时候它们将不再相等。如下图所示。</p>
+<p><img src="/images/15437396721415.jpg" alt="15437396721415"></p>
+<h2 id="二、anchorPoint、position、center三者不得不说的故事"><a href="#二、anchorPoint、position、center三者不得不说的故事" class="headerlink" title="二、anchorPoint、position、center三者不得不说的故事"></a>二、anchorPoint、position、center三者不得不说的故事</h2><p>要彻底理解<code>position</code>究竟是什么鬼，首先我们得搞懂什么是<code>anchorPoint</code>。它可以理解为一个固定图层的图钉，它的主要作用是作为变换的支点，比如在旋转图层时，就会以<code>anchorPoint</code>为圆心旋转（一起来想象一下）。</p>
+<p><img src="/images/15437419896060.jpg" alt="15437419896060"></p>
+<p><code>anchorPoint</code>用相对坐标表示，它表示相对于图层的位置，取值范围0-1。</p>
+<ul>
+<li>左上角：(0,0)</li>
+<li>右下角：(1,1)</li>
+<li>中心：(0.5,0.5)</li>
+</ul>
+<p>而<code>position</code>就表示<code>anchorPoint</code>在父图层的坐标，下面这张图非常的清晰明了。</p>
+<p><img src="/images/15437425063586.jpg" alt="15437425063586"></p>
+<p>由于<code>anchorPoint</code>是<code>CALayer</code>的属性，默认值是(0.5,0.5)，也就是中心。而<code>UIView</code>没有这个属性，因此<code>UIView</code>的<code>center</code>属性就表示view的中心点在父view的坐标（命名为center可以说是非常的直观）。</p>
+<h2 id="Coordinate-Systems"><a href="#Coordinate-Systems" class="headerlink" title="Coordinate Systems"></a>Coordinate Systems</h2><h3 id="坐标系转换"><a href="#坐标系转换" class="headerlink" title="坐标系转换"></a>坐标系转换</h3><p>CALayer给不同坐标系之间的图层转换提供了一些工具类方法，这些方法可以把定义在一个图层坐标系下的点或者矩形转换成另一个图层坐标系下的点或者矩形。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">CGPoint</span>)convertPoint:(<span class="built_in">CGPoint</span>)point fromLayer:(<span class="built_in">CALayer</span> *)layer;</span><br><span class="line">- (<span class="built_in">CGPoint</span>)convertPoint:(<span class="built_in">CGPoint</span>)point toLayer:(<span class="built_in">CALayer</span> *)layer;</span><br><span class="line">- (<span class="built_in">CGRect</span>)convertRect:(<span class="built_in">CGRect</span>)rect fromLayer:(<span class="built_in">CALayer</span> *)layer;</span><br><span class="line">- (<span class="built_in">CGRect</span>)convertRect:(<span class="built_in">CGRect</span>)rect toLayer:(<span class="built_in">CALayer</span> *)layer;</span><br></pre></td></tr></table></figure>
+<h3 id="翻转"><a href="#翻转" class="headerlink" title="翻转"></a>翻转</h3><p>常规说来，在iOS上，一个图层的<code>position</code>位于父图层的左上角，但是在Mac OS上，通常是位于左下角。<code>Core Animation</code>可以通过<code>geometryFlipped</code>属性来适配这两种情况，它决定了一个图层的坐标是否相对于父图层垂直翻转，是一个BOOL类型。在iOS上通过设置它为YES意味着它的子图层将会被垂直翻转，也就是将会沿着底部排版而不是通常的顶部（它的所有子图层也同理，除非把它们的<code>geometryFlipped</code>属性也设为YES）。</p>
+<h3 id="Z轴"><a href="#Z轴" class="headerlink" title="Z轴"></a>Z轴</h3><p>和<code>UIView</code>严格的二维坐标系不同，<code>CALayer</code>存在于一个三维空间当中。除了我们已经讨论过的<code>position</code>和<code>anchorPoint</code>属性之外，<code>CALayer</code>还有另外两个属性，<code>zPosition</code>和<code>anchorPointZ</code>，二者都是在Z轴上描述图层位置的浮点类型。</p>
+<h2 id="Hit-testing"><a href="#Hit-testing" class="headerlink" title="Hit testing"></a>Hit testing</h2><p><code>CALayer</code>并不关心事件响应链，所以不能直接处理触摸事件或者手势。但是它有一系列的方法帮你处理事件：<code>containsPoint:</code>和<code>hitTest:</code>。<br><code>containsPoint:</code>接受一个在本图层坐标系下的CGPoint，如果这个点在layer的frame范围内就返回YES。<br><code>hitTest:</code>方法接受一个CGPoint类型参数，它返回这个点所在layer，也就是layer本身，或者叶子节点。</p>
+<h2 id="自动布局"><a href="#自动布局" class="headerlink" title="自动布局"></a>自动布局</h2><p><code>CALayer</code>不支持自动布局，需要实现<code>CALayerDelegate</code>的函数：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)layoutSublayersOfLayer:(<span class="built_in">CALayer</span> *)layer;</span><br></pre></td></tr></table></figure>
+<p>然后手动管理布局，非常的不友好，这是一个为什么不直接用<code>CALayer</code>，而是要用<code>UIView</code>的重要原因。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ol>
+<li>理解frame，bounds，center，position，anchorPoint对于理解图层布局很重要。</li>
+<li><code>CALayer</code>没有处理事件响应链，需要手动处理。</li>
+<li><code>CALayer</code>不支持自动布局。</li>
+</ol>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="http://kittenyang.com/anchorpoint/" target="_blank" rel="noopener">这将是你最后一次纠结position与anchorPoint！</a></p>
+
       
     </div>
 
@@ -449,8 +457,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/31/runtime实现私有变量搜索/" rel="next" title="runtime实现私有变量搜索">
-                <i class="fa fa-chevron-left"></i> runtime实现私有变量搜索
+              <a href="/2018/11/15/App Store上架漫谈/" rel="next" title="App Store上架漫谈">
+                <i class="fa fa-chevron-left"></i> App Store上架漫谈
               </a>
             
           </div>
@@ -459,8 +467,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/03/dispatch_sync死锁问题/" rel="prev" title="dispatch_sync死锁问题">
-                dispatch_sync死锁问题 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/02/Core Animation学习笔记（一）/" rel="prev" title="Core Animation学习笔记（一）- CALayer">
+                Core Animation学习笔记（一）- CALayer <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -619,7 +627,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#需求"><span class="nav-number">1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Window-History-length实现本质"><span class="nav-number">2.</span> <span class="nav-text">Window.History.length实现本质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取History"><span class="nav-number">3.</span> <span class="nav-text">获取History</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取WebBackForwardList"><span class="nav-number">4.</span> <span class="nav-text">获取WebBackForwardList</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Layout"><span class="nav-number">1.</span> <span class="nav-text">一、Layout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、anchorPoint、position、center三者不得不说的故事"><span class="nav-number">2.</span> <span class="nav-text">二、anchorPoint、position、center三者不得不说的故事</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Coordinate-Systems"><span class="nav-number">3.</span> <span class="nav-text">Coordinate Systems</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#坐标系转换"><span class="nav-number">3.1.</span> <span class="nav-text">坐标系转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#翻转"><span class="nav-number">3.2.</span> <span class="nav-text">翻转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Z轴"><span class="nav-number">3.3.</span> <span class="nav-text">Z轴</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hit-testing"><span class="nav-number">4.</span> <span class="nav-text">Hit testing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动布局"><span class="nav-number">5.</span> <span class="nav-text">自动布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">6.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章"><span class="nav-number">7.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
             
 
           </div>
@@ -806,9 +814,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'https://crmo.github.io/2018/08/01/UIWebView获取history/';
-        this.page.identifier = '2018/08/01/UIWebView获取history/';
-        this.page.title = 'UIWebView获取详细浏览记录';
+        this.page.url = 'https://crmo.github.io/2018/12/02/Core Animation学习笔记（二）/';
+        this.page.identifier = '2018/12/02/Core Animation学习笔记（二）/';
+        this.page.title = '';
       };
       function loadComments () {
         var d = document, s = d.createElement('script');
