@@ -103,21 +103,21 @@
   <meta name="keywords" content="iOS知识小结," />
 
 
-<meta name="description" content="本文是我阅读书籍《iOS CORE ANIMATION ADVANCED TECHNIQUES》的读书笔记，感谢原书作者及译者的分享！推荐大家有时间可以读读原书，写的很精彩。中文版  什么是Core Animation，相信很多同学对于它既熟悉又陌生，从名字上来看它应该是一个做动画的框架，其实动画只是它的一部分，它曾经叫做Layer Kit。 引用书中的定义：  Core Animation是一">
+<meta name="description" content="本文是我阅读书籍《iOS CORE ANIMATION ADVANCED TECHNIQUES》的读书笔记，感谢原书作者及译者的分享！推荐大家有时间可以读读原书，写的很精彩。中文版  一、Core Animation定义什么是Core Animation，相信很多同学对于它既熟悉又陌生，从名字上来看它应该是一个做动画的框架，其实动画只是它的一部分，它曾经叫做Layer Kit。 引用书中的定义：">
 <meta name="keywords" content="iOS知识小结">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Core Animation学习笔记（一）">
 <meta property="og:url" content="https://crmo.github.io/2018/12/02/Core Animation学习笔记（一）/index.html">
 <meta property="og:site_name" content="CR.MO`s Blog">
-<meta property="og:description" content="本文是我阅读书籍《iOS CORE ANIMATION ADVANCED TECHNIQUES》的读书笔记，感谢原书作者及译者的分享！推荐大家有时间可以读读原书，写的很精彩。中文版  什么是Core Animation，相信很多同学对于它既熟悉又陌生，从名字上来看它应该是一个做动画的框架，其实动画只是它的一部分，它曾经叫做Layer Kit。 引用书中的定义：  Core Animation是一">
+<meta property="og:description" content="本文是我阅读书籍《iOS CORE ANIMATION ADVANCED TECHNIQUES》的读书笔记，感谢原书作者及译者的分享！推荐大家有时间可以读读原书，写的很精彩。中文版  一、Core Animation定义什么是Core Animation，相信很多同学对于它既熟悉又陌生，从名字上来看它应该是一个做动画的框架，其实动画只是它的一部分，它曾经叫做Layer Kit。 引用书中的定义：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://crmo.github.io/images/15436482245238.jpg">
-<meta property="og:image" content="https://crmo.github.io/images/15436511549803.jpg">
-<meta property="og:updated_time" content="2018-12-02T07:48:09.948Z">
+<meta property="og:image" content="https://crmo.github.io/2018/12/02/Core%20Animation学习笔记（一）/images/15436482245238.jpg">
+<meta property="og:image" content="https://crmo.github.io/2018/12/02/Core%20Animation学习笔记（一）/images/15436511549803.jpg">
+<meta property="og:updated_time" content="2018-12-02T08:21:32.062Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Core Animation学习笔记（一）">
-<meta name="twitter:description" content="本文是我阅读书籍《iOS CORE ANIMATION ADVANCED TECHNIQUES》的读书笔记，感谢原书作者及译者的分享！推荐大家有时间可以读读原书，写的很精彩。中文版  什么是Core Animation，相信很多同学对于它既熟悉又陌生，从名字上来看它应该是一个做动画的框架，其实动画只是它的一部分，它曾经叫做Layer Kit。 引用书中的定义：  Core Animation是一">
-<meta name="twitter:image" content="https://crmo.github.io/images/15436482245238.jpg">
+<meta name="twitter:description" content="本文是我阅读书籍《iOS CORE ANIMATION ADVANCED TECHNIQUES》的读书笔记，感谢原书作者及译者的分享！推荐大家有时间可以读读原书，写的很精彩。中文版  一、Core Animation定义什么是Core Animation，相信很多同学对于它既熟悉又陌生，从名字上来看它应该是一个做动画的框架，其实动画只是它的一部分，它曾经叫做Layer Kit。 引用书中的定义：">
+<meta name="twitter:image" content="https://crmo.github.io/2018/12/02/Core%20Animation学习笔记（一）/images/15436482245238.jpg">
 
 
 
@@ -395,15 +395,16 @@
         <blockquote>
 <p>本文是我阅读书籍《iOS CORE ANIMATION ADVANCED TECHNIQUES》的读书笔记，感谢原书作者及译者的分享！<br>推荐大家有时间可以读读原书，写的很精彩。<a href="https://zsisme.gitbooks.io/ios-/content/index.html" target="_blank" rel="noopener">中文版</a></p>
 </blockquote>
-<p>什么是<code>Core Animation</code>，相信很多同学对于它既熟悉又陌生，从名字上来看它应该是一个做动画的框架，其实动画只是它的一部分，它曾经叫做<code>Layer Kit</code>。</p>
+<h2 id="一、Core-Animation定义"><a href="#一、Core-Animation定义" class="headerlink" title="一、Core Animation定义"></a>一、Core Animation定义</h2><p>什么是<code>Core Animation</code>，相信很多同学对于它既熟悉又陌生，从名字上来看它应该是一个做动画的框架，其实动画只是它的一部分，它曾经叫做<code>Layer Kit</code>。</p>
 <p>引用书中的定义：</p>
 <blockquote>
 <p>Core Animation是一个复合引擎，它的职责就是尽可能快地组合屏幕上不同的可视内容，这个内容是被分解成独立的<code>Layer</code>，并存储在<code>Layer Tree</code>中。于是这个树形成了UIKit以及在iOS应用程序当中你所能在屏幕上看见的一切的基础。</p>
 </blockquote>
 <p>看完还是一脸懵逼？没关系，在这一系列文章中，我将抽丝剥茧，带领大家揭开<code>Core Animation</code>的神秘面纱。</p>
-<h2 id="UIView与CALayer关系"><a href="#UIView与CALayer关系" class="headerlink" title="UIView与CALayer关系"></a>UIView与CALayer关系</h2><p>在iOS当中，所有的视图都从一个叫做UIVIew的基类派生而来，UIView可以处理触摸事件，可以支持基于Core Graphics绘图，可以做仿射变换（例如旋转或者缩放），或者简单的类似于滑动或者渐变的动画。</p>
-<p>UIView仅仅是对它的一个封装，提供了一些iOS类似于处理触摸的具体功能，以及Core Animation底层方法的高级接口。</p>
-<p>我们已经证实了图层不能像视图那样处理触摸事件，那么他能做哪些视图不能做的呢？这里有一些UIView没有暴露出来的CALayer的功能：</p>
+<h2 id="二、UIView与CALayer"><a href="#二、UIView与CALayer" class="headerlink" title="二、UIView与CALayer"></a>二、UIView与CALayer</h2><p>我们平时开发中，接触最多的就是<code>UIView</code>，UIView可以处理触摸事件，可以支持基于<code>Core Graphics</code>绘图，可以做仿射变换（例如旋转或者缩放），或者简单的类似于滑动或者渐变的动画。</p>
+<p>每个<code>UIView</code>都包含一个<code>CALayer</code>实例，也就是所谓的<code>backing layer</code>。<code>CALayer</code>与<code>UIView</code>最大的区别是它不处理用户的交互，它的职责是负责屏幕上的显示和动画。<code>UIView</code>负责处理用户交互，并管理<code>CALayer</code>。</p>
+<p><code>UIView</code>其实就是对<code>CALayer</code>的高级封装，为什么苹果不直接用一个简单层级来处理所有事情？原因在于要做职责分离，这样也能避免很多重复代码。在iOS和Mac OS两个平台上，事件和用户交互有很多地方的不同，基于多点触控的用户界面和基于鼠标键盘有着本质的区别，这就是为什么iOS有<code>UIKit</code>和<code>UIView</code>，但是Mac OS有<code>AppKit</code>和<code>NSView</code>的原因。他们功能上很相似，但是在实现上有着显著的区别。</p>
+<h3 id="CALayer独有功能"><a href="#CALayer独有功能" class="headerlink" title="CALayer独有功能"></a>CALayer独有功能</h3><p>有一些UIView没有暴露出来的CALayer的功能：</p>
 <ul>
 <li>阴影，圆角，带颜色的边框</li>
 <li>3D变换</li>
@@ -411,7 +412,7 @@
 <li>透明遮罩</li>
 <li>多级非线性动画</li>
 </ul>
-<h2 id="backing-image"><a href="#backing-image" class="headerlink" title="backing image"></a>backing image</h2><p>CALayer中可以包含一张图，这就是<code>backing image</code>。有两种设置<code>backing image</code>的方法:</p>
+<h2 id="三、backing-image"><a href="#三、backing-image" class="headerlink" title="三、backing image"></a>三、backing image</h2><p><code>backing image</code>是<code>CALayer</code>的重要部分，通过它可以实现各种复杂的UI。有两种设置<code>backing image</code>的方法:</p>
 <ol>
 <li>设置CALayer的<code>contents</code>属性</li>
 <li>直接用<code>Core Graphics</code>绘制</li>
@@ -440,7 +441,7 @@
 <h4 id="UIImage转CGImage拉伸丢失问题"><a href="#UIImage转CGImage拉伸丢失问题" class="headerlink" title="UIImage转CGImage拉伸丢失问题"></a>UIImage转CGImage拉伸丢失问题</h4><p>和UIImage不同，CGImage没有拉伸的概念。使用UIImage类去读取图片的时候，它会读取了屏幕（1x、2x、3x）对应尺寸的图片。但是用CGImage来设置<code>layer.contents</code>时，拉伸这个因素在转换的时候就丢失了，不过我们可以通过手动设置<code>contentsScale</code>来修复这个问题。</p>
 <h4 id="contentsScale"><a href="#contentsScale" class="headerlink" title="contentsScale"></a>contentsScale</h4><p>如果<code>contentsScale</code>设置为1.0，将会以每个点1个像素绘制图片，如果设置为2.0，则会以每个点2个像素绘制图片。<code>UIView</code>中对应<code>contentScaleFactor</code>属性。</p>
 <h4 id="contentsCenter"><a href="#contentsCenter" class="headerlink" title="contentsCenter"></a>contentsCenter</h4><p>contentsCenter是一个CGRect，它定义了一个固定的边框和一个在图层上可拉伸的区域。类似于<code>UIImage</code>里的<code>resizableImageWithCapInsets</code> 方法，只是它可以运用到任何<code>backing image</code>，甚至包括<code>Core Graphics</code>绘制的图形。</p>
-<p><img src="/images/15436482245238.jpg" alt="15436482245238"></p>
+<p><img src="images/15436482245238.jpg" alt=""></p>
 <h3 id="Custom-Drawing"><a href="#Custom-Drawing" class="headerlink" title="Custom Drawing"></a>Custom Drawing</h3><p>第二种方案是直接用<code>Core Graphics</code>绘制<code>backing image</code>，具体实现方式是通过继承<code>UIView</code>并实现<code>drawRect</code>来自定义绘制。</p>
 <h4 id="CALayerDelegate"><a href="#CALayerDelegate" class="headerlink" title="CALayerDelegate"></a>CALayerDelegate</h4><p>要理解<code>drawRect</code>的工作原理，首先我们来看看<code>CALayerDelegate</code>。<br><code>CALayer</code>有一个可选的delegate，通过实现<code>CALayerDelegate</code>，就可以自定义<code>CALayer</code>的<code>backing image</code>。<br><code>CALayerDelegate</code>中有两个值得关注的方法：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 由-display方法的默认实现调用，你应该实现整个显示过程（通常通过设置'contents'属性）</span></span><br><span class="line"><span class="comment">// 如果实现了该方法，就不会调用drawLayer:inContext:了</span></span><br><span class="line">- (<span class="keyword">void</span>)displayLayer:(<span class="built_in">CALayer</span> *)layer;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 由-drawInContext方法的默认实现调用</span></span><br><span class="line"><span class="comment">// 如果没有实现displayLayer:，就会调用该方法</span></span><br><span class="line">- (<span class="keyword">void</span>)drawLayer:(<span class="built_in">CALayer</span> *)layer inContext:(<span class="built_in">CGContextRef</span>)ctx;</span><br></pre></td></tr></table></figure>
@@ -453,12 +454,22 @@
 <p><strong>drawRect调用时机</strong></p>
 <p>当<code>UIView</code>在屏幕上出现的时候，<code>drawRect</code>方法就会被自动调用。然后内容就会被缓存起来直到它需要被更新，通常是因为手动调用了<code>setNeedsDisplay</code>，或影响到表现效果的属性值被更改时，如bounds属性。</p>
 <p>需要注意的是，调用<code>setNeedsDisplay</code>后，不会马上触发<code>drawRect</code>，而是要等到接收到RunLoop的<code>kCFRunLoopBeforeWaiting</code>通知后触发<code>drawRect</code>，如下图所示。</p>
-<p><img src="/images/15436511549803.jpg" alt="15436511549803"></p>
+<p><img src="images/15436511549803.jpg" alt="drawRect调用栈"></p>
 <p><strong>如非必须，勿重写drawRect</strong></p>
 <p><code>drawRect</code>方法没有默认的实现，因为对UIView来说，<code>backing image</code>并不是必须的。如果<code>UIView</code>检测到<code>drawRect</code>方法被调用了，它就会为视图分配一个<code>backing image</code>，这个<code>backing image</code>的像素尺寸等于<code>视图大小 * contentsScale</code>；反之则不会创建<code>backing image</code>，因此如果没有自定义绘制的任务就不要在重写一个空的<code>drawRect</code>。</p>
 <blockquote>
 <p>在做实验的时候发现了一个有趣现象，在同一个RunLoop循环里，先调用<code>setNeedsDisplay</code>，再设置<code>view.layer</code>的<code>contents</code>，系统就不会调用<code>drawRect</code>方法了(难道是因为设置<code>contents</code>会把<code>needsDisplay</code>设置为NO？？)。</p>
 </blockquote>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>如果我们只是写一个简单的登录界面，其实用<code>UIView</code>这种高级接口就够了。但是为了实现复杂UI与丝滑体验，使用<code>Core Animation</code>就是一个很好的选择（缺点是门槛高点，编码复杂度要高些）。<br>本文要点总结如下：</p>
+<ol>
+<li><code>Core Animation</code>是一个负责处理图层、屏幕绘制、动画等的复合引擎</li>
+<li><code>UIView</code>是对<code>CALayer</code>的高级封装，每个<code>UIView</code>包含一个<code>CALayer</code>实例。</li>
+<li>在<code>CALayer</code>上绘制内容，需要设置它的<code>backing image</code>，有两种方式：<ul>
+<li>设置CALayer的<code>contents</code>属性</li>
+<li>直接用<code>Core Graphics</code>绘制</li>
+</ul>
+</li>
+</ol>
 
       
     </div>
@@ -658,7 +669,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#UIView与CALayer关系"><span class="nav-number">1.</span> <span class="nav-text">UIView与CALayer关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#backing-image"><span class="nav-number">2.</span> <span class="nav-text">backing image</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#contents"><span class="nav-number">2.1.</span> <span class="nav-text">contents</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#contentsGravity"><span class="nav-number">2.1.1.</span> <span class="nav-text">contentsGravity</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UIImage转CGImage拉伸丢失问题"><span class="nav-number">2.1.2.</span> <span class="nav-text">UIImage转CGImage拉伸丢失问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#contentsScale"><span class="nav-number">2.1.3.</span> <span class="nav-text">contentsScale</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#contentsCenter"><span class="nav-number">2.1.4.</span> <span class="nav-text">contentsCenter</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Custom-Drawing"><span class="nav-number">2.2.</span> <span class="nav-text">Custom Drawing</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CALayerDelegate"><span class="nav-number">2.2.1.</span> <span class="nav-text">CALayerDelegate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#drawRect"><span class="nav-number">2.2.2.</span> <span class="nav-text">drawRect</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Core-Animation定义"><span class="nav-number">1.</span> <span class="nav-text">一、Core Animation定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、UIView与CALayer"><span class="nav-number">2.</span> <span class="nav-text">二、UIView与CALayer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CALayer独有功能"><span class="nav-number">2.1.</span> <span class="nav-text">CALayer独有功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、backing-image"><span class="nav-number">3.</span> <span class="nav-text">三、backing image</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#contents"><span class="nav-number">3.1.</span> <span class="nav-text">contents</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#contentsGravity"><span class="nav-number">3.1.1.</span> <span class="nav-text">contentsGravity</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UIImage转CGImage拉伸丢失问题"><span class="nav-number">3.1.2.</span> <span class="nav-text">UIImage转CGImage拉伸丢失问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#contentsScale"><span class="nav-number">3.1.3.</span> <span class="nav-text">contentsScale</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#contentsCenter"><span class="nav-number">3.1.4.</span> <span class="nav-text">contentsCenter</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Custom-Drawing"><span class="nav-number">3.2.</span> <span class="nav-text">Custom Drawing</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CALayerDelegate"><span class="nav-number">3.2.1.</span> <span class="nav-text">CALayerDelegate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#drawRect"><span class="nav-number">3.2.2.</span> <span class="nav-text">drawRect</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a></li></ol></div>
             
 
           </div>
