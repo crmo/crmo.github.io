@@ -103,20 +103,24 @@
   <meta name="keywords" content="iOS知识小结," />
 
 
-<meta name="description" content="今天在看WebViewJavascriptBridge源码的时候发现一个神奇的宏，在定义较长字符串时很实用。举个例子，将一段js代码存到一个变量，为了便于阅读需要加入换行，需要在每行结束加上\。 123456NSString *str = @&quot;function() &amp;#123; \	if (window.WebViewJavascriptBridge) &amp;#123; \		return; \	&amp;#">
+<meta name="description" content="我们在之前的文章中讨论了CALayer的backing images与几何布局，这篇文章我们来看看如何通过它的特性来实现一些炫酷的效果。 圆角与边框CALayer有一个叫做conrnerRadius的属性控制着图层角的曲率。它是一个浮点数，默认为0（为0的时候就是直角）。默认情况下，这个曲率值只影响背景颜色而不影响背景图片或是子图层。如果把masksToBounds设置成YES的话，图层里面的所有">
 <meta name="keywords" content="iOS知识小结">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS定义长字符串的实用宏">
-<meta property="og:url" content="https://crmo.github.io/2018/10/16/iOS定义长字符串的实用宏/index.html">
+<meta property="og:title" content="CR.MO`s Blog">
+<meta property="og:url" content="https://crmo.github.io/2018/12/03/Core Animation学习笔记（三）/index.html">
 <meta property="og:site_name" content="CR.MO`s Blog">
-<meta property="og:description" content="今天在看WebViewJavascriptBridge源码的时候发现一个神奇的宏，在定义较长字符串时很实用。举个例子，将一段js代码存到一个变量，为了便于阅读需要加入换行，需要在每行结束加上\。 123456NSString *str = @&quot;function() &amp;#123; \	if (window.WebViewJavascriptBridge) &amp;#123; \		return; \	&amp;#">
+<meta property="og:description" content="我们在之前的文章中讨论了CALayer的backing images与几何布局，这篇文章我们来看看如何通过它的特性来实现一些炫酷的效果。 圆角与边框CALayer有一个叫做conrnerRadius的属性控制着图层角的曲率。它是一个浮点数，默认为0（为0的时候就是直角）。默认情况下，这个曲率值只影响背景颜色而不影响背景图片或是子图层。如果把masksToBounds设置成YES的话，图层里面的所有">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://crmo.github.io/images/15396963641371.jpg">
-<meta property="og:updated_time" content="2018-10-17T00:58:11.756Z">
+<meta property="og:image" content="https://crmo.github.io/images/15438192854146-1.jpg">
+<meta property="og:image" content="https://crmo.github.io/images/15438427503914.png">
+<meta property="og:image" content="https://crmo.github.io/images/15438159073216.jpg">
+<meta property="og:image" content="https://crmo.github.io/images/15438313676615.png">
+<meta property="og:image" content="https://crmo.github.io/images/15438313825142.png">
+<meta property="og:updated_time" content="2018-12-03T13:44:16.080Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS定义长字符串的实用宏">
-<meta name="twitter:description" content="今天在看WebViewJavascriptBridge源码的时候发现一个神奇的宏，在定义较长字符串时很实用。举个例子，将一段js代码存到一个变量，为了便于阅读需要加入换行，需要在每行结束加上\。 123456NSString *str = @&quot;function() &amp;#123; \	if (window.WebViewJavascriptBridge) &amp;#123; \		return; \	&amp;#">
-<meta name="twitter:image" content="https://crmo.github.io/images/15396963641371.jpg">
+<meta name="twitter:title" content="CR.MO`s Blog">
+<meta name="twitter:description" content="我们在之前的文章中讨论了CALayer的backing images与几何布局，这篇文章我们来看看如何通过它的特性来实现一些炫酷的效果。 圆角与边框CALayer有一个叫做conrnerRadius的属性控制着图层角的曲率。它是一个浮点数，默认为0（为0的时候就是直角）。默认情况下，这个曲率值只影响背景颜色而不影响背景图片或是子图层。如果把masksToBounds设置成YES的话，图层里面的所有">
+<meta name="twitter:image" content="https://crmo.github.io/images/15438192854146-1.jpg">
 
 
 
@@ -125,7 +129,7 @@
 
 
 
-  <link rel="canonical" href="https://crmo.github.io/2018/10/16/iOS定义长字符串的实用宏/"/>
+  <link rel="canonical" href="https://crmo.github.io/2018/12/03/Core Animation学习笔记（三）/"/>
 
 
 
@@ -134,7 +138,7 @@
     sidebar: "",
   };
 </script>
-  <title>iOS定义长字符串的实用宏 | CR.MO`s Blog</title>
+  <title> | CR.MO`s Blog</title>
   
 
 
@@ -306,7 +310,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://crmo.github.io/2018/10/16/iOS定义长字符串的实用宏/">
+    <link itemprop="mainEntityOfPage" href="https://crmo.github.io/2018/12/03/Core Animation学习笔记（三）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CR.MO">
@@ -323,7 +327,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">iOS定义长字符串的实用宏</h2>
+          <h2 class="post-title" itemprop="name headline"></h2>
         
 
         <div class="post-meta">
@@ -335,7 +339,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-16T00:00:00+08:00">2018-10-16</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-03T00:00:00+08:00">2018-12-03</time>
             
 
             
@@ -353,9 +357,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/10/16/iOS定义长字符串的实用宏/#comments" itemprop="discussionUrl">
+                <a href="/2018/12/03/Core Animation学习笔记（三）/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/10/16/iOS定义长字符串的实用宏/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/12/03/Core Animation学习笔记（三）/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -391,14 +395,42 @@
       
 
       
-        <p>今天在看<code>WebViewJavascriptBridge</code>源码的时候发现一个神奇的宏，在定义较长字符串时很实用。<br>举个例子，将一段js代码存到一个变量，为了便于阅读需要加入换行，需要在每行结束加上<code>\</code>。</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *str = <span class="string">@"function() &#123; \</span></span><br><span class="line"><span class="string">	if (window.WebViewJavascriptBridge) &#123; \</span></span><br><span class="line"><span class="string">		return; \</span></span><br><span class="line"><span class="string">	&#125; \</span></span><br><span class="line"><span class="string">&#125;)(); \</span></span><br><span class="line"><span class="string">	"</span>;</span><br></pre></td></tr></table></figure>
-<p>这时，可以用宏来优化。</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#define LONG_STRING_DEFINE(x) #x</span></span><br><span class="line"><span class="built_in">NSString</span> *str = @LONG_STRING_DEFINE(function() &#123;</span><br><span class="line">	<span class="keyword">if</span> (window.WebViewJavascriptBridge) &#123;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)();</span><br><span class="line">	);</span><br></pre></td></tr></table></figure>
-<p>宏展开后代码如下</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *str = <span class="string">@";(function() &#123; if (window.WebViewJavascriptBridge) &#123; return; &#125;)();"</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="用Xcode看宏展开"><a href="#用Xcode看宏展开" class="headerlink" title="用Xcode看宏展开"></a>用Xcode看宏展开</h2><p>打开<code>Assistant Editor</code>，选择<code>Preproces</code>，就可以看到展开的宏。</p>
-<p><img src="/images/15396963641371.jpg" alt="15396963641371"></p>
+        <p>我们在之前的文章中讨论了<code>CALayer</code>的<code>backing images</code>与几何布局，这篇文章我们来看看如何通过它的特性来实现一些炫酷的效果。</p>
+<h2 id="圆角与边框"><a href="#圆角与边框" class="headerlink" title="圆角与边框"></a>圆角与边框</h2><p><code>CALayer</code>有一个叫做<code>conrnerRadius</code>的属性控制着图层角的曲率。它是一个浮点数，默认为0（为0的时候就是直角）。默认情况下，这个曲率值只影响背景颜色而不影响背景图片或是子图层。如果把<code>masksToBounds</code>设置成YES的话，图层里面的所有东西都会被截取。<br><code>CALayer</code>另外两个非常有用属性就是<code>borderWidth</code>和<code>borderColor</code>。二者共同定义了图层边的绘制样式。这条线（也被称作stroke）沿着图层的bounds绘制，同时也包含图层的角。<br><code>borderWidth</code>是以点为单位的定义边框粗细的浮点数，默认为0。<code>borderColor</code>定义了边框的颜色，默认为黑色。</p>
+<p>需要注意的是，<code>conrnerRadius</code>与<code>masksToBounds</code>同时使用是会造成离屏渲染，使用需要谨慎。例如在TableView的cell实现圆角头像，使用这种方案实现圆角就不合适了。有一种简单的替代方案：利用一张中间为透明圆形的图片来进行遮盖，虽然会引起blending，但性能仍然高于离屏渲染。</p>
+<h2 id="阴影"><a href="#阴影" class="headerlink" title="阴影"></a>阴影</h2><p>与圆角和边框不同，阴影会根据<code>backing image</code>与子视图来绘制，而不是layer的边界和角半径。<br>自定义阴影主要有下面属性需要关注（配合下图的例子看着比较直观）：</p>
+<ul>
+<li>shadowOpacity：阴影的透明度，取值范围在0.0（不可见）到1.0（不透明）之间</li>
+<li>shadowColor：阴影颜色，默认是黑色</li>
+<li>shadowOffset：阴影的方向和距离，他是一个CGSize，宽度控制阴影横向位移，高度控制阴影纵向位移。它的默认值是{0, -3}，也就是说阴影向上便宜3个点。</li>
+<li>shadowRadius：阴影的模糊度，默认值是3。</li>
+</ul>
+<p><img src="/images/15438192854146-1.jpg" alt="阴影属性举例"></p>
+<h3 id="shadowPath"><a href="#shadowPath" class="headerlink" title="shadowPath"></a>shadowPath</h3><p>需要注意的是使用<code>shadowOffse</code>设置阴影会导致离屏渲染，实时计算阴影是一个非常消耗资源的操作，尤其是图层有多个子图层，且每个图层还有一个有透明效果的<code>backing images</code>的时候。<br>这时可以通过设置<code>shadowPath</code>属性来提高性能，<code>shadowPath</code>是一个<code>CGPathRef</code>类型（一个指向<code>CGPath</code>的指针）。<code>CGPath</code>是一个<code>Core Graphics</code>对象，用来指定任意的一个矢量图形。我们可以通过这个属性单独于图层形状之外指定阴影的形状。下图可以清晰的看到两种方式在性能上的差距。</p>
+<p><img src="/images/15438427503914.png" alt="15438427503914"></p>
+<p>下面的代码实现了一个自定义的矩形阴影。</p>
+<p><img src="/images/15438159073216.jpg" alt="自定义矩形阴影"></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置阴影颜色</span></span><br><span class="line">layer.shadowColor = [<span class="built_in">UIColor</span> blackColor].CGColor;</span><br><span class="line"><span class="comment">// 设置阴影不透明度</span></span><br><span class="line">layer.shadowOpacity = <span class="number">0.5</span>;</span><br><span class="line"><span class="comment">// 绘制一个矩形</span></span><br><span class="line"><span class="built_in">CGMutablePathRef</span> path = <span class="built_in">CGPathCreateMutable</span>();</span><br><span class="line"><span class="built_in">CGPathAddRect</span>(path, <span class="literal">NULL</span>, layer.bounds);</span><br><span class="line"><span class="built_in">CGPathRelease</span>(path);</span><br><span class="line"><span class="comment">// 自定义矩形阴影</span></span><br><span class="line">layer.shadowPath = path;</span><br></pre></td></tr></table></figure>
+<h2 id="拉伸"><a href="#拉伸" class="headerlink" title="拉伸"></a>拉伸</h2><p>当图片实际大小与要展示的大小不同的时候，图像就需要缩放。有两个属性可以定义属性缩放使用的算法：</p>
+<ul>
+<li>minificationFilter：缩小图片使用算法，默认<code>kCAFilterLinear</code></li>
+<li>magnificationFilter：放大图片使用算法，默认<code>kCAFilterLinear</code></li>
+</ul>
+<p>CALayer提供了三种缩放的方式：</p>
+<ul>
+<li>kCAFilterLinear：双线性过滤算法，默认算法</li>
+<li>kCAFilterTrilinear：三线性过滤算法</li>
+<li>kCAFilterNearest：临近过滤算法</li>
+</ul>
+<p>关于什么是线性过滤算法，可以看看维基百科的相关词条<a href="https://zh.wikipedia.org/wiki/双线性过滤" target="_blank" rel="noopener">维基百科-双线性过滤</a>。这里摘录一段供参考：</p>
+<blockquote>
+<p>双线性过滤（Bilinear filtering）是进行缩放显示的时候进行纹理平滑的一种纹理过滤方法。 在大多数情况下，纹理在屏幕上显示的时候都不会同保存的纹理一模一样，没有任何损失。正因为这样，所以一些像素要使用纹素之间的点进行表示，在这里我们假设纹素都是位于各个单元中心或者左上或者其它位置的点。双线性过滤器利用像素所表示点周围四个最近的点（纹素点）之间进行双线性插值。<br>在纹理缩减到一半或者放大一倍的范围内，双线性过滤都能够有非常好的精度。这也就是说，如果纹理在每个方向都有 256 个像素，那么将它缩减到 128 以下或者放大到 512 以上的时候，由于会丢掉太多的像素或者进行了过多的平滑处理，纹理看起来就会很差。<br>三线性过滤尽管比较复杂，但是可以使得过渡非常平滑。</p>
+</blockquote>
+<p>临近过滤算法是一种简单粗暴的方法，它只取样最近的单像素点，不管其它像素点。这样做非常快，也不会使图片模糊。但是会让压缩的图片更糟，让放大的图片显得块状或是马赛克严重。</p>
+<p>对比线性过滤和临近过滤算法，非常小的图像或具有鲜明对比度和较少斜线的较大图像（例如，计算机生成的图像）​​，临近过滤算法将保持对比度并且可以产生更好的效果。但是对于大多数图像，尤其是具有斜线或曲线的图像，线性过滤算法好得多。换句话说，线性过滤保留了形状，临近过滤保留了像素差异。</p>
+<p>书中举了两个很直观例子，对于大图来说，双线性过滤算法和三线性过滤算法表现得更出色：<br><img src="/images/15438313676615.png" alt="15438313676615"></p>
+<p>对于没有斜线的小图来说，最近过滤算法要好很多：<br><img src="/images/15438313825142.png" alt="15438313825142"></p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p><code>CALayer</code>提供了一系列方法来实现常见的视觉效果，但是在使用的时候我们要注意离屏渲染问题。</p>
 
       
     </div>
@@ -432,8 +464,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/13/应对苹果隐私政策看我就够了/" rel="next" title="应对iOS隐私政策三步曲">
-                <i class="fa fa-chevron-left"></i> 应对iOS隐私政策三步曲
+              <a href="/2018/12/02/Core Animation学习笔记（一）/" rel="next" title="Core Animation学习笔记（一）- CALayer">
+                <i class="fa fa-chevron-left"></i> Core Animation学习笔记（一）- CALayer
               </a>
             
           </div>
@@ -441,10 +473,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/22/聊聊iOS开发中的JSBridge/" rel="prev" title="聊聊iOS开发中的JSBridge">
-                聊聊iOS开发中的JSBridge <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -602,7 +630,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#用Xcode看宏展开"><span class="nav-number">1.</span> <span class="nav-text">用Xcode看宏展开</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#圆角与边框"><span class="nav-number">1.</span> <span class="nav-text">圆角与边框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阴影"><span class="nav-number">2.</span> <span class="nav-text">阴影</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#shadowPath"><span class="nav-number">2.1.</span> <span class="nav-text">shadowPath</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拉伸"><span class="nav-number">3.</span> <span class="nav-text">拉伸</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a></li></ol></div>
             
 
           </div>
@@ -789,9 +817,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'https://crmo.github.io/2018/10/16/iOS定义长字符串的实用宏/';
-        this.page.identifier = '2018/10/16/iOS定义长字符串的实用宏/';
-        this.page.title = 'iOS定义长字符串的实用宏';
+        this.page.url = 'https://crmo.github.io/2018/12/03/Core Animation学习笔记（三）/';
+        this.page.identifier = '2018/12/03/Core Animation学习笔记（三）/';
+        this.page.title = '';
       };
       function loadComments () {
         var d = document, s = d.createElement('script');
