@@ -112,7 +112,7 @@
 <meta property="og:description" content="由于项目是Hybrid的平台，有第三方人员需要在上面开发H5应用，但是release包不能调试H5，只有debug报可以调试，但是项目源码不能交给第三方，在google搜索了下，发现一篇霜神的文章，讲的是debug包可以拷贝到其它机器运行，于是实践了一波。 环境准备 Xcode Command Line Tools ios-sim   ios-sim安装命令：npm install ios-sim">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://crmo.github.io/images/15348328228775.jpg">
-<meta property="og:updated_time" content="2018-10-07T08:13:37.803Z">
+<meta property="og:updated_time" content="2019-03-07T01:03:01.793Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS模拟器安装debug包">
 <meta name="twitter:description" content="由于项目是Hybrid的平台，有第三方人员需要在上面开发H5应用，但是release包不能调试H5，只有debug报可以调试，但是项目源码不能交给第三方，在google搜索了下，发现一篇霜神的文章，讲的是debug包可以拷贝到其它机器运行，于是实践了一波。 环境准备 Xcode Command Line Tools ios-sim   ios-sim安装命令：npm install ios-sim">
@@ -418,6 +418,10 @@
 <p>需要说明的是，debug.zip解压后就可以得到对应应用的.app文件，例如我的debug包放在<code>/Users/crmo/Desktop/debug/debug.app</code>，模拟器选择iPhone-8，最终的命令是</p>
 <blockquote>
 <p>ios-sim launch /Users/crmo/Desktop/debug/debug.app –devicetypeid iPhone-8</p>
+</blockquote>
+<p>或者将应用直接安装到模拟器上</p>
+<blockquote>
+<p>ios-sim install /Users/crmo/Desktop/debug/debug.app –devicetypeid iPhone-8</p>
 </blockquote>
 <h2 id="simctl-was-not-found错误解决"><a href="#simctl-was-not-found错误解决" class="headerlink" title="simctl was not found错误解决"></a>simctl was not found错误解决</h2><p>在实践时测试机的<code>Command Line Tools</code>没有配置好，出现报错：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">simctl was not found.</span><br><span class="line">Check that you have Xcode 8.x installed:</span><br><span class="line">	xcodebuild --versionCheck that you have Xcode 8.x selected:</span><br><span class="line">	xcode-select --print-path</span><br></pre></td></tr></table></figure>

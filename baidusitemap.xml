@@ -4,6 +4,23 @@
 
     
   <url>
+    <loc>https://crmo.github.io/2018/08/21/iOS%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%89%E8%A3%85debug%E5%8C%85/</loc>
+    <lastmod>2019-03-07T01:03:01.793Z</lastmod>
+    <data>
+        <display>
+        <title>iOS模拟器安装debug包</title>
+        <pubTime>2018-08-20T16:00:00.000Z</pubTime>
+        
+        <tag>iOS知识小结</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://crmo.github.io/2019/01/28/%E4%BB%8EFMDB%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E8%AF%B4%E8%B5%B7/</loc>
     <lastmod>2019-02-02T01:39:15.071Z</lastmod>
     <data>
@@ -554,23 +571,6 @@
         <display>
         <title>dispatch_sync死锁问题</title>
         <pubTime>2018-08-02T16:00:00.000Z</pubTime>
-        
-        <tag>iOS知识小结</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://crmo.github.io/2018/08/21/iOS%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%89%E8%A3%85debug%E5%8C%85/</loc>
-    <lastmod>2018-10-07T08:13:37.803Z</lastmod>
-    <data>
-        <display>
-        <title>iOS模拟器安装debug包</title>
-        <pubTime>2018-08-20T16:00:00.000Z</pubTime>
         
         <tag>iOS知识小结</tag>
          
