@@ -100,19 +100,21 @@
 
 
   
-  <meta name="keywords" content="Hexo, iOS" />
+  <meta name="keywords" content="iOS知识小结," />
 
 
-<meta name="description" content="分享iOS的学习点滴">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CR.MO`s Blog">
-<meta property="og:url" content="https://crmo.github.io/archives/index.html">
+<meta name="description" content="APP 中有很多从服务器获取数据、资源的需求，为了节省流量、加快访问速度、离线使用等需求，就会使用到网络缓存。HTTP协议对于缓存设计了很多机制，感兴趣的同学可以看看《RFC2616-section13-Caching in HTTP》。 iOS 中常见缓存机制在iOS中，如果没有特殊需求，使用系统的缓存机制就可以满足。如：max-age、Last-Modified、ETag、Expires等机制">
+<meta name="keywords" content="iOS知识小结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NSURLCache 缓存机制浅谈">
+<meta property="og:url" content="https://crmo.github.io/2019/04/16/NSURLCache 缓存机制浅谈/index.html">
 <meta property="og:site_name" content="CR.MO`s Blog">
-<meta property="og:description" content="分享iOS的学习点滴">
+<meta property="og:description" content="APP 中有很多从服务器获取数据、资源的需求，为了节省流量、加快访问速度、离线使用等需求，就会使用到网络缓存。HTTP协议对于缓存设计了很多机制，感兴趣的同学可以看看《RFC2616-section13-Caching in HTTP》。 iOS 中常见缓存机制在iOS中，如果没有特殊需求，使用系统的缓存机制就可以满足。如：max-age、Last-Modified、ETag、Expires等机制">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-16T12:48:12.494Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CR.MO`s Blog">
-<meta name="twitter:description" content="分享iOS的学习点滴">
+<meta name="twitter:title" content="NSURLCache 缓存机制浅谈">
+<meta name="twitter:description" content="APP 中有很多从服务器获取数据、资源的需求，为了节省流量、加快访问速度、离线使用等需求，就会使用到网络缓存。HTTP协议对于缓存设计了很多机制，感兴趣的同学可以看看《RFC2616-section13-Caching in HTTP》。 iOS 中常见缓存机制在iOS中，如果没有特殊需求，使用系统的缓存机制就可以满足。如：max-age、Last-Modified、ETag、Expires等机制">
 
 
 
@@ -121,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="https://crmo.github.io/archives/"/>
+  <link rel="canonical" href="https://crmo.github.io/2019/04/16/NSURLCache 缓存机制浅谈/"/>
 
 
 
@@ -130,7 +132,7 @@
     sidebar: "",
   };
 </script>
-  <title>Archive | CR.MO`s Blog</title>
+  <title>NSURLCache 缓存机制浅谈 | CR.MO`s Blog</title>
   
 
 
@@ -177,7 +179,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -286,421 +288,231 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      
-      <span class="archive-page-counter">
-        
-        
-         
-        
-        OK! 37 posts in total. Keep on posting.
-      </span>
-      
+  
 
-      
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://crmo.github.io/2019/04/16/NSURLCache 缓存机制浅谈/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CR.MO">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CR.MO`s Blog">
+    </span>
+
+    
+      <header class="post-header">
 
         
         
+          <h2 class="post-title" itemprop="name headline">NSURLCache 缓存机制浅谈</h2>
         
 
-        
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-16T00:00:00+08:00">2019-04-16</time>
+            
+
+            
+            
+
+            
+          </span>
+
           
-          <div class="collection-title">
-            <h2 class="archive-year" id="archive-year-2019">2019</h2>
-          </div>
-        
-        
 
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2019/04/16/NSURLCache 缓存机制浅谈/" itemprop="url">
-              
-                <span itemprop="name">NSURLCache 缓存机制浅谈</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-04-16T00:00:00+08:00"
-              content="2019-04-16" >
-          04-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2019/01/28/从FMDB线程安全问题说起/" itemprop="url">
-              
-                <span itemprop="name">从FMDB线程安全问题说起</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-01-28T00:00:00+08:00"
-              content="2019-01-28" >
-          01-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h2 class="archive-year" id="archive-year-2018">2018</h2>
-          </div>
-        
-        
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/16/NSURLCache 缓存机制浅谈/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/04/16/NSURLCache 缓存机制浅谈/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views: 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
 
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/03/Core Animation学习笔记（三）/" itemprop="url">
-              
-                <span itemprop="name">Core Animation学习笔记（三）- 视觉效果</span>
-              
-            </a>
-        
-      </h3>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-12-03T00:00:00+08:00"
-              content="2018-12-03" >
-          12-03
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/02/Core Animation学习笔记（二）/" itemprop="url">
-              
-                <span itemprop="name">Core Animation学习笔记（二）- 图层几何布局</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-12-02T00:00:00+08:00"
-              content="2018-12-02" >
-          12-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/02/Core Animation学习笔记（一）/" itemprop="url">
-              
-                <span itemprop="name">Core Animation学习笔记（一）- CALayer</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-12-02T00:00:00+08:00"
-              content="2018-12-02" >
-          12-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/11/15/App Store上架漫谈/" itemprop="url">
-              
-                <span itemprop="name">App Store上架漫谈</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-11-15T00:00:00+08:00"
-              content="2018-11-15" >
-          11-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>APP 中有很多从服务器获取数据、资源的需求，为了节省流量、加快访问速度、离线使用等需求，就会使用到网络缓存。<code>HTTP协议</code>对于缓存设计了很多机制，感兴趣的同学可以看看<a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html#sec13" target="_blank" rel="noopener">《RFC2616-section13-Caching in HTTP》</a>。</p>
+<h2 id="iOS-中常见缓存机制"><a href="#iOS-中常见缓存机制" class="headerlink" title="iOS 中常见缓存机制"></a>iOS 中常见缓存机制</h2><p>在iOS中，如果没有特殊需求，使用系统的缓存机制就可以满足。如：max-age、Last-Modified、ETag、Expires等机制系统都实现了的，不需要自己再去搞一套。只需要将 <code>NSURLRequest</code> 的 <code>cachePolicy</code> 设置为 <code>NSURLRequestUseProtocolCachePolicy</code> 。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSURLRequest</span> *request = [[<span class="built_in">NSURLRequest</span> alloc] init];</span><br><span class="line">request.cachePolicy = <span class="built_in">NSURLRequestUseProtocolCachePolicy</span>;</span><br></pre></td></tr></table></figure>
+<p>这里简单说下常见的几种机制，首先来看一个<code>GET请求</code>的响应报文，里面包含了几种常见的缓存标识。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 </span><br><span class="line">Cache-Control	max-age=86400, private</span><br><span class="line">Last-Modified	Tue, 16 Apr 2019 06:07:39 GMT</span><br><span class="line">ETag	W/&quot;28111-1554979928000&quot;</span><br><span class="line">Expires	Wed, 17 Apr 2019 06:07:39 GMT</span><br><span class="line">Date	Tue, 16 Apr 2019 06:07:39 GMT</span><br><span class="line">Transfer-Encoding	chunked</span><br><span class="line">Connection	keep-alive</span><br></pre></td></tr></table></figure>
+<h3 id="max-age"><a href="#max-age" class="headerlink" title="max-age"></a>max-age</h3><p><code>max-age</code> 是 <code>cache-control</code> 下的一个指令，表示 <code>Response</code> 的最大 Age。例如：</p>
+<blockquote>
+<p>Cache-Control     max-age=86400, private</p>
+</blockquote>
+<p>含义为：该 <code>Response</code> 的有效期为1天，在一天以内，同样的 URL 将不会再次请求，直接使用缓存。</p>
+<h3 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h3><p><code>Expires</code> 告诉客户端 <code>Response</code> 的过期时间。例如：</p>
+<blockquote>
+<p>Expires Wed, 17 Apr 2019 06:07:39 GMT</p>
+</blockquote>
+<p>含义为：该 <code>Response</code> 在 <code>Wed, 17 Apr 2019 06:07:39 GMT</code> 时过期，在这之前，同样的 URL 将不会再次请求，直接使用缓存。<br>需要注意的是，<code>max-age</code> 的优先级大于 <code>expires</code>。</p>
+<h3 id="Last-Modified"><a href="#Last-Modified" class="headerlink" title="Last-Modified"></a>Last-Modified</h3><p><code>Last-Modified</code> 指明资源的最终修改时间，客户端在请求的时候，将这个值带在 <code>If-Modified-Since</code> 中。例如：</p>
+<blockquote>
+<p>If-Modified-Since    Thu, 11 Apr 2019 10:52:08 GMT</p>
+</blockquote>
+<p>服务器会根据客户端传递的时间判断资源是否有更新，如果没有更新，服务器返回304，客户端直接使用缓存，如果有更新，服务器返回200和最新的资源。</p>
+<h3 id="Etag"><a href="#Etag" class="headerlink" title="Etag"></a>Etag</h3><p><code>Etag</code> 类似于资源的唯一hash值，资源发生变化，这个值就发生变更，客户端在请求资源时，会将 <code>Etag</code> 放在 <code>If-None-Match</code> 中，例如：</p>
+<blockquote>
+<p>If-None-Match     W/“28111-1554979928000”</p>
+</blockquote>
+<p>服务端根据客户端传递的 <code>Etag</code> 判断资源是否有更新，如果没有更新，服务器返回304，客户端直接使用缓存，如果有更新，服务器返回200和最新的资源。</p>
+<h2 id="启发式缓存（heuristic-expiration）"><a href="#启发式缓存（heuristic-expiration）" class="headerlink" title="启发式缓存（heuristic expiration）"></a>启发式缓存（heuristic expiration）</h2><p>在测试缓存机制时，发现了一种特殊情况，返回报文里没有 <code>max-age</code> 和 <code>Expires</code>，再次请求相同URL时却直接使用的缓存，没有重新发请求，请求报文如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 </span><br><span class="line">Accept-Ranges	bytes</span><br><span class="line">ETag	W/&quot;28111-1554979928000&quot;</span><br><span class="line">Last-Modified	Thu, 11 Apr 2019 10:52:08 GMT</span><br><span class="line">Date	Tue, 16 Apr 2019 07:23:21 GMT</span><br><span class="line">Content-Type	image/jpeg</span><br><span class="line">Content-Length	28111</span><br><span class="line">Connection	keep-alive</span><br></pre></td></tr></table></figure>
+<p>让人摸不着头脑，在查询资料后发现一篇文章，提到了这个现象，<a href="https://blackpixel.com/writing/2012/05/caching-and-nsurlconnection.html" target="_blank" rel="noopener">Caching and NSURLConnection</a>。</p>
+<p>在文章的指引下，仔细研究了下<a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html#sec13" target="_blank" rel="noopener">RFC2616-section13-Caching in HTTP</a>，发现了答案。</p>
+<p>RFC的原文如下：</p>
+<blockquote>
+<p>If none of Expires, Cache-Control: max-age, or Cache-Control: s- maxage (see section 14.9.3) appears in the response, and the response does not include other restrictions on caching, the cache MAY compute a freshness lifetime using a heuristic. The cache MUST attach Warning 113 to any response whose age is more than 24 hours if such warning has not already been added.<br>Also, if the response does have a Last-Modified time, the heuristic expiration value SHOULD be no more than some fraction of the interval since that time. A typical setting of this fraction might be 10%.</p>
+</blockquote>
+<p>这是一种叫启发式缓存（heuristic expiration）的策略，在 response 中如果没有 Expires、max-age、s-maxage，来明确指定资源的过期时间，NSURLCache 会根据 Last-Modified 来计算一个过期时间。</p>
+<blockquote>
+<p>根据实验结果，在iOS中计算公式是这样的：lifetime = (Last-Modified - Now) * 10%</p>
+</blockquote>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p>1、<a href="https://blackpixel.com/writing/2012/05/caching-and-nsurlconnection.html" target="_blank" rel="noopener">Caching and NSURLConnection</a><br>2、<a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html#sec13" target="_blank" rel="noopener">RFC2616-section13-Caching in HTTP</a><br>3、<a href="https://nshipster.com/nsurlcache/" target="_blank" rel="noopener">NSURLCache-NSHipster</a><br>4、<a href="https://segmentfault.com/a/1190000004356632" target="_blank" rel="noopener">iOS网络缓存扫盲篇 - 使用两行代码就能完成80%的缓存需求</a></p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/10/22/聊聊iOS开发中的JSBridge/" itemprop="url">
-              
-                <span itemprop="name">聊聊iOS开发中的JSBridge</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-10-22T00:00:00+08:00"
-              content="2018-10-22" >
-          10-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/10/16/iOS定义长字符串的实用宏/" itemprop="url">
-              
-                <span itemprop="name">iOS定义长字符串的实用宏</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-10-16T00:00:00+08:00"
-              content="2018-10-16" >
-          10-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/10/13/应对苹果隐私政策看我就够了/" itemprop="url">
-              
-                <span itemprop="name">应对iOS隐私政策三步曲</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-10-13T00:00:00+08:00"
-              content="2018-10-13" >
-          10-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/10/07/记“香蕉播放器”上架的辛酸历程/" itemprop="url">
-              
-                <span itemprop="name">记“香蕉播放器”上架的辛酸历程</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-10-07T00:00:00+08:00"
-              content="2018-10-07" >
-          10-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS知识小结/" rel="tag"># iOS知识小结</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/28/从FMDB线程安全问题说起/" rel="next" title="从FMDB线程安全问题说起">
+                <i class="fa fa-chevron-left"></i> 从FMDB线程安全问题说起
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -721,8 +533,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -795,6 +616,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-中常见缓存机制"><span class="nav-number">1.</span> <span class="nav-text">iOS 中常见缓存机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#max-age"><span class="nav-number">1.1.</span> <span class="nav-text">max-age</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Expires"><span class="nav-number">1.2.</span> <span class="nav-text">Expires</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Last-Modified"><span class="nav-number">1.3.</span> <span class="nav-text">Last-Modified</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Etag"><span class="nav-number">1.4.</span> <span class="nav-text">Etag</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启发式缓存（heuristic-expiration）"><span class="nav-number">2.</span> <span class="nav-text">启发式缓存（heuristic expiration）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章"><span class="nav-number">3.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -955,6 +792,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.4"></script>
+
+
 
   
 
@@ -969,6 +810,23 @@
     <script id="dsq-count-scr" src="https://CRMO.disqus.com/count.js" async></script>
   
 
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://crmo.github.io/2019/04/16/NSURLCache 缓存机制浅谈/';
+        this.page.identifier = '2019/04/16/NSURLCache 缓存机制浅谈/';
+        this.page.title = 'NSURLCache 缓存机制浅谈';
+      };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://CRMO.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
   
 
 
