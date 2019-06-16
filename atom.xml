@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://crmo.github.io/"/>
-  <updated>2019-04-16T12:48:12.494Z</updated>
+  <updated>2019-06-16T03:55:13.816Z</updated>
   <id>https://crmo.github.io/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>GCD 解决生产者消费者问题</title>
+    <link href="https://crmo.github.io/2019/06/16/GCD%20%E8%A7%A3%E5%86%B3%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98/"/>
+    <id>https://crmo.github.io/2019/06/16/GCD 解决生产者消费者问题/</id>
+    <published>2019-06-15T16:00:00.000Z</published>
+    <updated>2019-06-16T03:55:13.816Z</updated>
+    
+    <content type="html"><![CDATA[<p>说起生产者消费者问题（Producer-consumer problem），相信大家都印象深刻，有遗忘可以看看<a href="https://zh.wikipedia.org/wiki/生产者消费者问题#使用信号灯的算法" target="_blank" rel="noopener">wiki</a>上的解释，我们今天来聊聊怎么用 GCD 实现一个生产者消费者模型。</p><p>我们先理一下思路，看看问题关键点：</p><ol><li>生产者生成产品放到缓冲区中，然后重复此过程，但是生产的产品数量不能超过缓冲区大小，如果缓冲区满了，停止生产新的产品，等待缓冲区有空位；</li><li>消费者不停从缓冲区取出产品，如果缓冲区空了，则停止消费，等待新的产品放到缓冲区中；</li></ol><p>很容易就联想到信号量 <code>dispatch_semaphore_t</code> ，我们需要使用两个信号量分别控制<code>生产者</code>与<code>消费者</code>，<code>semaphoreProduce</code> 控制生产者当缓冲区满时停止生产，<code>semaphoreConsume</code> 控制消费者当缓冲区空时停止消费。如下图所示（配图纯手工制作，轻喷😂）：</p><p><img src="/images/IMG_0010.jpg" alt="灵魂画手配图✌️"></p><p>Show me the code.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">// 控制生产者的信号量</span><br><span class="line">dispatch_semaphore_t semaphoreProduce;</span><br><span class="line">// 控制消费者的信号量</span><br><span class="line">dispatch_semaphore_t semaphoreConsume;</span><br><span class="line">// 当前产品数量</span><br><span class="line">int productCount = 0;</span><br><span class="line">// 缓冲区大小</span><br><span class="line">const int bufferSize = 5;</span><br><span class="line"></span><br><span class="line">// 初始化生产者、消费者信号量</span><br><span class="line">- (void)initProducerAndConsume &#123;</span><br><span class="line">    // 初始化缓冲区大小</span><br><span class="line">    semaphoreProduce = dispatch_semaphore_create(bufferSize);</span><br><span class="line">    semaphoreConsume = dispatch_semaphore_create(0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 生产商品</span><br><span class="line">- (void)produce &#123;</span><br><span class="line">    dispatch_async(dispatch_get_global_queue(0, 0), ^&#123;</span><br><span class="line">        dispatch_semaphore_wait(semaphoreProduce, DISPATCH_TIME_FOREVER);</span><br><span class="line">        [NSThread sleepForTimeInterval:1];</span><br><span class="line">        productCount++;</span><br><span class="line">        NSLog(@&quot;生产商品，商品总量：%d&quot;, productCount);</span><br><span class="line">        dispatch_semaphore_signal(semaphoreConsume);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 消费商品</span><br><span class="line">- (void)consume &#123;</span><br><span class="line">    dispatch_async(dispatch_get_global_queue(0, 0), ^&#123;</span><br><span class="line">        dispatch_semaphore_wait(semaphoreConsume, DISPATCH_TIME_FOREVER);</span><br><span class="line">        [NSThread sleepForTimeInterval:1];</span><br><span class="line">        productCount--;</span><br><span class="line">        NSLog(@&quot;消费商品，商品总量：%d&quot;, productCount);</span><br><span class="line">        dispatch_semaphore_signal(semaphoreProduce);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;说起生产者消费者问题（Producer-consumer problem），相信大家都印象深刻，有遗忘可以看看&lt;a href=&quot;https://zh.wikipedia.org/wiki/生产者消费者问题#使用信号灯的算法&quot; target=&quot;_blank&quot; rel=&quot;noo
+      
+    
+    </summary>
+    
+    
+      <category term="iOS知识小结" scheme="https://crmo.github.io/tags/iOS%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>connectionProxyDictionary 笔记</title>
+    <link href="https://crmo.github.io/2019/06/16/connectionProxyDictionary%E7%AC%94%E8%AE%B0/"/>
+    <id>https://crmo.github.io/2019/06/16/connectionProxyDictionary笔记/</id>
+    <published>2019-06-15T16:00:00.000Z</published>
+    <updated>2019-06-16T03:53:17.404Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近研究了下 <code>connectionProxyDictionary</code>，做一个简单的笔记。<a href="https://developer.apple.com/documentation/foundation/nsurlsessionconfiguration/1411499-connectionproxydictionary" target="_blank" rel="noopener">官方文档</a>是这么描述的。</p><blockquote><p>This property controls which proxy tasks within sessions based on this configuration use when connecting to remote hosts.<br>The default value is NULL, which means that tasks use the default system settings.</p></blockquote><p>这个属性可以设置网络代理，默认值是 NULL，使用系统的代理设置。</p><blockquote><p>有一个比较巧妙的用法，可以通过设置为空字典可以禁止代理抓包(charles、fiddler等)。</p></blockquote><p>上代码。</p><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span>* proxyHost =  <span class="string">@"192.168.12.23"</span>;<span class="comment">//@"myProxyHost.com";</span></span><br><span class="line"><span class="built_in">NSNumber</span>* proxyPort = [<span class="built_in">NSNumber</span> numberWithInt: <span class="number">12345</span>];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个代理服务器，包括HTTP或HTTPS代理，当然还可以添加SOCKS,FTP,RTSP等</span></span><br><span class="line"><span class="built_in">NSDictionary</span> *proxyDict = @&#123;</span><br><span class="line">    (<span class="built_in">NSString</span> *)kCFNetworkProxiesHTTPEnable  : [<span class="built_in">NSNumber</span> numberWithInt:<span class="number">1</span>],</span><br><span class="line">    (<span class="built_in">NSString</span> *)kCFNetworkProxiesHTTPProxy: proxyHost,</span><br><span class="line">    (<span class="built_in">NSString</span> *)kCFNetworkProxiesHTTPProxyPort: proxyPort,</span><br><span class="line"></span><br><span class="line">    (<span class="built_in">NSString</span> *)kCFNetworkProxiesHTTPSEnable : [<span class="built_in">NSNumber</span> numberWithInt:<span class="number">1</span>],</span><br><span class="line">    (<span class="built_in">NSString</span> *)kCFNetworkProxiesHTTPSProxy: proxyHost,</span><br><span class="line">    (<span class="built_in">NSString</span> *)kCFNetworkProxiesHTTPSProxyPort: proxyPort,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSURLSessionConfiguration</span> *configuration = [<span class="built_in">NSURLSessionConfiguration</span> ephemeralSessionConfiguration];</span><br><span class="line"><span class="comment">// 设置代理</span></span><br><span class="line">configuration.connectionProxyDictionary = proxyDict;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 禁止代理</span></span><br><span class="line">configuration.connectionProxyDictionary = @&#123;&#125;;</span><br></pre></td></tr></table></figure><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>1、<a href="https://developer.apple.com/documentation/foundation/nsurlsessionconfiguration/1411499-connectionproxydictionary" target="_blank" rel="noopener">Apple 文档</a><br>2、<a href="https://stackoverflow.com/questions/28101582/how-to-programmatically-add-a-proxy-to-an-nsurlsession" target="_blank" rel="noopener">How to programmatically add a proxy to an NSURLSession</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近研究了下 &lt;code&gt;connectionProxyDictionary&lt;/code&gt;，做一个简单的笔记。&lt;a href=&quot;https://developer.apple.com/documentation/foundation/nsurlsessionconfigur
+      
+    
+    </summary>
+    
+    
+      <category term="iOS知识小结" scheme="https://crmo.github.io/tags/iOS%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
+    
+  </entry>
   
   <entry>
     <title>NSURLCache 缓存机制浅谈</title>
@@ -90,29 +136,6 @@
   </entry>
   
   <entry>
-    <title>Core Animation学习笔记（二）- 图层几何布局</title>
-    <link href="https://crmo.github.io/2018/12/02/Core%20Animation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
-    <id>https://crmo.github.io/2018/12/02/Core Animation学习笔记（二）/</id>
-    <published>2018-12-01T16:00:00.000Z</published>
-    <updated>2018-12-04T13:48:45.220Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="一、Layout"><a href="#一、Layout" class="headerlink" title="一、Layout"></a>一、Layout</h2><p>UIView有三个比较重要的布局属性：<code>frame</code>，<code>bounds</code>和<code>center</code>，<code>CALayer</code>对应地叫做<code>frame</code>，<code>bounds</code>和<code>position</code>。<br><code>frame</code>是图层在父图层上的坐标，<code>bounds</code>是内部坐标（{0, 0}通常是左上角）。<br><code>center</code>和<code>position</code>要难理解一些，简单来说他们定义了<code>anchorPoint</code>在父图层中的位置（后面会详细说明）。</p><p><img src="/images/15437391858284.jpg" alt="15437391858284"></p><p><code>frame</code>其实是一个虚拟属性，是根据<code>bounds</code>，<code>position</code>和<code>transform</code>计算而来，所以当其中任何一个值发生改变，<code>frame</code>都会变化。相反，改变<code>frame</code>的值同样会影响到他们当中的值。</p><p>这里有一个容易忽视的细节，我们通常开发的时候<code>frame</code>与<code>bounds</code>的宽高都相等。但是当对图层做变换的时候（旋转或者缩放）frame实际上代表了覆盖在图层旋转之后的整个轴对齐的矩形区域，这时候它们将不再相等。如下图所示。</p><p><img src="/images/15437396721415.jpg" alt="15437396721415"></p><h2 id="二、anchorPoint、position、center三者不得不说的故事"><a href="#二、anchorPoint、position、center三者不得不说的故事" class="headerlink" title="二、anchorPoint、position、center三者不得不说的故事"></a>二、anchorPoint、position、center三者不得不说的故事</h2><p>要彻底理解<code>position</code>究竟是什么鬼，首先我们得搞懂什么是<code>anchorPoint</code>。它可以理解为一个固定图层的图钉，它的主要作用是作为变换的支点，比如在旋转图层时，就会以<code>anchorPoint</code>为圆心旋转（一起来想象一下）。</p><p><img src="/images/15437419896060.jpg" alt="15437419896060"></p><p><code>anchorPoint</code>用相对坐标表示，它表示相对于图层的位置，取值范围0-1。</p><ul><li>左上角：(0,0)</li><li>右下角：(1,1)</li><li>中心：(0.5,0.5)</li></ul><p>而<code>position</code>就表示<code>anchorPoint</code>在父图层的坐标，下面这张图非常的清晰明了。</p><p><img src="/images/15437425063586.jpg" alt="15437425063586"></p><p>由于<code>anchorPoint</code>是<code>CALayer</code>的属性，默认值是(0.5,0.5)，也就是中心。而<code>UIView</code>没有这个属性，因此<code>UIView</code>的<code>center</code>属性就表示view的中心点在父view的坐标（命名为center可以说是非常的直观）。</p><h2 id="Coordinate-Systems"><a href="#Coordinate-Systems" class="headerlink" title="Coordinate Systems"></a>Coordinate Systems</h2><h3 id="坐标系转换"><a href="#坐标系转换" class="headerlink" title="坐标系转换"></a>坐标系转换</h3><p>CALayer给不同坐标系之间的图层转换提供了一些工具类方法，这些方法可以把定义在一个图层坐标系下的点或者矩形转换成另一个图层坐标系下的点或者矩形。</p><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">CGPoint</span>)convertPoint:(<span class="built_in">CGPoint</span>)point fromLayer:(<span class="built_in">CALayer</span> *)layer;</span><br><span class="line">- (<span class="built_in">CGPoint</span>)convertPoint:(<span class="built_in">CGPoint</span>)point toLayer:(<span class="built_in">CALayer</span> *)layer;</span><br><span class="line">- (<span class="built_in">CGRect</span>)convertRect:(<span class="built_in">CGRect</span>)rect fromLayer:(<span class="built_in">CALayer</span> *)layer;</span><br><span class="line">- (<span class="built_in">CGRect</span>)convertRect:(<span class="built_in">CGRect</span>)rect toLayer:(<span class="built_in">CALayer</span> *)layer;</span><br></pre></td></tr></table></figure><h3 id="翻转"><a href="#翻转" class="headerlink" title="翻转"></a>翻转</h3><p>常规说来，在iOS上，一个图层的<code>position</code>位于父图层的左上角，但是在Mac OS上，通常是位于左下角。<code>Core Animation</code>可以通过<code>geometryFlipped</code>属性来适配这两种情况，它决定了一个图层的坐标是否相对于父图层垂直翻转，是一个BOOL类型。在iOS上通过设置它为YES意味着它的子图层将会被垂直翻转，也就是将会沿着底部排版而不是通常的顶部（它的所有子图层也同理，除非把它们的<code>geometryFlipped</code>属性也设为YES）。</p><h3 id="Z轴"><a href="#Z轴" class="headerlink" title="Z轴"></a>Z轴</h3><p>和<code>UIView</code>严格的二维坐标系不同，<code>CALayer</code>存在于一个三维空间当中。除了我们已经讨论过的<code>position</code>和<code>anchorPoint</code>属性之外，<code>CALayer</code>还有另外两个属性，<code>zPosition</code>和<code>anchorPointZ</code>，二者都是在Z轴上描述图层位置的浮点类型。</p><h2 id="Hit-testing"><a href="#Hit-testing" class="headerlink" title="Hit testing"></a>Hit testing</h2><p><code>CALayer</code>并不关心事件响应链，所以不能直接处理触摸事件或者手势。但是它有一系列的方法帮你处理事件：<code>containsPoint:</code>和<code>hitTest:</code>。<br><code>containsPoint:</code>接受一个在本图层坐标系下的CGPoint，如果这个点在layer的frame范围内就返回YES。<br><code>hitTest:</code>方法接受一个CGPoint类型参数，它返回这个点所在layer，也就是layer本身，或者叶子节点。</p><h2 id="自动布局"><a href="#自动布局" class="headerlink" title="自动布局"></a>自动布局</h2><p><code>CALayer</code>不支持自动布局，需要实现<code>CALayerDelegate</code>的函数：</p><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)layoutSublayersOfLayer:(<span class="built_in">CALayer</span> *)layer;</span><br></pre></td></tr></table></figure><p>然后手动管理布局，非常的不友好，这是一个为什么不直接用<code>CALayer</code>，而是要用<code>UIView</code>的重要原因。</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ol><li>理解frame，bounds，center，position，anchorPoint对于理解图层布局很重要。</li><li><code>CALayer</code>没有处理事件响应链，需要手动处理。</li><li><code>CALayer</code>不支持自动布局。</li></ol><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="http://kittenyang.com/anchorpoint/" target="_blank" rel="noopener">这将是你最后一次纠结position与anchorPoint！</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;一、Layout&quot;&gt;&lt;a href=&quot;#一、Layout&quot; class=&quot;headerlink&quot; title=&quot;一、Layout&quot;&gt;&lt;/a&gt;一、Layout&lt;/h2&gt;&lt;p&gt;UIView有三个比较重要的布局属性：&lt;code&gt;frame&lt;/code&gt;，&lt;code&gt;bo
-      
-    
-    </summary>
-    
-    
-      <category term="iOS知识小结" scheme="https://crmo.github.io/tags/iOS%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Core Animation学习笔记（一）- CALayer</title>
     <link href="https://crmo.github.io/2018/12/02/Core%20Animation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>https://crmo.github.io/2018/12/02/Core Animation学习笔记（一）/</id>
@@ -127,6 +150,29 @@
       
         &lt;blockquote&gt;
 &lt;p&gt;本文是我阅读书籍《iOS CORE ANIMATION ADVANCED TECHNIQUES》的读书笔记，感谢原书作者及译者的分享！&lt;br&gt;推荐大家有时间可以读读英文版原书，虽然年代比较久远了，但是还是能有不少收获。英文不好的同学可以看&lt;a hr
+      
+    
+    </summary>
+    
+    
+      <category term="iOS知识小结" scheme="https://crmo.github.io/tags/iOS%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Core Animation学习笔记（二）- 图层几何布局</title>
+    <link href="https://crmo.github.io/2018/12/02/Core%20Animation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <id>https://crmo.github.io/2018/12/02/Core Animation学习笔记（二）/</id>
+    <published>2018-12-01T16:00:00.000Z</published>
+    <updated>2018-12-04T13:48:45.220Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、Layout"><a href="#一、Layout" class="headerlink" title="一、Layout"></a>一、Layout</h2><p>UIView有三个比较重要的布局属性：<code>frame</code>，<code>bounds</code>和<code>center</code>，<code>CALayer</code>对应地叫做<code>frame</code>，<code>bounds</code>和<code>position</code>。<br><code>frame</code>是图层在父图层上的坐标，<code>bounds</code>是内部坐标（{0, 0}通常是左上角）。<br><code>center</code>和<code>position</code>要难理解一些，简单来说他们定义了<code>anchorPoint</code>在父图层中的位置（后面会详细说明）。</p><p><img src="/images/15437391858284.jpg" alt="15437391858284"></p><p><code>frame</code>其实是一个虚拟属性，是根据<code>bounds</code>，<code>position</code>和<code>transform</code>计算而来，所以当其中任何一个值发生改变，<code>frame</code>都会变化。相反，改变<code>frame</code>的值同样会影响到他们当中的值。</p><p>这里有一个容易忽视的细节，我们通常开发的时候<code>frame</code>与<code>bounds</code>的宽高都相等。但是当对图层做变换的时候（旋转或者缩放）frame实际上代表了覆盖在图层旋转之后的整个轴对齐的矩形区域，这时候它们将不再相等。如下图所示。</p><p><img src="/images/15437396721415.jpg" alt="15437396721415"></p><h2 id="二、anchorPoint、position、center三者不得不说的故事"><a href="#二、anchorPoint、position、center三者不得不说的故事" class="headerlink" title="二、anchorPoint、position、center三者不得不说的故事"></a>二、anchorPoint、position、center三者不得不说的故事</h2><p>要彻底理解<code>position</code>究竟是什么鬼，首先我们得搞懂什么是<code>anchorPoint</code>。它可以理解为一个固定图层的图钉，它的主要作用是作为变换的支点，比如在旋转图层时，就会以<code>anchorPoint</code>为圆心旋转（一起来想象一下）。</p><p><img src="/images/15437419896060.jpg" alt="15437419896060"></p><p><code>anchorPoint</code>用相对坐标表示，它表示相对于图层的位置，取值范围0-1。</p><ul><li>左上角：(0,0)</li><li>右下角：(1,1)</li><li>中心：(0.5,0.5)</li></ul><p>而<code>position</code>就表示<code>anchorPoint</code>在父图层的坐标，下面这张图非常的清晰明了。</p><p><img src="/images/15437425063586.jpg" alt="15437425063586"></p><p>由于<code>anchorPoint</code>是<code>CALayer</code>的属性，默认值是(0.5,0.5)，也就是中心。而<code>UIView</code>没有这个属性，因此<code>UIView</code>的<code>center</code>属性就表示view的中心点在父view的坐标（命名为center可以说是非常的直观）。</p><h2 id="Coordinate-Systems"><a href="#Coordinate-Systems" class="headerlink" title="Coordinate Systems"></a>Coordinate Systems</h2><h3 id="坐标系转换"><a href="#坐标系转换" class="headerlink" title="坐标系转换"></a>坐标系转换</h3><p>CALayer给不同坐标系之间的图层转换提供了一些工具类方法，这些方法可以把定义在一个图层坐标系下的点或者矩形转换成另一个图层坐标系下的点或者矩形。</p><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">CGPoint</span>)convertPoint:(<span class="built_in">CGPoint</span>)point fromLayer:(<span class="built_in">CALayer</span> *)layer;</span><br><span class="line">- (<span class="built_in">CGPoint</span>)convertPoint:(<span class="built_in">CGPoint</span>)point toLayer:(<span class="built_in">CALayer</span> *)layer;</span><br><span class="line">- (<span class="built_in">CGRect</span>)convertRect:(<span class="built_in">CGRect</span>)rect fromLayer:(<span class="built_in">CALayer</span> *)layer;</span><br><span class="line">- (<span class="built_in">CGRect</span>)convertRect:(<span class="built_in">CGRect</span>)rect toLayer:(<span class="built_in">CALayer</span> *)layer;</span><br></pre></td></tr></table></figure><h3 id="翻转"><a href="#翻转" class="headerlink" title="翻转"></a>翻转</h3><p>常规说来，在iOS上，一个图层的<code>position</code>位于父图层的左上角，但是在Mac OS上，通常是位于左下角。<code>Core Animation</code>可以通过<code>geometryFlipped</code>属性来适配这两种情况，它决定了一个图层的坐标是否相对于父图层垂直翻转，是一个BOOL类型。在iOS上通过设置它为YES意味着它的子图层将会被垂直翻转，也就是将会沿着底部排版而不是通常的顶部（它的所有子图层也同理，除非把它们的<code>geometryFlipped</code>属性也设为YES）。</p><h3 id="Z轴"><a href="#Z轴" class="headerlink" title="Z轴"></a>Z轴</h3><p>和<code>UIView</code>严格的二维坐标系不同，<code>CALayer</code>存在于一个三维空间当中。除了我们已经讨论过的<code>position</code>和<code>anchorPoint</code>属性之外，<code>CALayer</code>还有另外两个属性，<code>zPosition</code>和<code>anchorPointZ</code>，二者都是在Z轴上描述图层位置的浮点类型。</p><h2 id="Hit-testing"><a href="#Hit-testing" class="headerlink" title="Hit testing"></a>Hit testing</h2><p><code>CALayer</code>并不关心事件响应链，所以不能直接处理触摸事件或者手势。但是它有一系列的方法帮你处理事件：<code>containsPoint:</code>和<code>hitTest:</code>。<br><code>containsPoint:</code>接受一个在本图层坐标系下的CGPoint，如果这个点在layer的frame范围内就返回YES。<br><code>hitTest:</code>方法接受一个CGPoint类型参数，它返回这个点所在layer，也就是layer本身，或者叶子节点。</p><h2 id="自动布局"><a href="#自动布局" class="headerlink" title="自动布局"></a>自动布局</h2><p><code>CALayer</code>不支持自动布局，需要实现<code>CALayerDelegate</code>的函数：</p><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)layoutSublayersOfLayer:(<span class="built_in">CALayer</span> *)layer;</span><br></pre></td></tr></table></figure><p>然后手动管理布局，非常的不友好，这是一个为什么不直接用<code>CALayer</code>，而是要用<code>UIView</code>的重要原因。</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ol><li>理解frame，bounds，center，position，anchorPoint对于理解图层布局很重要。</li><li><code>CALayer</code>没有处理事件响应链，需要手动处理。</li><li><code>CALayer</code>不支持自动布局。</li></ol><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="http://kittenyang.com/anchorpoint/" target="_blank" rel="noopener">这将是你最后一次纠结position与anchorPoint！</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;一、Layout&quot;&gt;&lt;a href=&quot;#一、Layout&quot; class=&quot;headerlink&quot; title=&quot;一、Layout&quot;&gt;&lt;/a&gt;一、Layout&lt;/h2&gt;&lt;p&gt;UIView有三个比较重要的布局属性：&lt;code&gt;frame&lt;/code&gt;，&lt;code&gt;bo
       
     
     </summary>
@@ -435,55 +481,6 @@
       
       
         &lt;h2 id=&quot;问题描述&quot;&gt;&lt;a href=&quot;#问题描述&quot; class=&quot;headerlink&quot; title=&quot;问题描述&quot;&gt;&lt;/a&gt;问题描述&lt;/h2&gt;&lt;p&gt;项目中为了实现一个全局遮罩界面，使用了一个UIWindow的子类&lt;code&gt;MyWindow&lt;/code&gt;，&lt;code&gt;My
-      
-    
-    </summary>
-    
-    
-      <category term="iOS知识小结" scheme="https://crmo.github.io/tags/iOS%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>一个autoreleasepool的使用场景</title>
-    <link href="https://crmo.github.io/2018/07/18/%E4%B8%80%E4%B8%AAautoreleasepool%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/"/>
-    <id>https://crmo.github.io/2018/07/18/一个autoreleasepool的使用场景/</id>
-    <published>2018-07-17T16:00:00.000Z</published>
-    <updated>2018-10-07T08:13:37.861Z</updated>
-    
-    <content type="html"><![CDATA[<p>今天在学习大佬博客的时候看到一个问题，下面代码会有什么问题？</p><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// largeNumber是一个很大的数</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; largeNumber; i++) &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *str = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"hello -%04d"</span>, i];</span><br><span class="line">    str = [str stringByAppendingString:<span class="string">@" - world"</span>];</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>刚开始没看出什么问题，就是普通的循环，每次循环创建一个局部变量<code>NSString</code>。于是写了个Demo验证了下，在观察内存的时候发现了端倪，在循环过程中，内存不断飙升。</p><p><img src="/images/15318782609811.jpg" alt="15318782609811"></p><p>顿时明白了，原来问题的关键就是这个<code>largeNumber</code>，当循环此时很大时，就会创建大量的局部变量，而且得不到释放，于是内存就爆了。这时候就该<code>@autoreleasepool</code>上场了，优化后代码：</p><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; largeNumber; i++) &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="built_in">NSString</span> *str = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"hello -%04d"</span>, i];</span><br><span class="line">        str = [str stringByAppendingString:<span class="string">@" - world"</span>];</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, str);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>查看运行内存，可以看到非常平稳。</p><p><img src="/images/15318784002251.jpg" alt="15318784002251"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;今天在学习大佬博客的时候看到一个问题，下面代码会有什么问题？&lt;/p&gt;
-&lt;figure class=&quot;highlight objectivec&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br
-      
-    
-    </summary>
-    
-    
-      <category term="iOS知识小结" scheme="https://crmo.github.io/tags/iOS%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UITabbar自定义Badge</title>
-    <link href="https://crmo.github.io/2018/07/10/UITabbar%E8%87%AA%E5%AE%9A%E4%B9%89Badge/"/>
-    <id>https://crmo.github.io/2018/07/10/UITabbar自定义Badge/</id>
-    <published>2018-07-09T16:00:00.000Z</published>
-    <updated>2018-10-07T08:13:37.882Z</updated>
-    
-    <content type="html"><![CDATA[<p>tabBarItem的Badge默认样式是带数字的，但是产品要求只要一个小红点，不需要数字，这就需要我们自定义Badge了。</p><p>用Reveal分析UITabBar，发现每个按钮是一个<code>UITabBarButton</code>，层级如下：</p><blockquote><p>-UITabBarButton<br>–UITabBarSwappableImageView // 图标<br>–UITabBarButtonLabel // 文字</p></blockquote><p>如何从<code>UITabBar</code>中找到对应index的<code>UITabBarButton</code>呢？我们断点调试下，可以看到可以直接从<code>UITabBar</code>中用KVC取出。</p><p><img src="/images/QQ20180711-174329.png" alt="QQ20180711-174329"></p><p>实现方案如下：</p><ul><li>用KVC找到UITabBarSwappableImageView，关键函数<code>__iconViewWithIndex</code></li><li>新建Badge，加到UITabBarSwappableImageView上</li><li>新建Badge的时候设置Tag，通过Tag来移除Badge</li></ul><p>上代码</p><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="built_in">NSInteger</span> <span class="keyword">const</span> kBadgeViewTagBase = <span class="number">10000</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">UITabBar</span> (<span class="title">badge</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 显示Badge</span></span><br><span class="line">- (<span class="keyword">void</span>)showBadgeOnItemIndex:(<span class="keyword">int</span>)index &#123;</span><br><span class="line">    <span class="keyword">if</span> (index &gt;= <span class="keyword">self</span>.items.count) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 如果之前添加过，直接设置hidden为NO</span></span><br><span class="line">    <span class="built_in">UIView</span> *icon = [<span class="keyword">self</span> __iconViewWithIndex:index];</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">UIView</span> *subView <span class="keyword">in</span> icon.subviews) &#123;</span><br><span class="line">        <span class="keyword">if</span> (subView.tag == kBadgeViewTagBase) &#123;</span><br><span class="line">            subView.hidden = <span class="literal">NO</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">UIView</span> *badgeView = [[<span class="built_in">UIView</span> alloc] init];</span><br><span class="line">    badgeView.tag = kBadgeViewTagBase;</span><br><span class="line">    badgeView.layer.cornerRadius = <span class="number">5</span>;</span><br><span class="line">    badgeView.backgroundColor = [<span class="built_in">UIColor</span> redColor];</span><br><span class="line">    badgeView.frame = <span class="built_in">CGRectMake</span>(icon.frame.size.width - <span class="number">5</span>, <span class="number">0</span>, <span class="number">9</span>, <span class="number">9</span>);</span><br><span class="line">    [icon addSubview:badgeView];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 隐藏Badge</span></span><br><span class="line">- (<span class="keyword">void</span>)hideBadgeOnItemIndex:(<span class="keyword">int</span>)index &#123;</span><br><span class="line">    <span class="built_in">UIView</span> *icon = [<span class="keyword">self</span> __iconViewWithIndex:index];</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">UIView</span> *subView <span class="keyword">in</span> icon.subviews) &#123;</span><br><span class="line">        <span class="keyword">if</span> (subView.tag == kBadgeViewTagBase) &#123;</span><br><span class="line">            subView.hidden = <span class="literal">YES</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取图标所在View</span></span><br><span class="line">- (<span class="built_in">UIView</span> *)__iconViewWithIndex:(<span class="keyword">int</span>)index &#123;</span><br><span class="line">    <span class="built_in">UITabBarItem</span> *item = <span class="keyword">self</span>.items[index];</span><br><span class="line">    <span class="built_in">UIView</span> *tabBarButton = [item valueForKey:<span class="string">@"_view"</span>];</span><br><span class="line">    <span class="built_in">UIView</span> *icon = [tabBarButton valueForKey:<span class="string">@"_info"</span>];</span><br><span class="line">    <span class="keyword">return</span> icon;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;tabBarItem的Badge默认样式是带数字的，但是产品要求只要一个小红点，不需要数字，这就需要我们自定义Badge了。&lt;/p&gt;
-&lt;p&gt;用Reveal分析UITabBar，发现每个按钮是一个&lt;code&gt;UITabBarButton&lt;/code&gt;，层级如下：&lt;/p&gt;
-&lt;b
       
     
     </summary>
