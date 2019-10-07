@@ -103,20 +103,18 @@
   <meta name="keywords" content="iOS知识小结," />
 
 
-<meta name="description" content="问题描述项目中为了实现一个全局遮罩界面，使用了一个UIWindow的子类MyWindow，MyWindow为了实现回调定义了代理MyWindowDelegate。代码大致如下： 123456789101112131415161718192021@protocol MyWindowDelegate &amp;lt;NSObject&amp;gt;@end@interface MyWindow : UIWindow@">
+<meta name="description" content="案例我们先从一个问题说起，小明同学接到产品的一个新需求：实现一个 UIButton，要求在 normal、selected、highlighted 三种状态下展示不同文案。这简直太简单了，小明同学1分钟不到就实现了，关键代码如下： 123[button setTitle:@&quot;normal&quot; forState:UIControlStateNormal];[button setTitle:@&quot;high">
 <meta name="keywords" content="iOS知识小结">
 <meta property="og:type" content="article">
-<meta property="og:title" content="记一个实现UIWindow子类的小坑">
-<meta property="og:url" content="https://crmo.github.io/2018/07/19/记一个实现UIWindow子类的小坑/index.html">
+<meta property="og:title" content="UIButton 状态小结">
+<meta property="og:url" content="https://crmo.github.io/2019/10/07/UIButton 状态小结/index.html">
 <meta property="og:site_name" content="CR.MO`s Blog">
-<meta property="og:description" content="问题描述项目中为了实现一个全局遮罩界面，使用了一个UIWindow的子类MyWindow，MyWindow为了实现回调定义了代理MyWindowDelegate。代码大致如下： 123456789101112131415161718192021@protocol MyWindowDelegate &amp;lt;NSObject&amp;gt;@end@interface MyWindow : UIWindow@">
+<meta property="og:description" content="案例我们先从一个问题说起，小明同学接到产品的一个新需求：实现一个 UIButton，要求在 normal、selected、highlighted 三种状态下展示不同文案。这简直太简单了，小明同学1分钟不到就实现了，关键代码如下： 123[button setTitle:@&quot;normal&quot; forState:UIControlStateNormal];[button setTitle:@&quot;high">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://crmo.github.io/images/15319834677166.jpg">
-<meta property="og:updated_time" content="2018-10-07T08:13:37.852Z">
+<meta property="og:updated_time" content="2019-10-07T07:57:56.585Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="记一个实现UIWindow子类的小坑">
-<meta name="twitter:description" content="问题描述项目中为了实现一个全局遮罩界面，使用了一个UIWindow的子类MyWindow，MyWindow为了实现回调定义了代理MyWindowDelegate。代码大致如下： 123456789101112131415161718192021@protocol MyWindowDelegate &amp;lt;NSObject&amp;gt;@end@interface MyWindow : UIWindow@">
-<meta name="twitter:image" content="https://crmo.github.io/images/15319834677166.jpg">
+<meta name="twitter:title" content="UIButton 状态小结">
+<meta name="twitter:description" content="案例我们先从一个问题说起，小明同学接到产品的一个新需求：实现一个 UIButton，要求在 normal、selected、highlighted 三种状态下展示不同文案。这简直太简单了，小明同学1分钟不到就实现了，关键代码如下： 123[button setTitle:@&quot;normal&quot; forState:UIControlStateNormal];[button setTitle:@&quot;high">
 
 
 
@@ -125,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="https://crmo.github.io/2018/07/19/记一个实现UIWindow子类的小坑/"/>
+  <link rel="canonical" href="https://crmo.github.io/2019/10/07/UIButton 状态小结/"/>
 
 
 
@@ -134,7 +132,7 @@
     sidebar: "",
   };
 </script>
-  <title>记一个实现UIWindow子类的小坑 | CR.MO`s Blog</title>
+  <title>UIButton 状态小结 | CR.MO`s Blog</title>
   
 
 
@@ -306,7 +304,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://crmo.github.io/2018/07/19/记一个实现UIWindow子类的小坑/">
+    <link itemprop="mainEntityOfPage" href="https://crmo.github.io/2019/10/07/UIButton 状态小结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CR.MO">
@@ -323,7 +321,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">记一个实现UIWindow子类的小坑</h2>
+          <h2 class="post-title" itemprop="name headline">UIButton 状态小结</h2>
         
 
         <div class="post-meta">
@@ -335,7 +333,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-19T00:00:00+08:00">2018-07-19</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-07T00:00:00+08:00">2019-10-07</time>
             
 
             
@@ -353,9 +351,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/07/19/记一个实现UIWindow子类的小坑/#comments" itemprop="discussionUrl">
+                <a href="/2019/10/07/UIButton 状态小结/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/07/19/记一个实现UIWindow子类的小坑/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2019/10/07/UIButton 状态小结/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -391,14 +389,22 @@
       
 
       
-        <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>项目中为了实现一个全局遮罩界面，使用了一个UIWindow的子类<code>MyWindow</code>，<code>MyWindow</code>为了实现回调定义了代理<code>MyWindowDelegate</code>。代码大致如下：</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">MyWindowDelegate</span> &lt;<span class="title">NSObject</span>&gt;</span></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MyWindow</span> : <span class="title">UIWindow</span></span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>)<span class="keyword">id</span>&lt;MyWindowDelegate&gt; delegate;</span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">MyWindow</span></span></span><br><span class="line">- (<span class="keyword">instancetype</span>)init</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> init];</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.windowLevel = <span class="built_in">UIWindowLevelNormal</span>;</span><br><span class="line">        <span class="keyword">self</span>.backgroundColor = [<span class="built_in">UIColor</span> whiteColor];</span><br><span class="line">        <span class="built_in">UIViewController</span> *vc = [[ViewController2 alloc] init];</span><br><span class="line">        <span class="keyword">self</span>.rootViewController = vc;</span><br><span class="line">        <span class="keyword">self</span>.hidden = <span class="literal">NO</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-<p>然后在实现界面横屏时，发现整个UIWindow不响应横竖屏事件。刚开始以为横竖屏设置被关闭了，查了各种资料，发现这种写法是没有问题的。设置UIWindow的rootViewController，然后把所有子view都加到rootViewController，系统会处理横竖屏问题。</p>
-<h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><p>用Runtime把UIWindow的私有变量打出来，就发现问题了。</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;objc/runtime.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)printUIWindowIvars &#123;</span><br><span class="line">    Ivar *ivars = class_copyIvarList([<span class="built_in">UIWindow</span> <span class="keyword">class</span>], &amp;count);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">        Ivar ivar = ivars[i];</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%s"</span>, ivar_getName(ivar));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们看看输出，发现有个私有变量<code>_delegate</code>。</p>
-<p><img src="/images/15319834677166.jpg" alt="15319834677166"></p>
-<p><code>MyWindow</code>的属性<code>delegate</code>覆盖了父类<code>UIWindow</code>的变量，导致横竖屏切换事件失效。在代理命名的时候一定要注意啊，<code>delegate</code>看来不是一个好的实践，应该加前缀区分避免覆盖父类的实现，特别是这种私有的变量。</p>
+        <h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p>我们先从一个问题说起，小明同学接到产品的一个新需求：实现一个 <code>UIButton</code>，要求在 normal、selected、highlighted 三种状态下展示不同文案。这简直太简单了，小明同学1分钟不到就实现了，关键代码如下：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[button setTitle:<span class="string">@"normal"</span> forState:<span class="built_in">UIControlStateNormal</span>];</span><br><span class="line">[button setTitle:<span class="string">@"highlighted"</span> forState:<span class="built_in">UIControlStateHighlighted</span>];</span><br><span class="line">[button setTitle:<span class="string">@"selected"</span> forState:<span class="built_in">UIControlStateSelected</span>];</span><br></pre></td></tr></table></figure>
+<p>这段代码有什么问题吗？</p>
+<p>的确有问题！当 <code>button</code> 状态为 <code>selected</code> 时，点击按钮，文案展示 <code>normal</code>，当前状态应该是 <code>UIControlStateHighlighted</code>，怎么展示了 <code>UIControlStateNormal</code> 的文案？</p>
+<h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><p><code>UIButton</code> 有5种状态，分别是：default(normal), highlighted, focused, selected, disabled，通过属性 <code>state</code> 可以拿到当前状态值 <code>UIControlState</code>，定义如下：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">readonly</span>) <span class="built_in">UIControlState</span> state;                  <span class="comment">// could be more than one state (e.g. disabled|selected). synthesized from other flags.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">NS_OPTIONS</span>(<span class="built_in">NSUInteger</span>, <span class="built_in">UIControlState</span>) &#123;</span><br><span class="line">    <span class="built_in">UIControlStateNormal</span>       = <span class="number">0</span>,</span><br><span class="line">    <span class="built_in">UIControlStateHighlighted</span>  = <span class="number">1</span> &lt;&lt; <span class="number">0</span>,                  <span class="comment">// used when UIControl isHighlighted is set</span></span><br><span class="line">    <span class="built_in">UIControlStateDisabled</span>     = <span class="number">1</span> &lt;&lt; <span class="number">1</span>,</span><br><span class="line">    <span class="built_in">UIControlStateSelected</span>     = <span class="number">1</span> &lt;&lt; <span class="number">2</span>,                  <span class="comment">// flag usable by app (see below)</span></span><br><span class="line">    <span class="built_in">UIControlStateFocused</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">9</span>_0) = <span class="number">1</span> &lt;&lt; <span class="number">3</span>, <span class="comment">// Applicable only when the screen supports focus</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>看到位运算我们就可以猜到这个状态可以组合，而且有句很关键的注释：</p>
+<blockquote>
+<p>could be more than one state (e.g. disabled|selected). synthesized from other flags.<br>state 不是单独的状态，可以是多种状态的混合。</p>
+</blockquote>
+<p>我们在回到上面的小明同学遇到的问题，当 <code>button</code> 状态为 <code>selected</code> 时，点击按钮，按钮此时的状态其实是 <code>UIControlStateHighlighted | UIControlStateSelected</code>。在<a href="https://developer.apple.com/documentation/uikit/uibutton/1624018-settitle?language=objc" target="_blank" rel="noopener">官方文档</a>中，我们可以看到这么一句话：</p>
+<blockquote>
+<p>If a title is not specified for a state, the default behavior is to use the title associated with the UIControlStateNormal state</p>
+</blockquote>
+<p>也就是说小明同学其实漏设置了一种状态，然后系统展示了按钮的默认状态 <code>UIControlStateNormal</code>，按钮状态并不是是 <code>UIControlStateNormal</code>。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>1、<code>UIControlState</code> 是个组合状态，在 <code>setTitle:forState:</code>、<code>setImage:forState:</code> 时，如果需要自定义 <code>UIControlStateSelected</code> 状态，一定要注意自定义 <code>UIControlStateHighlighted | UIControlStateSelected</code>。<br>2、如果按钮的当前状态没有自定义，使用 <code>UIControlStateNormal</code> 定义的值。</p>
 
       
     </div>
@@ -432,8 +438,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/18/一个autoreleasepool的使用场景/" rel="next" title="一个autoreleasepool的使用场景">
-                <i class="fa fa-chevron-left"></i> 一个autoreleasepool的使用场景
+              <a href="/2019/06/16/2019年iOS面试攻略/" rel="next" title="2019年iOS面试攻略">
+                <i class="fa fa-chevron-left"></i> 2019年iOS面试攻略
               </a>
             
           </div>
@@ -441,10 +447,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/23/iOS横竖屏总结/" rel="prev" title="iOS横竖屏总结">
-                iOS横竖屏总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -602,7 +604,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题分析"><span class="nav-number">2.</span> <span class="nav-text">问题分析</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#案例"><span class="nav-number">1.</span> <span class="nav-text">案例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题分析"><span class="nav-number">2.</span> <span class="nav-text">问题分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">3.</span> <span class="nav-text">小结</span></a></li></ol></div>
             
 
           </div>
@@ -789,9 +791,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'https://crmo.github.io/2018/07/19/记一个实现UIWindow子类的小坑/';
-        this.page.identifier = '2018/07/19/记一个实现UIWindow子类的小坑/';
-        this.page.title = '记一个实现UIWindow子类的小坑';
+        this.page.url = 'https://crmo.github.io/2019/10/07/UIButton 状态小结/';
+        this.page.identifier = '2019/10/07/UIButton 状态小结/';
+        this.page.title = 'UIButton 状态小结';
       };
       function loadComments () {
         var d = document, s = d.createElement('script');
