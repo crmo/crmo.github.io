@@ -413,6 +413,18 @@
 <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>我用的方法比较简单、粗暴，在执行<code>JavaScript</code>代码前，直接过滤掉这两个字符。代码如下：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// </span></span><br><span class="line">    javaScriptString = [javaScriptString stringByReplacingOccurrencesOfString:<span class="string">@"\u2028"</span> withString:<span class="string">@""</span>];</span><br><span class="line">    javaScriptString = [javaScriptString stringByReplacingOccurrencesOfString:<span class="string">@"\u2029"</span> withString:<span class="string">@""</span>];</span><br><span class="line">    <span class="built_in">NSString</span>* ret = [(<span class="built_in">UIWebView</span>*)_engineWebView stringByEvaluatingJavaScriptFromString:javaScriptString];</span><br></pre></td></tr></table></figure>
       
+
+      <!-- 文章内嵌广告 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-2365937932734432"
+     data-ad-slot="4536408909"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
     </div>
 
     
