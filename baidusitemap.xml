@@ -378,12 +378,12 @@
 
     
   <url>
-    <loc>https://crmo.github.io/2018/05/09/Cordova%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</loc>
+    <loc>https://crmo.github.io/2018/05/15/Cordova%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89-%20%E8%87%AA%E5%AE%9A%E4%B9%89UserAgent/</loc>
     <lastmod>2018-10-07T08:13:37.000Z</lastmod>
     <data>
         <display>
-        <title>Cordova源码解析</title>
-        <pubTime>2018-05-08T16:00:00.000Z</pubTime>
+        <title>Cordova源码解析（二）- 自定义UserAgent</title>
+        <pubTime>2018-05-14T16:00:00.000Z</pubTime>
         
         <tag>源码学习</tag>
          
@@ -395,12 +395,12 @@
 
     
   <url>
-    <loc>https://crmo.github.io/2018/05/15/Cordova%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89-%20%E8%87%AA%E5%AE%9A%E4%B9%89UserAgent/</loc>
+    <loc>https://crmo.github.io/2018/05/09/Cordova%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</loc>
     <lastmod>2018-10-07T08:13:37.000Z</lastmod>
     <data>
         <display>
-        <title>Cordova源码解析（二）- 自定义UserAgent</title>
-        <pubTime>2018-05-14T16:00:00.000Z</pubTime>
+        <title>Cordova源码解析</title>
+        <pubTime>2018-05-08T16:00:00.000Z</pubTime>
         
         <tag>源码学习</tag>
          
