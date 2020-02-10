@@ -361,6 +361,23 @@
 
     
   <url>
+    <loc>https://crmo.github.io/2018/05/15/Cordova%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89-%20%E8%87%AA%E5%AE%9A%E4%B9%89UserAgent/</loc>
+    <lastmod>2018-10-07T08:13:37.000Z</lastmod>
+    <data>
+        <display>
+        <title>Cordova源码解析（二）- 自定义UserAgent</title>
+        <pubTime>2018-05-14T16:00:00.000Z</pubTime>
+        
+        <tag>源码学习</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://crmo.github.io/2018/03/29/AFNetworking%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E6%97%B6%E6%96%87%E4%BB%B6%E5%90%8D%E9%95%BF%E5%BA%A6%E7%9A%84%E5%9D%91/</loc>
     <lastmod>2018-10-07T08:13:37.000Z</lastmod>
     <data>
@@ -395,23 +412,6 @@
 
     
   <url>
-    <loc>https://crmo.github.io/2018/05/15/Cordova%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89-%20%E8%87%AA%E5%AE%9A%E4%B9%89UserAgent/</loc>
-    <lastmod>2018-10-07T08:13:37.000Z</lastmod>
-    <data>
-        <display>
-        <title>Cordova源码解析（二）- 自定义UserAgent</title>
-        <pubTime>2018-05-14T16:00:00.000Z</pubTime>
-        
-        <tag>源码学习</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://crmo.github.io/2016/11/20/Golang%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/</loc>
     <lastmod>2018-10-07T08:13:37.000Z</lastmod>
     <data>
@@ -420,23 +420,6 @@
         <pubTime>2016-11-20T14:33:54.000Z</pubTime>
         
         <tag>其它</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://crmo.github.io/2018/07/04/Tagged%20Pointer%E5%B0%8F%E8%AE%B0/</loc>
-    <lastmod>2018-10-07T08:13:37.000Z</lastmod>
-    <data>
-        <display>
-        <title>Tagged Pointer小记</title>
-        <pubTime>2018-07-03T16:00:00.000Z</pubTime>
-        
-        <tag>iOS知识小结</tag>
          
          
            
@@ -480,12 +463,12 @@
 
     
   <url>
-    <loc>https://crmo.github.io/2018/07/10/UITabbar%E8%87%AA%E5%AE%9A%E4%B9%89Badge/</loc>
+    <loc>https://crmo.github.io/2018/07/04/Tagged%20Pointer%E5%B0%8F%E8%AE%B0/</loc>
     <lastmod>2018-10-07T08:13:37.000Z</lastmod>
     <data>
         <display>
-        <title>UITabbar自定义Badge</title>
-        <pubTime>2018-07-09T16:00:00.000Z</pubTime>
+        <title>Tagged Pointer小记</title>
+        <pubTime>2018-07-03T16:00:00.000Z</pubTime>
         
         <tag>iOS知识小结</tag>
          
@@ -503,6 +486,23 @@
         <display>
         <title>dispatch_sync死锁问题</title>
         <pubTime>2018-08-02T16:00:00.000Z</pubTime>
+        
+        <tag>iOS知识小结</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://crmo.github.io/2018/07/10/UITabbar%E8%87%AA%E5%AE%9A%E4%B9%89Badge/</loc>
+    <lastmod>2018-10-07T08:13:37.000Z</lastmod>
+    <data>
+        <display>
+        <title>UITabbar自定义Badge</title>
+        <pubTime>2018-07-09T16:00:00.000Z</pubTime>
         
         <tag>iOS知识小结</tag>
          
@@ -548,23 +548,6 @@
 
     
   <url>
-    <loc>https://crmo.github.io/2018/07/05/property%20or%20synthsize/</loc>
-    <lastmod>2018-10-07T08:13:37.000Z</lastmod>
-    <data>
-        <display>
-        <title>property or synthsize</title>
-        <pubTime>2018-07-04T16:00:00.000Z</pubTime>
-        
-        <tag>iOS知识小结</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://crmo.github.io/2018/03/01/imageNamed%E4%B8%8EimageWithContentsOfFile%E5%B0%8F%E7%BB%93/</loc>
     <lastmod>2018-10-07T08:13:37.000Z</lastmod>
     <data>
@@ -582,12 +565,12 @@
 
     
   <url>
-    <loc>https://crmo.github.io/2018/07/18/%E4%B8%80%E4%B8%AAautoreleasepool%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/</loc>
+    <loc>https://crmo.github.io/2018/07/05/property%20or%20synthsize/</loc>
     <lastmod>2018-10-07T08:13:37.000Z</lastmod>
     <data>
         <display>
-        <title>一个autoreleasepool的使用场景</title>
-        <pubTime>2018-07-17T16:00:00.000Z</pubTime>
+        <title>property or synthsize</title>
+        <pubTime>2018-07-04T16:00:00.000Z</pubTime>
         
         <tag>iOS知识小结</tag>
          
@@ -616,12 +599,12 @@
 
     
   <url>
-    <loc>https://crmo.github.io/2018/08/28/%E4%BB%8E%E4%B8%80%E4%B8%AAAFNetworking%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8%E8%AF%B4%E8%B5%B7/</loc>
+    <loc>https://crmo.github.io/2018/07/18/%E4%B8%80%E4%B8%AAautoreleasepool%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/</loc>
     <lastmod>2018-10-07T08:13:37.000Z</lastmod>
     <data>
         <display>
-        <title>从一个AFNetworking循环引用说起</title>
-        <pubTime>2018-08-27T16:00:00.000Z</pubTime>
+        <title>一个autoreleasepool的使用场景</title>
+        <pubTime>2018-07-17T16:00:00.000Z</pubTime>
         
         <tag>iOS知识小结</tag>
          
@@ -707,6 +690,23 @@
         <display>
         <title>记一个行结束符引发的JS报错</title>
         <pubTime>2018-09-04T16:00:00.000Z</pubTime>
+        
+        <tag>iOS知识小结</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://crmo.github.io/2018/08/28/%E4%BB%8E%E4%B8%80%E4%B8%AAAFNetworking%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8%E8%AF%B4%E8%B5%B7/</loc>
+    <lastmod>2018-10-07T08:13:37.000Z</lastmod>
+    <data>
+        <display>
+        <title>从一个AFNetworking循环引用说起</title>
+        <pubTime>2018-08-27T16:00:00.000Z</pubTime>
         
         <tag>iOS知识小结</tag>
          

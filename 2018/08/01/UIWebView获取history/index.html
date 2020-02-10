@@ -420,18 +420,6 @@
 <p>有了上面的结论，我们就可以用KVC来获取到浏览记录了。</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)printWebViewHistory:(<span class="built_in">UIWebView</span> *)aWebView &#123;</span><br><span class="line">    <span class="keyword">id</span> webviewInternal = [aWebView valueForKey:<span class="string">@"_internal"</span>];</span><br><span class="line">    <span class="keyword">id</span> browserView = [webviewInternal valueForKey:<span class="string">@"browserView"</span>];</span><br><span class="line">    <span class="keyword">id</span> webView = [browserView valueForKey:<span class="string">@"_webView"</span>];</span><br><span class="line">    <span class="keyword">id</span> backForwardList = [webView performSelector:<span class="keyword">@selector</span>(backForwardList)];</span><br><span class="line">    <span class="comment">// WebHistoryItem存储的具体某条浏览记录信息</span></span><br><span class="line">    <span class="built_in">NSArray</span> *historyItems = [backForwardList performSelector:<span class="keyword">@selector</span>(backListWithLimit:) withObject:@<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">id</span> item <span class="keyword">in</span> historyItems) &#123;</span><br><span class="line">        <span class="comment">// 获取浏览记录的url </span></span><br><span class="line">        <span class="built_in">NSString</span> *url = [item performSelector:<span class="keyword">@selector</span>(URLString)];</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, url);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
-      <!-- 文章内嵌广告 -->
-      <!-- 文章内嵌广告 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-2365937932734432"
-     data-ad-slot="4536408909"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
     </div>
 
     
