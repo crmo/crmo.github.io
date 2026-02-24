@@ -1,0 +1,33 @@
+theme: blowfish
+baseURL: "https://crmo.github.io/"
+defaultContentLanguage: zh-cn
+
+enableRobotsTXT: true
+hasCJKLanguage: true
+enableEmoji: true
+
+pagination:
+  pagerSize: 10
+
+taxonomies:
+  tag: tags
+
+sitemap:
+  changeFreq: weekly
+  filename: sitemap.xml
+  priority: 0.5
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+related:
+  threshold: 0
+  toLower: false
+  indices:
+    - name: tags
+      weight: 100
+    - name: date
+      weight: 10

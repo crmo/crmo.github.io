@@ -1,0 +1,10 @@
+# Hugo 构建输出
+public/
+resources/_gen/
+
+# 迁移脚本依赖（无需提交）
+__pycache__/
+
+# OS 文件
+.DS_Store
+Thumbs.db

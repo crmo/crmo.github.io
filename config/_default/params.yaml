@@ -1,0 +1,81 @@
+# 主题配色（ocean 蓝色调 + 深色模式，适合技术博客）
+colorScheme: ocean
+defaultAppearance: dark
+autoSwitchAppearance: true
+
+# 默认封面图（没有自带图片的文章会显示这张）
+defaultFeaturedImage: images/default-cover.jpg
+
+# 功能开关
+enableSearch: true
+enableCodeCopy: true
+
+# 内容区
+mainSections:
+  - post
+
+# 顶部导航栏
+header:
+  layout: fixed
+
+# 底部
+footer:
+  showMenu: true
+  showCopyright: true
+  showThemeAttribution: false
+  showAppearanceSwitcher: true
+  showScrollToTop: true
+
+# 首页布局
+homepage:
+  layout: profile
+  showRecent: true
+  showRecentItems: 10
+  showMoreLink: true
+  showMoreLinkDest: post
+  cardView: false
+  layoutBackgroundBlur: true
+
+# 文章页
+article:
+  showDate: true
+  showDateUpdated: true
+  showAuthor: false
+  showBreadcrumbs: true
+  showDraftLabel: true
+  showEdit: false
+  showHeadingAnchors: true
+  showPagination: true
+  showReadingTime: true
+  showTableOfContents: true
+  showRelatedContent: true
+  relatedContentLimit: 5
+  showTaxonomies: true
+  showWordCount: false
+  showZenMode: false
+  sharingLinks:
+    - twitter
+    - telegram
+    - email
+
+# 列表页（列表模式：一行一篇，带摘要，按年分组）
+list:
+  showBreadcrumbs: false
+  showSummary: true
+  showTableOfContents: false
+  showCards: true
+  groupByYear: true
+  cardView: false
+
+# 标签页
+taxonomy:
+  showTermCount: true
+  showBreadcrumbs: false
+  showTableOfContents: false
+  cardView: false
+
+term:
+  showBreadcrumbs: false
+  showTableOfContents: false
+  groupByYear: true
+  cardView: false

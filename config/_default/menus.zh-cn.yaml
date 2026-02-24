@@ -1,0 +1,21 @@
+# 主菜单（顶部导航栏）
+main:
+  - name: 文章
+    pageRef: post
+    weight: 10
+  - name: 标签
+    pageRef: tags
+    weight: 20
+  - identifier: search
+    pre: search
+    weight: 30
+  - identifier: github
+    pre: github
+    url: "https://github.com/crmo"
+    weight: 40
+
+# 底部菜单
+footer:
+  - name: 标签
+    pageRef: tags
+    weight: 10

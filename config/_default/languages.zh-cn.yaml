@@ -1,0 +1,18 @@
+languageCode: zh-cn
+languageName: 简体中文
+weight: 1
+title: "CR.MO's Blog"
+
+params:
+  displayName: 简体中文
+  isoCode: zh-cn
+  dateFormat: "2006-01-02"
+  description: "分享iOS的学习点滴"
+
+  author:
+    name: "CR.MO"
+    image: "images/avatar.jpg"
+    headline: "iOS Developer"
+    bio: "分享iOS的学习点滴"
+    links:
+      - github: "https://github.com/crmo"
