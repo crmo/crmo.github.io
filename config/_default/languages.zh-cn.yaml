@@ -12,7 +12,7 @@ params:
   author:
     name: "CR.MO"
     image: "images/avatar.jpg"
-    headline: "iOS Developer"
+    headline: "iOS Developer · AI Practitioner · Vibe Coder"
     bio: "分享iOS的学习点滴"
     links:
       - github: "https://github.com/crmo"
