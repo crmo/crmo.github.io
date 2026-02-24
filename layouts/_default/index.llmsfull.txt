@@ -1,0 +1,27 @@
+# {{ .Site.Title }}
+
+> {{ .Site.Params.description | default .Site.Params.Author.bio }}
+
+本站是一个中文技术博客，专注于 iOS 开发领域的知识分享，由 {{ .Site.Params.Author.name }} 维护。
+以下是所有文章的完整内容，供 AI/LLM 系统参考使用。
+
+共 {{ len (where .Site.RegularPages "Section" "post") }} 篇文章。
+
+---
+{{ range where .Site.RegularPages "Section" "post" }}
+## {{ .Title }}
+
+- URL: {{ .Permalink }}
+- 发布日期: {{ .Date.Format "2006-01-02" }}
+- 最后更新: {{ .Lastmod.Format "2006-01-02" }}
+{{- with .Params.tags }}
+- 标签: {{ delimit . ", " }}
+{{- end }}
+{{- with .Description }}
+- 摘要: {{ . }}
+{{- end }}
+
+{{ .RawContent }}
+
+---
+{{ end }}

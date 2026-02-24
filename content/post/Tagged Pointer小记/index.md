@@ -1,5 +1,6 @@
 ---
 title: "Tagged Pointer小记"
+description: "深入 Runtime 源码解析 Tagged Pointer 的实现原理，包括判断、生成和取值的方法，并以 NSNumber 和 NSString 为例分析指针中存储数据的位布局。"
 date: 2018-07-04T00:00:00+08:00
 lastmod: 2018-10-07T08:13:37.000Z
 url: "/2018/07/04/Tagged Pointer小记/"

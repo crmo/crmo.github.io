@@ -1,5 +1,6 @@
 ---
 title: "Core Animation学习笔记（一）- CALayer"
+description: "Core Animation 系列第一篇，介绍 CALayer 与 UIView 的关系、backing image 的两种设置方式（contents 属性和 drawRect 绘制），以及 contentsGravity、contentsScale 等关键属性。"
 date: 2018-12-02T00:00:00+08:00
 lastmod: 2019-06-17T04:06:34.000Z
 url: "/2018/12/02/Core Animation学习笔记（一）/"

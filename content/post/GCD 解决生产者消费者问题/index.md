@@ -1,5 +1,6 @@
 ---
 title: "GCD 解决生产者消费者问题"
+description: "使用 GCD 的 dispatch_semaphore 实现经典的生产者消费者模型，通过两个信号量分别控制缓冲区满和空的状态，附完整 Objective-C 代码示例。"
 date: 2019-06-16T00:00:00+08:00
 lastmod: 2019-06-16T03:55:13.000Z
 url: "/2019/06/16/GCD 解决生产者消费者问题/"

@@ -1,5 +1,6 @@
 ---
 title: "UITextField控制输入长度"
+description: "介绍 UITextField 限制输入长度的实现思路，处理 emoji 组合字符截断和中文输入高亮状态下的长度计算问题。"
 date: 2018-07-06T00:00:00+08:00
 lastmod: 2018-10-07T08:13:37.000Z
 url: "/2018/07/06/UITextField控制输入长度/"

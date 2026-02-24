@@ -1,5 +1,6 @@
 ---
 title: "NSURLCache 缓存机制浅谈"
+description: "介绍 iOS 中 NSURLCache 支持的 HTTP 缓存机制，包括 max-age、Expires、Last-Modified、ETag 四种策略，以及 RFC2616 规范中启发式缓存（heuristic expiration）的计算规则。"
 date: 2019-04-16T00:00:00+08:00
 lastmod: 2019-04-16T12:48:12.000Z
 url: "/2019/04/16/NSURLCache 缓存机制浅谈/"

@@ -1,5 +1,6 @@
 ---
 title: "URLWithString return nil"
+description: "解析 NSURL 的 URLWithString 方法在遇到中文等非 ASCII 字符时返回 nil 的原因，介绍百分号编码（Percent Encoding）及其解决方案。"
 date: 2018-07-03T00:00:00+08:00
 lastmod: 2018-10-07T08:13:38.000Z
 url: "/2018/07/03/URLWithString return nil/"

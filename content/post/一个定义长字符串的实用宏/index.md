@@ -1,5 +1,6 @@
 ---
 title: "一个定义长字符串的实用宏"
+description: "介绍从 WebViewJavascriptBridge 源码中发现的字符串化宏技巧，用 #x 预处理运算符优雅地在 Objective-C 中定义多行长字符串，并演示如何用 Xcode 查看宏展开结果。"
 date: 2018-10-16T00:00:00+08:00
 lastmod: 2018-10-17T00:53:35.361Z
 url: "/2018/10/16/一个定义长字符串的实用宏/"

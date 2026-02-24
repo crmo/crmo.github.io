@@ -1,5 +1,6 @@
 ---
 title: "浅析AutoreleasePool源码"
+description: "分析 AutoreleasePool 源码中 pop 操作后清理空 page 的策略，解读 releaseUntil 和 kill 方法的实现，说明系统根据当前 page 使用率决定保留或释放 child page 的内存优化逻辑。"
 date: 2018-04-14T15:31:00+08:00
 lastmod: 2018-10-07T08:13:37.000Z
 url: "/2018/04/14/浅析AutoreleasePool源码/"

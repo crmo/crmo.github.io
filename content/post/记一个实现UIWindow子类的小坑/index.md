@@ -1,5 +1,6 @@
 ---
 title: "记一个实现UIWindow子类的小坑"
+description: "记录 UIWindow 子类中自定义 delegate 属性覆盖了父类私有变量 _delegate 导致横竖屏事件失效的问题，提醒命名时注意避免与父类私有变量冲突。"
 date: 2018-07-19T00:00:00+08:00
 lastmod: 2018-10-07T08:13:37.000Z
 url: "/2018/07/19/记一个实现UIWindow子类的小坑/"

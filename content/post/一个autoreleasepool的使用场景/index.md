@@ -1,5 +1,6 @@
 ---
 title: "一个autoreleasepool的使用场景"
+description: "通过一个大循环内存飙升的实例，演示 @autoreleasepool 在循环中及时释放临时对象、控制内存峰值的实际应用场景。"
 date: 2018-07-18T00:00:00+08:00
 lastmod: 2018-10-07T08:13:37.000Z
 url: "/2018/07/18/一个autoreleasepool的使用场景/"

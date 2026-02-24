@@ -5,10 +5,15 @@ autoSwitchAppearance: true
 
 # 默认封面图（没有自带图片的文章会显示这张）
 defaultFeaturedImage: images/default-cover.jpg
+# 社交分享图兜底（用于 og:image / twitter:image）
+defaultSocialImage: images/default-cover.jpg
 
 # 功能开关
 enableSearch: true
 enableCodeCopy: true
+
+# SEO：启用面包屑结构化数据
+enableStructuredBreadcrumbs: true
 
 # 内容区
 mainSections:

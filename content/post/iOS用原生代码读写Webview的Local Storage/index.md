@@ -1,5 +1,6 @@
 ---
 title: "iOS用原生代码读写Webview的Local Storage"
+description: "介绍如何通过直接操作 SQLite 数据库读写 UIWebView/WKWebView 的 Local Storage 数据，结合 WebKit 源码分析存储路径和文件命名规则，并讨论 Local Storage 的使用局限性。"
 date: 2018-04-03T00:00:00+08:00
 lastmod: 2018-10-07T08:13:38.000Z
 url: "/2018/04/03/iOS用原生代码读写Webview的Local Storage/"

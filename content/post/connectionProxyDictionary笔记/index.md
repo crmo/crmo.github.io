@@ -1,5 +1,6 @@
 ---
 title: "connectionProxyDictionary 笔记"
+description: "记录 NSURLSessionConfiguration 的 connectionProxyDictionary 属性用法，介绍如何编程设置 HTTP/HTTPS 网络代理以及通过设置空字典禁止抓包工具拦截的技巧。"
 date: 2019-06-16T00:00:00+08:00
 lastmod: 2019-06-16T03:53:17.000Z
 url: "/2019/06/16/connectionProxyDictionary笔记/"

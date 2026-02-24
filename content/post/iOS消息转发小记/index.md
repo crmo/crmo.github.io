@@ -1,5 +1,6 @@
 ---
 title: "iOS消息转发小记"
+description: "详解 Objective-C 消息转发机制的三道防线：resolveInstanceMethod 动态方法解析、forwardingTargetForSelector 备用接收者、以及 forwardInvocation 完整消息转发，附代码示例。"
 date: 2018-05-31T00:00:00+08:00
 lastmod: 2018-10-07T08:13:38.000Z
 url: "/2018/05/31/iOS消息转发小记/"

@@ -1,5 +1,6 @@
 ---
 title: "UIWebView获取详细浏览记录"
+description: "通过阅读 WebKit 源码，找到 UIWebView 获取详细浏览历史记录的方法，利用 KVC 访问私有的 WebBackForwardList 取出前进后退的 URL 信息。"
 date: 2018-08-01T00:00:00+08:00
 lastmod: 2018-10-07T08:13:37.000Z
 url: "/2018/08/01/UIWebView获取history/"

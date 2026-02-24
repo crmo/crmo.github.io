@@ -17,11 +17,26 @@ sitemap:
   filename: sitemap.xml
   priority: 0.5
 
+# 自定义输出格式：llms.txt 和 llms-full.txt
+outputFormats:
+  llmstxt:
+    baseName: llms
+    mediaType: text/plain
+    isPlainText: true
+    notAlternative: true
+  llmsfull:
+    baseName: llms-full
+    mediaType: text/plain
+    isPlainText: true
+    notAlternative: true
+
 outputs:
   home:
     - HTML
     - RSS
     - JSON
+    - llmstxt
+    - llmsfull
 
 related:
   threshold: 0

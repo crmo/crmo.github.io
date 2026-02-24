@@ -1,5 +1,6 @@
 ---
 title: "imageNamed与imageWithContentsOfFile小结"
+description: "对比 iOS 中 imageNamed 和 imageWithContentsOfFile 两种图片加载方式的缓存差异与适用场景，分析屏幕适配问题和 pathForResource 不识别 @2x 后缀的实际坑点。"
 date: 2018-03-01T19:30:00+08:00
 lastmod: 2018-10-07T08:13:37.000Z
 url: "/2018/03/01/imageNamed与imageWithContentsOfFile小结/"

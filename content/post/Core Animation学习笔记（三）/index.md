@@ -1,5 +1,6 @@
 ---
 title: "Core Animation学习笔记（三）- 视觉效果"
+description: "Core Animation 系列第三篇，探讨 CALayer 的视觉效果实现，包括圆角边框、阴影（shadowPath 性能优化）、图片缩放滤镜算法的选择与对比。"
 date: 2018-12-03T00:00:00+08:00
 lastmod: 2018-12-04T13:48:48.000Z
 url: "/2018/12/03/Core Animation学习笔记（三）/"

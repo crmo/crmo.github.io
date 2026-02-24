@@ -1,5 +1,6 @@
 ---
 title: "从一个AFNetworking循环引用说起"
+description: "分析 AFNetworking 中 AFURLSessionManager 与 NSURLSession 之间的循环引用问题，探讨单例复用 session 的最佳实践，并通过 Wireshark 抓包验证 TCP 连接复用的性能优势。"
 date: 2018-08-28T00:00:00+08:00
 lastmod: 2018-10-07T08:13:37.000Z
 url: "/2018/08/28/从一个AFNetworking循环引用说起/"

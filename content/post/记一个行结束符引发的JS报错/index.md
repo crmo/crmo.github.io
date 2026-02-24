@@ -1,5 +1,6 @@
 ---
 title: "记一个行结束符引发的JS报错"
+description: "记录 UIWebView 执行 JavaScript 时因 U+2028/U+2029 行分隔符导致 SyntaxError 的问题，分析原因并给出过滤这两个特殊字符的解决方案。"
 date: 2018-09-05T00:00:00+08:00
 lastmod: 2018-10-07T08:13:37.000Z
 url: "/2018/09/05/记一个行结束符引发的JS报错/"

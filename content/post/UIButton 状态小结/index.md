@@ -1,5 +1,6 @@
 ---
 title: "UIButton 状态小结"
+description: "分析 UIButton 的 UIControlState 组合状态机制，指出 selected 状态下点击按钮实际为 highlighted|selected 的常见遗漏，提醒在 setTitle:forState: 时注意处理组合状态。"
 date: 2019-10-07T00:00:00+08:00
 lastmod: 2019-10-07T07:57:56.000Z
 url: "/2019/10/07/UIButton 状态小结/"

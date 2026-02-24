@@ -1,0 +1,110 @@
+{{- $iso8601 := "2006-01-02T15:04:05-07:00" -}}
+
+{{- if .IsHome -}}
+  {{- $website := dict
+    "@context" "https://schema.org"
+    "@type" "WebSite"
+    "@id" site.Home.Permalink
+    "name" .Site.Title
+    "url" site.Home.Permalink
+  -}}
+  {{- with .Site.Params.description }}{{ $website = merge $website (dict "description" .) }}{{ end -}}
+  {{- with .Site.LanguageCode }}{{ $website = merge $website (dict "inLanguage" .) }}{{ end -}}
+  {{- with .Site.Params.keywords }}{{ $website = merge $website (dict "keywords" .) }}{{ end -}}
+  {{- with .Site.Params.Author.name }}
+    {{- $website = merge $website (dict "publisher" (dict "@type" "Person" "name" .)) -}}
+  {{- end -}}
+  <script type="application/ld+json">{{ $website | jsonify | safeJS }}</script>
+{{- else -}}
+  {{- $authorName := .Site.Params.Author.name | default .Site.Title -}}
+  {{- $articleSection := .Section -}}
+  {{- with site.GetPage .Section }}{{ $articleSection = .Title }}{{ end -}}
+
+  {{- $article := dict
+    "@context" "https://schema.org"
+    "@type" "Article"
+    "articleSection" $articleSection
+    "name" .Title
+    "headline" .Title
+    "url" .Permalink
+    "author" (dict "@type" "Person" "name" $authorName)
+    "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+    "wordCount" .WordCount
+  -}}
+  {{- with .Description }}{{ $article = merge $article (dict "description" .) }}{{ end -}}
+  {{- with .Site.LanguageCode }}{{ $article = merge $article (dict "inLanguage" .) }}{{ end -}}
+  {{- with .PublishDate }}{{ $article = merge $article (dict "copyrightYear" (.Format "2006")) }}{{ end -}}
+  {{- with .Date }}{{ $article = merge $article (dict "dateCreated" (.Format $iso8601)) }}{{ end -}}
+  {{- with .PublishDate }}{{ $article = merge $article (dict "datePublished" (.Format $iso8601)) }}{{ end -}}
+  {{- with .ExpiryDate }}{{ $article = merge $article (dict "expires" (.Format $iso8601)) }}{{ end -}}
+  {{- with .Lastmod }}{{ $article = merge $article (dict "dateModified" (.Format $iso8601)) }}{{ end -}}
+
+  {{- if .Keywords -}}
+    {{- $article = merge $article (dict "keywords" .Keywords) -}}
+  {{- else -}}
+    {{- with .Params.tags }}{{ $article = merge $article (dict "keywords" .) }}{{ end -}}
+  {{- end -}}
+
+  {{- $schemaImage := "" -}}
+  {{- with .Params.featureimage -}}
+    {{- if or (strings.HasPrefix . "http://") (strings.HasPrefix . "https://") -}}
+      {{- $schemaImage = . -}}
+    {{- else -}}
+      {{- with $.Resources.GetMatch . -}}
+        {{- $schemaImage = .Permalink -}}
+      {{- else -}}
+        {{- with resources.Get . -}}
+          {{- $schemaImage = .Permalink -}}
+        {{- else -}}
+          {{- $schemaImage = . | absURL -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- if not $schemaImage -}}
+    {{- $images := .Resources.ByType "image" -}}
+    {{- range slice "*feature*" "*featured*" "*cover*" "*thumbnail*" "*background*" -}}
+      {{- if not $schemaImage -}}
+        {{- with $images.GetMatch . -}}
+          {{- $schemaImage = .Permalink -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- if not $schemaImage -}}
+    {{- with .Site.Params.defaultSocialImage -}}
+      {{- if or (strings.HasPrefix . "http://") (strings.HasPrefix . "https://") -}}
+        {{- $schemaImage = . -}}
+      {{- else -}}
+        {{- with resources.Get . -}}
+          {{- $schemaImage = .Permalink -}}
+        {{- else -}}
+          {{- $schemaImage = . | absURL -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- with $schemaImage -}}
+    {{- $article = merge $article (dict "image" (slice .)) -}}
+  {{- end -}}
+
+  {{- $schemas := slice $article -}}
+  {{- if site.Params.enableStructuredBreadcrumbs | default false -}}
+    {{- $items := slice -}}
+    {{- $position := 1 -}}
+    {{- range .Ancestors -}}
+      {{- if not .IsHome -}}
+        {{- $items = $items | append (dict "@type" "ListItem" "position" $position "name" .Title "item" .Permalink) -}}
+        {{- $position = add $position 1 -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $items = $items | append (dict "@type" "ListItem" "position" $position "name" $.Title "item" $.Permalink) -}}
+    {{- $breadcrumb := dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" $items -}}
+    {{- $schemas = $schemas | append $breadcrumb -}}
+  {{- end -}}
+
+  <script type="application/ld+json">{{ $schemas | jsonify | safeJS }}</script>
+{{- end -}}

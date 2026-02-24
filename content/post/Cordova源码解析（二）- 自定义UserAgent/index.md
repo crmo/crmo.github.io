@@ -1,5 +1,6 @@
 ---
 title: "Cordova源码解析（二）- 自定义UserAgent"
+description: "解析 Cordova 中 CDVUserAgentUtil 的加锁机制，分析多 WebView 环境下通过 NSUserDefaults 设置 UserAgent 时如何避免数据竞争，详解锁的获取、释放流程。"
 date: 2018-05-15T00:00:00+08:00
 lastmod: 2018-10-07T08:13:37.000Z
 url: "/2018/05/15/Cordova源码解析（二）- 自定义UserAgent/"

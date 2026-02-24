@@ -1,5 +1,6 @@
 ---
 title: "Core Animation学习笔记（二）- 图层几何布局"
+description: "Core Animation 系列第二篇，深入讲解 CALayer 的几何布局，包括 frame、bounds、position、anchorPoint 的关系，坐标系转换、Z 轴定位以及 Hit Testing 机制。"
 date: 2018-12-02T00:00:00+08:00
 lastmod: 2019-06-18T08:59:55.000Z
 url: "/2018/12/02/Core Animation学习笔记（二）/"

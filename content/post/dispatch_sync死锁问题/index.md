@@ -1,5 +1,6 @@
 ---
 title: "dispatch_sync死锁问题"
+description: "分析 GCD 中 dispatch_sync 导致死锁的典型场景，包括单队列嵌套和多队列交叉两种情况，并指出使用 dispatch_get_current_queue 防死锁的误区。"
 date: 2018-08-03T00:00:00+08:00
 lastmod: 2018-10-07T08:13:37.000Z
 url: "/2018/08/03/dispatch_sync死锁问题/"

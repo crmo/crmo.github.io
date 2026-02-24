@@ -1,5 +1,6 @@
 ---
 title: "iOS的Cookie管理"
+description: "介绍 iOS 中使用 NSHTTPCookieStorage 实现 Cookie 的存储、设置和清理，结合 AFNetworking 框架说明 Cookie 的手动缓存方案。"
 date: 2018-03-01T20:00:00+08:00
 lastmod: 2018-10-07T08:13:37.000Z
 url: "/2018/03/01/iOS的Cookie管理/"

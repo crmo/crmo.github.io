@@ -1,5 +1,6 @@
 ---
 title: "从FMDB线程安全问题说起"
+description: "深入分析 FMDB 中 FMDatabaseQueue 在特定使用方式下仍会触发 SQLite 多线程 crash 的原因，解读 iOS 系统 SQLite 的线程模式配置，并提出 FMResultSet 未 close 问题的修复方案。"
 date: 2019-01-28T00:00:00+08:00
 lastmod: 2019-02-02T01:39:15.000Z
 url: "/2019/01/28/从FMDB线程安全问题说起/"

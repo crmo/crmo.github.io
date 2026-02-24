@@ -1,5 +1,6 @@
 ---
 title: "App Store上架漫谈"
+description: "分享独立 APP「识之」的 App Store 上架审核经验，包括如何阅读理解苹果审核拒信、录制演示视频辅助审核、以及应对 Guideline 3.1.4 和 4.2 条款被拒的实际案例。"
 date: 2018-11-15T00:00:00+08:00
 lastmod: 2018-12-02T07:46:38.000Z
 url: "/2018/11/15/App Store上架漫谈/"

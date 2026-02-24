@@ -1,5 +1,6 @@
 ---
 title: "iOS用CallKit实现来电识别"
+description: "详细介绍使用 iOS CallKit 的 Call Directory Extension 实现来电号码识别功能，涵盖 Extension 创建、数据写入、APP Groups 数据共享（支持百万级数据量），以及 CallKit 审核上架的注意事项。"
 date: 2018-03-03T17:33:54+08:00
 lastmod: 2018-10-12T00:52:31.000Z
 url: "/2018/03/03/iOS用CallKit实现来电识别/"

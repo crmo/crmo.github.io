@@ -1,5 +1,6 @@
 ---
 title: "探寻Objective-C引用计数本质"
+description: "从 Runtime 源码层面剖析 Objective-C 引用计数的存储与操作原理，包括 NONPOINTER ISA 中 extra_rc 的位布局、SideTable 溢出机制，以及 retain/release 的完整实现流程。"
 date: 2018-05-26T00:00:00+08:00
 lastmod: 2018-10-07T08:16:32.000Z
 url: "/2018/05/26/探寻Objective-C引用计数本质/"

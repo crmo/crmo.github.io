@@ -1,5 +1,6 @@
 ---
 title: "UITabbar自定义Badge"
+description: "通过 Reveal 分析 UITabBar 内部结构，利用 KVC 获取 UITabBarButton 中的图标视图，实现自定义小红点 Badge 替代系统默认的数字角标。"
 date: 2018-07-10T00:00:00+08:00
 lastmod: 2018-10-07T08:13:37.000Z
 url: "/2018/07/10/UITabbar自定义Badge/"

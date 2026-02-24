@@ -1,5 +1,6 @@
 ---
 title: "runtime实现私有变量搜索"
+description: "利用 Objective-C Runtime 的 class_copyIvarList 获取类成员变量，结合 BFS 广度优先搜索算法，实现从根类逐层搜索指定类型私有变量的工具。"
 date: 2018-07-31T00:00:00+08:00
 lastmod: 2018-10-07T08:13:37.000Z
 url: "/2018/07/31/runtime实现私有变量搜索/"

@@ -1,5 +1,6 @@
 ---
 title: "property or synthsize"
+description: "对比 Objective-C 中 @property 与 @synthesize 的作用，说明编译器自动合成 getter/setter 和成员变量的演进过程，附 MRC 下手写存取方法的写法。"
 date: 2018-07-05T00:00:00+08:00
 lastmod: 2018-10-07T08:13:37.000Z
 url: "/2018/07/05/property or synthsize/"

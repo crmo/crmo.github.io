@@ -1,5 +1,6 @@
 ---
 title: "iOS横竖屏总结"
+description: "全面总结 iOS 横竖屏适配方案，包括 info.plist、AppDelegate、ViewController 三级控制机制，屏幕旋转事件的传递顺序和监听方法，以及自定义 UIWindow 的旋转处理。"
 date: 2018-07-23T00:00:00+08:00
 lastmod: 2018-10-07T08:13:37.000Z
 url: "/2018/07/23/iOS横竖屏总结/"

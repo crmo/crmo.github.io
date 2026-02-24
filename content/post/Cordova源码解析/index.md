@@ -1,5 +1,6 @@
 ---
 title: "Cordova源码解析"
+description: "深入解析 Cordova 4.2.1 的核心架构，包括 CDVViewController 的职责、JS 调用原生插件的完整流程（gap:// 拦截、命令队列、插件执行）、RunLoop 性能优化策略以及插件的注册与初始化机制。"
 date: 2018-05-09T00:00:00+08:00
 lastmod: 2018-10-07T08:13:37.000Z
 url: "/2018/05/09/Cordova源码解析/"

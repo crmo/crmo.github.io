@@ -1,5 +1,6 @@
 ---
 title: "AFNetworking下载文件时文件名长度的坑"
+description: "记录使用 AFNetworking 下载文件时因目标文件名超过 iOS 255 字符限制导致文件移动失败的问题，分析 AFURLSessionManager 的下载回调源码并给出解决思路。"
 date: 2018-03-29T22:23:00+08:00
 lastmod: 2018-10-07T08:13:37.000Z
 url: "/2018/03/29/AFNetworking下载文件时文件名长度的坑/"

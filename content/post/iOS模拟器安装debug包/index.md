@@ -1,5 +1,6 @@
 ---
 title: "iOS模拟器安装debug包"
+description: "介绍如何将 Xcode 编译的 debug 包拷贝到其他机器的 iOS 模拟器上运行，使用 ios-sim 工具完成安装和启动，解决无源码调试 Hybrid H5 的需求。"
 date: 2018-08-21T00:00:00+08:00
 lastmod: 2019-03-07T01:03:01.000Z
 url: "/2018/08/21/iOS模拟器安装debug包/"

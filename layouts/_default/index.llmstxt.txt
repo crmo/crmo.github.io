@@ -1,0 +1,14 @@
+# {{ .Site.Title }}
+
+> {{ .Site.Params.description | default .Site.Params.Author.bio }}
+
+本站是一个中文技术博客，专注于 iOS 开发领域的知识分享，由 {{ .Site.Params.Author.name }} 维护。
+
+- 博客首页: {{ .Site.BaseURL }}
+- RSS 订阅: {{ "index.xml" | absURL }}
+- 完整内容（供 LLM 使用）: {{ "llms-full.txt" | absURL }}
+
+## 文章列表
+{{ range where .Site.RegularPages "Section" "post" }}
+- [{{ .Title }}]({{ .Permalink }}): {{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 100 }}{{ end }}
+{{- end }}

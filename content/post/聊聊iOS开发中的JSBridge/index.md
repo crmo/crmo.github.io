@@ -1,5 +1,6 @@
 ---
 title: "聊聊iOS开发中的JSBridge"
+description: "介绍 iOS Hybrid App 中 JS 与 Native 通信的三种 JSBridge 实现方案：Iframe 拦截、Ajax 拦截和 JavaScriptCore 注入，并对三种方案进行性能对比测试。"
 date: 2018-10-22T00:00:00+08:00
 lastmod: 2018-10-22T13:40:18.000Z
 url: "/2018/10/22/聊聊iOS开发中的JSBridge/"
